@@ -1,264 +1,224 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useState } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
-import {
-  BarChart3, Building2, CalendarDays, ChevronDown, ChevronRight,
-  CircleDollarSign, FileSpreadsheet, Gift, MenuSquare, Package, PanelLeftClose,
-  PanelLeftOpen, Settings, ShoppingCart, Smartphone, Truck, Users, Warehouse,
-  X,
+import { coQuyen } from '../utils/quyen';
+import { 
+  ShoppingCart, Users, Package, Warehouse, 
+  Wallet, BarChart3, ChevronDown, ChevronRight, 
+  ChevronsLeft, BarChart2, FileSpreadsheet,
+  Truck, ShieldCheck, Pill, CalendarClock,
+  Settings as SettingsIcon
 } from 'lucide-react';
-import { coQuyen, laChuCuaHang, layNguoiDung } from '../utils/quyen';
+import logo from '../assets/logo.png';
 
-const INDUSTRIES = [
-  ['retail', 'Bán lẻ'], ['spa', 'Spa & Dịch vụ'], ['fnb', 'Nhà hàng F&B'],
-  ['hotel', 'Khách sạn'], ['petshop', 'Thú cưng'], ['clinic', 'Phòng khám'],
-];
-
-function baseMenu(industry) {
-  const productLabel = industry === 'fnb' ? 'Thực đơn & hàng hóa' : 'Sản phẩm & hàng hóa';
+// ==============================================================
+//  MENU CHUẨN 100% CHO NHÀ THUỐC (Nhà Thuốc Nhân Đức)
+// ==============================================================
+const getPharmacyMenu = () => {
   return [
-    { id: 'overview', label: 'Tổng quan', icon: BarChart3, path: '/app/overview', mod: ['reports', 'finance'] },
-    { id: 'pos', label: 'Bán hàng', icon: ShoppingCart, mod: ['pos', 'orders'], children: [
-      { label: 'Tạo đơn', path: '/app/pos', mod: ['pos'] },
-      { label: 'Đơn hàng', path: '/app/pos/orders', mod: ['orders', 'pos'] },
-      { label: 'Trả hàng', path: '/app/pos/returns', mod: ['orders', 'pos'] },
-      { label: 'Chốt ca', path: '/app/pos/shift', mod: ['pos', 'finance'] },
-    ] },
-    { id: 'products', label: productLabel, icon: Package, mod: ['products', 'categories'], children: [
-      { label: 'Danh sách', path: '/app/products', mod: ['products'] },
-      { label: 'Danh mục', path: '/app/products/categories', mod: ['categories', 'products'] },
-      { label: 'Bảng giá', path: '/app/products/pricing', mod: ['products'] },
-      { label: 'Combo / bán theo bộ', path: '/app/products/combos', mod: ['products'] },
-      { label: 'Serial & bảo hành', path: '/app/products/serials', mod: ['products'] },
-      { label: 'Đơn vị tính', path: '/app/products/units', mod: ['products'] },
-      { label: 'Định mức BOM', path: '/app/products/bom', mod: ['products'] },
-    ] },
-    { id: 'purchase', label: 'Mua & nhập hàng', icon: Truck, mod: ['purchase', 'suppliers'], children: [
-      { label: 'Tạo phiếu nhập', path: '/app/purchase', mod: ['purchase'] },
-      { label: 'Đặt / trả hàng NCC', path: '/app/supplier-orders', mod: ['purchase'] },
-      { label: 'Nhà cung cấp', path: '/app/suppliers', mod: ['suppliers', 'purchase'] },
-    ] },
-    { id: 'inventory', label: 'Kho hàng', icon: Warehouse, mod: ['inventory'], children: [
-      { label: 'Tồn kho', path: '/app/inventory', mod: ['inventory'] },
-      { label: 'Chi nhánh & kho', path: '/app/branches', mod: ['inventory'] },
-      { label: 'Lô & hạn sử dụng', path: '/app/inventory/batches', mod: ['inventory'] },
-      { label: 'Kiểm kê', path: '/app/inventory/check', mod: ['inventory'] },
-      { label: 'Chuyển kho', path: '/app/inventory/transfer', mod: ['inventory'] },
-    ] },
-    { id: 'customers', label: 'Khách hàng', icon: Users, path: '/app/customers', mod: ['customers'] },
-    { id: 'staff', label: 'Nhân sự', icon: Users, path: '/app/staff', mod: ['staff'] },
-    { id: 'finance', label: 'Tài chính', icon: CircleDollarSign, mod: ['finance', 'debt'], children: [
-      { label: 'Tổng quan tài chính', path: '/app/finance', mod: ['finance'] },
-      { label: 'Sổ quỹ thu chi', path: '/app/finance/cashbook', mod: ['finance'] },
-      { label: 'Công nợ', path: '/app/finance/debt', mod: ['debt'] },
-    ] },
-    { id: 'reports', label: 'Báo cáo', icon: FileSpreadsheet, path: '/app/reports', mod: ['reports'] },
-    { id: 'tax', label: 'Thuế & kiểm toán', icon: FileSpreadsheet, mod: ['tax', 'purchase'], children: [
-      { label: 'Kê khai & kiểm soát thuế', path: '/app/report', mod: ['tax'] },
-      { label: 'Kiểm toán hóa đơn & chi phí', path: '/app/audit', mod: ['purchase'] },
-    ] },
-    { id: 'promotions', label: 'Khuyến mãi', icon: Gift, path: '/app/promotions', mod: ['promotions'] },
-    { id: 'channels', label: 'Kênh bán hàng', icon: Smartphone, path: '/app/settings/miniapp', mod: [] },
-    { id: 'settings-owner', label: 'Cài đặt hệ thống', icon: Settings, mod: ['__owner__'], children: [
-      { label: 'Thông tin cửa hàng', path: '/app/settings', mod: ['__owner__'] },
-      { label: 'Sao lưu & khôi phục hệ thống', path: '/app/settings/backup', mod: ['__superadmin__'] },
-      { label: 'Nhật ký thao tác', path: '/app/settings/audit', mod: ['__owner__'] },
-      { label: 'Tự động hóa', path: '/app/settings/automation', mod: ['__owner__'] },
-      { label: 'Kết nối sàn TMĐT', path: '/app/settings/omnichannel', mod: ['__owner__'] },
-    ] },
+    // 1. BÁO CÁO & PHÂN TÍCH
+    {
+      id: 'reports_group', label: 'Báo cáo & Doanh thu', icon: BarChart2, mod: ['reports', 'finance'],
+      children: [
+        { label: 'Tổng quan (Dashboard)', path: '/app/overview', mod: ['reports', 'finance'] },
+        { label: 'Báo cáo bán hàng', path: '/app/reports', mod: ['reports'] },
+      ]
+    },
+    // 2. BÁN THUỐC (POS)
+    {
+      id: 'pos', label: 'Bán thuốc & Kê đơn (POS)', icon: ShoppingCart, mod: ['pos', 'orders'],
+      children: [
+        { label: 'Kê đơn & Bán thuốc', path: '/app/pos', mod: ['pos'] },
+        { label: 'Lịch sử hóa đơn', path: '/app/pos/orders', mod: ['orders', 'pos'] },
+        { label: 'Khách trả thuốc', path: '/app/pos/returns', mod: ['orders', 'pos'] },
+        { label: 'Chốt ca trực dược sĩ', path: '/app/pos/shift', mod: ['pos', 'finance'] },
+      ]
+    },
+    // 3. KHO DƯỢC & THUỐC
+    {
+      id: 'products', label: 'Kho Dược & Thuốc', icon: Pill, mod: ['products', 'categories'],
+      children: [
+        { label: 'Danh mục thuốc & Dược phẩm', path: '/app/products', mod: ['products'] },
+        { label: 'Nhóm thuốc / Dược lý', path: '/app/products/categories', mod: ['categories', 'products'] },
+        { label: 'Đơn vị tính quy đổi', path: '/app/products/units', mod: ['products'] },
+        { label: 'Bảng giá (Sỉ/Lẻ/Liều)', path: '/app/products/pricing', mod: ['products'] },
+        { label: 'Đơn thuốc mẫu & Combo', path: '/app/products/combos', mod: ['products'] },
+      ]
+    },
+    // 4. QUẢN LÝ LÔ & HẠN DÙNG (CỰC KỲ QUAN TRỌNG CHO NHÀ THUỐC)
+    {
+      id: 'inventory', label: 'Kho hàng & Lô Date', icon: Warehouse, mod: ['inventory'],
+      children: [
+        { label: 'Lô & Hạn sử dụng (Date)', path: '/app/inventory/batches', mod: ['inventory'] },
+        { label: 'Tồn kho thuốc', path: '/app/inventory', mod: ['inventory'] },
+        { label: 'Kiểm kê kho thuốc', path: '/app/inventory/check', mod: ['inventory'] },
+        { label: 'Chuyển kho / Quầy thuốc', path: '/app/inventory/transfer', mod: ['inventory'] },
+        { label: 'Chi nhánh & Quầy thuốc', path: '/app/branches', mod: ['inventory'] },
+      ]
+    },
+    // 5. NHẬP THUỐC & NHÀ PHÂN PHỐI DƯỢC
+    {
+      id: 'purchase', label: 'Nhập thuốc & NCC Dược', icon: Truck, mod: ['purchase', 'suppliers'],
+      children: [
+        { label: 'Phiếu nhập thuốc', path: '/app/purchase', mod: ['purchase'] },
+        { label: 'Nhà cung cấp dược phẩm', path: '/app/suppliers', mod: ['suppliers', 'purchase'] },
+        { label: 'Đặt hàng & Trả NCC', path: '/app/supplier-orders', mod: ['purchase'] },
+      ]
+    },
+    // 6. KHÁCH HÀNG & BỆNH NHÂN (CRM)
+    { 
+      id: 'customers', label: 'Khách hàng & Bệnh nhân', icon: Users, mod: ['customers'],
+      children: [
+        { label: 'Hồ sơ bệnh nhân', path: '/app/customers', mod: ['customers'] },
+        { label: 'Thẻ VIP & Tích điểm', path: '/app/customers/loyalty', mod: ['customers'] },
+        { label: 'Chăm sóc khách hàng (CRM)', path: '/app/customers/crm', mod: ['customers'] },
+      ]
+    },
+    // 7. DƯỢC SĨ & NHÂN SỰ
+    { id: 'staff', label: 'Dược sĩ & Nhân viên', icon: Users, path: '/app/staff', mod: ['staff'] },
+    // 8. TÀI CHÍNH & CÔNG NỢ
+    {
+      id: 'finance', label: 'Sổ quỹ & Công nợ', icon: Wallet, mod: ['finance', 'debt'],
+      children: [
+        { label: 'Sổ quỹ thu chi', path: '/app/finance/cashbook', mod: ['finance'] },
+        { label: 'Công nợ khách & NCC', path: '/app/finance/debt', mod: ['debt'] },
+        { label: 'Tổng quan tài chính', path: '/app/finance', mod: ['finance'] },
+      ]
+    },
+    // 9. THUẾ & HÓA ĐƠN ĐIỆN TỬ MÁY TÍNH TIỀN
+    { id: 'tax', label: 'Khai Thuế & HĐĐT Máy tính tiền', icon: FileSpreadsheet, path: '/app/report', mod: ['tax'] },
+    // 10. CÀI ĐẶT
+    {
+      id: 'settings', label: 'Cài đặt nhà thuốc', icon: SettingsIcon, mod: ['__owner__'],
+      children: [
+        { label: 'Thông tin nhà thuốc', path: '/app/settings', mod: ['__owner__'] },
+        { label: 'Nhật ký hoạt động', path: '/app/settings/audit', mod: ['__owner__'] },
+        { label: 'Sao lưu & Khôi phục', path: '/app/settings/backup', mod: ['__owner__'] },
+      ]
+    }
   ];
-}
-
-const SECTOR_EXTRA = {
-  retail: [],
-  spa: [
-    { id: 'sector-appointments', label: 'Lịch hẹn', icon: CalendarDays, path: '/app/appointments', mod: ['appointments'] },
-    { id: 'sector-rooms', label: 'Phòng / giường', icon: Building2, path: '/app/rooms', mod: ['rooms'] },
-    { id: 'sector-commissions', label: 'Hoa hồng KTV', icon: Users, path: '/app/staff/commissions', mod: ['staff'] },
-  ],
-  fnb: [
-    { id: 'sector-tables', label: 'Sơ đồ bàn', icon: MenuSquare, path: '/app/pos', mod: ['pos'] },
-    { id: 'sector-rooms', label: 'Bàn / phòng', icon: Building2, path: '/app/rooms', mod: ['rooms'] },
-  ],
-  hotel: [
-    { id: 'sector-rooms', label: 'Quản lý phòng', icon: Building2, path: '/app/rooms', mod: ['rooms'] },
-    { id: 'sector-booking', label: 'Đặt phòng', icon: CalendarDays, path: '/app/appointments', mod: ['appointments'] },
-  ],
-  petshop: [
-    { id: 'sector-grooming', label: 'Lịch Grooming', icon: CalendarDays, path: '/app/appointments', mod: ['appointments'] },
-    { id: 'sector-rooms', label: 'Phòng lưu trú', icon: Building2, path: '/app/rooms', mod: ['rooms'] },
-  ],
-  clinic: [
-    { id: 'sector-booking', label: 'Lịch khám', icon: CalendarDays, path: '/app/appointments', mod: ['appointments'] },
-    { id: 'sector-rooms', label: 'Phòng khám', icon: Building2, path: '/app/rooms', mod: ['rooms'] },
-  ],
 };
 
-function filterByPermission(items) {
-  return items
-    .filter((item) => coQuyen(...(item.mod || [])))
-    .map((item) => item.children
-      ? { ...item, children: item.children.filter((child) => coQuyen(...(child.mod || []))) }
-      : item)
-    .filter((item) => !item.children || item.children.length > 0);
-}
-
-export default function Sidebar({ collapsed = false, mobileOpen = false, onToggleCollapsed, onCloseMobile }) {
+export default function Sidebar({ onClose }) {
   const location = useLocation();
-  const user = layNguoiDung();
-  const [expanded, setExpanded] = useState({ pos: true, products: true });
-  const [industry, setIndustry] = useState(localStorage.getItem('industry_type') || user.sector || 'retail');
-  const [industryOpen, setIndustryOpen] = useState(false);
+  const [expanded, setExpanded] = useState({ pos: true, products: true, inventory: true });
 
-  useEffect(() => {
-    const syncIndustry = () => setIndustry(localStorage.getItem('industry_type') || layNguoiDung().sector || 'retail');
-    window.addEventListener('industryChange', syncIndustry);
-    return () => window.removeEventListener('industryChange', syncIndustry);
-  }, []);
-
-  useEffect(() => {
-    setIndustryOpen(false);
-  }, [location.pathname, collapsed, mobileOpen]);
-
-  const menu = useMemo(() => filterByPermission(baseMenu(industry)), [industry]);
-  const sectorItems = useMemo(() => filterByPermission(SECTOR_EXTRA[industry] || []), [industry]);
-  const industryLabel = INDUSTRIES.find(([value]) => value === industry)?.[1] || 'Bán lẻ';
-
-  const selectIndustry = (value) => {
-    setIndustry(value);
-    setIndustryOpen(false);
-    localStorage.setItem('industry_type', value);
-    window.dispatchEvent(new Event('industryChange'));
+  const handleNavClick = () => {
+    if (onClose) onClose();
   };
 
-  const activeChild = (children) => children?.some((child) => location.pathname === child.path || location.pathname.startsWith(`${child.path}/`));
+  const toggleMenu = (id) => setExpanded(prev => ({ ...prev, [id]: !prev[id] }));
+  const isActive = (path) => location.pathname === path;
+  const isChildActive = (children) => children?.some(c => location.pathname.startsWith(c.path));
+
+  const locTheoQuyen = (items) =>
+    items
+      .filter((it) => coQuyen(...(it.mod || [])))
+      .map((it) => (it.children ? { ...it, children: it.children.filter((c) => coQuyen(...(c.mod || []))) } : it))
+      .filter((it) => !it.children || it.children.length > 0);
+
+  const menuItems = locTheoQuyen(getPharmacyMenu());
 
   const renderItem = (item) => {
-    const Icon = item.icon;
-    const hasChildren = Boolean(item.children?.length);
-    const active = item.path ? (location.pathname === item.path || (item.path !== '/app/overview' && location.pathname.startsWith(`${item.path}/`))) : activeChild(item.children);
-
-    if (hasChildren) {
-      return (
-        <div key={item.id} className="space-y-1">
-          <button
-            type="button"
-            title={collapsed ? item.label : undefined}
-            onClick={() => {
-              if (collapsed) onToggleCollapsed?.();
-              else setExpanded((prev) => ({ ...prev, [item.id]: !prev[item.id] }));
-            }}
-            className={`sidebar-item w-full ${active ? 'sidebar-item-active' : ''} ${collapsed ? 'justify-center px-2' : ''}`}
-          >
-            <Icon className="h-5 w-5 shrink-0" />
-            {!collapsed && <><span className="flex-1 truncate text-left">{item.label}</span>{expanded[item.id] ? <ChevronDown className="h-4 w-4" /> : <ChevronRight className="h-4 w-4" />}</>}
-          </button>
-          {!collapsed && expanded[item.id] && (
-            <div className="ml-5 space-y-0.5 border-l border-slate-200 pl-3">
-              {item.children.map((child) => (
-                <NavLink
-                  key={`${item.id}:${child.path}`}
-                  to={child.path}
-                  onClick={onCloseMobile}
-                  className={({ isActive }) => `sidebar-child ${isActive ? 'sidebar-child-active' : ''}`}
-                >{child.label}</NavLink>
-              ))}
-            </div>
-          )}
-        </div>
-      );
-    }
+    const hasChildren = !!item.children;
+    const childActive = isChildActive(item.children);
+    const selfActive = isActive(item.path);
 
     return (
-      <NavLink
-        key={item.id}
-        to={item.path}
-        title={collapsed ? item.label : undefined}
-        onClick={onCloseMobile}
-        className={({ isActive }) => `sidebar-item ${isActive ? 'sidebar-item-active' : ''} ${collapsed ? 'justify-center px-2' : ''}`}
-      >
-        <Icon className="h-5 w-5 shrink-0" />
-        {!collapsed && <span className="truncate">{item.label}</span>}
-      </NavLink>
+      <div key={item.id} className="mb-0.5">
+        {hasChildren ? (
+          <>
+            <button
+              onClick={() => toggleMenu(item.id)}
+              className={`w-full flex items-center justify-between px-3 py-2.5 rounded-xl transition-all font-semibold text-sm ${
+                childActive || expanded[item.id]
+                  ? 'text-emerald-800 bg-emerald-50'
+                  : 'text-slate-600 hover:text-slate-900 hover:bg-slate-50'
+              }`}
+            >
+              <div className="flex items-center gap-3">
+                <item.icon className={`w-5 h-5 ${childActive ? 'text-emerald-600' : 'text-slate-400'}`} />
+                <span>{item.label}</span>
+              </div>
+              {expanded[item.id]
+                ? <ChevronDown className="w-4 h-4 text-slate-400" />
+                : <ChevronRight className="w-4 h-4 text-slate-400" />}
+            </button>
+            {expanded[item.id] && (
+              <div className="mt-1 ml-5 border-l-2 border-emerald-100 pl-3 space-y-0.5 pb-1">
+                {item.children.map((child, idx) => {
+                  const active = isActive(child.path);
+                  return (
+                    <NavLink
+                      key={idx}
+                      to={child.path}
+                      onClick={handleNavClick}
+                      className={`flex items-center gap-2 px-3 py-2 rounded-lg text-sm transition-all font-medium relative ${
+                        active ? 'text-emerald-700 bg-emerald-50/80 font-bold' : 'text-slate-500 hover:text-slate-800 hover:bg-slate-50'
+                      }`}
+                    >
+                      {active && <div className="absolute left-[-0.85rem] w-1.5 h-1.5 rounded-full bg-emerald-600 ring-2 ring-emerald-100"></div>}
+                      {child.label}
+                    </NavLink>
+                  );
+                })}
+              </div>
+            )}
+          </>
+        ) : (
+          <NavLink
+            to={item.path}
+            onClick={handleNavClick}
+            className={`flex items-center gap-3 px-3 py-2.5 rounded-xl transition-all font-semibold text-sm ${
+              selfActive ? 'bg-emerald-50 text-emerald-800 font-bold' : 'text-slate-600 hover:text-slate-900 hover:bg-slate-50'
+            }`}
+          >
+            <item.icon className={`w-5 h-5 ${selfActive ? 'text-emerald-600' : 'text-slate-400'}`} />
+            <span>{item.label}</span>
+          </NavLink>
+        )}
+      </div>
     );
   };
 
   return (
-    <aside className={`fixed inset-y-0 left-0 z-50 flex h-dvh flex-col border-r border-slate-200 bg-white shadow-xl transition-all duration-200 lg:static lg:z-auto lg:shadow-none ${collapsed ? 'lg:w-[76px]' : 'lg:w-[268px]'} w-[284px] ${mobileOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'}`}>
-      <div className={`flex h-16 shrink-0 items-center border-b border-slate-100 ${collapsed ? 'justify-center px-2' : 'justify-between px-4'}`}>
-        <div className="flex min-w-0 items-center gap-3">
-          <img src="/autotax-logo.svg" alt="" className="h-9 w-9 shrink-0 rounded-xl shadow-sm" />
-          {!collapsed && <div className="min-w-0"><div className="truncate text-base font-extrabold tracking-tight text-slate-950">AutoTax</div><div className="truncate text-[10px] font-semibold uppercase tracking-[0.14em] text-slate-400">Business Control</div></div>}
+    <div className="w-[260px] bg-white h-screen flex flex-col flex-shrink-0 text-slate-600 border-r border-slate-200 shadow-sm">
+
+      {/* Header Logo Nhà Thuốc Nhân Đức */}
+      <div className="h-24 flex items-center justify-between px-4 border-b border-slate-100 shrink-0 bg-emerald-50/20">
+        <div className="flex items-center gap-2 overflow-hidden py-1">
+          <img src={logo} alt="Nhà Thuốc Nhân Đức" className="h-16 w-auto max-w-[190px] object-contain drop-shadow-sm" />
         </div>
-        <button type="button" onClick={onCloseMobile} className="icon-btn lg:hidden" aria-label="Đóng menu"><X className="h-5 w-5" /></button>
+        <button className="text-slate-400 hover:text-slate-600 transition-colors p-1 rounded-lg hover:bg-slate-50">
+          <ChevronsLeft className="w-5 h-5" />
+        </button>
       </div>
 
-      <div className={`shrink-0 border-b border-slate-100 ${collapsed ? 'p-2' : 'p-3'}`}>
-        {!collapsed ? (
-          <div className="block">
-            <span className="mb-1.5 block px-1 text-[10px] font-bold uppercase tracking-[0.12em] text-slate-400">Mô hình kinh doanh</span>
-            <div
-              className="relative"
-              onBlur={(event) => {
-                if (!event.currentTarget.contains(event.relatedTarget)) setIndustryOpen(false);
-              }}
-            >
-              <button
-                type="button"
-                aria-haspopup="listbox"
-                aria-expanded={industryOpen}
-                onClick={() => setIndustryOpen((open) => !open)}
-                className="flex w-full items-center justify-between gap-2 rounded-xl border border-slate-200 bg-slate-50 px-3 py-2 text-left text-xs font-bold text-slate-700 outline-none transition hover:bg-white focus:border-blue-300 focus:ring-2 focus:ring-blue-100"
-              >
-                <span className="truncate">{industryLabel}</span>
-                <ChevronDown className={`h-4 w-4 shrink-0 text-slate-400 transition-transform ${industryOpen ? 'rotate-180' : ''}`} />
-              </button>
-              {industryOpen && (
-                <div
-                  role="listbox"
-                  aria-label="Mô hình kinh doanh"
-                  className="absolute left-0 right-0 top-[calc(100%+6px)] z-[70] max-h-60 overflow-y-auto rounded-xl border border-slate-200 bg-white p-1 shadow-xl"
-                >
-                  {INDUSTRIES.map(([value, label]) => {
-                    const selected = value === industry;
-                    return (
-                      <button
-                        key={value}
-                        type="button"
-                        role="option"
-                        aria-selected={selected}
-                        onClick={() => selectIndustry(value)}
-                        className={`flex w-full items-center justify-between gap-3 rounded-lg px-3 py-2 text-left text-xs font-semibold transition ${selected ? 'bg-blue-50 text-blue-700' : 'bg-white text-slate-700 hover:bg-slate-50'}`}
-                      >
-                        <span>{label}</span>
-                        {selected && <span aria-hidden="true" className="text-sm leading-none text-blue-600">✓</span>}
-                      </button>
-                    );
-                  })}
-                </div>
-              )}
-            </div>
-          </div>
-        ) : (
-          <button type="button" onClick={onToggleCollapsed} title="Mở menu" className="icon-btn mx-auto"><PanelLeftOpen className="h-5 w-5" /></button>
-        )}
+      {/* Badge Chuyên ngành Nhà thuốc GPP */}
+      <div className="px-4 py-2 border-b border-emerald-100/60 bg-emerald-50/50 flex items-center gap-2 shrink-0">
+        <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+        <span className="text-[11px] font-bold text-emerald-800 tracking-wide uppercase">
+          Quản Lý Nhà Thuốc Chuẩn GPP
+        </span>
       </div>
 
-      <nav className={`flex-1 space-y-1 overflow-y-auto py-3 ${collapsed ? 'px-2' : 'px-3'}`}>
-        {menu.map(renderItem)}
-        {sectorItems.length > 0 && !collapsed && <div className="px-3 pb-1 pt-4 text-[10px] font-bold uppercase tracking-[0.12em] text-slate-400">Nghiệp vụ chuyên ngành</div>}
-        {sectorItems.map(renderItem)}
+      {/* Navigation */}
+      <nav className="flex-1 overflow-y-auto px-3 py-3 space-y-0.5">
+        {menuItems.map(renderItem)}
       </nav>
 
-      <div className={`shrink-0 border-t border-slate-100 p-3 ${collapsed ? 'flex justify-center' : ''}`}>
-        {collapsed ? (
-          <button type="button" onClick={onToggleCollapsed} title="Mở rộng menu" className="icon-btn"><PanelLeftOpen className="h-5 w-5" /></button>
-        ) : (
-          <div className="flex items-center justify-between gap-2">
-            <div className="min-w-0"><div className="truncate text-xs font-bold text-slate-700">{user.name || 'Tài khoản AutoTax'}</div><div className="truncate text-[10px] text-slate-400">{laChuCuaHang() ? 'Chủ cửa hàng' : 'Nhân viên'}</div></div>
-            <button type="button" onClick={onToggleCollapsed} title="Thu gọn" className="icon-btn"><PanelLeftClose className="h-5 w-5" /></button>
+      {/* Footer System Info */}
+      <div className="p-3 border-t border-slate-100 shrink-0 bg-slate-50/70">
+        <div className="bg-white rounded-xl p-3 border border-emerald-100 shadow-xs flex items-center gap-3">
+          <div className="w-8 h-8 rounded-lg bg-emerald-600 text-white flex items-center justify-center shadow-xs shrink-0">
+            <ShieldCheck className="w-5 h-5" />
           </div>
-        )}
+          <div className="overflow-hidden">
+            <h4 className="font-bold text-slate-800 text-xs truncate">Nhà Thuốc Nhân Đức</h4>
+            <p className="text-[10px] text-emerald-700 font-medium">Hệ thống chuẩn Dược</p>
+          </div>
+        </div>
       </div>
-    </aside>
+
+    </div>
   );
 }

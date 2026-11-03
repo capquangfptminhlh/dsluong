@@ -1,87 +1,77 @@
 <!doctype html>
-<html lang="vi">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, interactive-widget=resizes-content" />
-
-    <title>AutoTax | Phần mềm quản lý bán hàng, kho, công nợ & kiểm soát thuế</title>
-    <meta name="description" content="AutoTax kết nối bán hàng, sản phẩm, kho, khách hàng, thu chi, công nợ và kiểm soát dữ liệu thuế trong một ứng dụng web tối ưu cho máy tính và điện thoại." />
-    <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" />
-    <meta name="theme-color" content="#0f172a" />
-    <meta name="format-detection" content="telephone=no" />
-    <link rel="canonical" href="https://autotaxpos.com/" />
-
-    <meta property="og:locale" content="vi_VN" />
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <!-- SEO Meta Tags -->
+    <title>Nhà Thuốc Nhân Đức - Phần mềm Quản lý & Bán thuốc</title>
+    <meta name="description" content="Nhà Thuốc Nhân Đức - Hệ thống quản lý bán thuốc, quản lý số lô hạn dùng, đơn vị tính quy đổi và hóa đơn điện tử máy tính tiền chuẩn Dược." />
+    
+    <!-- Open Graph Tags -->
+    <meta property="og:title" content="Nhà Thuốc Nhân Đức - Phần mềm Quản lý & Bán thuốc" />
+    <meta property="og:description" content="Hệ thống quản lý bán thuốc, quản lý số lô hạn dùng, đơn vị tính quy đổi và hóa đơn điện tử máy tính tiền chuẩn Dược." />
+    <meta property="og:image" content="/logo.png" />
     <meta property="og:type" content="website" />
-    <meta property="og:site_name" content="AutoTax" />
-    <meta property="og:title" content="AutoTax | Quản lý bán hàng, kho, công nợ & kiểm soát thuế" />
-    <meta property="og:description" content="Một luồng dữ liệu cho bán hàng, kho, thu chi, công nợ và kiểm soát dữ liệu thuế — dùng trên máy tính lẫn điện thoại." />
     <meta property="og:url" content="https://autotaxpos.com/" />
-    <meta name="twitter:card" content="summary" />
-    <meta name="twitter:title" content="AutoTax | Business Control" />
-    <meta name="twitter:description" content="Quản lý bán hàng, kho, thu chi, công nợ và kiểm soát dữ liệu vận hành trong một workspace." />
+    
+    <!-- Twitter Card Tags -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="AutoTax POS - Phần mềm bán hàng miễn phí và phần mềm khai thuế miễn phí" />
+    <meta name="twitter:description" content="AutoTax POS là giải pháp phần mềm bán hàng miễn phí tích hợp phần mềm khai thuế miễn phí tối ưu cho doanh nghiệp." />
+    <meta name="twitter:image" content="/og-image.jpg" />
 
-    <link rel="icon" type="image/svg+xml" href="/autotax-logo.svg" />
-    <link rel="apple-touch-icon" href="/autotax-pwa-v3.svg" />
-    <link rel="manifest" href="/manifest.webmanifest" />
-    <meta name="mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-    <meta name="apple-mobile-web-app-title" content="AutoTax" />
-    <meta name="msapplication-TileColor" content="#0f172a" />
-
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@700;800;900&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
-
+    <!-- JSON-LD Structured Data -->
     <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "SoftwareApplication",
-        "name": "AutoTax",
-        "url": "https://autotaxpos.com/",
-        "applicationCategory": "BusinessApplication",
-        "operatingSystem": "Web",
-        "inLanguage": "vi-VN",
-        "description": "Ứng dụng web quản lý bán hàng, sản phẩm, kho, khách hàng, thu chi, công nợ và kiểm soát dữ liệu thuế.",
-        "featureList": [
-          "Bán hàng và đơn hàng",
-          "Quản lý sản phẩm và kho",
-          "Khách hàng",
-          "Thu chi và công nợ",
-          "Kiểm soát dữ liệu thuế",
-          "Giao diện mobile và PWA"
-        ]
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "AutoTax POS",
+      "applicationCategory": "BusinessApplication",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "VND"
       }
+    }
     </script>
     <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "FAQPage",
-        "mainEntity": [
-          {
-            "@type": "Question",
-            "name": "AutoTax có dùng được trên điện thoại không?",
-            "acceptedAnswer": {"@type": "Answer", "text": "Có. AutoTax có giao diện responsive và PWA để thêm vào màn hình chính trên thiết bị hỗ trợ."}
-          },
-          {
-            "@type": "Question",
-            "name": "AutoTax có tự quyết định số thuế phải nộp không?",
-            "acceptedAnswer": {"@type": "Answer", "text": "Không. Khi thiếu Rule Context hoặc căn cứ cần thiết, phần kiểm soát thuế dừng để người dùng bổ sung hoặc xác minh dữ liệu thay vì tự suy đoán nghĩa vụ thuế."}
-          },
-          {
-            "@type": "Question",
-            "name": "AutoTax có quản lý kho và công nợ không?",
-            "acceptedAnswer": {"@type": "Answer", "text": "Có. AutoTax có các module tồn kho, chi nhánh, lô hàng, kiểm kê, chuyển kho, sổ quỹ và công nợ."}
-          },
-          {
-            "@type": "Question",
-            "name": "Tôi có cần cài phần mềm trên máy tính không?",
-            "acceptedAnswer": {"@type": "Answer", "text": "Không bắt buộc. AutoTax là ứng dụng web chạy trong trình duyệt và hỗ trợ PWA trên thiết bị tương thích."}
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Phần mềm AutoTax POS có hoàn toàn miễn phí không?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Có, AutoTax POS cung cấp phiên bản hoàn toàn miễn phí mãi mãi (0 VNĐ) dành cho các Hộ kinh doanh với đầy đủ tính năng tính tiền, quản lý kho và báo cáo thuế cơ bản mà không giới hạn thời gian sử dụng."
           }
-        ]
-      }
+        },
+        {
+          "@type": "Question",
+          "name": "AutoTax có hỗ trợ xuất tờ khai thuế 01/CNKD không?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Có, đây là tính năng độc quyền của AutoTax. Phần mềm tự động tổng hợp doanh thu bán hàng và trích xuất ra file PDF tờ khai thuế 01/CNKD cùng 7 mẫu sổ sách kế toán chuẩn Thông tư 88."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Sử dụng AutoTax trên điện thoại được không?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Hoàn toàn được. AutoTax POS hoạt động mượt mà trên trình duyệt web của mọi thiết bị di động (iPhone, Android) và iPad, máy tính bảng mà không cần tải ứng dụng phức tạp."
+          }
+        }
+      ]
+    }
     </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
   </head>
   <body>
     <div id="root"></div>
