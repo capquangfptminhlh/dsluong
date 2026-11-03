@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef, useMemo } from 'react';
 import axios from 'axios';
-import { ShoppingCart, Search, User, Trash2, Plus, Minus, Package, Camera, X, Cloud, CloudOff, RefreshCw } from 'lucide-react';
+import { ShoppingCart, Search, User, Trash2, Plus, Minus, Package, Camera, X, Cloud, CloudOff, RefreshCw, Store } from 'lucide-react';
 import { Html5QrcodeScanner } from 'html5-qrcode';
 import API_BASE from '../config/api';
 
@@ -90,16 +90,41 @@ export default function POS() {
     }
   }, [cart, totals.grandTotal]);
 
-  const fetchProducts = async () => {
+  const [activeBranch, setActiveBranch] = useState(() => ({
+    id: localStorage.getItem('active_branch_id') || null,
+    name: localStorage.getItem('active_branch_name') || 'Nhà Thuốc Nhân Đức - Cơ Sở Chính'
+  }));
+
+  const fetchProducts = async (branchId = null) => {
     try {
-      const res = await axios.get(`${API_BASE}/api/products`);
-      const mapped = res.data.map(p => ({
+      const bId = branchId || localStorage.getItem('active_branch_id');
+      const url = bId ? `${API_BASE}/api/branches/${bId}/ton-kho` : `${API_BASE}/api/products`;
+      const res = await axios.get(url);
+      const mapped = (res.data || []).map(p => ({
         ...p,
         has_serial: p.category === 'other', 
       }));
       setProducts(mapped);
-    } catch (err) { console.error(err); }
+    } catch (err) { 
+      console.error(err);
+      try {
+        const fallback = await axios.get(`${API_BASE}/api/products`);
+        setProducts(fallback.data || []);
+      } catch (e) {}
+    }
   };
+
+  useEffect(() => {
+    const onBranchChange = (e) => {
+      const b = e.detail;
+      if (b) {
+        setActiveBranch(b);
+        fetchProducts(b.id);
+      }
+    };
+    window.addEventListener('branchChanged', onBranchChange);
+    return () => window.removeEventListener('branchChanged', onBranchChange);
+  }, []);
 
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem('user') || '{}');
@@ -183,6 +208,7 @@ export default function POS() {
       payment_method: paymentDetails.paymentMethod,
       cho_no: paymentDetails.paymentMethod === 'DEBT',
       totals, 
+      branch_id: activeBranch?.id ? Number(activeBranch.id) : null,
     };
 
     let orderCode = clientOrderId;
@@ -343,7 +369,7 @@ export default function POS() {
           </div>
 
           <div className="flex gap-2 w-full md:w-auto mt-2 md:mt-0">
-            <button onClick={() => setShowScanner(true)} className="flex-1 md:flex-none justify-center px-3 py-2 bg-[var(--surface-warm)] font-bold rounded-[var(--radius-md)] flex gap-2"><Camera className="w-5 h-5" /> Quét mã</button>
+            <div className="px-3 py-1.5 bg-emerald-50 text-emerald-800 rounded-xl border border-emerald-200 text-xs font-bold flex items-center gap-1.5"><Store className="w-3.5 h-3.5 text-emerald-600" /><span>Quầy: {activeBranch?.name || "Cơ Sở Chính"}</span></div><button onClick={() => setShowScanner(true)} className="flex-1 md:flex-none justify-center px-3 py-2 bg-[var(--surface-warm)] font-bold rounded-[var(--radius-md)] flex gap-2 text-xs"><Camera className="w-4 h-4" /> Quét mã</button>
           </div>
         </div>
 
