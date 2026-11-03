@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900">
+  <rect width="1600" height="900" fill="#f5f5f5"/>
+  <style>text{font-family:Arial,sans-serif;fill:#222}.t{font-size:22px;font-weight:700}.s{fill:#d7d7d7;stroke:#777;stroke-width:2}.d{fill:#aaa}.l{stroke:#777;stroke-width:4}</style>
+  <text x="50" y="45" class="t">AutoTax Homepage D0 — Silhouette Board (2026-08-12)</text>
+  <g transform="translate(40 90)">
+    <text x="0" y="0" class="t">A Operational Spine</text><rect class="s" x="0" y="25" width="280" height="130" rx="8"/><rect class="d" x="25" y="55" width="230" height="18"/><rect class="d" x="55" y="88" width="170" height="12"/><line class="l" x1="20" y1="205" x2="260" y2="205"/><circle class="s" cx="25" cy="205" r="18"/><circle class="s" cx="85" cy="205" r="18"/><circle class="s" cx="145" cy="205" r="18"/><circle class="s" cx="205" cy="205" r="18"/><circle class="s" cx="265" cy="205" r="18"/><rect class="s" x="0" y="250" width="280" height="150" rx="8"/><rect class="s" x="0" y="430" width="280" height="90" rx="8"/>
+  </g>
+  <g transform="translate(360 90)">
+    <text x="0" y="0" class="t">B Role Lens</text><rect class="s" x="0" y="25" width="280" height="70" rx="8"/><rect class="d" x="20" y="48" width="70" height="24"/><rect class="d" x="105" y="48" width="70" height="24"/><rect class="d" x="190" y="48" width="70" height="24"/><rect class="s" x="0" y="125" width="280" height="280" rx="8"/><line class="l" x1="93" y1="125" x2="93" y2="405"/><line class="l" x1="186" y1="125" x2="186" y2="405"/><rect class="s" x="0" y="435" width="280" height="85" rx="8"/>
+  </g>
+  <g transform="translate(680 90)">
+    <text x="0" y="0" class="t">C Proof-First Product</text><rect class="s" x="0" y="25" width="280" height="300" rx="8"/><rect class="d" x="20" y="45" width="50" height="260"/><rect class="s" x="85" y="55" width="170" height="80" rx="6"/><rect class="s" x="85" y="155" width="170" height="130" rx="6"/><rect class="d" x="0" y="355" width="220" height="18"/><rect class="d" x="0" y="390" width="260" height="12"/><rect class="d" x="0" y="415" width="240" height="12"/><rect class="s" x="0" y="455" width="280" height="65" rx="8"/>
+  </g>
+  <g transform="translate(1000 90)">
+    <text x="0" y="0" class="t">D Today Checklist</text><rect class="s" x="0" y="25" width="280" height="90" rx="8"/><g transform="translate(0 145)"><rect class="s" width="280" height="48" rx="8"/><rect class="s" y="62" width="280" height="48" rx="8"/><rect class="s" y="124" width="280" height="48" rx="8"/><rect class="s" y="186" width="280" height="48" rx="8"/><rect class="s" y="248" width="280" height="48" rx="8"/></g><rect class="s" x="0" y="465" width="280" height="55" rx="8"/>
+  </g>
+  <g transform="translate(1320 90)">
+    <text x="0" y="0" class="t">E Business Graph</text><circle class="s" cx="140" cy="205" r="42"/><circle class="s" cx="45" cy="110" r="32"/><circle class="s" cx="235" cy="110" r="32"/><circle class="s" cx="45" cy="300" r="32"/><circle class="s" cx="235" cy="300" r="32"/><line class="l" x1="75" y1="135" x2="110" y2="175"/><line class="l" x1="205" y1="135" x2="170" y2="175"/><line class="l" x1="75" y1="275" x2="110" y2="235"/><line class="l" x1="205" y1="275" x2="170" y2="235"/><rect class="s" x="0" y="375" width="280" height="145" rx="8"/>
+  </g>
+  <text x="50" y="840" font-size="18">Silhouette verdict: A/B/C/D/E remain materially distinguishable with brand/color/images removed. A selected.</text>
+</svg>

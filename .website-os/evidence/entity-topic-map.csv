@@ -1,0 +1,14 @@
+entity_type,entity_name,topic,source_of_truth,verification_status
+PRODUCT,AutoTax POS,bán hàng và vận hành cửa hàng,capquangfptminhlh/autotax main,VERIFIED
+TOPIC,Quản lý bán hàng hộ kinh doanh,quy trình bán hàng,frontend/public/blog/quan-ly-ban-hang-ho-kinh-doanh/index.html,VERIFIED
+TOPIC,Excel hay phần mềm POS,lựa chọn công cụ và ngưỡng chuyển đổi từ bảng tính sang POS,https://support.microsoft.com/en-us/excel/get-started/collaborate-on-excel-workbooks-at-the-same-time-with-co-authoring; https://help.shopify.com/en/manual/sell-in-person/shopify-pos/staff-management,VERIFIED
+TOPIC,Quản lý nhiều chi nhánh cửa hàng,vận hành đa điểm bán kho điều chuyển phân quyền và báo cáo,https://mic.mediacdn.vn/document/2025/7/3/6-qdphu-luc-i-bo-tieu-chi-danh-gia-cds-sme-17515060933661506359671.pdf,VERIFIED
+TOPIC,Hóa đơn điện tử hộ kinh doanh 2026,điều kiện sử dụng ngưỡng doanh thu và hóa đơn khởi tạo từ máy tính tiền,https://xaydungchinhsach.chinhphu.vn/toan-van-nghi-dinh-so-141-2026-nd-cp-nang-nguong-doanh-thu-khong-phai-chiu-thue-len-1-ty-dong-119260504154326455.htm; https://xaydungchinhsach.chinhphu.vn/toan-van-nghi-dinh-so-254-2026-nd-cp-ve-hoa-don-dien-tu-chung-tu-dien-tu-119260713164251972.htm,VERIFIED
+TOPIC,Thời điểm lập hóa đơn điện tử 2026,thời điểm lập hóa đơn khi bán hàng và cung cấp dịch vụ,https://xaydungchinhsach.chinhphu.vn/toan-van-nghi-dinh-so-254-2026-nd-cp-ve-hoa-don-dien-tu-chung-tu-dien-tu-119260713164251972.htm,VERIFIED
+TOPIC,Thủ tục khai thuế hộ kinh doanh 2026,hồ sơ và thủ tục quản lý thuế,https://xaydungchinhsach.chinhphu.vn/quy-dinh-ve-ho-so-thu-tuc-quan-ly-thue-voi-ho-kinh-doanh-ca-nhan-kinh-doanh-119260812153118737.htm,VERIFIED
+TOPIC,Phân quyền nhân viên POS,vai trò quyền tối thiểu PIN phê duyệt thao tác nhạy cảm nhật ký hoạt động bảo mật tài khoản và MFA cho quyền quản trị,https://help.shopify.com/en/manual/sell-in-person/shopify-pos/staff-management/understanding-pos-staff-management; https://csrc.nist.gov/glossary/term/least_privilege; https://www.nist.gov/itl/smallbusinesscyber/guidance-topic/multi-factor-authentication,VERIFIED
+TOPIC,POS khi mất Internet và vận hành offline,duy trì bán hàng thanh toán offline đồng bộ và đối soát sau gián đoạn,https://squareup.com/help/us/en/article/7777-process-card-payments-with-offline-mode; https://developer.squareup.com/docs/pos-api/cookbook/offline-mode; https://www.nist.gov/publications/ot-backup-quick-start-guide,VERIFIED
+TOPIC,Đối soát thanh toán QR và chuyển khoản,khớp giao dịch thanh toán với đơn hàng,https://api.vietqr.vn/,VERIFIED
+TOPIC,Kiểm kho bằng mã vạch,quản lý kho,frontend/public/blog/kiem-kho-bang-ma-vach/index.html,VERIFIED
+TOPIC,Thu chi và công nợ,dòng tiền cửa hàng,frontend/public/blog/quan-ly-cong-no-thu-chi/index.html,VERIFIED
+TOPIC,Đối soát dữ liệu trước kỳ thuế,kiểm soát dữ liệu,frontend/public/blog/doi-soat-du-lieu-truoc-ky-thue/index.html,VERIFIED

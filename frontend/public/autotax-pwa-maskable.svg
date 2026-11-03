@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title desc">
+  <title id="title">AutoTax PWA Maskable</title>
+  <desc id="desc">Biểu tượng maskable an toàn cho màn hình chính AutoTax</desc>
+  <defs>
+    <linearGradient id="bg" x1="64" y1="48" x2="456" y2="464" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0A5EFF"/>
+      <stop offset="0.55" stop-color="#1189F5"/>
+      <stop offset="1" stop-color="#19C2E6"/>
+    </linearGradient>
+    <linearGradient id="shine" x1="100" y1="70" x2="412" y2="440" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFFFFF" stop-opacity="0.22"/>
+      <stop offset="1" stop-color="#FFFFFF" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="512" height="512" fill="url(#bg)"/>
+  <path d="M0 0h512v154C420 93 332 68 242 68 148 68 64 93 0 137V0Z" fill="url(#shine)"/>
+
+  <g transform="translate(71 74) scale(.72)">
+    <path d="M255.8 105c10.9 0 20.3 6.5 24.5 16.7L389 391H321l-24.3-63H213.5L189 391h-67l109.2-269.4C235.2 111.5 244.8 105 255.8 105Zm.1 100.8-25.6 67.8h51.4l-25.8-67.8Z" fill="#FFFFFF"/>
+    <path d="m198 310 38 37 79-91" fill="none" stroke="#073D9D" stroke-width="28" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="m199 304 37 36 77-88" fill="none" stroke="#BFF4FF" stroke-width="10" stroke-linecap="round" stroke-linejoin="round" opacity="0.95"/>
+  </g>
+</svg>

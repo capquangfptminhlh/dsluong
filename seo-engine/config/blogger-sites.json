@@ -1,0 +1,44 @@
+{
+  "sites": [
+    {
+      "siteId": "autotax-blogger-pilot",
+      "blogId": "5457073148509074407",
+      "enabled": true,
+      "charter": "Independent practical operating checklists for Vietnamese microbusiness owners; do not rewrite AutoTax primary blog articles.",
+      "cadenceDays": 7,
+      "approvedDestination": "https://autotaxpos.com/"
+    },
+    {
+      "siteId": "quan-nho-fnb",
+      "blogId": "4533116766315269172",
+      "enabled": true,
+      "charter": "Viết cho chủ quán cà phê, trà sữa, quán ăn nhỏ tại Việt Nam. Chỉ bàn chuyện vận hành trong quán: order theo bàn, định lượng nguyên liệu, giờ cao điểm, ca kíp, hao hụt bếp. Giọng của người từng đứng quầy, không giảng lý thuyết. Tuyệt đối không viết lại nội dung của các blog khác trong hệ thống.",
+      "cadenceDays": 4,
+      "approvedDestination": "https://autotaxpos.com/"
+    },
+    {
+      "siteId": "tap-hoa-retail",
+      "blogId": "92018934439068440",
+      "enabled": true,
+      "charter": "Viết cho chủ tiệm tạp hóa và cửa hàng bán lẻ Việt Nam. Chỉ bàn chuyện hàng nghìn mã hàng, hạn sử dụng, giá nhập thay đổi liên tục, bán ghi sổ cho khách quen, kiểm kê không đóng cửa. Giọng mộc mạc, ví dụ lấy từ tiệm thật. Tuyệt đối không viết lại nội dung của các blog khác trong hệ thống.",
+      "cadenceDays": 4,
+      "approvedDestination": "https://autotaxpos.com/"
+    },
+    {
+      "siteId": "spa-beauty",
+      "blogId": "8920924399712476992",
+      "enabled": true,
+      "charter": "Viết cho chủ spa, tiệm nail, tiệm tóc tại Việt Nam. Chỉ bàn chuyện đặt lịch, liệu trình nhiều buổi, hoa hồng kỹ thuật viên, giữ chân khách cũ, quản lý phòng và giường. Giọng chăm sóc khách hàng, chuyên nghiệp. Tuyệt đối không viết lại nội dung của các blog khác trong hệ thống.",
+      "cadenceDays": 4,
+      "approvedDestination": "https://autotaxpos.com/"
+    },
+    {
+      "siteId": "ban-online-ecom",
+      "blogId": "4667326141193750812",
+      "enabled": true,
+      "charter": "Viết cho người bán hàng online Việt Nam trên Shopee, TikTok Shop, livestream. Chỉ bàn chuyện đối soát sàn, hàng hoàn, đồng bộ tồn kho nhiều kênh, chốt đơn livestream, khoản sàn giữ lại. Giọng nhanh gọn, thực dụng. Tuyệt đối không viết lại nội dung của các blog khác trong hệ thống.",
+      "cadenceDays": 4,
+      "approvedDestination": "https://autotaxpos.com/"
+    }
+  ]
+}

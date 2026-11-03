@@ -1,0 +1,145 @@
+/* AutoTax routed-page layout audit safeguards.
+   These rules repair legacy page structures without changing feature logic. */
+
+/* The shell already owns page padding. Legacy pages that still add p-8 become too narrow on phones. */
+.autotax-page-enter > .p-8 {
+  padding: 0 !important;
+}
+
+/* Every grid child must be allowed to shrink; otherwise long content forces uneven columns/overflow. */
+.autotax-page-enter .grid > * {
+  min-width: 0;
+}
+
+/* Cards in the same grid row should stretch to one consistent height. */
+.autotax-page-enter .grid > .surface,
+.autotax-page-enter .grid > .surface-muted,
+.autotax-page-enter .grid > .metric-card,
+.autotax-page-enter .grid > .bg-white.rounded-xl,
+.autotax-page-enter .grid > .bg-white.rounded-2xl {
+  height: 100%;
+}
+
+/* Catch legacy table containers that used overflow-hidden instead of table-shell. */
+.autotax-page-enter .overflow-hidden:has(> table),
+.autotax-page-enter .rounded-xl:has(> table),
+.autotax-page-enter .rounded-2xl:has(> table) {
+  overflow-x: auto !important;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-gutter: stable;
+}
+
+.autotax-page-enter .overflow-hidden:has(> table) > table,
+.autotax-page-enter .rounded-xl:has(> table) > table,
+.autotax-page-enter .rounded-2xl:has(> table) > table {
+  min-width: 680px;
+}
+
+/* Normalize cell geometry across all data modules. */
+.autotax-page-enter table th,
+.autotax-page-enter table td {
+  vertical-align: middle;
+  line-height: 1.35;
+}
+
+.autotax-page-enter table th {
+  white-space: nowrap;
+}
+
+.autotax-page-enter table tbody tr {
+  height: 52px;
+}
+
+/* Orders has five predictable columns. Fixed ratios stop cells changing width per row/content. */
+.autotax-page-enter .orders-table-shell {
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+  background: #fff;
+  box-shadow: 0 1px 2px rgb(15 23 42 / .035), 0 8px 24px rgb(15 23 42 / .035);
+}
+
+.autotax-page-enter .orders-table {
+  width: 100% !important;
+  min-width: 760px !important;
+  table-layout: fixed;
+}
+
+.autotax-page-enter .orders-table .orders-cell {
+  height: 58px;
+  padding: 13px 18px !important;
+  vertical-align: middle;
+}
+
+.autotax-page-enter .orders-table tbody .orders-cell {
+  overflow: hidden;
+}
+
+.autotax-page-enter .orders-page-header {
+  margin-bottom: 0;
+}
+
+.autotax-page-enter .orders-search input {
+  min-height: 42px;
+}
+
+/* Keep form controls consistent without stretching compact header actions. */
+.autotax-page-enter .page-header input,
+.autotax-page-enter .page-header select {
+  align-self: stretch;
+}
+
+@media (max-width: 1023px) {
+  .autotax-page-enter .overflow-hidden:has(> table) > table,
+  .autotax-page-enter .rounded-xl:has(> table) > table,
+  .autotax-page-enter .rounded-2xl:has(> table) > table {
+    min-width: 700px;
+  }
+
+  .autotax-page-enter .orders-page-header {
+    align-items: stretch !important;
+  }
+
+  .autotax-page-enter .orders-search {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+}
+
+@media (max-width: 639px) {
+  .autotax-page-enter .orders-table-shell {
+    border-radius: 14px;
+  }
+
+  .autotax-page-enter .orders-table {
+    min-width: 700px !important;
+  }
+
+  .autotax-page-enter .orders-table .orders-cell {
+    height: 54px;
+    padding: 11px 14px !important;
+    font-size: 12px;
+  }
+
+  .autotax-page-enter .orders-table th.orders-cell {
+    font-size: 10px;
+  }
+
+  .autotax-page-enter .orders-page .page-header {
+    gap: 10px !important;
+  }
+
+  .autotax-page-enter .orders-page-header > * {
+    width: 100%;
+    min-width: 0;
+  }
+
+  /* Legacy grids: keep visual cards equal within each row while allowing content to wrap safely. */
+  .autotax-page-enter .grid > .surface,
+  .autotax-page-enter .grid > .surface-muted,
+  .autotax-page-enter .grid > .metric-card,
+  .autotax-page-enter .grid > .bg-white.rounded-xl,
+  .autotax-page-enter .grid > .bg-white.rounded-2xl {
+    min-height: 100%;
+  }
+}

@@ -1,0 +1,194 @@
+/* Final typography contract for AutoTax.
+   Loaded after all legacy visual layers so PC, mobile and landing pages use one predictable font system. */
+:root {
+  --autotax-font-ui: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --autotax-font-display: "Be Vietnam Pro", "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --autotax-font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+}
+
+html,
+body,
+#root {
+  font-family: var(--autotax-font-ui);
+  font-kerning: normal;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+button,
+input,
+select,
+textarea {
+  font-family: inherit;
+}
+
+/* Application workspace: Inter only. This removes the old SF Pro / system-font mix. */
+.autotax-shell,
+.autotax-shell button,
+.autotax-shell input,
+.autotax-shell select,
+.autotax-shell textarea,
+.autotax-page-enter {
+  font-family: var(--autotax-font-ui) !important;
+  font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  font-variant-numeric: tabular-nums;
+}
+
+/* Clear hierarchy and only real font weights that are actually loaded. */
+.autotax-page-enter .page-title,
+.autotax-page-enter > h1,
+.autotax-page-enter .page-header h1 {
+  font-family: var(--autotax-font-ui) !important;
+  font-weight: 800 !important;
+  letter-spacing: -0.028em !important;
+}
+
+.autotax-page-enter h2 {
+  font-family: var(--autotax-font-ui) !important;
+  font-weight: 700;
+  letter-spacing: -0.018em;
+}
+
+.autotax-page-enter h3,
+.autotax-page-enter h4 {
+  font-family: var(--autotax-font-ui) !important;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.autotax-page-enter .page-subtitle,
+.autotax-page-enter .text-muted,
+.autotax-page-enter .dashboard-metric-note {
+  font-weight: 400 !important;
+}
+
+.autotax-page-enter :is(button, [role="button"], .btn-primary, .btn-secondary, .icon-btn),
+.autotax-shell nav a,
+.autotax-shell nav button,
+.autotax-shell label {
+  font-weight: 600;
+}
+
+.autotax-page-enter :is(input, select, textarea) {
+  font-weight: 500;
+}
+
+.autotax-page-enter th {
+  font-weight: 700 !important;
+  letter-spacing: 0.04em;
+}
+
+.autotax-page-enter .metric-label {
+  font-weight: 700 !important;
+}
+
+.autotax-page-enter .metric-value {
+  font-weight: 800 !important;
+  letter-spacing: -0.025em !important;
+  font-variant-numeric: tabular-nums;
+}
+
+.autotax-shell .sidebar-item,
+.autotax-shell .sidebar-child,
+.autotax-shell .autotax-mobile-nav-item {
+  font-weight: 600 !important;
+}
+
+.autotax-shell .sidebar-item-active,
+.autotax-shell .sidebar-child-active,
+.autotax-shell .autotax-mobile-nav-item.is-active {
+  font-weight: 700 !important;
+}
+
+/* Keep code/IDs/barcode-like technical strings visually distinct without leaking mono into normal UI. */
+.autotax-page-enter :is(code, pre, kbd, samp) {
+  font-family: var(--autotax-font-mono) !important;
+}
+
+/* Public landing page: Inter for reading, Be Vietnam Pro only for brand/display headings. */
+.landing-shell,
+.landing-shell button,
+.landing-shell input,
+.landing-shell select,
+.landing-shell textarea {
+  font-family: var(--autotax-font-ui) !important;
+}
+
+.landing-shell .landing-brand-copy strong,
+.landing-shell h1,
+.landing-shell h2,
+.landing-shell h3 {
+  font-family: var(--autotax-font-display) !important;
+}
+
+.landing-shell .landing-brand-copy strong {
+  font-weight: 800 !important;
+  letter-spacing: -0.025em;
+}
+
+.landing-shell .landing-hero h1 {
+  font-weight: 900 !important;
+  letter-spacing: -0.052em;
+}
+
+.landing-shell :is(.landing-section-heading, .landing-editorial-heading, .landing-trust-heading, .landing-mobile-proof-copy, .landing-faq-heading, .landing-final-cta) h2,
+.landing-shell .landing-blog-heading h2 {
+  font-weight: 800 !important;
+  letter-spacing: -0.04em;
+}
+
+.landing-shell h3,
+.landing-shell .landing-stage-copy h3,
+.landing-shell .landing-blog-card h3,
+.landing-shell .landing-capability-copy h3 {
+  font-weight: 700 !important;
+  letter-spacing: -0.022em;
+}
+
+.landing-shell :is(.landing-button, .landing-nav a, .landing-login, .landing-industry-tabs button, .landing-mobile-menu a, .landing-mobile-cta a) {
+  font-weight: 700 !important;
+}
+
+.landing-shell :is(.landing-eyebrow, .landing-section-kicker, .landing-editorial-heading > span, .landing-stage-context, .landing-trace-head) {
+  font-weight: 700 !important;
+}
+
+.landing-shell :is(.landing-principles, .landing-stage-copy li, .landing-capability-tags span, .landing-mobile-proof-copy li, .landing-footer-links a) {
+  font-weight: 600 !important;
+}
+
+.landing-shell :is(.landing-hero-copy, .landing-industry-summary, .landing-section-heading > p:last-child, .landing-capability-copy p, .landing-mobile-proof-copy > p, .landing-faq-list details p, .landing-blog-card > p) {
+  font-weight: 400 !important;
+}
+
+/* Preserve compact technical counters with the mono stack only where they are intentionally technical. */
+.landing-shell :is(.landing-stage-number, .landing-capability-index, .landing-blog-index) {
+  font-family: var(--autotax-font-mono) !important;
+  font-weight: 700 !important;
+}
+
+@media (max-width: 720px) {
+  .autotax-page-enter .page-title {
+    font-weight: 800 !important;
+    letter-spacing: -0.024em !important;
+  }
+
+  .landing-shell .landing-hero h1 {
+    letter-spacing: -0.045em;
+  }
+}
+
+/* Be Vietnam Pro is slightly taller than the previous mixed stack. Keep the medium-mobile
+   hero compact enough that the fixed CTA never covers the final principle row. */
+@media (min-width: 401px) and (max-width: 720px) {
+  .landing-shell .landing-principles {
+    margin-top: 24px !important;
+    gap: 8px 16px;
+  }
+
+  .landing-shell .landing-principles span {
+    font-size: 11px;
+    line-height: 1.35;
+  }
+}

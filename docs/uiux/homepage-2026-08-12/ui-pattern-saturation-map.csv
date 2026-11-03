@@ -1,0 +1,11 @@
+pattern,saturation,risk,decision,replacement
+"Headline trái + dashboard/3D phải",VERY_HIGH,"Trùng landing cũ và generic SaaS","REJECT","Full-width operational entry + workflow spine"
+"Hero -> logo/stat strip -> 3-column cards",VERY_HIGH,"Template silhouette; proof claims dễ bịa","REJECT","Workflow chapters + capability index + trust model"
+"Generic SaaS bento",HIGH,"Dễ đẹp nhưng không giải thích quy trình POS/tax","REJECT","Operational flow with selectable stages"
+"Gradient blobs/glass cards",HIGH,"Skin-only differentiation; performance blur cost","REJECT_AS_PRIMARY","Use restrained surface depth only where functional"
+"Decorative dashboard screenshot",HIGH,"Có thể gây hiểu nhầm số liệu/product capability","REJECT","Use labeled product-state illustrations / UI fragments without fake metrics"
+"Huge unverified customer/revenue statistics",HIGH,"Trust/legal risk without source of truth","REJECT","Use verifiable product capabilities and control principles"
+"Generic 3-column feature grid",VERY_HIGH,"Poor hierarchy on mobile and template-like","REJECT","Editorial capability index grouped by user jobs"
+"Repeated free-trial CTAs every section",MEDIUM_HIGH,"Pushy and may conflict with actual pricing","REJECT","Primary CTA at entry + sticky mobile CTA + final CTA"
+"Context selector by industry",MEDIUM,"Useful if it changes information structure, not decoration","USE","Industry Lens changes labels/emphasis for retail/spa/F&B/hotel"
+"Workflow/timeline narrative",MEDIUM,"Distinct and strongly maps to AutoTax data flow","USE","Chosen structural family: Operational Spine"

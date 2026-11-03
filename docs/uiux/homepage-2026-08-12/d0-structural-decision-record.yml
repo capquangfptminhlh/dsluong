@@ -1,0 +1,45 @@
+version: 1
+project: autotax-homepage
+observed_at: 2026-08-12
+selected_direction: A_Operational_Spine
+checks:
+  fresh_research_with_observed_at: PASS
+  reference_structure_decomposition: PASS
+  saturation_map: PASS
+  shortlisted_candidates_min_5: PASS
+  silhouette_test: PASS
+  structural_dna_matrix: PASS
+  design_history_comparison: PASS
+  future_leap: PASS
+  typography_architecture: PASS
+  desktop_composition_defined: PASS
+  mobile_composition_defined: PASS
+changed_axes_vs_current: 8
+estimated_structural_similarity_vs_current_percent: 22
+desktop_composition:
+  - minimal_semantic_header
+  - full_width_entry_statement
+  - industry_lens
+  - horizontal_operational_spine
+  - active_stage_detail
+  - editorial_capability_index
+  - trust_model
+  - semantic_faq
+  - final_cta
+mobile_composition:
+  - compact_header
+  - condensed_entry
+  - scrollable_industry_lens
+  - vertical_operational_stepper
+  - grouped_capability_disclosure
+  - stacked_trust_model
+  - semantic_faq
+  - safe_area_sticky_cta
+future_leap:
+  hypothesis: Industry_Lens
+  fallback: neutral_retail_capability_story
+source_of_truth_policy:
+  fabricated_metrics: forbidden
+  tax_compliance_guarantee: forbidden
+  official_filing_claim_without_rule_context: forbidden
+status: PASS

@@ -1,0 +1,84 @@
+/* Final sidebar color guard.
+   Keeps the authenticated light sidebar readable even if legacy dark utility
+   remaps in index.css are present. Loaded after all other theme layers. */
+
+.autotax-shell > aside {
+  color-scheme: light;
+  background: #ffffff !important;
+  color: #334155 !important;
+}
+
+.autotax-shell > aside .text-slate-950,
+.autotax-shell > aside .text-slate-900,
+.autotax-shell > aside .text-slate-800,
+.autotax-shell > aside .text-slate-700 {
+  color: #0f172a !important;
+}
+
+.autotax-shell > aside .text-slate-600 {
+  color: #334155 !important;
+}
+
+.autotax-shell > aside .text-slate-500,
+.autotax-shell > aside .text-slate-400,
+.autotax-shell > aside .text-slate-300 {
+  color: #64748b !important;
+}
+
+.autotax-shell > aside .text-blue-600,
+.autotax-shell > aside .text-blue-700 {
+  color: #1d4ed8 !important;
+}
+
+.autotax-shell > aside .bg-white {
+  background-color: #ffffff !important;
+}
+
+.autotax-shell > aside .bg-slate-50 {
+  background-color: #f8fafc !important;
+}
+
+.autotax-shell > aside .bg-blue-50 {
+  background-color: #eff6ff !important;
+}
+
+/* Business-model custom dropdown */
+.autotax-shell > aside button[aria-haspopup="listbox"] {
+  background: #f8fafc !important;
+  border-color: #cbd5e1 !important;
+  color: #0f172a !important;
+}
+
+.autotax-shell > aside button[aria-haspopup="listbox"]:hover,
+.autotax-shell > aside button[aria-haspopup="listbox"]:focus-visible {
+  background: #ffffff !important;
+  border-color: #93c5fd !important;
+  color: #0f172a !important;
+}
+
+.autotax-shell > aside [role="listbox"] {
+  background: #ffffff !important;
+  border-color: #dbe3ee !important;
+  color: #334155 !important;
+  box-shadow: 0 16px 36px rgba(15, 23, 42, .14) !important;
+}
+
+.autotax-shell > aside [role="listbox"] button[role="option"] {
+  background: #ffffff !important;
+  color: #334155 !important;
+}
+
+.autotax-shell > aside [role="listbox"] button[role="option"]:hover,
+.autotax-shell > aside [role="listbox"] button[role="option"]:focus-visible {
+  background: #f1f5f9 !important;
+  color: #0f172a !important;
+}
+
+.autotax-shell > aside [role="listbox"] button[role="option"][aria-selected="true"] {
+  background: #eff6ff !important;
+  color: #1d4ed8 !important;
+}
+
+.autotax-shell > aside [role="listbox"] button[role="option"][aria-selected="true"] span {
+  color: #1d4ed8 !important;
+}

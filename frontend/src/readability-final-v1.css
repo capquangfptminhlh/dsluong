@@ -1,0 +1,119 @@
+/* AutoTaxPOS final readability lock.
+   Loaded last. Purpose: prevent legacy dark/mobile overrides from leaving light text on light surfaces. */
+:root {
+  --at-text-strong: #14213d;
+  --at-text: #334155;
+  --at-text-muted: #64748b;
+  --at-text-soft: #94a3b8;
+  --at-link: #2458d6;
+}
+
+.autotax-shell,
+.autotax-workspace,
+.autotax-mobile-content,
+.autotax-page-enter { color: var(--at-text) !important; }
+
+.autotax-header h1,
+.autotax-header h2,
+.autotax-header .text-slate-950,
+.autotax-header .text-slate-900,
+.autotax-header .text-slate-800,
+.autotax-page-enter h1,
+.autotax-page-enter h2,
+.autotax-page-enter h3,
+.autotax-page-enter h4,
+.autotax-page-enter h5,
+.autotax-page-enter h6,
+.autotax-page-enter .page-title,
+.autotax-page-enter .metric-value,
+.autotax-page-enter .text-slate-950,
+.autotax-page-enter .text-slate-900,
+.autotax-page-enter .text-slate-800 { color: var(--at-text-strong) !important; }
+
+.autotax-header .text-slate-700,
+.autotax-page-enter .text-slate-700,
+.autotax-page-enter .text-slate-600,
+.autotax-page-enter label,
+.autotax-page-enter td { color: var(--at-text) !important; }
+
+.autotax-header .text-slate-500,
+.autotax-header .text-slate-400,
+.autotax-page-enter .text-slate-500,
+.autotax-page-enter .text-slate-400,
+.autotax-page-enter .page-subtitle,
+.autotax-page-enter .metric-label,
+.autotax-page-enter .dashboard-metric-note,
+.autotax-page-enter th { color: var(--at-text-muted) !important; }
+
+.autotax-page-enter input,
+.autotax-page-enter select,
+.autotax-page-enter textarea { color: var(--at-text-strong) !important; background-color: #fff !important; }
+.autotax-page-enter input::placeholder,
+.autotax-page-enter textarea::placeholder { color: var(--at-text-soft) !important; opacity: 1 !important; }
+.autotax-page-enter select option { color: var(--at-text-strong) !important; background: #fff !important; }
+
+.autotax-page-enter a:not([class*='text-white']),
+.autotax-page-enter .text-blue-600,
+.autotax-page-enter .text-blue-700 { color: var(--at-link) !important; }
+
+/* Preserve readable semantics on filled controls. */
+.autotax-page-enter button[class*='bg-blue-'],
+.autotax-page-enter button[class*='bg-indigo-'],
+.autotax-page-enter button[class*='bg-violet-'],
+.autotax-page-enter button[class*='bg-purple-'],
+.autotax-page-enter .btn-primary,
+.autotax-pos-screen .autotax-pos-pay,
+.autotax-page-enter [class*='bg-slate-800'][class*='text-white'],
+.autotax-page-enter [class*='bg-slate-900'][class*='text-white'] { color: #fff !important; }
+
+/* Status/semantic chips need dark semantic text on light backgrounds. */
+.autotax-page-enter .bg-green-50,
+.autotax-page-enter .bg-green-100,
+.autotax-page-enter .bg-emerald-50,
+.autotax-page-enter .bg-emerald-100 { color: #047857 !important; }
+.autotax-page-enter .bg-amber-50,
+.autotax-page-enter .bg-amber-100,
+.autotax-page-enter .bg-yellow-50,
+.autotax-page-enter .bg-yellow-100 { color: #92400e !important; }
+.autotax-page-enter .bg-red-50,
+.autotax-page-enter .bg-red-100,
+.autotax-page-enter .bg-rose-50,
+.autotax-page-enter .bg-rose-100 { color: #be123c !important; }
+
+/* Mobile parity: explicit because old mobile dark rules used !important extensively. */
+@media (max-width: 1023px) {
+  .autotax-shell,
+  .autotax-shell > main,
+  .autotax-workspace,
+  .autotax-mobile-content,
+  .autotax-page-enter { color: var(--at-text) !important; }
+
+  .autotax-header .text-slate-950,
+  .autotax-header .text-slate-900,
+  .autotax-header .text-slate-800,
+  .autotax-header .text-slate-700,
+  .autotax-page-enter h1,
+  .autotax-page-enter h2,
+  .autotax-page-enter h3,
+  .autotax-page-enter h4,
+  .autotax-page-enter .text-slate-950,
+  .autotax-page-enter .text-slate-900,
+  .autotax-page-enter .text-slate-800 { color: var(--at-text-strong) !important; }
+
+  .autotax-header .text-slate-600,
+  .autotax-page-enter .text-slate-700,
+  .autotax-page-enter .text-slate-600 { color: var(--at-text) !important; }
+
+  .autotax-header .text-slate-500,
+  .autotax-header .text-slate-400,
+  .autotax-page-enter .text-slate-500,
+  .autotax-page-enter .text-slate-400 { color: var(--at-text-muted) !important; }
+
+  .autotax-shell > aside .sidebar-item { color: #58657b !important; }
+  .autotax-shell > aside .sidebar-item-active { color: #2458d6 !important; }
+  .autotax-shell > aside .sidebar-child { color: #748096 !important; }
+  .autotax-shell > aside .sidebar-child-active { color: #2458d6 !important; }
+
+  .autotax-mobile-bottom-nav .autotax-mobile-nav-item { color: #64748b !important; }
+  .autotax-mobile-bottom-nav .autotax-mobile-nav-item.is-active { color: #2458d6 !important; }
+}

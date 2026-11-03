@@ -1,0 +1,15 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "properties": {
+    "eventId": { "type": "string" },
+    "surface": { "type": "string" },
+    "measurementClass": { "type": "string", "enum": ["OFFICIAL", "VERIFIED_REFERRAL", "SAMPLED"] },
+    "entityId": { "type": "string" },
+    "query": { "type": "string" },
+    "timestamp": { "type": "string", "format": "date-time" },
+    "confidence": { "type": "string", "enum": ["HIGH", "MEDIUM", "LOW"] },
+    "evidenceUrl": { "type": "string" }
+  },
+  "required": ["eventId", "surface", "measurementClass", "timestamp"]
+}

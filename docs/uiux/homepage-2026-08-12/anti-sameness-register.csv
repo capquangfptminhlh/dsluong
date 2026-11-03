@@ -1,0 +1,9 @@
+item,reason,status
+"Split hero with dashboard on right","Used by current AutoTax and explicitly saturated in Website OS","REJECTED"
+"Generic SaaS bento","Does not explain operational flow; likely visual-only redesign","REJECTED"
+"3-column features","Poor hierarchy and generic mobile stacking","REJECTED"
+"Unverified stat strip","No authoritative source for customer count/revenue/accuracy/support metrics","REJECTED"
+"Decorative avatars/testimonials","No source-of-truth customer evidence","REJECTED"
+"Tax promise as hero","High-stakes claim; current system intentionally fails closed without rule context","REJECTED"
+"3D decorative object","Adds performance cost without explaining product operation","REJECTED"
+"Operational Spine","Maps directly to actual POS -> inventory -> finance/debt -> tax-control data domains","ACCEPTED"

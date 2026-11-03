@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Mức tồn kho tối thiểu là gì? Cách đặt điểm đặt hàng lại cho cửa hàng</title>
+  <meta name="description" content="Hướng dẫn đặt mức tồn kho tối thiểu và điểm đặt hàng lại cho cửa hàng dựa trên tốc độ bán, thời gian nhập hàng và tồn an toàn." />
+  <link rel="canonical" href="https://autotaxpos.com/blog/muc-ton-kho-toi-thieu-diem-dat-hang-lai/" /><link rel="icon" href="/autotax-logo.svg" type="image/svg+xml" /><link rel="stylesheet" href="/blog/blog.css" />
+  <meta property="og:type" content="article" /><meta property="og:title" content="Mức tồn kho tối thiểu và điểm đặt hàng lại cho cửa hàng" /><meta property="og:description" content="Cách xác định lúc cần nhập thêm hàng trước khi hết kho mà không ôm tồn quá mức." /><meta property="og:url" content="https://autotaxpos.com/blog/muc-ton-kho-toi-thieu-diem-dat-hang-lai/" /><meta name="twitter:card" content="summary" />
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Mức tồn kho tối thiểu là gì? Cách đặt điểm đặt hàng lại cho cửa hàng","description":"Hướng dẫn xác định mức tồn kho tối thiểu và điểm đặt hàng lại dựa trên tốc độ bán, thời gian nhập hàng và tồn an toàn.","datePublished":"2026-08-24","dateModified":"2026-08-24","mainEntityOfPage":"https://autotaxpos.com/blog/muc-ton-kho-toi-thieu-diem-dat-hang-lai/","author":{"@type":"Organization","name":"AutoTax"},"publisher":{"@type":"Organization","name":"AutoTax","logo":{"@type":"ImageObject","url":"https://autotaxpos.com/autotax-logo.svg"}}}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Trang chủ","item":"https://autotaxpos.com/"},{"@type":"ListItem","position":2,"name":"Kiến thức","item":"https://autotaxpos.com/blog/"},{"@type":"ListItem","position":3,"name":"Mức tồn kho tối thiểu","item":"https://autotaxpos.com/blog/muc-ton-kho-toi-thieu-diem-dat-hang-lai/"}]}</script>
+</head>
+<body>
+<header class="topbar"><div class="wrap topbar-inner"><a class="brand" href="/"><img src="/autotax-logo.svg" alt="" /><span><strong>AutoTax</strong><small>Business Control</small></span></a><nav class="nav"><a href="/">Trang chủ</a><a href="/blog/">Kiến thức</a><a href="/#capabilities">Tính năng</a></nav><a class="cta" href="/register">Tạo tài khoản</a></div></header>
+<main>
+  <section class="article-hero"><div class="wrap"><div class="breadcrumbs"><a href="/">Trang chủ</a><span>›</span><a href="/blog/">Kiến thức</a><span>›</span><span>Kho hàng</span></div><p class="eyebrow" style="margin-top:22px">Kho hàng & bổ sung hàng</p><h1>Mức tồn kho tối thiểu là gì? Cách đặt điểm đặt hàng lại cho cửa hàng</h1><p class="article-deck">Đừng đợi hàng về 0 mới nhập thêm. Cửa hàng nên đặt một ngưỡng cảnh báo đủ sớm để hàng mới về trước khi lượng tồn hiện tại bán hết.</p><div class="article-meta"><span>AutoTax</span><span>24/08/2026</span><span>Khoảng 7 phút đọc</span></div></div></section>
+  <div class="wrap article-layout">
+    <aside class="toc"><strong>Trong bài này</strong><a href="#khai-niem">1. Mức tồn tối thiểu là gì?</a><a href="#cong-thuc">2. Cách tính đơn giản</a><a href="#vi-du">3. Ví dụ cửa hàng</a><a href="#phan-nhom">4. Không dùng một ngưỡng cho mọi SKU</a><a href="#quy-trinh">5. Quy trình áp dụng</a></aside>
+    <article class="article-body">
+      <p><strong>Trả lời ngắn:</strong> mức tồn kho tối thiểu hoặc điểm đặt hàng lại là ngưỡng mà khi tồn kho chạm xuống, cửa hàng nên bắt đầu bổ sung hàng. Mục tiêu là để lượng hàng còn lại đủ bán trong thời gian chờ nhà cung cấp giao hàng, cộng thêm một phần dự phòng nếu nhu cầu tăng hoặc giao hàng chậm.</p>
+      <p>Tài liệu SAP về replenishment mô tả reorder point là ngưỡng khiến hệ thống bắt đầu tạo nhu cầu bổ sung khi tồn hiện có hoặc tồn dự kiến giảm xuống dưới mức đã đặt. Vì vậy đây là bài toán <em>khi nào phải nhập thêm</em>, khác với kiểm kho bằng mã vạch là bài toán <em>đếm thực tế đang có bao nhiêu</em>.</p>
+      <h2 id="khai-niem">1. Mức tồn kho tối thiểu không phải là “số hàng muốn giữ”</h2>
+      <p>Có ba con số dễ bị trộn lẫn: tồn thực tế, điểm đặt hàng lại và mức tồn mục tiêu. Tồn thực tế là số đang có. Điểm đặt hàng lại là ngưỡng kích hoạt việc nhập thêm. Mức tồn mục tiêu là số lượng cửa hàng muốn đạt sau khi lô hàng mới về.</p>
+      <div class="callout"><strong>Điểm cần nhớ</strong><p>Nếu ngưỡng đặt quá thấp, cửa hàng có thể hết hàng trong lúc chờ giao. Nếu đặt quá cao, vốn bị giữ trong kho lâu hơn cần thiết.</p></div>
+      <h2 id="cong-thuc">2. Công thức đơn giản để bắt đầu</h2>
+      <p>Với cửa hàng nhỏ, có thể bắt đầu bằng công thức dễ kiểm tra:</p>
+      <p><strong>Điểm đặt hàng lại = nhu cầu trung bình trong thời gian chờ hàng + tồn an toàn.</strong></p>
+      <p>Trong đó, nhu cầu trong thời gian chờ hàng có thể ước tính bằng số lượng bán trung bình mỗi ngày nhân với số ngày từ lúc đặt đến lúc nhận hàng. Tồn an toàn là phần đệm dành cho các ngày bán cao hơn bình thường hoặc nhà cung cấp giao chậm.</p>
+      <h2 id="vi-du">3. Ví dụ: một SKU bán 8 sản phẩm/ngày</h2>
+      <p>Giả sử một mặt hàng bán trung bình 8 sản phẩm mỗi ngày, nhà cung cấp thường giao trong 4 ngày và cửa hàng muốn giữ thêm 12 sản phẩm dự phòng. Nhu cầu trong thời gian chờ là 8 × 4 = 32 sản phẩm. Cộng 12 sản phẩm tồn an toàn, điểm đặt hàng lại ban đầu là 44.</p>
+      <p>Khi tồn khả dụng tiến về 44, cửa hàng nên bắt đầu tạo yêu cầu mua hoặc ít nhất đưa SKU vào danh sách cần xem xét. Đây là ngưỡng vận hành ban đầu, không phải một con số cố định vĩnh viễn.</p>
+      <h2 id="phan-nhom">4. Không nên dùng cùng một ngưỡng cho mọi sản phẩm</h2>
+      <p>Hàng bán nhanh, hàng có thời gian nhập dài hoặc hàng thường xuyên biến động nên có mức đệm khác với hàng bán chậm. Một ngưỡng duy nhất cho cả kho dễ tạo hai lỗi ngược nhau: SKU bán nhanh bị thiếu hàng trong khi SKU bán chậm lại bị nhập quá nhiều.</p>
+      <ul class="checklist"><li>SKU bán nhanh: theo dõi ngưỡng thường xuyên hơn.</li><li>SKU giao hàng chậm: cộng đủ nhu cầu trong thời gian lead time.</li><li>SKU biến động mạnh: cần tồn an toàn lớn hơn SKU ổn định.</li><li>SKU cận date hoặc vòng đời ngắn: tránh tăng tồn an toàn một cách máy móc.</li></ul>
+      <h2 id="quy-trinh">5. Quy trình 5 bước áp dụng tại cửa hàng</h2>
+      <ol><li>Lấy dữ liệu bán thực tế của từng SKU trong một khoảng đủ đại diện.</li><li>Ghi thời gian giao hàng thực tế của nhà cung cấp, không chỉ thời gian cam kết.</li><li>Chọn tồn an toàn phù hợp với độ biến động và mức chấp nhận rủi ro hết hàng.</li><li>Đặt ngưỡng cảnh báo hoặc danh sách SKU cần nhập khi tồn khả dụng chạm điểm đặt hàng lại.</li><li>Rà lại định kỳ vì tốc độ bán, mùa vụ và thời gian giao hàng đều có thể thay đổi.</li></ol>
+      <p>Nếu cửa hàng đang kiểm kho bằng mã vạch, hãy dùng kết quả kiểm kho để sửa tồn thực tế trước rồi mới đánh giá SKU nào đã chạm ngưỡng bổ sung. Nếu tồn hệ thống sai, cảnh báo nhập hàng cũng sẽ sai theo.</p>
+      <h2>Nguồn tham khảo</h2>
+      <ul><li><a href="https://help.sap.com/docs/SAP_S4HANA_CLOUD/64609d0ecac54654b0837cba34555b82/329fc7536e8e2a4be10000000a174cb4.html?locale=en-US" rel="nofollow noopener" target="_blank">SAP Help Portal — Replenishment: Using a Reorder Point</a>.</li><li><a href="https://www.shopify.com/blog/reorder-point" rel="nofollow noopener" target="_blank">Shopify — Reorder Point Formula: A Retailer’s Guide</a>.</li></ul>
+      <div class="article-footer-nav"><a href="/blog/kiem-kho-bang-ma-vach/">← Kiểm kho bằng mã vạch</a><a href="/blog/quan-ly-nhieu-chi-nhanh-cua-hang/">Quản lý kho nhiều chi nhánh →</a></div>
+    </article>
+    <aside class="side-cta"><img src="/autotax-logo.svg" alt="Logo AutoTax" /><h3>Muốn nhìn tồn kho và việc cần nhập rõ hơn?</h3><p>AutoTax hướng tới việc đưa bán hàng, kho và các công việc vận hành về cùng một workspace dễ theo dõi.</p><a href="/register">Tạo tài khoản</a></aside>
+  </div>
+</main>
+<footer><div class="wrap footer-inner"><a class="brand" href="/"><img src="/autotax-logo.svg" alt="" /><span><strong>AutoTax</strong><small>Business Control</small></span></a><div class="footer-links"><a href="/blog/">Kiến thức</a><a href="/login">Đăng nhập</a></div><p>Nội dung hướng dẫn vận hành, không thay thế tư vấn pháp lý hoặc thuế.</p></div></footer>
+</body></html>

@@ -1,0 +1,27 @@
+---
+export interface Props {
+  title: string;
+  excerpt: string;
+  url: string;
+  image?: string;
+  publishDate?: Date;
+  author?: string;
+}
+const { title, excerpt, url, image, publishDate, author } = Astro.props;
+
+// Basic Article Schema
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": title,
+  "description": excerpt,
+  "image": image ? [image] : [],
+  "datePublished": publishDate ? publishDate.toISOString() : undefined,
+  "author": [{
+      "@type": "Person",
+      "name": author || "AutoTax Expert",
+      "url": "https://autotaxpos.com"
+    }]
+};
+---
+<script type="application/ld+json" set:html={JSON.stringify(schema)} />

@@ -1,0 +1,5 @@
+decision: PASS
+observed_at: 2026-08-17T09:07:57+07:00
+scope: existing AutoTax production and canonical blog baseline
+source_commit_sha: 524ae731f8ba15c1284c78b5d5f275c8c234fb17
+reason: Existing product page blog hub and four canonical operational articles are explicitly inventoried and covered. Future articles must extend these artifacts before publication.

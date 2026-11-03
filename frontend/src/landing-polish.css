@@ -1,0 +1,45 @@
+/* Final accessibility/readability overrides loaded after the landing module styles. */
+.landing-stage-panel,
+.landing-industry-summary {
+  animation: none !important;
+  opacity: 1 !important;
+  transform: none !important;
+}
+
+@media (max-width: 400px) {
+  .landing-hero {
+    padding-top: 60px !important;
+    padding-bottom: 42px !important;
+  }
+
+  .landing-hero h1 {
+    font-size: 34px !important;
+    line-height: 1.07 !important;
+  }
+
+  .landing-hero-copy {
+    margin-top: 17px !important;
+    font-size: 14px !important;
+    line-height: 1.55 !important;
+  }
+
+  .landing-hero-actions {
+    margin-top: 21px !important;
+    gap: 9px !important;
+  }
+
+  .landing-button-primary,
+  .landing-button-ghost {
+    min-height: 47px !important;
+  }
+
+  .landing-principles {
+    margin-top: 18px !important;
+    gap: 7px !important;
+  }
+
+  .landing-principles span {
+    padding-block: 8px !important;
+    font-size: 11px !important;
+  }
+}

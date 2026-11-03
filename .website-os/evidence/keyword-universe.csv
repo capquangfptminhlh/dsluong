@@ -1,0 +1,42 @@
+keyword,primary_intent,cluster_id,target_url,observed_at,verification_status,status
+phần mềm quản lý bán hàng hộ kinh doanh,COMMERCIAL,CL-SELL,/,2026-08-17T09:07:57+07:00,VERIFIED,PASS
+quản lý bán hàng hộ kinh doanh,INFORMATIONAL,CL-SELL,/blog/quan-ly-ban-hang-ho-kinh-doanh/,2026-08-17T09:07:57+07:00,VERIFIED,PASS
+quy trình quản lý bán hàng hộ kinh doanh,INFORMATIONAL,CL-SELL,/blog/quan-ly-ban-hang-ho-kinh-doanh/,2026-08-17T09:07:57+07:00,VERIFIED,PASS
+Excel hay phần mềm POS,COMPARISON,CL-EXCEL-POS,/blog/excel-hay-phan-mem-pos/,2026-08-19T19:03:00+07:00,VERIFIED,PASS
+khi nào nên chuyển từ Excel sang POS,COMPARISON,CL-EXCEL-POS,/blog/excel-hay-phan-mem-pos/,2026-08-19T19:03:00+07:00,VERIFIED,PASS
+quản lý bán hàng bằng Excel hay POS,COMPARISON,CL-EXCEL-POS,/blog/excel-hay-phan-mem-pos/,2026-08-19T19:03:00+07:00,VERIFIED,PASS
+quản lý nhiều chi nhánh cửa hàng,INFORMATIONAL,CL-MULTIBRANCH,/blog/quan-ly-nhieu-chi-nhanh-cua-hang/,2026-08-19T15:02:55+07:00,VERIFIED,PASS
+quản lý kho nhiều chi nhánh,INFORMATIONAL,CL-MULTIBRANCH,/blog/quan-ly-nhieu-chi-nhanh-cua-hang/,2026-08-19T15:02:55+07:00,VERIFIED,PASS
+điều chuyển hàng giữa chi nhánh,INFORMATIONAL,CL-MULTIBRANCH,/blog/quan-ly-nhieu-chi-nhanh-cua-hang/,2026-08-19T15:02:55+07:00,VERIFIED,PASS
+đối soát thanh toán QR cửa hàng,INFORMATIONAL,CL-PAYRECON,/blog/doi-soat-thanh-toan-qr-chuyen-khoan/,2026-08-18T18:59:40+07:00,VERIFIED,PASS
+đối soát chuyển khoản bán hàng,INFORMATIONAL,CL-PAYRECON,/blog/doi-soat-thanh-toan-qr-chuyen-khoan/,2026-08-18T18:59:40+07:00,VERIFIED,PASS
+khớp giao dịch QR với đơn hàng,INFORMATIONAL,CL-PAYRECON,/blog/doi-soat-thanh-toan-qr-chuyen-khoan/,2026-08-18T18:59:40+07:00,VERIFIED,PASS
+hóa đơn điện tử hộ kinh doanh 2026,INFORMATIONAL,CL-EINVOICE,/blog/hoa-don-dien-tu-ho-kinh-doanh-1-ty/,2026-08-18T07:57:00+07:00,VERIFIED,PASS
+hộ kinh doanh dưới 1 tỷ có dùng hóa đơn điện tử không,INFORMATIONAL,CL-EINVOICE,/blog/hoa-don-dien-tu-ho-kinh-doanh-1-ty/,2026-08-18T07:57:00+07:00,VERIFIED,PASS
+hộ kinh doanh trên 1 tỷ hóa đơn điện tử,INFORMATIONAL,CL-EINVOICE,/blog/hoa-don-dien-tu-ho-kinh-doanh-1-ty/,2026-08-18T07:57:00+07:00,VERIFIED,PASS
+hóa đơn điện tử khởi tạo từ máy tính tiền hộ kinh doanh 2026,INFORMATIONAL,CL-EINVOICE,/blog/hoa-don-dien-tu-ho-kinh-doanh-1-ty/,2026-08-22T08:00:00+07:00,VERIFIED,PASS
+thời điểm lập hóa đơn điện tử 2026,INFORMATIONAL,CL-INVOICE-TIME,/blog/thoi-diem-lap-hoa-don-dien-tu-2026/,2026-08-19T07:58:51+07:00,VERIFIED,PASS
+bán hàng khi nào phải lập hóa đơn điện tử,INFORMATIONAL,CL-INVOICE-TIME,/blog/thoi-diem-lap-hoa-don-dien-tu-2026/,2026-08-19T07:58:51+07:00,VERIFIED,PASS
+bán ca đêm lập hóa đơn khi nào,INFORMATIONAL,CL-INVOICE-TIME,/blog/thoi-diem-lap-hoa-don-dien-tu-2026/,2026-08-19T07:58:51+07:00,VERIFIED,PASS
+thủ tục khai thuế hộ kinh doanh 2026,INFORMATIONAL,CL-TAX-FILING,/blog/thu-tuc-khai-thue-ho-kinh-doanh-2026/,2026-08-20T08:00:00+07:00,VERIFIED,PASS
+hồ sơ khai thuế hộ kinh doanh 2026,INFORMATIONAL,CL-TAX-FILING,/blog/thu-tuc-khai-thue-ho-kinh-doanh-2026/,2026-08-20T08:00:00+07:00,VERIFIED,PASS
+mẫu khai thuế hộ kinh doanh 2026,INFORMATIONAL,CL-TAX-FILING,/blog/thu-tuc-khai-thue-ho-kinh-doanh-2026/,2026-08-20T08:00:00+07:00,VERIFIED,PASS
+phân quyền nhân viên POS,INFORMATIONAL,CL-POS-PERMISSIONS,/blog/phan-quyen-nhan-vien-pos/,2026-08-21T14:58:28+07:00,VERIFIED,PASS
+vai trò nhân viên POS,INFORMATIONAL,CL-POS-PERMISSIONS,/blog/phan-quyen-nhan-vien-pos/,2026-08-21T14:58:28+07:00,VERIFIED,PASS
+quản lý duyệt hoàn tiền giảm giá POS,INFORMATIONAL,CL-POS-PERMISSIONS,/blog/phan-quyen-nhan-vien-pos/,2026-08-21T14:58:28+07:00,VERIFIED,PASS
+bảo mật tài khoản POS cho cửa hàng,INFORMATIONAL,CL-POS-PERMISSIONS,/blog/phan-quyen-nhan-vien-pos/,2026-08-22T19:04:49+07:00,VERIFIED,PASS
+MFA cho tài khoản quản trị POS,INFORMATIONAL,CL-POS-PERMISSIONS,/blog/phan-quyen-nhan-vien-pos/,2026-08-22T19:04:49+07:00,VERIFIED,PASS
+POS mất mạng có bán hàng được không,INFORMATIONAL,CL-POS-OFFLINE,/blog/pos-mat-mang-co-ban-hang-duoc-khong/,2026-08-21T19:00:00+07:00,VERIFIED,PASS
+bán hàng khi mất Internet POS,INFORMATIONAL,CL-POS-OFFLINE,/blog/pos-mat-mang-co-ban-hang-duoc-khong/,2026-08-21T19:00:00+07:00,VERIFIED,PASS
+thanh toán offline POS có rủi ro gì,INFORMATIONAL,CL-POS-OFFLINE,/blog/pos-mat-mang-co-ban-hang-duoc-khong/,2026-08-21T19:00:00+07:00,VERIFIED,PASS
+kiểm kho bằng mã vạch,INFORMATIONAL,CL-STOCK,/blog/kiem-kho-bang-ma-vach/,2026-08-17T09:07:57+07:00,VERIFIED,PASS
+quản lý kho bằng mã vạch,INFORMATIONAL,CL-STOCK,/blog/kiem-kho-bang-ma-vach/,2026-08-17T09:07:57+07:00,VERIFIED,PASS
+cách kiểm kho cửa hàng bằng mã vạch,INFORMATIONAL,CL-STOCK,/blog/kiem-kho-bang-ma-vach/,2026-08-22T15:00:00+07:00,VERIFIED,PASS
+mức tồn kho tối thiểu cửa hàng,INFORMATIONAL,CL-REPLENISH,/blog/muc-ton-kho-toi-thieu-diem-dat-hang-lai/,2026-08-24T22:55:00+07:00,VERIFIED,PASS
+điểm đặt hàng lại cửa hàng,INFORMATIONAL,CL-REPLENISH,/blog/muc-ton-kho-toi-thieu-diem-dat-hang-lai/,2026-08-24T22:55:00+07:00,VERIFIED,PASS
+quản lý thu chi công nợ,INFORMATIONAL,CL-CASH,/blog/quan-ly-cong-no-thu-chi/,2026-08-17T09:07:57+07:00,VERIFIED,PASS
+checklist thu chi công nợ cuối ngày,INFORMATIONAL,CL-CASH,/blog/quan-ly-cong-no-thu-chi/,2026-08-17T09:07:57+07:00,VERIFIED,PASS
+chốt ca bán hàng cuối ngày,INFORMATIONAL,CL-SELL,/blog/chot-ca-ban-hang-cuoi-ngay/,2026-09-11T20:40:00+07:00,VERIFIED,PASS
+đối soát dữ liệu trước kỳ thuế,INFORMATIONAL,CL-TAXDATA,/blog/doi-soat-du-lieu-truoc-ky-thue/,2026-08-17T09:07:57+07:00,VERIFIED,PASS
+rà soát dữ liệu vận hành trước kỳ thuế,INFORMATIONAL,CL-TAXDATA,/blog/doi-soat-du-lieu-truoc-ky-thue/,2026-08-17T09:07:57+07:00,VERIFIED,PASS
+kiến thức quản lý cửa hàng,INFORMATIONAL,CL-HUB,/blog/,2026-08-17T09:07:57+07:00,VERIFIED,PASS

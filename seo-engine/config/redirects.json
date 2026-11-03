@@ -1,0 +1,9 @@
+{
+  "redirects": [
+    {
+      "from": "/blog/checklist-chuan-bi-hoa-on-ien-tu-khi-dung-may-tinh-tien",
+      "to": "/blog/checklist-chuan-bi-hoa-don-dien-tu-khi-dung-may-tinh-tien",
+      "reason": "sua slug hong do loi chuyen doi chu d"
+    }
+  ]
+}

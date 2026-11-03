@@ -17,18 +17,6 @@ async function ensureHospitalitySchema(db) {
   await addColumnIfMissing(db, 'rooms', 'price', 'price REAL DEFAULT 0');
   await addColumnIfMissing(db, 'rooms', 'image', 'image TEXT');
 
-  // Existing rooms belong to the shop's primary branch after migration. Never
-  // move an already assigned room when the owner changes the default branch.
-  await addColumnIfMissing(db, 'rooms', 'branch_id', 'branch_id INTEGER');
-  await run(db, `
-    UPDATE rooms SET branch_id = (
-      SELECT b.id FROM branches b WHERE b.user_id = rooms.user_id
-      ORDER BY b.is_default DESC, b.id ASC LIMIT 1
-    ) WHERE branch_id IS NULL
-  `);
-  await run(db, 'CREATE INDEX IF NOT EXISTS idx_rooms_tenant_branch ON rooms(user_id, branch_id)');
-
-
   await run(db, `CREATE TABLE IF NOT EXISTS room_bookings (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     user_id TEXT NOT NULL,

@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title desc">
+  <title id="title">AutoTax</title>
+  <desc id="desc">Biểu tượng AutoTax tối giản cho ứng dụng PWA</desc>
+  <defs>
+    <linearGradient id="bg" x1="8" y1="4" x2="56" y2="60" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0F172A"/>
+      <stop offset="1" stop-color="#07101F"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="20" y1="18" x2="46" y2="47" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#38BDF8"/>
+      <stop offset="1" stop-color="#2563EB"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Full-bleed background keeps the icon clean under Android/iOS masks. -->
+  <rect width="64" height="64" fill="url(#bg)"/>
+
+  <!-- Subtle inner plate adds depth without hurting legibility at small sizes. -->
+  <rect x="8" y="8" width="48" height="48" rx="15" fill="#111C2F" stroke="#27364D" stroke-width="1"/>
+
+  <!-- Geometric A: thick, balanced strokes remain crisp on launcher icons. -->
+  <path d="M20 45.5 30.15 19.8c.64-1.62 3.06-1.62 3.7 0L44 45.5" fill="none" stroke="#F8FAFC" stroke-width="6.2" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M25.2 36.2h13.6" stroke="url(#accent)" stroke-width="5.4" stroke-linecap="round"/>
+
+  <!-- Small control/check cue ties the mark to Business Control. -->
+  <circle cx="45.5" cy="18.5" r="5.5" fill="url(#accent)"/>
+  <path d="m42.9 18.5 1.65 1.7 3.45-3.7" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

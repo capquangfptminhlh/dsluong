@@ -1,0 +1,39 @@
+keyword,primary_intent,cluster_id,target_url
+phần mềm quản lý bán hàng hộ kinh doanh,COMMERCIAL,CL-SELL,/
+quản lý bán hàng hộ kinh doanh,INFORMATIONAL,CL-SELL,/blog/quan-ly-ban-hang-ho-kinh-doanh/
+quy trình quản lý bán hàng hộ kinh doanh,INFORMATIONAL,CL-SELL,/blog/quan-ly-ban-hang-ho-kinh-doanh/
+Excel hay phần mềm POS,COMPARISON,CL-EXCEL-POS,/blog/excel-hay-phan-mem-pos/
+khi nào nên chuyển từ Excel sang POS,COMPARISON,CL-EXCEL-POS,/blog/excel-hay-phan-mem-pos/
+quản lý bán hàng bằng Excel hay POS,COMPARISON,CL-EXCEL-POS,/blog/excel-hay-phan-mem-pos/
+quản lý nhiều chi nhánh cửa hàng,INFORMATIONAL,CL-MULTIBRANCH,/blog/quan-ly-nhieu-chi-nhanh-cua-hang/
+quản lý kho nhiều chi nhánh,INFORMATIONAL,CL-MULTIBRANCH,/blog/quan-ly-nhieu-chi-nhanh-cua-hang/
+điều chuyển hàng giữa chi nhánh,INFORMATIONAL,CL-MULTIBRANCH,/blog/quan-ly-nhieu-chi-nhanh-cua-hang/
+đối soát thanh toán QR cửa hàng,INFORMATIONAL,CL-PAYRECON,/blog/doi-soat-thanh-toan-qr-chuyen-khoan/
+đối soát chuyển khoản bán hàng,INFORMATIONAL,CL-PAYRECON,/blog/doi-soat-thanh-toan-qr-chuyen-khoan/
+khớp giao dịch QR với đơn hàng,INFORMATIONAL,CL-PAYRECON,/blog/doi-soat-thanh-toan-qr-chuyen-khoan/
+hóa đơn điện tử hộ kinh doanh 2026,INFORMATIONAL,CL-EINVOICE,/blog/hoa-don-dien-tu-ho-kinh-doanh-1-ty/
+hộ kinh doanh dưới 1 tỷ có dùng hóa đơn điện tử không,INFORMATIONAL,CL-EINVOICE,/blog/hoa-don-dien-tu-ho-kinh-doanh-1-ty/
+hộ kinh doanh trên 1 tỷ hóa đơn điện tử,INFORMATIONAL,CL-EINVOICE,/blog/hoa-don-dien-tu-ho-kinh-doanh-1-ty/
+hóa đơn điện tử khởi tạo từ máy tính tiền hộ kinh doanh 2026,INFORMATIONAL,CL-EINVOICE,/blog/hoa-don-dien-tu-ho-kinh-doanh-1-ty/
+thời điểm lập hóa đơn điện tử 2026,INFORMATIONAL,CL-INVOICE-TIME,/blog/thoi-diem-lap-hoa-don-dien-tu-2026/
+bán hàng khi nào phải lập hóa đơn điện tử,INFORMATIONAL,CL-INVOICE-TIME,/blog/thoi-diem-lap-hoa-don-dien-tu-2026/
+bán ca đêm lập hóa đơn khi nào,INFORMATIONAL,CL-INVOICE-TIME,/blog/thoi-diem-lap-hoa-don-dien-tu-2026/
+thủ tục khai thuế hộ kinh doanh 2026,INFORMATIONAL,CL-TAX-FILING,/blog/thu-tuc-khai-thue-ho-kinh-doanh-2026/
+hồ sơ khai thuế hộ kinh doanh 2026,INFORMATIONAL,CL-TAX-FILING,/blog/thu-tuc-khai-thue-ho-kinh-doanh-2026/
+mẫu khai thuế hộ kinh doanh 2026,INFORMATIONAL,CL-TAX-FILING,/blog/thu-tuc-khai-thue-ho-kinh-doanh-2026/
+phân quyền nhân viên POS,INFORMATIONAL,CL-POS-PERMISSIONS,/blog/phan-quyen-nhan-vien-pos/
+vai trò nhân viên POS,INFORMATIONAL,CL-POS-PERMISSIONS,/blog/phan-quyen-nhan-vien-pos/
+quản lý duyệt hoàn tiền giảm giá POS,INFORMATIONAL,CL-POS-PERMISSIONS,/blog/phan-quyen-nhan-vien-pos/
+bảo mật tài khoản POS cho cửa hàng,INFORMATIONAL,CL-POS-PERMISSIONS,/blog/phan-quyen-nhan-vien-pos/
+MFA cho tài khoản quản trị POS,INFORMATIONAL,CL-POS-PERMISSIONS,/blog/phan-quyen-nhan-vien-pos/
+POS mất mạng có bán hàng được không,INFORMATIONAL,CL-POS-OFFLINE,/blog/pos-mat-mang-co-ban-hang-duoc-khong/
+bán hàng khi mất Internet POS,INFORMATIONAL,CL-POS-OFFLINE,/blog/pos-mat-mang-co-ban-hang-duoc-khong/
+thanh toán offline POS có rủi ro gì,INFORMATIONAL,CL-POS-OFFLINE,/blog/pos-mat-mang-co-ban-hang-duoc-khong/
+kiểm kho bằng mã vạch,INFORMATIONAL,CL-STOCK,/blog/kiem-kho-bang-ma-vach/
+quản lý kho bằng mã vạch,INFORMATIONAL,CL-STOCK,/blog/kiem-kho-bang-ma-vach/
+cách kiểm kho cửa hàng bằng mã vạch,INFORMATIONAL,CL-STOCK,/blog/kiem-kho-bang-ma-vach/
+quản lý thu chi công nợ,INFORMATIONAL,CL-CASH,/blog/quan-ly-cong-no-thu-chi/
+checklist thu chi công nợ cuối ngày,INFORMATIONAL,CL-CASH,/blog/quan-ly-cong-no-thu-chi/
+đối soát dữ liệu trước kỳ thuế,INFORMATIONAL,CL-TAXDATA,/blog/doi-soat-du-lieu-truoc-ky-thue/
+rà soát dữ liệu vận hành trước kỳ thuế,INFORMATIONAL,CL-TAXDATA,/blog/doi-soat-du-lieu-truoc-ky-thue/
+kiến thức quản lý cửa hàng,INFORMATIONAL,CL-HUB,/blog/

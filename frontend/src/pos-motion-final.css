@@ -1,0 +1,326 @@
+/* AutoTax POS motion system — final route-scoped layer.
+   Important: never transform the POS route/root/cart-pane ancestors because mobile
+   checkout actions use position:fixed. Motion is applied only to safe descendants. */
+
+@keyframes at-pos-toolbar-in {
+  from { opacity: 0; transform: translate3d(0,-10px,0); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes at-pos-chip-in {
+  from { opacity: 0; transform: translate3d(8px,0,0) scale(.96); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes at-pos-card-in {
+  from { opacity: 0; transform: translate3d(0,14px,0) scale(.975); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes at-pos-card-out-in {
+  from { opacity: 0; transform: translate3d(0,10px,0) scale(.985); }
+  to { opacity: .5; transform: none; }
+}
+@keyframes at-pos-cart-fade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes at-pos-cart-item-in {
+  0% { opacity: 0; transform: translate3d(12px,0,0) scale(.97); }
+  72% { opacity: 1; transform: translate3d(-2px,0,0) scale(1.006); }
+  100% { opacity: 1; transform: none; }
+}
+@keyframes at-pos-checkout-in {
+  from { opacity: 0; transform: translate3d(0,12px,0) scale(.985); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes at-pos-modal-backdrop-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes at-pos-modal-in {
+  0% { opacity: 0; transform: translate3d(0,14px,0) scale(.965); }
+  72% { opacity: 1; transform: translate3d(0,-2px,0) scale(1.006); }
+  100% { opacity: 1; transform: none; }
+}
+@keyframes at-pos-float {
+  0%,100% { transform: translate3d(0,0,0); }
+  50% { transform: translate3d(0,-5px,0); }
+}
+@keyframes at-pos-total-glow {
+  0% { text-shadow: 0 0 0 rgba(37,99,235,0); transform: scale(.96); opacity: .6; }
+  65% { text-shadow: 0 0 18px rgba(37,99,235,.18); transform: scale(1.018); opacity: 1; }
+  100% { text-shadow: none; transform: none; opacity: 1; }
+}
+@keyframes at-pos-listening-ring {
+  0%,100% { box-shadow: 0 0 0 0 rgba(239,68,68,.28); }
+  50% { box-shadow: 0 0 0 7px rgba(239,68,68,0); }
+}
+@keyframes at-pos-shine {
+  from { transform: translate3d(-150%,0,0) skewX(-22deg); }
+  to { transform: translate3d(260%,0,0) skewX(-22deg); }
+}
+@keyframes at-pos-badge-pop {
+  0% { opacity: 0; transform: scale(.78); }
+  70% { opacity: 1; transform: scale(1.08); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+/* Keep route-level containment neutral. This repeats the safety contract from
+   pos-viewport-fix.css so later styles can never accidentally break fixed checkout. */
+.autotax-page-enter[data-route="/app/pos"] {
+  transform: none !important;
+  filter: none !important;
+  perspective: none !important;
+  contain: none !important;
+  will-change: auto !important;
+}
+
+/* Left product workspace entrance. Safe to transform because it does not contain
+   the viewport-fixed mobile checkout action grid. */
+.autotax-page-enter[data-route="/app/pos"] > div > .flex-1 > .sticky.top-0 {
+  animation: at-pos-toolbar-in 420ms cubic-bezier(.2,.8,.2,1) both;
+}
+
+.autotax-page-enter[data-route="/app/pos"] > div > .flex-1 > .sticky.top-0 > .relative,
+.autotax-page-enter[data-route="/app/pos"] > div > .flex-1 > .sticky.top-0 > button {
+  transition: transform 160ms cubic-bezier(.2,.8,.2,1),
+              box-shadow 200ms ease,
+              border-color 160ms ease,
+              background-color 160ms ease,
+              color 160ms ease !important;
+}
+
+.autotax-page-enter[data-route="/app/pos"] > div > .flex-1 > .sticky.top-0 > button:hover {
+  transform: translate3d(0,-2px,0);
+  box-shadow: 0 10px 24px rgba(15,23,42,.12) !important;
+}
+.autotax-page-enter[data-route="/app/pos"] > div > .flex-1 > .sticky.top-0 > button:active {
+  transform: scale(.965);
+}
+.autotax-page-enter[data-route="/app/pos"] > div > .flex-1 > .sticky.top-0 > button svg {
+  transition: transform 180ms cubic-bezier(.2,1.15,.35,1);
+}
+.autotax-page-enter[data-route="/app/pos"] > div > .flex-1 > .sticky.top-0 > button:hover svg {
+  transform: scale(1.12) rotate(-3deg);
+}
+.autotax-page-enter[data-route="/app/pos"] > div > .flex-1 > .sticky.top-0 > button[class~="bg-red-500"] {
+  animation: at-pos-listening-ring 1.15s ease-in-out infinite;
+}
+
+/* Search field tactile focus. */
+.autotax-page-enter[data-route="/app/pos"] > div > .flex-1 > .sticky.top-0 input {
+  transition: transform 180ms cubic-bezier(.2,.8,.2,1),
+              box-shadow 180ms ease,
+              border-color 180ms ease,
+              background-color 180ms ease !important;
+}
+.autotax-page-enter[data-route="/app/pos"] > div > .flex-1 > .sticky.top-0 input:focus {
+  transform: translate3d(0,-1px,0);
+  box-shadow: 0 0 0 4px rgba(37,99,235,.12), 0 10px 24px rgba(37,99,235,.08) !important;
+}
+
+/* Category rail entrance + selection feedback. */
+.autotax-page-enter[data-route="/app/pos"] > div > .flex-1 > .no-scrollbar > button {
+  animation: at-pos-chip-in 320ms cubic-bezier(.2,.8,.2,1) both;
+  transition: transform 150ms cubic-bezier(.2,1.15,.35,1),
+              box-shadow 180ms ease,
+              border-color 150ms ease,
+              background-color 150ms ease,
+              color 150ms ease !important;
+}
+.autotax-page-enter[data-route="/app/pos"] > div > .flex-1 > .no-scrollbar > button:nth-child(1) { animation-delay: 35ms; }
+.autotax-page-enter[data-route="/app/pos"] > div > .flex-1 > .no-scrollbar > button:nth-child(2) { animation-delay: 65ms; }
+.autotax-page-enter[data-route="/app/pos"] > div > .flex-1 > .no-scrollbar > button:nth-child(3) { animation-delay: 95ms; }
+.autotax-page-enter[data-route="/app/pos"] > div > .flex-1 > .no-scrollbar > button:nth-child(4) { animation-delay: 125ms; }
+.autotax-page-enter[data-route="/app/pos"] > div > .flex-1 > .no-scrollbar > button:nth-child(5) { animation-delay: 155ms; }
+.autotax-page-enter[data-route="/app/pos"] > div > .flex-1 > .no-scrollbar > button:nth-child(n+6) { animation-delay: 185ms; }
+.autotax-page-enter[data-route="/app/pos"] > div > .flex-1 > .no-scrollbar > button:hover {
+  transform: translate3d(0,-2px,0);
+  box-shadow: 0 8px 18px rgba(15,23,42,.09) !important;
+}
+.autotax-page-enter[data-route="/app/pos"] > div > .flex-1 > .no-scrollbar > button:active {
+  transform: scale(.95);
+}
+.autotax-page-enter[data-route="/app/pos"] > div > .flex-1 > .no-scrollbar > button[class~="bg-slate-800"] {
+  box-shadow: 0 8px 20px rgba(15,23,42,.18) !important;
+}
+
+/* Product grid stagger and premium card feedback. */
+.autotax-page-enter[data-route="/app/pos"] .grid.content-start > div[class~="bg-white"]:not(.grayscale) {
+  animation: at-pos-card-in 420ms cubic-bezier(.2,.8,.2,1) both;
+  transition: transform 180ms cubic-bezier(.2,1.08,.35,1),
+              box-shadow 220ms ease,
+              border-color 180ms ease !important;
+  transform-origin: 50% 80%;
+}
+.autotax-page-enter[data-route="/app/pos"] .grid.content-start > div.grayscale {
+  animation: at-pos-card-out-in 360ms cubic-bezier(.2,.8,.2,1) both;
+}
+.autotax-page-enter[data-route="/app/pos"] .grid.content-start > div:nth-child(2) { animation-delay: 35ms; }
+.autotax-page-enter[data-route="/app/pos"] .grid.content-start > div:nth-child(3) { animation-delay: 70ms; }
+.autotax-page-enter[data-route="/app/pos"] .grid.content-start > div:nth-child(4) { animation-delay: 105ms; }
+.autotax-page-enter[data-route="/app/pos"] .grid.content-start > div:nth-child(5) { animation-delay: 140ms; }
+.autotax-page-enter[data-route="/app/pos"] .grid.content-start > div:nth-child(6) { animation-delay: 175ms; }
+.autotax-page-enter[data-route="/app/pos"] .grid.content-start > div:nth-child(n+7) { animation-delay: 205ms; }
+
+.autotax-page-enter[data-route="/app/pos"] .grid.content-start > div[class~="bg-white"]:not(.grayscale):hover {
+  transform: translate3d(0,-6px,0) scale(1.012) !important;
+  border-color: rgba(37,99,235,.38) !important;
+  box-shadow: 0 18px 36px rgba(15,23,42,.12), 0 5px 14px rgba(37,99,235,.08) !important;
+}
+.autotax-page-enter[data-route="/app/pos"] .grid.content-start > div[class~="bg-white"]:not(.grayscale):active {
+  transform: translate3d(0,-1px,0) scale(.976) !important;
+  transition-duration: 70ms !important;
+}
+.autotax-page-enter[data-route="/app/pos"] .grid.content-start > div[class~="bg-white"] img,
+.autotax-page-enter[data-route="/app/pos"] .grid.content-start > div[class~="bg-white"] .aspect-square > svg {
+  transition: transform 440ms cubic-bezier(.2,.8,.2,1), filter 220ms ease !important;
+}
+.autotax-page-enter[data-route="/app/pos"] .grid.content-start > div[class~="bg-white"]:not(.grayscale):hover img {
+  transform: scale(1.085) !important;
+  filter: saturate(1.05) contrast(1.02);
+}
+.autotax-page-enter[data-route="/app/pos"] .grid.content-start > div[class~="bg-white"]:not(.grayscale):hover .aspect-square > svg {
+  transform: translate3d(0,-2px,0) scale(1.1) rotate(-2deg) !important;
+}
+.autotax-page-enter[data-route="/app/pos"] .grid.content-start > div[class~="bg-white"] .font-black.text-blue-600 {
+  transition: transform 180ms cubic-bezier(.2,1.15,.35,1), color 160ms ease !important;
+  transform-origin: left center;
+}
+.autotax-page-enter[data-route="/app/pos"] .grid.content-start > div[class~="bg-white"]:not(.grayscale):hover .font-black.text-blue-600 {
+  transform: scale(1.035);
+}
+.autotax-page-enter[data-route="/app/pos"] .grid.content-start > div.grayscale span[class~="bg-red-500"] {
+  animation: at-pos-badge-pop 360ms cubic-bezier(.2,1.15,.35,1) 180ms both;
+}
+
+/* Right cart pane: fade only. No transform here — it contains fixed checkout actions. */
+.autotax-page-enter[data-route="/app/pos"] > div > .w-full {
+  animation: at-pos-cart-fade 340ms ease both;
+}
+.autotax-page-enter[data-route="/app/pos"] > div > .w-full > .sticky.top-0 {
+  animation: at-pos-toolbar-in 380ms cubic-bezier(.2,.8,.2,1) 70ms both;
+}
+.autotax-page-enter[data-route="/app/pos"] > div > .w-full > .flex-1 .space-y-3 > div {
+  animation: at-pos-cart-item-in 300ms cubic-bezier(.2,1.05,.35,1) both;
+  transition: transform 150ms cubic-bezier(.2,.8,.2,1), box-shadow 180ms ease, border-color 150ms ease !important;
+}
+.autotax-page-enter[data-route="/app/pos"] > div > .w-full > .flex-1 .space-y-3 > div:nth-child(2) { animation-delay: 28ms; }
+.autotax-page-enter[data-route="/app/pos"] > div > .w-full > .flex-1 .space-y-3 > div:nth-child(3) { animation-delay: 56ms; }
+.autotax-page-enter[data-route="/app/pos"] > div > .w-full > .flex-1 .space-y-3 > div:nth-child(4) { animation-delay: 84ms; }
+.autotax-page-enter[data-route="/app/pos"] > div > .w-full > .flex-1 .space-y-3 > div:nth-child(n+5) { animation-delay: 112ms; }
+.autotax-page-enter[data-route="/app/pos"] > div > .w-full > .flex-1 .space-y-3 > div:hover {
+  transform: translate3d(-3px,0,0);
+  border-color: rgba(37,99,235,.2) !important;
+  box-shadow: 0 9px 24px rgba(15,23,42,.08) !important;
+}
+
+/* Empty cart illustration stays alive without being distracting. */
+.autotax-page-enter[data-route="/app/pos"] > div > .w-full > .flex-1 .h-full > .rounded-full {
+  animation: at-pos-float 3.4s ease-in-out infinite;
+}
+
+/* Quantity + remove controls. */
+.autotax-page-enter[data-route="/app/pos"] > div > .w-full button {
+  transition: transform 130ms cubic-bezier(.2,1.15,.35,1),
+              box-shadow 160ms ease,
+              background-color 150ms ease,
+              border-color 150ms ease,
+              color 150ms ease,
+              opacity 150ms ease !important;
+}
+.autotax-page-enter[data-route="/app/pos"] > div > .w-full button:not(:disabled):active {
+  transform: scale(.93);
+}
+.autotax-page-enter[data-route="/app/pos"] > div > .w-full .w-7.h-7:hover {
+  transform: translate3d(0,-1px,0) scale(1.08);
+  box-shadow: 0 5px 12px rgba(15,23,42,.12) !important;
+}
+
+/* Total and checkout CTA presence. */
+.autotax-page-enter[data-route="/app/pos"] .pb-safe .text-3xl.font-black.text-blue-600 {
+  animation: at-pos-total-glow 430ms cubic-bezier(.2,1.05,.35,1) 120ms both;
+  transform-origin: right center;
+}
+.autotax-page-enter[data-route="/app/pos"] .pb-safe > .px-4.pb-4.grid {
+  animation: at-pos-checkout-in 420ms cubic-bezier(.2,1.05,.35,1) 120ms both;
+}
+.autotax-page-enter[data-route="/app/pos"] .pb-safe > .px-4.pb-4.grid > button {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  transition: transform 160ms cubic-bezier(.2,1.15,.35,1), box-shadow 180ms ease, filter 160ms ease !important;
+}
+.autotax-page-enter[data-route="/app/pos"] .pb-safe > .px-4.pb-4.grid > button::after {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  top: -35%;
+  bottom: -35%;
+  left: -28%;
+  width: 34%;
+  pointer-events: none;
+  background: linear-gradient(90deg,transparent,rgba(255,255,255,.32),transparent);
+  transform: translate3d(-150%,0,0) skewX(-22deg);
+}
+.autotax-page-enter[data-route="/app/pos"] .pb-safe > .px-4.pb-4.grid > button:not(:disabled):hover {
+  transform: translate3d(0,-3px,0) scale(1.008) !important;
+  filter: saturate(1.04);
+  box-shadow: 0 16px 30px rgba(15,23,42,.16) !important;
+}
+.autotax-page-enter[data-route="/app/pos"] .pb-safe > .px-4.pb-4.grid > button:not(:disabled):hover::after {
+  animation: at-pos-shine 680ms cubic-bezier(.2,.8,.2,1) 1;
+}
+.autotax-page-enter[data-route="/app/pos"] .pb-safe > .px-4.pb-4.grid > button:not(:disabled):active {
+  transform: scale(.965) !important;
+}
+.autotax-page-enter[data-route="/app/pos"] .pb-safe > .px-4.pb-4.grid > button svg {
+  transition: transform 180ms cubic-bezier(.2,1.15,.35,1);
+}
+.autotax-page-enter[data-route="/app/pos"] .pb-safe > .px-4.pb-4.grid > button:not(:disabled):hover svg {
+  transform: translate3d(0,-1px,0) scale(1.12);
+}
+
+/* Secondary checkout/details CTA. */
+.autotax-page-enter[data-route="/app/pos"] .pb-safe > .px-4.pb-2 > button:not(:disabled):hover {
+  transform: translate3d(0,-2px,0);
+  box-shadow: 0 9px 20px rgba(37,99,235,.1) !important;
+}
+
+/* POS overlays: payment detail, QR/receipt and route-owned fixed dialogs. */
+.autotax-page-enter[data-route="/app/pos"] > .fixed.inset-0 {
+  animation: at-pos-modal-backdrop-in 180ms ease both;
+}
+.autotax-page-enter[data-route="/app/pos"] > .fixed.inset-0 > div[class~="bg-white"] {
+  animation: at-pos-modal-in 300ms cubic-bezier(.2,1.05,.35,1) both;
+  transform-origin: 50% 70%;
+}
+.autotax-page-enter[data-route="/app/pos"] > .fixed.inset-0 button:not(:disabled):hover {
+  transform: translate3d(0,-1px,0);
+}
+.autotax-page-enter[data-route="/app/pos"] > .fixed.inset-0 button:not(:disabled):active {
+  transform: scale(.97);
+}
+
+/* Touch devices: entrance motion remains, but remove hover-dependent movement. */
+@media (hover: none) {
+  .autotax-page-enter[data-route="/app/pos"] > div > .flex-1 > .sticky.top-0 > button:hover,
+  .autotax-page-enter[data-route="/app/pos"] > div > .flex-1 > .no-scrollbar > button:hover,
+  .autotax-page-enter[data-route="/app/pos"] .grid.content-start > div[class~="bg-white"]:not(.grayscale):hover,
+  .autotax-page-enter[data-route="/app/pos"] > div > .w-full > .flex-1 .space-y-3 > div:hover,
+  .autotax-page-enter[data-route="/app/pos"] .pb-safe > .px-4.pb-4.grid > button:not(:disabled):hover,
+  .autotax-page-enter[data-route="/app/pos"] .pb-safe > .px-4.pb-2 > button:not(:disabled):hover {
+    transform: none !important;
+  }
+}
+
+/* Accessibility + low-motion preference. */
+@media (prefers-reduced-motion: reduce) {
+  .autotax-page-enter[data-route="/app/pos"] *,
+  .autotax-page-enter[data-route="/app/pos"] *::before,
+  .autotax-page-enter[data-route="/app/pos"] *::after {
+    animation-duration: .01ms !important;
+    animation-delay: 0ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

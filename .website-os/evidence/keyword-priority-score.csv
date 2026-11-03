@@ -1,0 +1,9 @@
+cluster_id,priority_score,priority_tier,reason,evidence_refs
+CL-SELL,90,P0,Core product and household-business intent,serp-evidence.csv
+CL-STOCK,85,P0,Existing operational problem with clear independent SERP coverage,serp-evidence.csv
+CL-CASH,80,P1,High operational relevance for store owners,serp-evidence.csv
+CL-TAXDATA,80,P1,Trust-sensitive data-control support intent,repo-source-plus-governance
+CL-EINVOICE,84,P1,Fresh 2026 regulatory support intent with official Government evidence for the 1-billion threshold and electronic-invoice regime; no search-volume metric fabricated,serp-evidence.csv;entity-topic-map.csv
+CL-POS-PERMISSIONS,83,P1,High operational and security relevance; fresh NIST small-business guidance updated 2026 supports MFA for sensitive accounts and limiting access/admin privileges while the existing canonical already owns POS identity and access-control intent,serp-evidence.csv;entity-topic-map.csv
+CL-POS-OFFLINE,81,P1,High-intent operational continuity question with current primary-platform evidence on offline payment behavior and risk,serp-evidence.csv;entity-topic-map.csv
+CL-HUB,70,P1,Canonical knowledge hub for internal linking,frontend/public/blog/index.html

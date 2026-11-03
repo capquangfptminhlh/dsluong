@@ -1,0 +1,14 @@
+cluster_id,cluster_name,primary_intent,pillar_or_hub_url,coverage_status
+CL-SELL,Quản lý bán hàng hộ kinh doanh,INFORMATIONAL,/blog/quan-ly-ban-hang-ho-kinh-doanh/,PASS
+CL-EXCEL-POS,Excel hay phần mềm POS,COMPARISON,/blog/excel-hay-phan-mem-pos/,PASS
+CL-MULTIBRANCH,Quản lý nhiều chi nhánh cửa hàng,INFORMATIONAL,/blog/quan-ly-nhieu-chi-nhanh-cua-hang/,PASS
+CL-PAYRECON,Đối soát thanh toán QR và chuyển khoản,INFORMATIONAL,/blog/doi-soat-thanh-toan-qr-chuyen-khoan/,PASS
+CL-EINVOICE,Hóa đơn điện tử hộ kinh doanh 2026 và máy tính tiền,INFORMATIONAL,/blog/hoa-don-dien-tu-ho-kinh-doanh-1-ty/,PASS
+CL-INVOICE-TIME,Thời điểm lập hóa đơn điện tử 2026,INFORMATIONAL,/blog/thoi-diem-lap-hoa-don-dien-tu-2026/,PASS
+CL-TAX-FILING,Thủ tục khai thuế hộ kinh doanh 2026,INFORMATIONAL,/blog/thu-tuc-khai-thue-ho-kinh-doanh-2026/,PASS
+CL-POS-PERMISSIONS,Phân quyền và bảo mật tài khoản POS,INFORMATIONAL,/blog/phan-quyen-nhan-vien-pos/,PASS
+CL-POS-OFFLINE,POS khi mất Internet và vận hành offline,INFORMATIONAL,/blog/pos-mat-mang-co-ban-hang-duoc-khong/,PASS
+CL-STOCK,Kiểm kho và mã vạch,INFORMATIONAL,/blog/kiem-kho-bang-ma-vach/,PASS
+CL-CASH,Thu chi và công nợ,INFORMATIONAL,/blog/quan-ly-cong-no-thu-chi/,PASS
+CL-TAXDATA,Rà soát dữ liệu trước kỳ thuế,INFORMATIONAL,/blog/doi-soat-du-lieu-truoc-ky-thue/,PASS
+CL-HUB,Kiến thức vận hành cửa hàng,INFORMATIONAL,/blog/,PASS

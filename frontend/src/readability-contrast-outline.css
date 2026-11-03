@@ -1,0 +1,17 @@
+/* Keep outline actions visibly outline-style after the global high-contrast palette.
+   Match real utility tokens exactly so hover:bg-* variants do not masquerade as a base fill. */
+.autotax-page-enter button[class~="border-blue-200"][class~="text-blue-700"],
+.autotax-page-enter button[class~="border-indigo-200"][class~="text-indigo-700"] {
+  background: #111820 !important;
+  background-image: none !important;
+  border-color: #ff9a62 !important;
+  color: #ffd0b6 !important;
+  box-shadow: none !important;
+}
+
+.autotax-page-enter button[class~="border-blue-200"][class~="text-blue-700"]:hover,
+.autotax-page-enter button[class~="border-indigo-200"][class~="text-indigo-700"]:hover {
+  background: #1a242e !important;
+  border-color: #ffb084 !important;
+  color: #ffffff !important;
+}

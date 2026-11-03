@@ -1,0 +1,17 @@
+{
+  "version": "1.0",
+  "defaultProvider": "gemini",
+  "taskRouting": {
+    "classification": { "modelId": "gemini-1.5-flash", "maxTokens": 1000 },
+    "research": { "modelId": "gemini-1.5-pro", "maxTokens": 4000 },
+    "writing": { "modelId": "gemini-1.5-pro", "maxTokens": 4000 },
+    "verification": { "modelId": "gemini-1.5-flash", "maxTokens": 2000 }
+  },
+  "retryPolicy": {
+    "maxAttempts": 3,
+    "initialDelaySeconds": 5,
+    "backoffMultiplier": 2,
+    "retryOn": ["timeout", "rate_limit", "transient_5xx", "invalid_schema"],
+    "doNotRetryOn": ["policy_block", "invalid_credentials", "unsupported_claim"]
+  }
+}

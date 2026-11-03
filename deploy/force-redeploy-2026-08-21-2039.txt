@@ -1,0 +1,3 @@
+Force VPS auto-deploy trigger
+requested_at: 2026-08-21T20:39:00+07:00
+reason: deploy latest UI, motion system, mobile parity and all current blog content from main

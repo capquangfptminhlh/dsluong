@@ -1,0 +1,24 @@
+[
+  {
+    "id": "auth_001",
+    "name": "AutoTax Expert",
+    "title": "Chuyên viên tư vấn Thuế & Kế toán AutoTax",
+    "role": "Chuyên gia Giải pháp Thuế & POS",
+    "bio": "Đội ngũ chuyên gia kế toán và tư vấn thuế của AutoTax POS với hơn 10 năm kinh nghiệm.",
+    "authorPage": "https://autotaxpos.com/authors/autotax-expert",
+    "sameAs": [
+      "https://facebook.com/autotaxpos"
+    ]
+  },
+  {
+    "id": "auth_002",
+    "name": "Trần Thị Minh",
+    "title": "Cố vấn Kế toán Doanh nghiệp",
+    "role": "Kiểm duyệt viên YMYL",
+    "bio": "Chuyên gia chứng chỉ CPA với 12 năm tư vấn thuế cho hộ kinh doanh và doanh nghiệp vừa và nhỏ.",
+    "authorPage": "https://autotaxpos.com/authors/tran-thi-minh",
+    "sameAs": [
+      "https://linkedin.com/in/tranthiminh-cpa"
+    ]
+  }
+]

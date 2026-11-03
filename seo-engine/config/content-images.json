@@ -1,0 +1,166 @@
+[
+  {
+    "imageId": "autotax-app-dashboard",
+    "publicPath": "/blogger/images/autotax-app-dashboard.png",
+    "alt": "AutoTax dashboard showing a business overview and revenue monitoring",
+    "clusters": [
+      "business-overview",
+      "revenue-monitoring"
+    ]
+  },
+  {
+    "imageId": "autotax-pos-sale",
+    "publicPath": "/blogger/images/autotax-pos-sale.png",
+    "alt": "AutoTax point-of-sale screen for sales and store closing operations",
+    "clusters": [
+      "pos-operations",
+      "store-closing-operations"
+    ]
+  },
+  {
+    "imageId": "autotax-products-inventory",
+    "publicPath": "/blogger/images/autotax-products-inventory.png",
+    "alt": "AutoTax product and inventory management screen",
+    "clusters": [
+      "inventory-management",
+      "product-management"
+    ]
+  },
+  {
+    "imageId": "autotax-tax-reporting",
+    "publicPath": "/blogger/images/autotax-tax-reporting.png",
+    "alt": "AutoTax tax reporting and e-invoice screen",
+    "clusters": [
+      "tax-reporting",
+      "e-invoice"
+    ]
+  },
+  {
+    "imageId": "minhhoa-quay-thu-ngan",
+    "publicPath": "/blogger/images/minhhoa-quay-thu-ngan.png",
+    "alt": "Minh họa quầy thu ngân của cửa hàng nhỏ đang phục vụ khách",
+    "clusters": [
+      "pos-operations"
+    ]
+  },
+  {
+    "imageId": "minhhoa-quan-cafe",
+    "publicPath": "/blogger/images/minhhoa-quan-cafe.png",
+    "alt": "Minh họa quán cà phê nhỏ với nhân viên pha chế sau quầy",
+    "clusters": [
+      "pos-operations"
+    ]
+  },
+  {
+    "imageId": "minhhoa-chot-ca",
+    "publicPath": "/blogger/images/minhhoa-chot-ca.png",
+    "alt": "Minh họa chủ tiệm kiểm tiền mặt khi kết thúc ca bán",
+    "clusters": [
+      "store-closing-operations"
+    ]
+  },
+  {
+    "imageId": "minhhoa-ban-giao-ca",
+    "publicPath": "/blogger/images/minhhoa-ban-giao-ca.png",
+    "alt": "Minh họa hai nhân viên bàn giao ca tại quầy",
+    "clusters": [
+      "store-closing-operations"
+    ]
+  },
+  {
+    "imageId": "minhhoa-ke-hang",
+    "publicPath": "/blogger/images/minhhoa-ke-hang.png",
+    "alt": "Minh họa chủ tiệm tạp hóa kiểm tra hàng trên kệ",
+    "clusters": [
+      "inventory-management"
+    ]
+  },
+  {
+    "imageId": "minhhoa-nhan-hang",
+    "publicPath": "/blogger/images/minhhoa-nhan-hang.png",
+    "alt": "Minh họa nhận hàng từ nhà cung cấp tại cửa hàng nhỏ",
+    "clusters": [
+      "inventory-management"
+    ]
+  },
+  {
+    "imageId": "minhhoa-sap-xep-hang",
+    "publicPath": "/blogger/images/minhhoa-sap-xep-hang.png",
+    "alt": "Minh họa sắp xếp hàng hóa theo nhóm trên kệ",
+    "clusters": [
+      "product-management"
+    ]
+  },
+  {
+    "imageId": "minhhoa-dan-nhan-hang",
+    "publicPath": "/blogger/images/minhhoa-dan-nhan-hang.png",
+    "alt": "Minh họa dán nhãn phân loại hàng trong kho nhỏ",
+    "clusters": [
+      "product-management"
+    ]
+  },
+  {
+    "imageId": "minhhoa-xem-bao-cao",
+    "publicPath": "/blogger/images/minhhoa-xem-bao-cao.png",
+    "alt": "Minh họa chủ tiệm xem lại báo cáo bán hàng",
+    "clusters": [
+      "revenue-monitoring"
+    ]
+  },
+  {
+    "imageId": "minhhoa-doanh-thu-cuoi-thang",
+    "publicPath": "/blogger/images/minhhoa-doanh-thu-cuoi-thang.png",
+    "alt": "Minh họa chủ tiệm rà soát doanh thu định kỳ",
+    "clusters": [
+      "revenue-monitoring"
+    ]
+  },
+  {
+    "imageId": "minhhoa-cua-hang-tong-quan",
+    "publicPath": "/blogger/images/minhhoa-cua-hang-tong-quan.png",
+    "alt": "Minh họa toàn cảnh một cửa hàng bán lẻ nhỏ",
+    "clusters": [
+      "business-overview"
+    ]
+  },
+  {
+    "imageId": "minhhoa-nhieu-chi-nhanh",
+    "publicPath": "/blogger/images/minhhoa-nhieu-chi-nhanh.png",
+    "alt": "Minh họa chủ kinh doanh có nhiều điểm bán",
+    "clusters": [
+      "business-overview"
+    ]
+  },
+  {
+    "imageId": "minhhoa-so-sach",
+    "publicPath": "/blogger/images/minhhoa-so-sach.png",
+    "alt": "Minh họa chủ tiệm sắp xếp sổ sách chứng từ",
+    "clusters": [
+      "tax-reporting"
+    ]
+  },
+  {
+    "imageId": "minhhoa-lam-viec-voi-thue",
+    "publicPath": "/blogger/images/minhhoa-lam-viec-voi-thue.png",
+    "alt": "Minh họa chuẩn bị hồ sơ giấy tờ để làm việc với cơ quan quản lý",
+    "clusters": [
+      "tax-reporting"
+    ]
+  },
+  {
+    "imageId": "minhhoa-xuat-hoa-don",
+    "publicPath": "/blogger/images/minhhoa-xuat-hoa-don.png",
+    "alt": "Minh họa nhân viên đưa hóa đơn cho khách tại quầy",
+    "clusters": [
+      "e-invoice"
+    ]
+  },
+  {
+    "imageId": "minhhoa-luu-hoa-don",
+    "publicPath": "/blogger/images/minhhoa-luu-hoa-don.png",
+    "alt": "Minh họa lưu trữ hóa đơn chứng từ gọn gàng",
+    "clusters": [
+      "e-invoice"
+    ]
+  }
+]

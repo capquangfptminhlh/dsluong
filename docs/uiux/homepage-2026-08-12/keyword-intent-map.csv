@@ -1,0 +1,8 @@
+cluster,intent,homepage_role,source_of_truth,status
+"phần mềm quản lý bán hàng","Commercial investigation / solution discovery","Primary semantic theme; explain selling, orders, stock, customers and finance in plain Vietnamese","AutoTax routes: POS, Orders, Inventory, Customers, Finance","VERIFIED_PRODUCT_CAPABILITY"
+"phần mềm bán hàng / POS","Transactional solution discovery","Show fast sales flow and mobile use without unsupported speed/stat claims","AutoTax POS routes and mobile UI","VERIFIED_PRODUCT_CAPABILITY"
+"quản lý kho hàng","Problem/solution","Explain stock, branch, transfer, check, batch/expiry modules","AutoTax Inventory/Branches/Batches routes","VERIFIED_PRODUCT_CAPABILITY"
+"quản lý thu chi công nợ","Problem/solution","Explain cashbook, receivable/payable and finance overview","AutoTax Finance/Cashbook/Debt routes","VERIFIED_PRODUCT_CAPABILITY"
+"phần mềm quản lý hộ kinh doanh","Broad commercial intent","Position as business-control workspace; avoid claiming universal legal/tax compliance","Current AutoTax POS/ERP scope","VERIFIED_WITH_SCOPE_LIMIT"
+"kiểm soát thuế hộ kinh doanh","Risk/information intent","Explain data readiness, transaction review and fail-closed control; do not auto-promise tax liability or filing","TaxReportFlow + tax hard-gate behavior","VERIFIED_FAIL_CLOSED"
+"phần mềm quản lý bán hàng trên điện thoại","Mobile solution intent","Make mobile composition and PWA/notifications visible","PWA manifest/service worker/mobile nav in current branch","VERIFIED_PRODUCT_CAPABILITY"

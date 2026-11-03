@@ -1,0 +1,44 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import Schema from '../components/Schema.astro';
+
+interface Props {
+  frontmatter: {
+    title: string;
+    description: string;
+    pubDate?: Date;
+    author?: string;
+    reviewer?: string;
+  };
+}
+
+const { frontmatter } = Astro.props;
+---
+
+<BaseLayout title={frontmatter.title} description={frontmatter.description}>
+  <article class="prose lg:prose-xl mx-auto">
+    <header class="mb-8 border-b pb-4">
+      <h1 class="text-3xl font-extrabold mb-2 text-blue-900">{frontmatter.title}</h1>
+      <div class="text-sm text-gray-500 flex flex-wrap gap-4">
+        {frontmatter.pubDate && <span>📅 Xuất bản: {new Date(frontmatter.pubDate).toLocaleDateString('vi-VN')}</span>}
+        {frontmatter.author && <span>✍️ Tác giả: {frontmatter.author}</span>}
+        {frontmatter.reviewer && <span class="text-green-700 font-semibold">✅ Duyệt bởi: {frontmatter.reviewer}</span>}
+      </div>
+    </header>
+    <div class="article-content">
+      <slot />
+    </div>
+  </article>
+
+  <Fragment slot="head">
+    <Schema 
+      type="Article"
+      title={frontmatter.title}
+      description={frontmatter.description}
+      author={frontmatter.author}
+      pubDate={frontmatter.pubDate}
+    />
+  </Fragment>
+</BaseLayout>
+
+

@@ -1,0 +1,73 @@
+/* AutoTax Motion DNA v2 — bespoke button interactions for desktop + touch/mobile. */
+@keyframes at-ripple{0%{opacity:.28;transform:scale(.08)}72%{opacity:.09}100%{opacity:0;transform:scale(1)}}
+@keyframes at-primary-fire{0%{transform:translateY(0) scale(1)}34%{transform:translateY(1px) scale(.974)}70%{transform:translateY(-1px) scale(1.012)}100%{transform:none}}
+@keyframes at-secondary-fire{0%{transform:scale(1)}45%{transform:scale(.98)}78%{transform:scale(1.006)}100%{transform:none}}
+@keyframes at-danger-fire{0%,100%{box-shadow:inherit}44%{box-shadow:0 0 0 4px rgba(244,63,94,.11)}}
+@keyframes at-icon-fire{0%{transform:scale(1)}42%{transform:scale(.88) rotate(-4deg)}76%{transform:scale(1.06) rotate(2deg)}100%{transform:none}}
+@keyframes at-sheen{0%{transform:translateX(-165%) skewX(-18deg)}100%{transform:translateX(220%) skewX(-18deg)}}
+@keyframes at-tab-bloom{0%{transform:scale(.82);opacity:0}65%{opacity:.18}100%{transform:scale(1.35);opacity:0}}
+@keyframes at-mobile-pop{0%{transform:scale(1)}38%{transform:scale(.9)}72%{transform:scale(1.07)}100%{transform:scale(1)}}
+@keyframes at-pay-glow{0%,100%{box-shadow:0 10px 24px rgba(37,99,235,.18)}50%{box-shadow:0 13px 30px rgba(37,99,235,.28)}}
+
+.autotax-motion-button{position:relative;isolation:isolate;overflow:hidden;transform:translateZ(0);-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+.autotax-motion-button>*:not(.autotax-button-ripple){position:relative;z-index:2}
+.autotax-button-ripple{position:absolute;z-index:1;border-radius:999px;pointer-events:none;background:currentColor;opacity:0;transform:scale(.08);animation:at-ripple 430ms cubic-bezier(.15,.72,.25,1) forwards}
+
+/* Primary: AutoTax energy sweep + depth press. */
+.autotax-motion-primary{--at-btn-glow:rgba(37,99,235,.22)}
+.autotax-motion-primary::after{content:"";position:absolute;z-index:1;inset:-35% auto -35% -30%;width:34%;pointer-events:none;background:linear-gradient(90deg,transparent,rgba(255,255,255,.38),transparent);transform:translateX(-165%) skewX(-18deg)}
+.autotax-motion-primary:hover:not(:disabled){transform:translateY(-2px);box-shadow:0 10px 24px var(--at-btn-glow)}
+.autotax-motion-primary:hover:not(:disabled)::after{animation:at-sheen 720ms cubic-bezier(.2,.75,.2,1)}
+.autotax-motion-primary.autotax-button-fired{animation:at-primary-fire 320ms cubic-bezier(.2,.9,.25,1)}
+
+/* Secondary: quiet lift for frequent back-office actions. */
+.autotax-motion-secondary:hover:not(:disabled){transform:translateY(-1px);box-shadow:0 7px 18px rgba(36,58,105,.075)}
+.autotax-motion-secondary.autotax-button-fired{animation:at-secondary-fire 260ms cubic-bezier(.2,.9,.25,1)}
+
+/* Icon controls: compact elastic response. */
+.autotax-motion-icon{overflow:visible}
+.autotax-motion-icon:hover:not(:disabled){transform:translateY(-1px) scale(1.035)}
+.autotax-motion-icon.autotax-button-fired{animation:at-icon-fire 300ms cubic-bezier(.2,.9,.25,1)}
+.autotax-motion-icon::before{content:"";position:absolute;inset:-5px;border-radius:inherit;border:1px solid transparent;pointer-events:none;transition:border-color 160ms ease,transform 160ms ease,opacity 160ms ease;opacity:0}
+.autotax-motion-icon:hover::before{border-color:rgba(37,99,235,.14);transform:scale(1.03);opacity:1}
+
+/* Destructive actions: tactile warning without alarming shake loops. */
+.autotax-motion-danger:hover:not(:disabled){transform:translateY(-1px);box-shadow:0 8px 20px rgba(244,63,94,.12)}
+.autotax-motion-danger.autotax-button-fired{animation:at-danger-fire 330ms ease}
+
+/* POS checkout is allowed one stronger signature animation. */
+.autotax-pos-pay.autotax-motion-primary:hover:not(:disabled){animation:at-pay-glow 1.35s ease-in-out infinite}
+.autotax-pos-pay.autotax-button-fired{animation:at-primary-fire 280ms cubic-bezier(.18,.9,.24,1)!important}
+
+/* Mobile bottom navigation: active icon blooms instead of generic hover. */
+.autotax-mobile-nav-item{position:relative;isolation:isolate;transform-origin:center bottom;transition:color 160ms ease,transform 170ms cubic-bezier(.2,.9,.25,1),background-color 160ms ease!important;-webkit-tap-highlight-color:transparent}
+.autotax-mobile-nav-item::before{content:"";position:absolute;z-index:-1;width:34px;height:34px;border-radius:999px;left:50%;top:4px;transform:translateX(-50%) scale(.7);background:rgba(37,99,235,.09);opacity:0;transition:opacity 160ms ease,transform 180ms cubic-bezier(.2,.9,.25,1)}
+.autotax-mobile-nav-item.is-active::before{opacity:1;transform:translateX(-50%) scale(1)}
+.autotax-mobile-nav-item.is-active svg{transform:translateY(-1px) scale(1.05)}
+.autotax-mobile-nav-item:active{transform:scale(.92)}
+.autotax-mobile-nav-item:active::after{content:"";position:absolute;z-index:-1;width:32px;height:32px;border-radius:999px;left:50%;top:5px;transform:translateX(-50%);background:rgba(37,99,235,.14);animation:at-tab-bloom 380ms ease-out both}
+
+/* Mobile sidebar/menu items get touch feedback without horizontal drift. */
+@media (max-width:1023px){
+  .sidebar-item,.sidebar-child{touch-action:manipulation}
+  .sidebar-item:active,.sidebar-child:active{transform:scale(.975)!important;background-color:#eef4ff!important}
+  .autotax-profile-button:active,.icon-btn:active{animation:at-mobile-pop 260ms cubic-bezier(.2,.9,.25,1)}
+}
+
+/* Touch-specific behavior: no desktop hover dependency. */
+@media (hover:none) and (pointer:coarse){
+  .autotax-motion-primary:hover:not(:disabled),.autotax-motion-secondary:hover:not(:disabled),.autotax-motion-icon:hover:not(:disabled),.autotax-motion-danger:hover:not(:disabled){transform:none;box-shadow:inherit}
+  .autotax-motion-primary:active:not(:disabled){transform:scale(.97);filter:brightness(.985)}
+  .autotax-motion-secondary:active:not(:disabled){transform:scale(.975);background-color:#f8faff}
+  .autotax-motion-icon:active:not(:disabled){transform:scale(.88)}
+  .autotax-motion-danger:active:not(:disabled){transform:scale(.96);filter:saturate(1.08)}
+  .autotax-pos-screen .autotax-pos-product:active{transform:scale(.965)!important}
+  .autotax-pos-screen .autotax-pos-cart-item:active{transform:scale(.985)}
+  .autotax-pos-pay:active{transform:scale(.965)!important}
+}
+
+/* Accessibility — motion never blocks task completion. */
+@media (prefers-reduced-motion:reduce){
+  .autotax-motion-button,.autotax-motion-button::before,.autotax-motion-button::after,.autotax-mobile-nav-item,.autotax-mobile-nav-item::before,.autotax-mobile-nav-item::after{animation:none!important;transition:none!important;transform:none!important}
+  .autotax-button-ripple{display:none!important}
+}

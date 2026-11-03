@@ -1,0 +1,7 @@
+interaction,user_value,desktop,mobile,reduced_motion,a11y
+"Operational stage selector","Lets visitor understand how one transaction moves through AutoTax","Horizontal 5-stage spine with active detail panel","Vertical stepper with tap-to-expand stages","Instant state swap, no animated travel","Buttons with aria-pressed and semantic headings"
+"Industry Lens","Makes same product story easier to understand for retail/spa/F&B/hotel","Compact segmented control near entry","Scrollable pill row below hero","No crossfade required","Real buttons; selected state announced"
+"Capability disclosure","Reduces long feature wall while retaining crawlable text","Editorial grouped lists with expandable secondary detail","Accordion groups with large tap targets","Height animation disabled","Native button controls and visible focus"
+"Sticky mobile CTA","Keeps primary action in thumb reach without repeating CTAs","Not used","Bottom safe-area bar: Tạo tài khoản / Đăng nhập","No motion","Does not cover content; 44px+ targets"
+"Anchor navigation","Fast jump to flow, capabilities, trust and FAQ","Minimal top nav","Menu sheet / native anchors","Smooth-scroll disabled when reduced motion","Skip-to-content and landmarks"
+"Trust-state explanations","Explains fail-closed tax controls without legal overclaim","Inline callouts inside Trust chapter","Stacked cards with clear labels","Static","Text-first; icon not sole signal"

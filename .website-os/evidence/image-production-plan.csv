@@ -1,0 +1,2 @@
+image_id,page_id,target_url,role,subject,prompt_or_brief,source_mode,required_width,required_height,format,alt_text,status
+IMG-SHARED-LOGO,PAGE-001,/,SHARED_UI,AutoTax logo,Existing brand logo used as shared identity,EXISTING_APPROVED,64,64,SVG,AutoTax,PASS

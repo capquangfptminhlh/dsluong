@@ -1,0 +1,43 @@
+keyword,cluster_id,target_url,coverage_type,launch_status,content_section_or_page,evidence_ref,status
+phần mềm quản lý bán hàng hộ kinh doanh,CL-SELL,/,PRIMARY_PAGE,BUILD_LAUNCH,homepage,serp-evidence.csv,PASS
+quản lý bán hàng hộ kinh doanh,CL-SELL,/blog/quan-ly-ban-hang-ho-kinh-doanh/,PRIMARY_PAGE,BUILD_LAUNCH,article,serp-evidence.csv,PASS
+quy trình quản lý bán hàng hộ kinh doanh,CL-SELL,/blog/quan-ly-ban-hang-ho-kinh-doanh/,SECONDARY_SECTION,BUILD_LAUNCH,article,serp-evidence.csv,PASS
+chốt ca bán hàng cuối ngày,CL-SELL,/blog/chot-ca-ban-hang-cuoi-ngay/,PRIMARY_PAGE,BUILD_POST_LAUNCH,article,cannibalization-register.csv,PASS
+checklist chốt ca bán hàng,CL-SELL,/blog/chot-ca-ban-hang-cuoi-ngay/,SECONDARY_SECTION,BUILD_POST_LAUNCH,article,cannibalization-register.csv,PASS
+Excel hay phần mềm POS,CL-EXCEL-POS,/blog/excel-hay-phan-mem-pos/,COMPARISON_PAGE,BUILD_POST_LAUNCH,article,serp-evidence.csv,PASS
+khi nào nên chuyển từ Excel sang POS,CL-EXCEL-POS,/blog/excel-hay-phan-mem-pos/,FAQ_AEO,BUILD_POST_LAUNCH,article,serp-evidence.csv,PASS
+quản lý bán hàng bằng Excel hay POS,CL-EXCEL-POS,/blog/excel-hay-phan-mem-pos/,SECONDARY_SECTION,BUILD_POST_LAUNCH,article,serp-evidence.csv,PASS
+quản lý nhiều chi nhánh cửa hàng,CL-MULTIBRANCH,/blog/quan-ly-nhieu-chi-nhanh-cua-hang/,PRIMARY_PAGE,BUILD_POST_LAUNCH,article,serp-evidence.csv,PASS
+quản lý kho nhiều chi nhánh,CL-MULTIBRANCH,/blog/quan-ly-nhieu-chi-nhanh-cua-hang/,SECONDARY_SECTION,BUILD_POST_LAUNCH,article,serp-evidence.csv,PASS
+điều chuyển hàng giữa chi nhánh,CL-MULTIBRANCH,/blog/quan-ly-nhieu-chi-nhanh-cua-hang/,FAQ_AEO,BUILD_POST_LAUNCH,article,serp-evidence.csv,PASS
+đối soát thanh toán QR cửa hàng,CL-PAYRECON,/blog/doi-soat-thanh-toan-qr-chuyen-khoan/,PRIMARY_PAGE,BUILD_POST_LAUNCH,article,serp-evidence.csv,PASS
+đối soát chuyển khoản bán hàng,CL-PAYRECON,/blog/doi-soat-thanh-toan-qr-chuyen-khoan/,SECONDARY_SECTION,BUILD_POST_LAUNCH,article,serp-evidence.csv,PASS
+khớp giao dịch QR với đơn hàng,CL-PAYRECON,/blog/doi-soat-thanh-toan-qr-chuyen-khoan/,FAQ_AEO,BUILD_POST_LAUNCH,article,serp-evidence.csv,PASS
+hóa đơn điện tử hộ kinh doanh 2026,CL-EINVOICE,/blog/hoa-don-dien-tu-ho-kinh-doanh-1-ty/,PRIMARY_PAGE,BUILD_POST_LAUNCH,article,official-2026-policy,PASS
+hộ kinh doanh dưới 1 tỷ có dùng hóa đơn điện tử không,CL-EINVOICE,/blog/hoa-don-dien-tu-ho-kinh-doanh-1-ty/,FAQ_AEO,BUILD_POST_LAUNCH,article,official-2026-policy,PASS
+hộ kinh doanh trên 1 tỷ hóa đơn điện tử,CL-EINVOICE,/blog/hoa-don-dien-tu-ho-kinh-doanh-1-ty/,SECONDARY_SECTION,BUILD_POST_LAUNCH,article,official-2026-policy,PASS
+hóa đơn điện tử khởi tạo từ máy tính tiền hộ kinh doanh 2026,CL-EINVOICE,/blog/hoa-don-dien-tu-ho-kinh-doanh-1-ty/,FAQ_AEO,BUILD_POST_LAUNCH,article,serp-evidence.csv,PASS
+thời điểm lập hóa đơn điện tử 2026,CL-INVOICE-TIME,/blog/thoi-diem-lap-hoa-don-dien-tu-2026/,PRIMARY_PAGE,BUILD_POST_LAUNCH,article,serp-evidence.csv,PASS
+bán hàng khi nào phải lập hóa đơn điện tử,CL-INVOICE-TIME,/blog/thoi-diem-lap-hoa-don-dien-tu-2026/,SECONDARY_SECTION,BUILD_POST_LAUNCH,article,serp-evidence.csv,PASS
+bán ca đêm lập hóa đơn khi nào,CL-INVOICE-TIME,/blog/thoi-diem-lap-hoa-don-dien-tu-2026/,FAQ_AEO,BUILD_POST_LAUNCH,article,serp-evidence.csv,PASS
+thủ tục khai thuế hộ kinh doanh 2026,CL-TAX-FILING,/blog/thu-tuc-khai-thue-ho-kinh-doanh-2026/,PRIMARY_PAGE,BUILD_POST_LAUNCH,article,serp-evidence.csv,PASS
+hồ sơ khai thuế hộ kinh doanh 2026,CL-TAX-FILING,/blog/thu-tuc-khai-thue-ho-kinh-doanh-2026/,SECONDARY_SECTION,BUILD_POST_LAUNCH,article,serp-evidence.csv,PASS
+mẫu khai thuế hộ kinh doanh 2026,CL-TAX-FILING,/blog/thu-tuc-khai-thue-ho-kinh-doanh-2026/,FAQ_AEO,BUILD_POST_LAUNCH,article,serp-evidence.csv,PASS
+phân quyền nhân viên POS,CL-POS-PERMISSIONS,/blog/phan-quyen-nhan-vien-pos/,PRIMARY_PAGE,BUILD_POST_LAUNCH,article,serp-evidence.csv,PASS
+vai trò nhân viên POS,CL-POS-PERMISSIONS,/blog/phan-quyen-nhan-vien-pos/,SECONDARY_SECTION,BUILD_POST_LAUNCH,article,serp-evidence.csv,PASS
+quản lý duyệt hoàn tiền giảm giá POS,CL-POS-PERMISSIONS,/blog/phan-quyen-nhan-vien-pos/,FAQ_AEO,BUILD_POST_LAUNCH,article,serp-evidence.csv,PASS
+bảo mật tài khoản POS cho cửa hàng,CL-POS-PERMISSIONS,/blog/phan-quyen-nhan-vien-pos/,SECONDARY_SECTION,BUILD_POST_LAUNCH,article,serp-evidence.csv,PASS
+MFA cho tài khoản quản trị POS,CL-POS-PERMISSIONS,/blog/phan-quyen-nhan-vien-pos/,FAQ_AEO,BUILD_POST_LAUNCH,article,serp-evidence.csv,PASS
+POS mất mạng có bán hàng được không,CL-POS-OFFLINE,/blog/pos-mat-mang-co-ban-hang-duoc-khong/,PRIMARY_PAGE,BUILD_POST_LAUNCH,article,serp-evidence.csv,PASS
+bán hàng khi mất Internet POS,CL-POS-OFFLINE,/blog/pos-mat-mang-co-ban-hang-duoc-khong/,SECONDARY_SECTION,BUILD_POST_LAUNCH,article,serp-evidence.csv,PASS
+thanh toán offline POS có rủi ro gì,CL-POS-OFFLINE,/blog/pos-mat-mang-co-ban-hang-duoc-khong/,FAQ_AEO,BUILD_POST_LAUNCH,article,serp-evidence.csv,PASS
+kiểm kho bằng mã vạch,CL-STOCK,/blog/kiem-kho-bang-ma-vach/,PRIMARY_PAGE,BUILD_LAUNCH,article,serp-evidence.csv,PASS
+quản lý kho bằng mã vạch,CL-STOCK,/blog/kiem-kho-bang-ma-vach/,SECONDARY_SECTION,BUILD_LAUNCH,article,serp-evidence.csv,PASS
+cách kiểm kho cửa hàng bằng mã vạch,CL-STOCK,/blog/kiem-kho-bang-ma-vach/,FAQ_AEO,BUILD_LAUNCH,article,serp-evidence.csv,PASS
+mức tồn kho tối thiểu cửa hàng,CL-REPLENISH,/blog/muc-ton-kho-toi-thieu-diem-dat-hang-lai/,PRIMARY_PAGE,BUILD_POST_LAUNCH,article,serp-evidence.csv,PASS
+điểm đặt hàng lại cửa hàng,CL-REPLENISH,/blog/muc-ton-kho-toi-thieu-diem-dat-hang-lai/,SECONDARY_SECTION,BUILD_POST_LAUNCH,article,serp-evidence.csv,PASS
+quản lý thu chi công nợ,CL-CASH,/blog/quan-ly-cong-no-thu-chi/,PRIMARY_PAGE,BUILD_LAUNCH,article,serp-evidence.csv,PASS
+checklist thu chi công nợ cuối ngày,CL-CASH,/blog/quan-ly-cong-no-thu-chi/,SECONDARY_SECTION,BUILD_LAUNCH,article,serp-evidence.csv,PASS
+đối soát dữ liệu trước kỳ thuế,CL-TAXDATA,/blog/doi-soat-du-lieu-truoc-ky-thue/,PRIMARY_PAGE,BUILD_LAUNCH,article,repo-main,PASS
+rà soát dữ liệu vận hành trước kỳ thuế,CL-TAXDATA,/blog/doi-soat-du-lieu-truoc-ky-thue/,SECONDARY_SECTION,BUILD_LAUNCH,article,repo-main,PASS
+kiến thức quản lý cửa hàng,CL-HUB,/blog/,PRIMARY_PAGE,BUILD_LAUNCH,blog hub,frontend/public/blog/index.html,PASS

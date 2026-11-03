@@ -1,0 +1,274 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+const allArticles = await getCollection('articles', ({ data }) => {
+  return data.draft !== true;
+});
+
+const sortedArticles = allArticles.sort((a, b) => {
+  const dateA = a.data.date ? new Date(a.data.date).valueOf() : 0;
+  const dateB = b.data.date ? new Date(b.data.date).valueOf() : 0;
+  return dateB - dateA;
+});
+
+const fallbackImages = [
+  '/blog/img_dashboard.png', '/blog/img_finance.png', '/blog/img_inventory.png', '/blog/img_pos.png', 
+  '/blog/img_products.png', '/blog/img_settings.png', '/blog/img_customers.png', '/blog/thue-online-2026.png', 
+  '/blog/khuyen-mai.png', '/blog/chuoi-cua-hang.png', '/blog/sieu-thi.png'
+];
+function getFallbackImage(slug) {
+  if (!slug) return fallbackImages[0];
+  let hash = 0;
+  for (let i = 0; i < slug.length; i++) hash = slug.charCodeAt(i) + ((hash << 5) - hash);
+  return fallbackImages[Math.abs(hash) % fallbackImages.length];
+}
+---
+
+<BaseLayout title="Tin tức & Hướng dẫn | AutoTax" description="Cập nhật tin tức và kiến thức về phần mềm quản lý hộ kinh doanh AutoTax POS.">
+  <div class="w-full max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-12 xl:px-16 py-8">
+    
+    <!-- Hero Banner (Giống thiết kế mẫu) -->
+    <div class="bg-gradient-to-r from-red-50 to-pink-50 rounded-3xl p-8 md:p-12 mb-12 shadow-sm relative overflow-hidden flex flex-col md:flex-row items-center justify-between border border-red-100">
+      <div class="absolute top-0 right-0 -mr-20 -mt-20 w-96 h-96 rounded-full bg-white opacity-40 blur-3xl pointer-events-none"></div>
+      
+      <div class="relative z-10 md:w-3/5">
+        <span class="inline-flex items-center gap-1 bg-red-100 text-[#DA251D] px-4 py-1.5 rounded-full text-xs font-bold tracking-wider mb-6">
+          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M12.395 2.553a1 1 0 00-1.45-.385c-.345.23-.614.559-.822.88-.214.33-.403.713-.57 1.116-.334.804-.614 1.768-.84 2.734a31.365 31.365 0 00-.613 3.58 2.64 2.64 0 01-.945-1.067c-.328-.68-.398-1.534-.398-2.654A1 1 0 005.05 6.05 6.981 6.981 0 003 11a7 7 0 1011.95-4.95c-.592-.591-.98-.985-1.348-1.467-.363-.476-.724-1.063-1.207-2.03zM12.12 15.12A3 3 0 017 13s.879.5 2.5.5c0-1 .5-4 1.25-4.5.5 1 .786 1.293 1.371 1.879A2.99 2.99 0 0113 13a2.99 2.99 0 01-.879 2.121z" clip-rule="evenodd"></path></svg>
+          KIẾN THỨC & AEO/SEO
+        </span>
+        <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold mb-4 uppercase tracking-tight text-[#0A192F]">
+          Tin tức & Hướng dẫn <br/><span class="text-[#DA251D]">AutoTax</span>
+        </h1>
+        <p class="text-gray-600 text-lg mb-8 max-w-xl leading-relaxed">Tổng hợp đầy đủ cách tính thuế hộ kinh doanh, quản lý kho, xuất hóa đơn điện tử và giải đáp thắc mắc liên quan đến phần mềm POS chính thức.</p>
+        
+        <div class="flex flex-wrap gap-4">
+          <span class="flex items-center gap-2 bg-white px-4 py-2 rounded-full text-sm font-semibold text-gray-700 shadow-sm border border-gray-100">
+            <svg class="w-5 h-5 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
+            Kiến thức dễ hiểu
+          </span>
+          <span class="flex items-center gap-2 bg-white px-4 py-2 rounded-full text-sm font-semibold text-gray-700 shadow-sm border border-gray-100">
+            <svg class="w-5 h-5 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+            Hướng dẫn chi tiết
+          </span>
+          <span class="flex items-center gap-2 bg-white px-4 py-2 rounded-full text-sm font-semibold text-gray-700 shadow-sm border border-gray-100">
+            <svg class="w-5 h-5 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path></svg>
+            Cập nhật liên tục
+          </span>
+        </div>
+      </div>
+      
+      <div class="relative z-10 md:w-2/5 mt-10 md:mt-0 flex justify-center">
+        <!-- Placeholder cho ảnh 3D -->
+        <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=600&q=80" alt="3D POS Illustration" class="w-full max-w-md rounded-2xl shadow-lg mix-blend-multiply opacity-90 object-cover aspect-video" onerror="this.src='https://placehold.co/600x400/ffdddd/da251d?text=3D+Illustration'" />
+      </div>
+    </div>
+
+    <!-- Giao diện Danh sách bài viết -->
+    <div id="blog-index-view">
+      <div class="flex justify-between items-center mb-8 border-b border-gray-100 pb-4">
+        <h2 class="text-2xl font-bold text-[#0A192F] flex items-center gap-3">
+          <svg class="w-7 h-7 text-[#DA251D]" fill="currentColor" viewBox="0 0 20 20"><path d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z"></path><path fill-rule="evenodd" d="M4 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v11a2 2 0 01-2 2H6a2 2 0 01-2-2V5zm3 4a1 1 0 000 2h.01a1 1 0 100-2H7zm3 0a1 1 0 000 2h3a1 1 0 100-2h-3zm-3 4a1 1 0 100 2h.01a1 1 0 100-2H7zm3 0a1 1 0 100 2h3a1 1 0 100-2h-3z" clip-rule="evenodd"></path></svg>
+          Bài viết mới nhất
+        </h2>
+        <a href="#" class="text-[#DA251D] font-medium hover:underline flex items-center gap-1 px-4 py-2 rounded-full border border-red-100 hover:bg-red-50 transition-colors">
+          Xem tất cả bài viết <span>&rarr;</span>
+        </a>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8" id="articles-list">
+        {sortedArticles.map(article => (
+          <article class="bg-white rounded-2xl shadow-sm border border-gray-100 hover:shadow-xl transition-all duration-300 overflow-hidden flex flex-col h-full group">
+            <div class="relative w-full h-52 bg-gray-100 overflow-hidden border-b border-gray-100">
+              {article.data.heroImage || article.data.image || article.data.coverImage ? (
+                <img src={article.data.heroImage || article.data.image || article.data.coverImage} alt={article.data.title} class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-fallback={getFallbackImage(article.id)} />
+              ) : (
+                <img src={getFallbackImage(article.id)} alt={article.data.title} class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+              )}
+              <!-- Floating Badge trên ảnh -->
+              <div class="absolute top-4 left-4 bg-[#DA251D] text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase shadow-md tracking-wide">
+                AUTOTAX 2026
+              </div>
+            </div>
+            
+            <div class="p-6 flex flex-col flex-grow">
+              <div class="flex items-center gap-2 mb-3">
+                <span class="w-2 h-2 rounded-full bg-[#DA251D]"></span>
+                <span class="text-[11px] font-bold text-[#DA251D] uppercase tracking-wider">Hướng dẫn & Mẹo</span>
+              </div>
+              
+              <h2 class="text-xl font-bold mb-3 line-clamp-2 text-gray-900 group-hover:text-[#DA251D] transition-colors leading-snug">
+                <a href={`/blog/${article.id}`} class="focus:outline-none before:absolute before:inset-0">{article.data.title}</a>
+              </h2>
+              
+              <p class="text-gray-500 mb-6 line-clamp-3 text-sm flex-grow leading-relaxed">
+                {article.data.description || 'Nội dung chi tiết về cách quản lý bán hàng và tối ưu quy trình kinh doanh của bạn hiệu quả nhất...'}
+              </p>
+              
+              <div class="flex justify-between items-center pt-4 border-t border-gray-50 mt-auto relative z-10">
+                <a href={`/blog/${article.id}`} class="text-[#DA251D] font-bold text-sm hover:underline flex items-center gap-1">
+                  Đọc chi tiết <span class="text-lg leading-none">&rarr;</span>
+                </a>
+                <span class="text-gray-400 text-xs font-medium">
+                  {article.data.date ? new Date(article.data.date).toLocaleDateString('vi-VN') : 'Miễn phí'}
+                </span>
+              </div>
+            </div>
+          </article>
+        ))}
+        {sortedArticles.length === 0 && (
+          <div class="col-span-full py-12 text-center">
+            <p class="text-gray-500 italic">Chưa có bài viết nào được xuất bản.</p>
+          </div>
+        )}
+      </div>
+    </div>
+
+    <!-- Giao diện Chi tiết bài viết động (từ DB) -->
+    <div id="blog-detail-view" class="hidden prose lg:prose-xl mx-auto bg-white p-8 rounded-2xl shadow-sm border border-gray-100">
+      <button onclick="document.getElementById('blog-detail-view').classList.add('hidden'); document.getElementById('blog-index-view').classList.remove('hidden');" class="mb-6 text-sm text-gray-500 hover:text-[#DA251D] font-medium flex items-center gap-1">
+        &larr; Quay lại danh sách
+      </button>
+      <header class="mb-8 border-b pb-6">
+        <h1 id="detail-title" class="text-3xl md:text-4xl font-extrabold mb-4 text-gray-900 leading-tight"></h1>
+        <div class="text-sm text-gray-500 flex flex-wrap gap-4 font-medium">
+          <span id="detail-date" class="bg-gray-100 px-3 py-1 rounded-full"></span>
+          <span class="bg-gray-100 px-3 py-1 rounded-full">✍️ Tác giả: autopos</span>
+          <span class="text-green-700 bg-green-50 px-3 py-1 rounded-full">✅ Duyệt bởi: AutoTax Expert</span>
+        </div>
+      </header>
+      <div id="detail-content" class="article-content"></div>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', async () => {
+      // Logic xử lý fallback detail view
+      const path = decodeURIComponent(window.location.pathname).replace(/\/$/, '');
+      const match = path.match(/^\/blog\/(.+)$/);
+      if (match) {
+        const slug = match[1];
+        try {
+          const res = await fetch(`/api/public/posts/${encodeURIComponent(slug)}`);
+          if (res.ok) {
+            const post = await res.json();
+            document.getElementById('blog-index-view')?.classList.add('hidden');
+            const detailView = document.getElementById('blog-detail-view');
+            if (detailView) {
+              detailView.classList.remove('hidden');
+              const titleEl = document.getElementById('detail-title');
+              if (titleEl) titleEl.textContent = post.title || '';
+              const dateEl = document.getElementById('detail-date');
+              if (dateEl && post.created_at) {
+                dateEl.textContent = '📅 ' + new Date(post.created_at).toLocaleDateString('vi-VN');
+              }
+              const contentEl = document.getElementById('detail-content');
+              if (contentEl) contentEl.innerHTML = post.content || post.html_content || '';
+              document.title = `${post.title || 'Blog'} | AutoTax POS`;
+            }
+            return;
+          }
+        } catch (e) {
+          console.error('Error fetching post detail:', e);
+        }
+      }
+
+      // Logic load thêm bài từ DB
+      try {
+        const res = await fetch('/api/public/posts');
+        if (!res.ok) return;
+        const dbPosts = await res.json();
+        const listEl = document.getElementById('articles-list');
+        if (!listEl || !Array.isArray(dbPosts) || dbPosts.length === 0) return;
+
+        const existingSlugs = new Set();
+        listEl.querySelectorAll('a[href^="/blog/"]').forEach(a => {
+          const parts = (a.getAttribute('href') || '').split('/');
+          existingSlugs.add(decodeURIComponent(parts[parts.length - 1] || parts[parts.length - 2]));
+        });
+
+        dbPosts.reverse().forEach(post => {
+          if (!post || !post.slug || existingSlugs.has(post.slug)) return;
+          const articleEl = document.createElement('article');
+          articleEl.className = 'bg-white rounded-2xl shadow-sm border border-gray-100 hover:shadow-xl transition-all duration-300 overflow-hidden flex flex-col h-full group';
+          // Dùng thuật toán Hash để tạo fallback image động từ thư viện nội bộ
+          const fallbacks = [
+            '/blog/img_dashboard.png', '/blog/img_finance.png', '/blog/img_inventory.png', '/blog/img_pos.png', 
+            '/blog/img_products.png', '/blog/img_settings.png', '/blog/img_customers.png', '/blog/thue-online-2026.png', 
+            '/blog/thue-khoan-2026.png', '/blog/autotax-vs.png', '/blog/sieu-thi.png', '/blog/pos-tax.png', 
+            '/blog/khuyen-mai.png', '/blog/chuoi-cua-hang.png', '/blog/hoa-don.png'
+          ];
+          const slugStr = post.slug || post.title || 'autotax';
+          let hash = 0;
+          for (let i = 0; i < slugStr.length; i++) hash = slugStr.charCodeAt(i) + ((hash << 5) - hash);
+          const fallbackImg = fallbacks[Math.abs(hash) % fallbacks.length];
+          
+          let imgSrc = post.heroImage || post.image || post.cover_image;
+          // Ghi đè nếu DB trả về chung 1 ảnh mặc định img_dashboard
+          if (!imgSrc || imgSrc === '/img_dashboard.png' || imgSrc === '/blog/img_dashboard.png') {
+            imgSrc = fallbackImg;
+          }
+          
+          articleEl.innerHTML = `
+            <div class="relative w-full h-52 bg-gray-100 overflow-hidden border-b border-gray-100">
+              <img src="${imgSrc}" alt="" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.src='/blog/img_customers.png'" />
+              <div class="absolute top-4 left-4 bg-[#DA251D] text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase shadow-md">
+                AUTOTAX 2026
+              </div>
+            </div>
+            
+            <div class="p-6 flex flex-col flex-grow">
+              <div class="flex items-center gap-2 mb-3">
+                <span class="w-2 h-2 rounded-full bg-[#DA251D]"></span>
+                <span class="text-[11px] font-bold text-[#DA251D] uppercase tracking-wider">TIN TỨC CẬP NHẬT</span>
+              </div>
+              
+              <h2 class="text-xl font-bold mb-3 line-clamp-2 text-gray-900 group-hover:text-[#DA251D] transition-colors leading-snug">
+                <a href="/blog/${post.slug}" class="focus:outline-none before:absolute before:inset-0">${post.title}</a>
+              </h2>
+              
+              <p class="text-gray-500 mb-6 line-clamp-3 text-sm flex-grow leading-relaxed">
+                ${post.excerpt || 'Theo dõi bài viết này để cập nhật kiến thức bán hàng mới nhất từ chuyên gia...'}
+              </p>
+              
+              <div class="flex justify-between items-center pt-4 border-t border-gray-50 mt-auto relative z-10">
+                <a href="/blog/${post.slug}" class="text-[#DA251D] font-bold text-sm hover:underline flex items-center gap-1">
+                  Đọc chi tiết <span class="text-lg leading-none">&rarr;</span>
+                </a>
+                <span class="text-gray-400 text-xs font-medium">${dateStr}</span>
+              </div>
+            </div>
+          `;
+          listEl.prepend(articleEl);
+        });
+      } catch (e) {
+        console.error('Error fetching blog list:', e);
+      }
+    });
+  </script>
+
+  <script is:inline>
+    // Global fallback image handler for Astro SSG images
+    // Do Astro bên dưới loại bỏ onerror nên phải dùng data-fallback cùng script này
+    function handleBrokenImage(img) {
+      if (img && img.hasAttribute('data-fallback') && !img.dataset.failed) {
+        img.dataset.failed = "1";
+        img.src = img.getAttribute('data-fallback');
+      }
+    }
+    
+    // Bắt lỗi cho các ảnh load sau (hoặc đang load thì lỗi)
+    document.addEventListener('error', function(e) {
+      if (e.target && e.target.tagName === 'IMG') {
+        handleBrokenImage(e.target);
+      }
+    }, true);
+
+    // Quét lại những ảnh đã bị lỗi NGAY TRƯỚC KHI script này chạy (Race condition)
+    document.querySelectorAll('img[data-fallback]').forEach(img => {
+      if (img.complete && img.naturalHeight === 0) {
+        handleBrokenImage(img);
+      }
+    });
+  </script>
+</BaseLayout>

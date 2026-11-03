@@ -1,0 +1,38 @@
+id: ADR-001
+status: APPROVED
+observed_at: 2026-08-17T15:07:00+07:00
+title: Separate existing-production editorial publishing from full-site launch-completeness claims
+project: AutoTax
+project_repo: capquangfptminhlh/autotax
+website_os_source_repo: capquangfptminhlh/seo-web
+website_os_source_sha: ef18d255150f3a77a7c7587feccf1ba7c419ad7b
+context:
+  lifecycle: EXISTING_PRODUCTION
+  production_domain: https://autotaxpos.com
+  problem: launch_completeness_decision HOLD was being interpreted as a blocker for individual post-launch blog articles even though that decision concerns full-site completeness claims.
+decision:
+  editorial_gate_scope: ARTICLE_LEVEL
+  full_site_launch_completeness_claim_gate_remains_enforced: true
+  launch_completeness_blocks_editorial_publish: false
+  article_publish_requires:
+    - refreshed Website OS bootstrap
+    - fresh query or trend evidence when relevant
+    - K0 article mapping and canonical ownership
+    - cannibalization resolution
+    - source-of-truth validation
+    - blog publishing contract compliance
+    - quality and build PASS
+    - VPS deploy SUCCESS
+    - production read-back PASS for the exact canonical URL
+  article_publish_does_not_require:
+    - full-site launch-completeness PASS
+    - a claim that the entire website is 100% launch-complete
+constraints:
+  - Never change launch_completeness_decision to PASS without full release evidence.
+  - Never claim 100% launch-complete while launch_completeness_decision is HOLD.
+  - Never publish an article when article-level hard gates fail.
+  - This decision applies only to ongoing editorial changes on the already-running AutoTax production site.
+provenance:
+  approved_by: user
+  approval_basis: explicit instruction to fix the recurring blocker and keep qualified articles publishable
+  recorded_by: ChatGPT

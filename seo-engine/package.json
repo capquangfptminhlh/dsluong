@@ -1,0 +1,40 @@
+{
+  "name": "seo-engine",
+  "type": "module",
+  "version": "0.0.1",
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro",
+    "test": "vitest run",
+    "test:blogger": "vitest run tests/blogger",
+    "seo:audit": "tsx scripts/seo-os/run-audit.ts",
+    "seo:index": "tsx scripts/push-indexing.ts",
+    "slice1": "tsx pipeline/slice1.ts",
+    "daily": "tsx pipeline/daily.ts"
+  },
+  "dependencies": {
+    "@astrojs/sitemap": "^3.7.3",
+    "@google/genai": "^2.15.0",
+    "@tailwindcss/vite": "^4.3.3",
+    "astro": "^7.1.5",
+    "dotenv": "^17.4.2",
+    "google-auth-library": "^10.9.1",
+    "googleapis": "^173.0.0",
+    "sanitize-html": "^2.17.6",
+    "sharp": "^0.35.3",
+    "ssh2": "^1.17.0",
+    "tailwindcss": "^4.3.3",
+    "zod": "^4.4.3"
+  },
+  "devDependencies": {
+    "@tailwindcss/typography": "^0.5.20",
+    "@types/sanitize-html": "^2.16.1",
+    "tsx": "^4.23.1",
+    "vitest": "^4.1.10"
+  }
+}

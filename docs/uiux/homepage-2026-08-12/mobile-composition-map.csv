@@ -1,0 +1,5 @@
+desktop_structure,mobile_transformation,thumb_reach,reading_flow,performance_rule
+"Minimal top nav + hero + horizontal operational spine","54-60px header; hero condensed; horizontal spine becomes vertical stepper","Primary CTA fixed in safe-area bottom bar; stage taps >=44px","Hero -> industry lens -> stage 1..5 -> capabilities -> trust -> FAQ","No heavy canvas/3D; CSS transforms only; reduced-motion support"
+"Editorial capability index","Accordion-like grouped jobs with visible default summary","Group toggles full-width and thumb-friendly","One job group at a time, no dense 3-column cards","Semantic HTML remains crawlable without JS interaction"
+"Trust model side-by-side","Stacked trust statements with status labels","No hover-only disclosure","Data ownership -> permissions/backup -> tax fail-closed","Static content; no decorative blur dependence"
+"Desktop final CTA","Sticky bottom CTA while scrolling; final CTA still present in document","Register primary + login secondary","Always reachable without covering content","Use safe-area inset and reserve bottom padding"

@@ -1,0 +1,104 @@
+/* AutoTax mobile layout v2
+   Route-wide ergonomics layer. Presentation only; no business/data-flow changes. */
+@media (max-width: 639px) {
+  .autotax-page-enter,
+  .autotax-page-enter > *,
+  .autotax-page-enter .flex-1 {
+    min-width: 0 !important;
+    max-width: 100%;
+  }
+
+  /* The app shell already owns the page title on mobile. Keep page actions, remove
+     duplicated title/subtitle blocks that waste the first screen. */
+  .autotax-page-enter .page-header > div:first-child {
+    display: none !important;
+  }
+  .autotax-page-enter .page-header {
+    margin-bottom: 12px !important;
+    gap: 8px !important;
+  }
+  .autotax-page-enter > div > :first-child[class*="flex"]:has(h1, h2) h1,
+  .autotax-page-enter > div > :first-child[class*="flex"]:has(h1, h2) h2,
+  .autotax-page-enter > div > :first-child[class*="flex"]:has(h1, h2) h1 + p,
+  .autotax-page-enter > div > :first-child[class*="flex"]:has(h1, h2) h2 + p {
+    display: none !important;
+  }
+  .autotax-page-enter > div > :first-child[class*="flex"]:has(h1, h2) {
+    min-height: 0 !important;
+    margin-bottom: 10px !important;
+    padding-top: 0 !important;
+  }
+  .autotax-page-enter > div > :first-child[class*="flex"]:has(h1, h2) > div:last-child:not(:first-child) {
+    width: 100%;
+    min-width: 0;
+    flex-wrap: wrap;
+  }
+
+  /* Search should never be the squeezed leftover column after tabs/filters. */
+  .autotax-page-enter .relative.flex-1:has(> input[placeholder*="Tìm"]),
+  .autotax-page-enter .relative.flex-1:has(> input[placeholder*="tìm"]),
+  .autotax-page-enter .relative.flex-1:has(> input[placeholder*="Search"]),
+  .autotax-page-enter .relative.flex-1:has(> input[placeholder*="search"]) {
+    flex: 1 1 100% !important;
+    width: 100% !important;
+    max-width: none !important;
+    min-width: 0 !important;
+  }
+  .autotax-page-enter input[placeholder*="Tìm"],
+  .autotax-page-enter input[placeholder*="tìm"] {
+    max-width: 100% !important;
+  }
+
+  /* Customer master used to inherit the 700px table min-content width into the
+     filter row. Force the list column and its controls back to viewport width. */
+  .autotax-page-enter div:has(> div > input[placeholder="Tìm tên, số điện thoại..."]) {
+    min-width: 0 !important;
+    max-width: 100% !important;
+  }
+  .autotax-page-enter div:has(> div > input[placeholder="Tìm tên, số điện thoại..."]) > div,
+  .autotax-page-enter div:has(> div > input[placeholder="Tìm tên, số điện thoại..."]) > select {
+    width: 100% !important;
+    min-width: 0 !important;
+    max-width: 100% !important;
+  }
+
+  /* Three finance tabs fit the viewport instead of requiring a tiny horizontal
+     scroll just to reach “Công nợ”. */
+  .autotax-page-enter .min-w-\[120px\] {
+    min-width: 0 !important;
+    padding-left: 8px !important;
+    padding-right: 8px !important;
+  }
+
+  /* Retail POS: route-scoped structural layout, so the search gets a full row
+     without changing any other sticky toolbar in the app. */
+  .autotax-page-enter[data-route="/app/pos"] > div > div.flex-1.flex.flex-col.h-full > div.sticky.top-0 {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 8px !important;
+  }
+  .autotax-page-enter[data-route="/app/pos"] > div > div.flex-1.flex.flex-col.h-full > div.sticky.top-0 > div.relative.flex-1.max-w-xl {
+    grid-column: 1 / -1 !important;
+    width: 100% !important;
+    max-width: none !important;
+    min-width: 0 !important;
+  }
+  .autotax-page-enter[data-route="/app/pos"] > div > div.flex-1.flex.flex-col.h-full > div.sticky.top-0 > button {
+    width: 100% !important;
+    justify-content: center !important;
+  }
+
+  /* Date/filter bars may wrap, but individual controls must not keep desktop
+     intrinsic widths that squeeze the search field to a few dozen pixels. */
+  .autotax-page-enter div[class*="flex-wrap"]:has(input[placeholder*="Tìm"]) > input[type="date"],
+  .autotax-page-enter div[class*="flex-wrap"]:has(input[placeholder*="Tìm"]) > select {
+    flex: 1 1 140px;
+    min-width: 0;
+    max-width: 100%;
+  }
+
+  /* Header actions are touch controls, not desktop toolbar chips. */
+  .autotax-page-enter > div > :first-child[class*="flex"]:has(h1, h2) button {
+    min-height: 40px;
+  }
+}

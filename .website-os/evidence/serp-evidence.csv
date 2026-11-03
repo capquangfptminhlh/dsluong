@@ -1,0 +1,31 @@
+query,observed_at,dominant_intent,evidence_ref
+quản lý bán hàng hộ kinh doanh,2026-08-17T09:07:57+07:00,COMMERCIAL_INFORMATIONAL,https://posapp.vn/phan-mem-quan-ly-ban-hang
+phần mềm quản lý bán hàng hộ kinh doanh,2026-08-17T09:07:57+07:00,COMMERCIAL,https://easypos.vn/
+Excel hay phần mềm POS,2026-08-19T19:03:00+07:00,COMPARISON_INFORMATIONAL,https://amis.misa.vn/52673/phan-mem-quan-ly-ban-hang/
+khi nào nên chuyển từ Excel sang POS,2026-08-19T19:03:00+07:00,COMPARISON_INFORMATIONAL,https://support.microsoft.com/en-us/excel/get-started/collaborate-on-excel-workbooks-at-the-same-time-with-co-authoring
+quản lý bán hàng bằng Excel hay POS,2026-08-19T19:03:00+07:00,COMPARISON_INFORMATIONAL,https://help.shopify.com/en/manual/sell-in-person/shopify-pos/staff-management
+quản lý nhiều chi nhánh cửa hàng,2026-08-19T15:02:55+07:00,INFORMATIONAL_COMMERCIAL,https://www.sapo.vn/blog/quan-ly-chuoi-cua-hang
+quản lý kho nhiều chi nhánh,2026-08-19T15:02:55+07:00,INFORMATIONAL,https://nhanh.vn/quan-ly-kho-cho-nhieu-chi-nhanh-cach-dong-bo-va-chuyen-kho-nhanh-n160597.html
+điều chuyển hàng giữa chi nhánh,2026-08-19T15:02:55+07:00,INFORMATIONAL,https://www.sapo.vn/blog/quan-ly-chuoi-cua-hang
+đối soát thanh toán QR cửa hàng,2026-08-18T18:59:40+07:00,INFORMATIONAL_COMMERCIAL,https://api.vietqr.vn/
+khớp giao dịch QR với đơn hàng,2026-08-18T18:59:40+07:00,INFORMATIONAL,https://doc.vietqr.vn/doc/phan-mem-vietqr-biz/gioi-thieu-chung/huong-dan-phan-mem
+đối soát chuyển khoản bán hàng,2026-08-18T18:59:40+07:00,INFORMATIONAL,https://developer.acb.com.vn/acb/open/vi/node/2342
+hóa đơn điện tử khởi tạo từ máy tính tiền hộ kinh doanh 2026,2026-08-22T08:00:00+07:00,INFORMATIONAL,https://xaydungchinhsach.chinhphu.vn/toan-van-nghi-dinh-so-141-2026-nd-cp-nang-nguong-doanh-thu-khong-phai-chiu-thue-len-1-ty-dong-119260504154326455.htm
+hóa đơn điện tử hộ kinh doanh từ 1 7 2026,2026-08-22T08:00:00+07:00,INFORMATIONAL,https://xaydungchinhsach.chinhphu.vn/toan-van-nghi-dinh-so-254-2026-nd-cp-ve-hoa-don-dien-tu-chung-tu-dien-tu-119260713164251972.htm
+thời điểm lập hóa đơn điện tử 2026,2026-08-19T07:58:51+07:00,INFORMATIONAL,https://xaydungchinhsach.chinhphu.vn/thoi-diem-lap-hoa-don-khi-thuc-hien-kinh-doanh-hang-hoa-dich-vu-co-gi-moi-119260728152001421.htm
+bán hàng khi nào phải lập hóa đơn điện tử,2026-08-19T07:58:51+07:00,INFORMATIONAL,https://xaydungchinhsach.chinhphu.vn/toan-van-nghi-dinh-so-254-2026-nd-cp-ve-hoa-don-dien-tu-chung-tu-dien-tu-119260713164251972.htm
+bán ca đêm lập hóa đơn khi nào,2026-08-19T07:58:51+07:00,INFORMATIONAL,https://xaydungchinhsach.chinhphu.vn/nhung-diem-moi-cua-nghi-dinh-254-2026-nd-cp-va-thong-tu-91-2026-tt-btc-ve-hoa-don-dien-tu-chung-tu-dien-tu-119260717143502375.htm
+thủ tục khai thuế hộ kinh doanh 2026,2026-08-20T08:00:00+07:00,INFORMATIONAL,https://xaydungchinhsach.chinhphu.vn/quy-dinh-ve-ho-so-thu-tuc-quan-ly-thue-voi-ho-kinh-doanh-ca-nhan-kinh-doanh-119260812153118737.htm
+hồ sơ khai thuế hộ kinh doanh 2026,2026-08-20T08:00:00+07:00,INFORMATIONAL,https://xaydungchinhsach.chinhphu.vn/huong-dan-thu-tuc-khai-thue-doi-voi-ho-kinh-doanh-ca-nhan-kinh-doanh-119260530072620314.htm
+phân quyền nhân viên POS,2026-08-21T14:58:28+07:00,INFORMATIONAL,https://help.shopify.com/en/manual/sell-in-person/shopify-pos/staff-management/understanding-pos-staff-management
+vai trò nhân viên POS,2026-08-21T14:58:28+07:00,INFORMATIONAL,https://help.shopify.com/en/manual/sell-in-person/shopify-pos/staff-management
+quản lý duyệt hoàn tiền giảm giá POS,2026-08-21T14:58:28+07:00,INFORMATIONAL,https://help.shopify.com/en/manual/sell-in-person/getting-started/securing-your-pos-setup
+bảo mật tài khoản POS cho cửa hàng,2026-08-22T19:04:49+07:00,INFORMATIONAL_SUPPORT,https://www.nist.gov/itl/smallbusinesscyber/guidance-topic/multi-factor-authentication
+MFA cho tài khoản quản trị POS,2026-08-22T19:04:49+07:00,INFORMATIONAL_SUPPORT,https://www.nist.gov/itl/smallbusinesscyber/guidance-topic/multi-factor-authentication
+POS mất mạng có bán hàng được không,2026-08-21T19:00:00+07:00,INFORMATIONAL_SUPPORT,https://squareup.com/help/us/en/article/7777-process-card-payments-with-offline-mode
+bán hàng khi mất Internet POS,2026-08-21T19:00:00+07:00,INFORMATIONAL_SUPPORT,https://developer.squareup.com/docs/pos-api/cookbook/offline-mode
+thanh toán offline POS có rủi ro gì,2026-08-21T19:00:00+07:00,INFORMATIONAL_SUPPORT,https://squareup.com/help/us/en/article/7777-process-card-payments-with-offline-mode
+kiểm kho bằng mã vạch,2026-08-17T09:07:57+07:00,INFORMATIONAL,https://www.kiotviet.vn/giam-that-thoat-toi-uu-loi-nhuan-voi-phan-mem-quan-ly-kho-bang-ma-vach-kiotviet/
+quản lý kho bằng mã vạch,2026-08-17T09:07:57+07:00,INFORMATIONAL,https://www.sapo.vn/blog/quan-ly-kho-bang-ma-vach
+cách kiểm kho cửa hàng bằng mã vạch,2026-08-22T15:00:00+07:00,INFORMATIONAL,https://www.gs1.org/standards/barcodes
+quản lý thu chi công nợ,2026-08-17T09:07:57+07:00,COMMERCIAL_INFORMATIONAL,https://www.haravan.com/pages/phan-mem-quan-ly-thu-chi

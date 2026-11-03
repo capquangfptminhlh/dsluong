@@ -1,0 +1,17 @@
+version: 1
+observed_at: 2026-08-12
+project: autotax-homepage
+candidates_reviewed: [A, B, C, D, E]
+brand_removed: true
+color_removed: true
+imagery_removed: true
+neutral_typography_used: true
+result: PASS
+reason: >-
+  A Operational Spine, B Role Lens, C Proof-First Product, D Today Checklist and
+  E Business Graph remain distinguishable by topology and interaction structure alone.
+selected_candidate: A
+artifact: silhouette-review-board.svg
+format_note: >-
+  SVG is used because the GitHub connector writes UTF-8 text files only; the board is
+  still a grayscale silhouette artifact and does not contain polished visual styling.

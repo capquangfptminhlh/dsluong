@@ -1,0 +1,19 @@
+{
+  "version": "1.0",
+  "allowedDomains": [
+    "thuvienphapluat.vn",
+    "gov.vn",
+    "mof.gov.vn",
+    "gdt.gov.vn",
+    "autotaxpos.com"
+  ],
+  "blockedDomains": [
+    "wikipedia.org",
+    "facebook.com",
+    "tiktok.com"
+  ],
+  "minFreshnessDays": 365,
+  "maxSourcesPerBrief": 5,
+  "primaryLegalSource": "thuvienphapluat.vn",
+  "note": "Moi so lieu/can cu phap ly phai doi chieu thuvienphapluat.vn truoc khi them vao data/facts.json (sourceType=official + sourceRef + sourceUrl)."
+}

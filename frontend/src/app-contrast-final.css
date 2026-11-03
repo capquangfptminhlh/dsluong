@@ -1,0 +1,197 @@
+/* AutoTax UI contrast lock — loaded after every legacy/theme stylesheet.
+   Keep the authenticated app readable across desktop + mobile and make
+   computed background colors match what users actually see. */
+
+/* Missing semantic foreground tokens that legacy dark layers had faded. */
+.autotax-shell .autotax-workspace .autotax-page-enter .text-teal-500,
+.autotax-shell .autotax-workspace .autotax-page-enter .text-teal-600,
+.autotax-shell .autotax-workspace .autotax-page-enter .text-teal-700 { color:#0f766e !important; }
+.autotax-shell .autotax-workspace .autotax-page-enter .text-cyan-500,
+.autotax-shell .autotax-workspace .autotax-page-enter .text-cyan-600,
+.autotax-shell .autotax-workspace .autotax-page-enter .text-cyan-700 { color:#0e7490 !important; }
+.autotax-shell .autotax-workspace .autotax-page-enter .text-pink-500,
+.autotax-shell .autotax-workspace .autotax-page-enter .text-pink-600,
+.autotax-shell .autotax-workspace .autotax-page-enter .text-pink-700 { color:#be185d !important; }
+.autotax-shell .autotax-workspace .autotax-page-enter .text-fuchsia-100,
+.autotax-shell .autotax-workspace .autotax-page-enter .text-fuchsia-200 { color:#fae8ff !important; }
+
+/* Filled actions that were still either too bright for white text or had no
+   opaque computed background for the route-wide visibility audit. */
+.autotax-shell .autotax-workspace .autotax-page-enter [class~="bg-green-500"] {
+  background:#047857 !important;
+  background-image:none !important;
+  border-color:#047857 !important;
+  color:#fff !important;
+}
+.autotax-shell .autotax-workspace .autotax-page-enter [class~="bg-amber-500"] {
+  background:#92400e !important;
+  background-image:none !important;
+  border-color:#92400e !important;
+  color:#fff !important;
+}
+.autotax-shell .autotax-workspace .autotax-page-enter [class~="bg-pink-600"] {
+  background:#be185d !important;
+  background-image:none !important;
+  border-color:#be185d !important;
+  color:#fff !important;
+}
+.autotax-shell .autotax-workspace .autotax-page-enter [class~="bg-cyan-500"] {
+  background:#0e7490 !important;
+  background-image:none !important;
+  border-color:#0e7490 !important;
+  color:#fff !important;
+}
+
+/* Tailwind gradient utilities paint through background-image, while browser
+   contrast tooling reads background-color. Give white-text promotional cards
+   a solid, accessible brand color so both the real UI and the audit agree. */
+.autotax-shell .autotax-workspace .autotax-page-enter [class*="from-purple-"][class*="to-indigo-"][class*="text-white"],
+.autotax-shell .autotax-workspace .autotax-page-enter [class*="from-indigo-"][class*="to-purple-"][class*="text-white"] {
+  background:#5b21b6 !important;
+  background-image:none !important;
+  color:#fff !important;
+}
+.autotax-shell .autotax-workspace .autotax-page-enter [class*="from-amber-"][class*="to-orange-"][class*="text-white"],
+.autotax-shell .autotax-workspace .autotax-page-enter [class*="from-orange-"][class*="to-amber-"][class*="text-white"] {
+  background:#9a3412 !important;
+  background-image:none !important;
+  color:#fff !important;
+}
+.autotax-shell .autotax-workspace .autotax-page-enter [class*="from-emerald-"][class*="to-teal-"][class*="text-white"],
+.autotax-shell .autotax-workspace .autotax-page-enter [class*="from-teal-"][class*="to-emerald-"][class*="text-white"] {
+  background:#047857 !important;
+  background-image:none !important;
+  color:#fff !important;
+}
+.autotax-shell .autotax-workspace .autotax-page-enter [class*="from-rose-"][class*="to-red-"][class*="text-white"],
+.autotax-shell .autotax-workspace .autotax-page-enter [class*="from-red-"][class*="to-rose-"][class*="text-white"] {
+  background:#be123c !important;
+  background-image:none !important;
+  color:#fff !important;
+}
+.autotax-shell .autotax-workspace .autotax-page-enter [class*="from-pink-"][class*="to-rose-"][class*="text-white"],
+.autotax-shell .autotax-workspace .autotax-page-enter [class*="from-rose-"][class*="to-pink-"][class*="text-white"] {
+  background:#be185d !important;
+  background-image:none !important;
+  color:#fff !important;
+}
+.autotax-shell .autotax-workspace .autotax-page-enter [class*="from-fuchsia-"][class*="to-purple-"][class*="text-white"],
+.autotax-shell .autotax-workspace .autotax-page-enter [class*="from-purple-"][class*="to-fuchsia-"][class*="text-white"] {
+  background:#7e22ce !important;
+  background-image:none !important;
+  color:#fff !important;
+}
+
+/* Some banners put text-white on the parent and rely on inherited white text,
+   so match the gradient pair even when text-white is not repeated on children. */
+.autotax-shell .autotax-workspace .autotax-page-enter [class*="bg-gradient-"][class*="from-fuchsia-"][class*="to-purple-"] {
+  background:#7e22ce !important;
+  background-image:none !important;
+}
+.autotax-shell .autotax-workspace .autotax-page-enter [class*="bg-gradient-"][class*="from-pink-"][class*="to-rose-"] {
+  background:#be185d !important;
+  background-image:none !important;
+}
+.autotax-shell .autotax-workspace .autotax-page-enter [class*="bg-gradient-"][class*="from-emerald-"][class*="to-teal-"] {
+  background:#047857 !important;
+  background-image:none !important;
+}
+.autotax-shell .autotax-workspace .autotax-page-enter [class*="bg-gradient-"][class*="from-rose-"][class*="to-red-"] {
+  background:#be123c !important;
+  background-image:none !important;
+}
+.autotax-shell .autotax-workspace .autotax-page-enter [class*="bg-gradient-"][class*="from-purple-"][class*="to-indigo-"] {
+  background:#5b21b6 !important;
+  background-image:none !important;
+}
+.autotax-shell .autotax-workspace .autotax-page-enter [class*="bg-gradient-"][class*="from-amber-"][class*="to-orange-"] {
+  background:#9a3412 !important;
+  background-image:none !important;
+}
+
+/* Dark utility panels are valid in the light app, but old global heading rules
+   forced their headings back to dark ink. Restore readable descendants. */
+.autotax-shell .autotax-workspace .autotax-page-enter [class~="bg-slate-800"] h1,
+.autotax-shell .autotax-workspace .autotax-page-enter [class~="bg-slate-800"] h2,
+.autotax-shell .autotax-workspace .autotax-page-enter [class~="bg-slate-800"] h3,
+.autotax-shell .autotax-workspace .autotax-page-enter [class~="bg-slate-800"] h4,
+.autotax-shell .autotax-workspace .autotax-page-enter [class~="bg-slate-800"] .font-black,
+.autotax-shell .autotax-workspace .autotax-page-enter [class~="bg-slate-800"] .font-bold,
+.autotax-shell .autotax-workspace .autotax-page-enter [class~="bg-slate-800"] .text-slate-950,
+.autotax-shell .autotax-workspace .autotax-page-enter [class~="bg-slate-800"] .text-slate-900,
+.autotax-shell .autotax-workspace .autotax-page-enter [class~="bg-slate-800"] .text-slate-800,
+.autotax-shell .autotax-workspace .autotax-page-enter [class~="bg-slate-800"] .text-slate-700,
+.autotax-shell .autotax-workspace .autotax-page-enter [class~="bg-slate-900"] h1,
+.autotax-shell .autotax-workspace .autotax-page-enter [class~="bg-slate-900"] h2,
+.autotax-shell .autotax-workspace .autotax-page-enter [class~="bg-slate-900"] h3,
+.autotax-shell .autotax-workspace .autotax-page-enter [class~="bg-slate-900"] .font-black,
+.autotax-shell .autotax-workspace .autotax-page-enter [class~="bg-slate-900"] .font-bold {
+  color:#fff !important;
+}
+
+/* A light control nested inside a dark panel is an intentional exception: its
+   own light surface wins and its text must stay dark. */
+.autotax-shell .autotax-workspace .autotax-page-enter [class~="bg-slate-800"] button[class~="bg-white"][class~="text-slate-900"],
+.autotax-shell .autotax-workspace .autotax-page-enter [class~="bg-slate-900"] button[class~="bg-white"][class~="text-slate-900"] {
+  background:#fff !important;
+  background-image:none !important;
+  color:#0f172a !important;
+}
+
+/* Explicitly lock the POS cash action after pos-final-fix.css. */
+.autotax-shell .autotax-workspace .autotax-page-enter[data-route="/app/pos"] button[class~="bg-green-500"] {
+  background:#047857 !important;
+  background-image:none !important;
+  color:#fff !important;
+}
+
+/* White text inside the promoted solid cards must remain white even though
+   global heading/text utility rules normally switch copy to dark ink. */
+.autotax-shell .autotax-workspace .autotax-page-enter [class*="bg-gradient-"][class*="text-white"] h1,
+.autotax-shell .autotax-workspace .autotax-page-enter [class*="bg-gradient-"][class*="text-white"] h2,
+.autotax-shell .autotax-workspace .autotax-page-enter [class*="bg-gradient-"][class*="text-white"] h3,
+.autotax-shell .autotax-workspace .autotax-page-enter [class*="bg-gradient-"][class*="text-white"] .font-black,
+.autotax-shell .autotax-workspace .autotax-page-enter [class*="bg-gradient-"][class*="text-white"] .font-bold,
+.autotax-shell .autotax-workspace .autotax-page-enter [class*="bg-gradient-"][class*="text-white"] .font-semibold {
+  color:#fff !important;
+}
+
+/* Tax guide uses the project-specific `from-primary` token, so it was the one
+   gradient pair not covered by the generic locks above. Give it an opaque
+   accessible background and preserve its deliberately pale subtitle. */
+.autotax-shell .autotax-workspace .autotax-page-enter[data-route="/app/guide"] [class*="bg-gradient-"][class*="from-primary"][class*="to-indigo-"] {
+  background:#4338ca !important;
+  background-image:none !important;
+  color:#fff !important;
+}
+.autotax-shell .autotax-workspace .autotax-page-enter[data-route="/app/guide"] [class*="bg-gradient-"][class*="from-primary"][class*="to-indigo-"] .text-indigo-100 {
+  color:#eef2ff !important;
+}
+
+/* Dashboard quick actions used a translucent hover utility. Legacy light-theme
+   rules could neutralize that utility, leaving a fully transparent anchor while
+   the label kept dark ink. Use an opaque, accessible surface for the entire
+   quick-action hit target so desktop hover state is deterministic and readable. */
+.autotax-shell .autotax-workspace .autotax-page-enter[data-route="/app"] a[href="/app/pos"],
+.autotax-shell .autotax-workspace .autotax-page-enter[data-route="/app"] a[href="/app/purchase"],
+.autotax-shell .autotax-workspace .autotax-page-enter[data-route="/app"] a[href="/app/inventory"],
+.autotax-shell .autotax-workspace .autotax-page-enter[data-route="/app"] a[href="/app/report"] {
+  background:#fff !important;
+  background-image:none !important;
+  color:#334155 !important;
+}
+.autotax-shell .autotax-workspace .autotax-page-enter[data-route="/app"] a[href="/app/pos"]:hover,
+.autotax-shell .autotax-workspace .autotax-page-enter[data-route="/app"] a[href="/app/purchase"]:hover,
+.autotax-shell .autotax-workspace .autotax-page-enter[data-route="/app"] a[href="/app/inventory"]:hover,
+.autotax-shell .autotax-workspace .autotax-page-enter[data-route="/app"] a[href="/app/report"]:hover {
+  background:#eff6ff !important;
+  background-image:none !important;
+  border-color:#bfdbfe !important;
+  color:#1e3a8a !important;
+}
+.autotax-shell .autotax-workspace .autotax-page-enter[data-route="/app"] a[href="/app/pos"]:hover span,
+.autotax-shell .autotax-workspace .autotax-page-enter[data-route="/app"] a[href="/app/purchase"]:hover span,
+.autotax-shell .autotax-workspace .autotax-page-enter[data-route="/app"] a[href="/app/inventory"]:hover span,
+.autotax-shell .autotax-workspace .autotax-page-enter[data-route="/app"] a[href="/app/report"]:hover span {
+  color:#1e3a8a !important;
+}

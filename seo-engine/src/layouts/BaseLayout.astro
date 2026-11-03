@@ -1,0 +1,107 @@
+---
+import '../styles/global.css';
+import project from '../../config/project.json';
+import Analytics from '../components/Analytics.astro';
+
+interface Props {
+  title: string;
+  description?: string;
+  canonical?: string;
+}
+
+const { title, description, canonical } = Astro.props;
+
+const canonicalURL = canonical || new URL(Astro.url.pathname, project.domain).toString();
+const finalTitle = title ? `${title} | ${project.siteName}` : project.siteName;
+const finalDescription = description || `${project.siteName} - ${project.niche}`;
+---
+
+<!DOCTYPE html>
+<html lang={project.language}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{finalTitle}</title>
+    <meta name="description" content={finalDescription} />
+    <link rel="canonical" href={canonicalURL} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content={finalTitle} />
+    <meta property="og:description" content={finalDescription} />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:site_name" content={project.siteName} />
+    <meta property="og:locale" content="vi_VN" />
+    <meta property="og:type" content="website" />
+
+    <slot name="head" />
+    
+    <!-- Analytics -->
+    <Analytics />
+  </head>
+  <body class="bg-gray-50 text-gray-900 font-sans antialiased min-h-screen flex flex-col">
+    <header class="bg-white/80 backdrop-blur-md shadow-sm border-b border-slate-100 sticky top-0 z-50">
+      <div class="max-w-[1600px] mx-auto px-4 py-4 flex justify-between items-center">
+        <a href="/" class="flex items-center">
+          <img src="/logo.png" alt="AutoTax POS Logo" class="h-12 md:h-16 object-contain" onerror="this.src='https://placehold.co/200x60/ffffff/1e3a8a?text=AUTOTAX+POS'" />
+        </a>
+        <div class="flex items-center gap-8">
+          <nav class="hidden md:flex space-x-8 text-[15px] font-semibold text-slate-600">
+            <a href="https://autotaxpos.com" class="hover:text-blue-600 transition-colors">Trang chủ</a>
+            <a href="/blog" class="hover:text-blue-600 transition-colors">Blog</a>
+            <a href="/about" class="hover:text-blue-600 transition-colors">Về chúng tôi</a>
+          </nav>
+          <a href="https://autotaxpos.com/register" class="bg-blue-600 hover:bg-blue-700 text-white text-[15px] font-bold py-2.5 px-6 rounded-xl flex items-center gap-2 transition-colors shadow-sm">
+            Dùng thử miễn phí
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <main class="flex-grow w-full">
+      <slot />
+    </main>
+
+    <footer class="bg-[#0f172a] pt-16 pb-8 px-6 md:px-12 text-slate-400 font-medium mt-12">
+      <div class="max-w-6xl mx-auto grid md:grid-cols-5 gap-10 mb-12">
+        <div class="col-span-2">
+          <div class="text-white font-extrabold text-2xl mb-6 flex items-center gap-2">
+            <div class="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">A</div> AutoTax<span class="text-blue-500">.vn</span>
+          </div>
+          <p class="text-sm text-slate-400 mb-6 max-w-sm">Nền tảng kế toán & thuế tự động đáng tin cậy dành cho Hộ kinh doanh Việt Nam.</p>
+          <div class="flex gap-4">
+            <div class="w-8 h-8 rounded-full bg-slate-800 flex items-center justify-center hover:bg-blue-600 transition cursor-pointer text-white">f</div>
+            <div class="w-8 h-8 rounded-full bg-slate-800 flex items-center justify-center hover:bg-red-600 transition cursor-pointer text-white">▶</div>
+          </div>
+        </div>
+        <div>
+          <h4 class="text-white font-bold mb-6">Sản phẩm</h4>
+          <ul class="space-y-3 text-sm">
+            <li><a href="https://autotaxpos.com" class="hover:text-blue-400 transition">Tính năng</a></li>
+            <li><a href="https://autotaxpos.com" class="hover:text-blue-400 transition">Hướng dẫn</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="text-white font-bold mb-6">Công ty</h4>
+          <ul class="space-y-3 text-sm">
+            <li><a href="/about" class="hover:text-blue-400 transition">Về chúng tôi</a></li>
+            <li><a href="/blog/" class="hover:text-blue-400 transition">Blog</a></li>
+            <li><a href="/contact" class="hover:text-blue-400 transition">Liên hệ</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="text-white font-bold mb-6">Hỗ trợ</h4>
+          <ul class="space-y-3 text-sm">
+            <li><a href="#" class="hover:text-blue-400 transition">Trung tâm trợ giúp</a></li>
+            <li><a href="/editorial-policy" class="hover:text-blue-400 transition">Chính sách biên tập</a></li>
+            <li><a href="#" class="hover:text-blue-400 transition">Điều khoản sử dụng</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="max-w-6xl mx-auto pt-8 border-t border-slate-800 text-center text-xs">
+        <p class="mb-2">&copy; {new Date().getFullYear()} AutoTax.vn - Dự án vì cộng đồng Hộ Kinh Doanh Việt Nam.</p>
+        <p class="text-slate-500 max-w-4xl mx-auto leading-relaxed">Tuyên bố miễn trừ trách nhiệm: AutoTax là phần mềm hỗ trợ tính toán cộng đồng, không mang tính ràng buộc pháp lý. AutoTax không phải là đại lý thuế. Người sử dụng hoàn toàn chịu trách nhiệm trước pháp luật về tính chính xác của các số liệu trên tờ khai nộp cho cơ quan Thuế.</p>
+      </div>
+    </footer>
+  </body>
+</html>

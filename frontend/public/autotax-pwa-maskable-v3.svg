@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title desc">
+  <title id="title">AutoTax Maskable</title>
+  <desc id="desc">Biểu tượng AutoTax trong vùng an toàn maskable</desc>
+  <defs>
+    <linearGradient id="bg" x1="64" y1="42" x2="448" y2="470" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#101D34"/>
+      <stop offset="1" stop-color="#050B14"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="190" y1="310" x2="322" y2="310" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#22D3EE"/>
+      <stop offset="1" stop-color="#3B82F6"/>
+    </linearGradient>
+  </defs>
+  <rect width="512" height="512" fill="url(#bg)"/>
+  <circle cx="256" cy="256" r="168" fill="#1677FF" opacity=".08"/>
+  <g transform="translate(56 55) scale(.78)">
+    <path d="M151 386 238 151c6-16 30-16 36 0l87 235" fill="none" stroke="#F8FAFC" stroke-width="48" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M190 313h132" stroke="url(#accent)" stroke-width="38" stroke-linecap="round"/>
+    <circle cx="365" cy="147" r="22" fill="#22D3EE"/>
+  </g>
+</svg>

@@ -1,0 +1,65 @@
+/* AutoTaxPOS Commercial Motion System v1
+   Purposeful micro-interactions only: fast, accessible and POS-safe. */
+:root{--motion-fast:140ms;--motion-base:220ms;--motion-slow:360ms;--motion-ease:cubic-bezier(.2,.8,.2,1);--motion-spring:cubic-bezier(.2,1.15,.35,1)}
+@keyframes at-fade-up{from{opacity:0;transform:translate3d(0,8px,0)}to{opacity:1;transform:none}}
+@keyframes at-fade-in{from{opacity:0}to{opacity:1}}
+@keyframes at-scale-in{from{opacity:0;transform:scale(.975)}to{opacity:1;transform:scale(1)}}
+@keyframes at-slide-right{from{opacity:0;transform:translate3d(-8px,0,0)}to{opacity:1;transform:none}}
+@keyframes at-pop{0%{transform:scale(.96)}65%{transform:scale(1.025)}100%{transform:scale(1)}}
+@keyframes at-shimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
+@keyframes at-soft-pulse{0%,100%{opacity:1}50%{opacity:.65}}
+
+.autotax-page-enter{animation:at-fade-up var(--motion-slow) var(--motion-ease) both;will-change:transform,opacity}
+.autotax-header{transition:box-shadow var(--motion-base) ease,background var(--motion-base) ease,border-color var(--motion-base) ease}
+.autotax-global-search,.autotax-profile-button,.icon-btn,.btn-primary,.btn-secondary,button,a,input,select,textarea{transition-property:color,background-color,border-color,box-shadow,opacity,transform;transition-duration:var(--motion-fast);transition-timing-function:var(--motion-ease)}
+button:active,.btn-primary:active,.btn-secondary:active,.icon-btn:active{transform:scale(.975)}
+button:disabled{transform:none!important}
+
+.sidebar-item{transition:background var(--motion-fast) ease,color var(--motion-fast) ease,transform var(--motion-fast) var(--motion-ease),box-shadow var(--motion-fast) ease}
+.sidebar-item:hover{transform:translateX(2px)}
+.sidebar-item-active{animation:at-slide-right var(--motion-base) var(--motion-ease) both}
+.sidebar-child{transition:background var(--motion-fast),color var(--motion-fast),transform var(--motion-fast)}
+.sidebar-child:hover{transform:translateX(2px)}
+
+.surface,.metric-card{transition:transform var(--motion-base) var(--motion-ease),box-shadow var(--motion-base) ease,border-color var(--motion-base) ease}
+.surface:hover{transform:translateY(-1px)}
+.dashboard-metrics .metric-card{animation:at-fade-up 420ms var(--motion-ease) both}
+.dashboard-metrics .metric-card:nth-child(2){animation-delay:45ms}.dashboard-metrics .metric-card:nth-child(3){animation-delay:90ms}.dashboard-metrics .metric-card:nth-child(4){animation-delay:135ms}
+.dashboard-metrics .metric-card:hover{transform:translateY(-3px);box-shadow:0 15px 38px rgba(36,58,105,.09)}
+.metric-value{transition:transform var(--motion-base) var(--motion-spring)}
+.metric-card:hover .metric-value{transform:translateY(-1px)}
+
+.autotax-shell tbody tr{transition:background-color var(--motion-fast) ease,transform var(--motion-fast) ease}
+.autotax-shell tbody tr:hover{transform:translateX(1px)}
+.autotax-shell input:focus,.autotax-shell select:focus,.autotax-shell textarea:focus{transform:translateY(-1px)}
+
+/* POS: tactile, immediate; no long decorative animation during checkout. */
+.autotax-pos-screen .autotax-pos-product{transition:transform var(--motion-fast) var(--motion-spring),box-shadow var(--motion-base) ease,border-color var(--motion-fast) ease}
+.autotax-pos-screen .autotax-pos-product:hover{transform:translateY(-4px) scale(1.008)}
+.autotax-pos-screen .autotax-pos-product:active{transform:scale(.985)}
+.autotax-pos-screen .autotax-pos-cart{animation:at-fade-in 260ms ease both}
+.autotax-pos-screen .autotax-pos-cart-item{animation:at-scale-in 200ms var(--motion-spring) both;transition:transform var(--motion-fast),box-shadow var(--motion-fast)}
+.autotax-pos-screen .autotax-pos-cart-item:hover{transform:translateX(-2px)}
+.autotax-pos-screen .autotax-pos-pay{position:relative;overflow:hidden;transition:transform var(--motion-fast) var(--motion-spring),box-shadow var(--motion-base) ease}
+.autotax-pos-screen .autotax-pos-pay:hover{transform:translateY(-2px);box-shadow:0 12px 25px rgba(37,99,235,.2)}
+.autotax-pos-screen .autotax-pos-pay:active{transform:scale(.985)}
+
+/* Common overlays/dropdowns produced by current app components. */
+[role='dialog'],.fixed.inset-0>div[class*='bg-white'],.absolute[class*='shadow-2xl']{animation:at-scale-in var(--motion-base) var(--motion-ease) both}
+.fixed.inset-0[class*='bg-black'],.fixed.inset-0[class*='backdrop']{animation:at-fade-in var(--motion-base) ease both}
+
+/* Loading surfaces */
+.animate-pulse{animation-duration:1.45s!important}
+.autotax-motion-skeleton{background:linear-gradient(90deg,#f1f4f9 25%,#fafbfe 50%,#f1f4f9 75%);background-size:200% 100%;animation:at-shimmer 1.4s linear infinite}
+
+/* Login */
+.autotax-login-shell>div:first-child{animation:at-fade-in 520ms ease both}
+.autotax-login-card{animation:at-fade-up 460ms var(--motion-ease) both}
+.autotax-login-card form>div{animation:at-fade-up 400ms var(--motion-ease) both}
+.autotax-login-card form>div:nth-child(2){animation-delay:55ms}
+
+/* Touch/mobile: reduce hover motion, retain feedback. */
+@media (hover:none){.surface:hover,.dashboard-metrics .metric-card:hover,.autotax-pos-screen .autotax-pos-product:hover{transform:none}.sidebar-item:hover{transform:none}}
+
+/* Accessibility: hard requirement. */
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.01ms!important;transition-delay:0ms!important}.surface:hover,.metric-card:hover,.sidebar-item:hover,.autotax-pos-screen .autotax-pos-product:hover{transform:none!important}}

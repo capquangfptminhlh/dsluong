@@ -1,0 +1,73 @@
+/* AutoTaxPOS commercial light SaaS refresh — uses the approved visual benchmark as direction, not as a copy. */
+:root {
+  --at-bg: #f7f9fd;
+  --at-panel: rgba(255,255,255,.96);
+  --at-border: #e8edf5;
+  --at-ink: #10203f;
+  --at-muted: #77839a;
+  --at-blue: #2563eb;
+  --at-blue-soft: #eef4ff;
+  --at-violet-soft: #f1efff;
+  --at-mint-soft: #ebfaf5;
+  --at-amber-soft: #fff6e8;
+  --at-rose-soft: #fff0f3;
+  --at-shadow: 0 10px 35px rgba(34,58,105,.055);
+}
+
+.autotax-shell { background: radial-gradient(circle at 62% 0%, #fff 0, #f9fbff 34%, var(--at-bg) 72%); color: var(--at-ink); }
+.autotax-header { background: rgba(255,255,255,.86); border-bottom: 1px solid rgba(232,237,245,.92); backdrop-filter: blur(18px); min-height: 72px; }
+.autotax-global-search { border: 1px solid var(--at-border); border-radius: 14px; background: #fbfcff; box-shadow: inset 0 1px 0 #fff; }
+.autotax-global-search:hover { border-color: #d9e1ee; background: #fff; }
+
+.autotax-shell aside { background: rgba(255,255,255,.94) !important; border-color: var(--at-border) !important; box-shadow: 8px 0 32px rgba(35,55,95,.035) !important; }
+.sidebar-item { min-height: 46px; border-radius: 13px; color: #58657b; font-weight: 650; transition: .16s ease; }
+.sidebar-item:hover { background: #f6f8fc; color: #233554; transform: translateX(1px); }
+.sidebar-item-active { color: #2458d6 !important; background: linear-gradient(90deg,#edf3ff,#f4f1ff) !important; box-shadow: inset 0 0 0 1px rgba(75,105,220,.055); }
+.sidebar-child { border-radius: 9px; color: #7a8699; padding: 8px 10px; font-size: 12px; font-weight: 600; display: block; }
+.sidebar-child:hover { color: #294a9a; background: #f7f9fd; }
+.sidebar-child-active { color: #2458d6 !important; background: #eef4ff; font-weight: 750; }
+
+.autotax-shell main > div:not(.autotax-top-progress) { scrollbar-color: #d9e1ee transparent; }
+.page-header { margin-bottom: 22px; align-items: center; }
+.page-title { color: var(--at-ink); letter-spacing: -.035em; font-size: clamp(1.55rem,2.2vw,2rem); font-weight: 850; }
+.page-subtitle { color: var(--at-muted); margin-top: 4px; }
+.surface { background: var(--at-panel); border: 1px solid var(--at-border); border-radius: 18px; box-shadow: var(--at-shadow); }
+.surface:hover { border-color: #dfe6f0; }
+
+.dashboard-metrics .metric-card { position: relative; overflow: hidden; min-height: 132px; border: 1px solid rgba(226,233,244,.8); border-radius: 18px; padding: 20px; box-shadow: var(--at-shadow); background: linear-gradient(135deg,#edf5ff,#f7fbff); }
+.dashboard-metrics .metric-card:nth-child(2) { background: linear-gradient(135deg,var(--at-violet-soft),#faf9ff); }
+.dashboard-metrics .metric-card:nth-child(3) { background: linear-gradient(135deg,var(--at-mint-soft),#f8fffc); }
+.dashboard-metrics .metric-card:nth-child(4) { background: linear-gradient(135deg,var(--at-amber-soft),#fffaf3); }
+.dashboard-metrics .metric-card::after { content:""; position:absolute; width:100px; height:100px; border-radius:999px; right:-40px; top:-45px; background:rgba(255,255,255,.55); }
+.metric-label { color:#74829a; font-size:10px; letter-spacing:.075em; text-transform:uppercase; font-weight:800; }
+.metric-value { margin-top:8px; color:#142442; font-size:clamp(1.35rem,2vw,1.75rem); line-height:1; font-weight:850; letter-spacing:-.035em; }
+.dashboard-metric-note { color:#8190a5 !important; }
+
+.btn-secondary, .icon-btn { border-color: var(--at-border); background:#fff; box-shadow:0 3px 12px rgba(32,54,91,.04); }
+.btn-secondary:hover, .icon-btn:hover { background:#f8faff; border-color:#dbe3ef; }
+
+/* Make operational tables feel like the benchmark without altering their data model. */
+.autotax-shell table { border-collapse: separate; border-spacing: 0; }
+.autotax-shell thead th { background:#fafbfe; color:#8390a3; font-size:10px; text-transform:uppercase; letter-spacing:.045em; font-weight:800; border-bottom:1px solid #edf1f6; }
+.autotax-shell tbody td { border-bottom-color:#f0f3f8; }
+.autotax-shell tbody tr { transition:background .14s ease; }
+.autotax-shell tbody tr:hover { background:#fafcff; }
+
+/* Status chips and form controls gain a calmer commercial finish. */
+.autotax-shell input:not([type='checkbox']):not([type='radio']), .autotax-shell select, .autotax-shell textarea { border-color:#e3e8f1; border-radius:12px; background:#fff; }
+.autotax-shell input:focus, .autotax-shell select:focus, .autotax-shell textarea:focus { border-color:#9bb7f5; box-shadow:0 0 0 3px rgba(37,99,235,.08); outline:none; }
+
+@media (min-width: 1280px) {
+  .autotax-shell main > div.overflow-y-auto, .autotax-shell main > div[class*='overflow-y'] { padding-left:28px; padding-right:28px; }
+}
+@media (max-width: 1023px) {
+  .autotax-header { min-height:64px; }
+  .dashboard-metrics .metric-card { min-height:118px; padding:16px; }
+  .surface { border-radius:16px; }
+}
+@media (max-width: 640px) {
+  .page-title { font-size:1.35rem; }
+  .dashboard-metrics .metric-card { min-height:108px; padding:14px; border-radius:15px; }
+  .metric-value { font-size:1.15rem; }
+  .surface { box-shadow:0 6px 22px rgba(34,58,105,.045); }
+}

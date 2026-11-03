@@ -1,0 +1,31 @@
+{
+  "topic": "Thuế khoán hộ kinh doanh",
+  "year": 2026,
+  "laws": ["Thông tư 40/2021/TT-BTC", "Nghị định 126/2020/NĐ-CP", "Luật Quản lý thuế số 38/2019/QH14"],
+  "facts": [
+    "Hộ kinh doanh có doanh thu từ 100 triệu đồng/năm trở xuống thì không phải nộp thuế GTGT và thuế TNCN.",
+    "Doanh thu tính thuế là toàn bộ tiền bán hàng, tiền gia công, tiền hoa hồng, tiền cung ứng dịch vụ phát sinh trong kỳ tính thuế.",
+    "Hộ kinh doanh nộp thuế theo phương pháp khoán (Hộ khoán) không phải thực hiện chế độ kế toán.",
+    "Nếu hộ kinh doanh sử dụng hóa đơn do cơ quan thuế cấp lẻ, doanh thu tính thuế bao gồm doanh thu khoán và doanh thu trên hóa đơn.",
+    "Mức phạt chậm nộp hồ sơ khai thuế có thể lên đến 25 triệu đồng tùy theo thời gian chậm nộp (Điều 13 Nghị định 125/2020/NĐ-CP).",
+    "Từ 2026, việc triển khai máy tính tiền kết nối dữ liệu điện tử với cơ quan thuế là bắt buộc với các lĩnh vực F&B, siêu thị, bán lẻ thuốc."
+  ],
+  "rates": {
+    "phan_phoi_cung_cap_hang_hoa": {
+      "gtgt": "1%",
+      "tncn": "0.5%"
+    },
+    "dich_vu_xay_dung_khong_bao_thau_nvl": {
+      "gtgt": "5%",
+      "tncn": "2%"
+    },
+    "san_xuat_van_tai_dich_vu_co_giao_hang": {
+      "gtgt": "3%",
+      "tncn": "1.5%"
+    },
+    "hoat_dong_khac": {
+      "gtgt": "2%",
+      "tncn": "1%"
+    }
+  }
+}

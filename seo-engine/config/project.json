@@ -1,0 +1,25 @@
+{
+  "domain": "https://autotaxpos.com",
+  "siteName": "AutoTax POS",
+  "language": "vi",
+  "market": "VN",
+  "timezone": "Asia/Ho_Chi_Minh",
+  "niche": "Phần mềm quản lý bán hàng & hóa đơn điện tử máy tính tiền",
+  "offer": "Giải pháp phần mềm AutoTax POS",
+  "audience": "Hộ kinh doanh và doanh nghiệp bán lẻ tại Việt Nam",
+  "primaryConversion": "generate_lead",
+  "ymyl": false,
+  "automationMode": "dry_run",
+  "maxPostsPerDay": 3,
+  "maxUpdatesPerDay": 5,
+  "dailyBudgetUsd": null,
+  "qualityGate": {
+    "autoThreshold": 0.78,
+    "reviewThreshold": 0.60,
+    "quantitativeCoverageMin": 1.0,
+    "evidenceCoverageMin": 0.9,
+    "duplicationBlockInternal": 0.85,
+    "duplicationBlockVsSources": 0.30,
+    "note": "Ngưỡng khởi điểm; giá trị chính thức chốt bằng calibration 11.5. Cấm min()-aggregation và cấm ngưỡng >=0.9 cho điểm LLM chấm."
+  }
+}

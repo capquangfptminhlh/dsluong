@@ -1,0 +1,146 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://autotax.vn/schemas/content-brief.schema.json",
+  "title": "ContentBrief",
+  "description": "JSON schema for content brief as specified in Section 10.1 of MASTER_SPEC",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "contentId",
+    "candidateId",
+    "decision",
+    "primaryQuery",
+    "intent",
+    "audience",
+    "businessGoal",
+    "answerTarget",
+    "requiredSections",
+    "requiredClaims",
+    "internalLinkTargets",
+    "schemaTypes",
+    "cta",
+    "imageBriefIds",
+    "authorId",
+    "riskTier"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "type": "string",
+      "enum": ["1.0"]
+    },
+    "contentId": {
+      "type": "string",
+      "pattern": "^cnt_[a-zA-Z0-9_-]+$",
+      "description": "Unique content ID starting with cnt_"
+    },
+    "candidateId": {
+      "type": "string",
+      "pattern": "^cand_[a-zA-Z0-9_-]+$",
+      "description": "Associated candidate ID"
+    },
+    "decision": {
+      "type": "string",
+      "enum": ["CREATE_NEW", "UPDATE", "EXPAND", "MERGE", "REDIRECT", "NO_ACTION"]
+    },
+    "primaryQuery": {
+      "type": "string",
+      "minLength": 1
+    },
+    "intent": {
+      "type": "string",
+      "enum": [
+        "informational",
+        "commercial_investigation",
+        "transactional",
+        "navigational"
+      ]
+    },
+    "audience": {
+      "type": "string"
+    },
+    "businessGoal": {
+      "type": "string"
+    },
+    "answerTarget": {
+      "type": "string",
+      "description": "Direct 40-100 word answer target that the article must open with"
+    },
+    "requiredSections": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["heading"],
+        "properties": {
+          "heading": { "type": "string" },
+          "keyPoints": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "targetWordCount": { "type": "integer", "minimum": 0 }
+        },
+        "additionalProperties": true
+      }
+    },
+    "requiredClaims": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["claimId", "factIds", "required"],
+        "properties": {
+          "claimId": {
+            "type": "string",
+            "pattern": "^clm_[a-zA-Z0-9_-]+$"
+          },
+          "statement": { "type": "string" },
+          "factIds": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "required": { "type": "boolean" }
+        },
+        "additionalProperties": true
+      }
+    },
+    "internalLinkTargets": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["targetUrl", "anchorText"],
+        "properties": {
+          "targetUrl": { "type": "string" },
+          "anchorText": { "type": "string" },
+          "reason": { "type": "string" }
+        },
+        "additionalProperties": true
+      }
+    },
+    "schemaTypes": {
+      "type": "array",
+      "items": { "type": "string" },
+      "minItems": 1
+    },
+    "cta": {
+      "type": "object",
+      "required": ["type", "message"],
+      "properties": {
+        "type": { "type": "string" },
+        "message": { "type": "string" },
+        "targetUrl": { "type": "string" }
+      },
+      "additionalProperties": true
+    },
+    "imageBriefIds": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "authorId": {
+      "type": "string",
+      "pattern": "^auth_[a-zA-Z0-9_-]+$"
+    },
+    "riskTier": {
+      "type": "string",
+      "enum": ["low", "medium", "high"]
+    }
+  },
+  "additionalProperties": true
+}

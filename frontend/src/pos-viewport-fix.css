@@ -1,0 +1,12 @@
+/* Keep POS fixed checkout controls anchored to the viewport.
+   Generic route motion uses transform + will-change:transform, both of which create
+   containing blocks for position:fixed. POS owns fixed checkout controls, so this
+   route must opt out of those containing-block creators. */
+.autotax-page-enter[data-route="/app/pos"] {
+  animation: none !important;
+  transform: none !important;
+  will-change: auto !important;
+  filter: none !important;
+  perspective: none !important;
+  contain: none !important;
+}

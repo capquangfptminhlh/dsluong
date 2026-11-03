@@ -1,0 +1,4 @@
+design,page_topology,nav,hero,flow,mobile,similarity_to_chosen,decision
+"Current AutoTax landing","Split hero + sequential marketing sections","Top anchor nav","Copy left/dashboard right","Pain -> stats -> cards","Stack desktop blocks","22%","REPLACE"
+"Approved AutoTax app shell","App shell: sidebar/header/workspace","Sidebar + bottom mobile nav","No marketing hero","Task/workspace driven","Native-app bottom nav","31%","KEEP BRAND DNA ONLY; do not reuse app topology"
+"Chosen homepage A","Operational spine + editorial chapters","Minimal anchors + Industry Lens","Full-width statement + workflow","Sale -> stock -> cash -> debt -> tax control","Vertical stepper + sticky CTA","100%","PASS"

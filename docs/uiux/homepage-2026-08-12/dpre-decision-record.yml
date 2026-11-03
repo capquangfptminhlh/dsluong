@@ -1,0 +1,23 @@
+version: 1
+project: autotax-homepage
+observed_at: 2026-08-12
+fresh_research: PASS
+source_pool:
+  same_industry: [KiotViet, Sapo]
+  product_ux: [Shopify_POS, Toast]
+  fintech_editorial: [Ramp, Stripe]
+  primary_platform: [Figma]
+  curated: [Land-book, Awwwards]
+  typography: [Be_Vietnam]
+required_artifacts:
+  current_uiux_source_log: PASS
+  current_trend_map: PASS
+  interaction_intelligence_map: PASS
+  typography_intelligence_map: PASS
+  anti_sameness_register: PASS
+  future_leap_hypotheses: PASS
+structure_change_from_research: >-
+  Research changed the homepage from the existing split-hero/stat-strip/card-grid family
+  to an Operational Spine that explains one business flow from sale through inventory,
+  cash/debt and tax-control readiness. Mobile becomes a vertical stepper with safe-area CTA.
+status: PASS

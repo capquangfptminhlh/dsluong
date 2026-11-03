@@ -1,0 +1,101 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://autotax.vn/schemas/verification-report.schema.json",
+  "title": "VerificationReport",
+  "description": "JSON schema for two-tier verification gate report as specified in Section 11 of MASTER_SPEC",
+  "type": "object",
+  "required": [
+    "contentId",
+    "decision",
+    "hardBlockers",
+    "softScore",
+    "softScoreBreakdown",
+    "evidenceCoverage",
+    "duplicationRisk",
+    "verifiedAt"
+  ],
+  "properties": {
+    "contentId": {
+      "type": "string",
+      "pattern": "^cnt_[a-zA-Z0-9_-]+$",
+      "description": "ID of the verified content draft"
+    },
+    "decision": {
+      "type": "string",
+      "enum": ["PASS", "NEEDS_REVIEW", "BLOCK"],
+      "description": "Final gate decision based on hard blockers and soft scores"
+    },
+    "hardBlockers": {
+      "type": "array",
+      "description": "List of hard blocker violations (if any). If not empty, decision MUST be BLOCK",
+      "items": {
+        "type": "object",
+        "required": ["code", "message"],
+        "properties": {
+          "code": {
+            "type": "string",
+            "enum": [
+              "REQUIRED_CLAIM_UNBOUND",
+              "UNBOUND_CLAIM",
+              "FACT_EXPIRED",
+              "CONTRADICTION_UNRESOLVED",
+              "DUPLICATE_INTENT",
+              "YMYL_REVIEW_MISSING",
+              "SCHEMA_MISMATCH",
+              "SECRET_PII_DETECTED",
+              "COPYRIGHT_SHINGLE_OVERLAP",
+              "PROMPT_INJECTION_FLAG",
+              "LOW_EVIDENCE_COVERAGE"
+            ]
+          },
+          "reasonCode": { "type": "string" },
+          "message": { "type": "string" },
+          "details": { "type": "object" }
+        },
+        "additionalProperties": true
+      }
+    },
+    "softScore": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1,
+      "description": "Weighted soft score: 0.35*originality + 0.30*clarity + 0.20*answerFirst + 0.15*brandFit"
+    },
+    "softScoreBreakdown": {
+      "type": "object",
+      "required": ["originality", "clarity", "answerFirst", "brandFit"],
+      "properties": {
+        "originality": { "type": "number", "minimum": 0, "maximum": 1 },
+        "clarity": { "type": "number", "minimum": 0, "maximum": 1 },
+        "answerFirst": { "type": "number", "minimum": 0, "maximum": 1 },
+        "brandFit": { "type": "number", "minimum": 0, "maximum": 1 }
+      },
+      "additionalProperties": false
+    },
+    "evidenceCoverage": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1,
+      "description": "Ratio of bound or labeled factual claims over total extracted claims"
+    },
+    "duplicationRisk": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1,
+      "description": "Max of cosine similarity against internal docs and shingle overlap against sources"
+    },
+    "verifiedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "verifierModel": {
+      "type": "string",
+      "description": "Model used for soft scoring and verification (must differ from writer model family)"
+    },
+    "claimExtractorModel": {
+      "type": "string",
+      "description": "Model used for claim extraction"
+    }
+  },
+  "additionalProperties": true
+}

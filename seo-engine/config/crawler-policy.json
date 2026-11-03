@@ -1,0 +1,7 @@
+{
+  "allowAI": true,
+  "blockedUserAgents": [
+    "CCBot",
+    "GPTBot"
+  ]
+}

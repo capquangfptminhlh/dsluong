@@ -1,0 +1,3 @@
+Force redeploy requested 2026-08-24 22:59 Asia/Ho_Chi_Minh
+Target: main
+Purpose: trigger Deploy AutoTax to VPS workflow on runner label autotax-vps

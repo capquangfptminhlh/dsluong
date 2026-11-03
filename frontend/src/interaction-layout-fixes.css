@@ -1,0 +1,81 @@
+/* Final interaction/layout guardrails for the authenticated app.
+   Loaded after the legacy theme layers so exact utility tokens win over broad
+   class-substring selectors without changing business logic or component flow. */
+
+/* Neutral buttons must stay neutral even when their class list also contains a
+   colored hover:* token (legacy theme rules used class*= and could misclassify them). */
+.autotax-page-enter button[class~="bg-white"] {
+  background: #151c24 !important;
+  background-image: none !important;
+  border-color: #3a4652 !important;
+  color: #e8edf2 !important;
+  box-shadow: none !important;
+}
+
+.autotax-page-enter button[class~="bg-slate-50"] {
+  background: #121a22 !important;
+  background-image: none !important;
+  border-color: #35414d !important;
+  color: #e2e8ee !important;
+  box-shadow: none !important;
+}
+
+.autotax-page-enter button[class~="bg-slate-100"] {
+  background: #17212b !important;
+  background-image: none !important;
+  border-color: #3b4855 !important;
+  color: #e5ebf0 !important;
+  box-shadow: none !important;
+}
+
+/* Dark authenticated surfaces cannot use Tailwind's pale neutral hover fills:
+   readability hardening turns slate text light, so a pale hover fill made labels
+   appear to disappear. Match the hover utility token exactly. */
+.autotax-page-enter a[class~="hover:bg-slate-50"]:hover,
+.autotax-page-enter button[class~="hover:bg-slate-50"]:hover {
+  background: #19232d !important;
+  color: #ffffff !important;
+}
+
+.autotax-page-enter a[class~="hover:bg-slate-100"]:hover,
+.autotax-page-enter button[class~="hover:bg-slate-100"]:hover,
+.autotax-page-enter a[class~="hover:bg-slate-200"]:hover,
+.autotax-page-enter button[class~="hover:bg-slate-200"]:hover {
+  background: #202b36 !important;
+  color: #ffffff !important;
+}
+
+/* POS desktop: the category strip contains nowrap labels. Without min-width:0 on
+   the left flex item, its min-content width can expand to the whole category row,
+   pushing the fixed cart pane off-screen and making each product grid column huge. */
+@media (min-width: 1024px) {
+  .autotax-page-enter[data-route="/app/pos"] > .h-full.flex {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+  }
+
+  .autotax-page-enter[data-route="/app/pos"] > .h-full.flex > .flex-1 {
+    min-width: 0 !important;
+  }
+
+  .autotax-page-enter[data-route="/app/pos"] > .h-full.flex > .flex-1 > .overflow-x-auto {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+  }
+}
+
+/* Category pills are rounded-full, so older dark-surface rules did not recolor
+   their bg-white state while slate text had already been lightened. */
+.autotax-page-enter[data-route="/app/pos"] button[class~="rounded-full"][class~="bg-white"] {
+  background: #151c24 !important;
+  border-color: #3a4652 !important;
+  color: #dce4eb !important;
+}
+
+.autotax-page-enter[data-route="/app/pos"] button[class~="rounded-full"][class~="bg-white"]:hover {
+  background: #202b36 !important;
+  border-color: #536170 !important;
+  color: #ffffff !important;
+}

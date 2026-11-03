@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+Disallow: /app
+Disallow: /app/
+Disallow: /login
+Disallow: /register
+Disallow: /api/
+
+Sitemap: https://autotaxpos.com/sitemap.xml

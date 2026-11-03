@@ -1,0 +1,10 @@
+{
+  "version": "1.0",
+  "platforms": {
+    "google_search_ai": { "crawler": "googlebot", "status": "active" },
+    "bing_ai": { "crawler": "bingbot", "status": "active" },
+    "chatgpt_search": { "crawler": "oai-searchbot", "status": "active" }
+  },
+  "reviewDays": 30,
+  "lastCheckedAt": "2026-07-31T00:00:00Z"
+}

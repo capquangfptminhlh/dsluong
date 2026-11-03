@@ -1,0 +1,46 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "automationMode": "dry_run",
+  "riskTierRules": {
+    "high": {
+      "description": "High risk content requiring mandatory human review in all automation modes",
+      "conditions": [
+        "ymyl == true",
+        "category in ['medical', 'finance', 'legal', 'tax', 'safety']",
+        "claims_about_competitors == true",
+        "performance_or_warranty_commitments == true",
+        "legal_contract_content == true"
+      ],
+      "requiresReview": true,
+      "autoMerge": false
+    },
+    "medium": {
+      "description": "Medium risk content requiring human review in conditional_auto, auto-publish allowed in full_auto for UPDATE with verified facts",
+      "conditions": [
+        "has_pricing_promotions_or_plan_conditions == true",
+        "brand_comparison == true",
+        "top_20_url_by_traffic_or_conversion == true",
+        "slug_canonical_or_redirect_change == true",
+        "sensitive_brand_content == true"
+      ],
+      "requiresReview": true,
+      "autoMergeInFullAutoForUpdateOnly": true
+    },
+    "low": {
+      "description": "Low risk content allowed to auto-publish when all verification gates PASS",
+      "conditions": [
+        "informational_article_without_pricing == true",
+        "fact_timestamp_update == true",
+        "minor_fix_preserving_intent == true",
+        "internal_link_addition == true",
+        "illustration_image_update == true"
+      ],
+      "requiresReview": false,
+      "autoMerge": true
+    }
+  },
+  "escalationPolicy": {
+    "direction": "one_way_upward",
+    "note": "Agents may elevate risk tier with reason code; no agent can downgrade risk tier."
+  }
+}

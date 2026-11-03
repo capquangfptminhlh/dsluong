@@ -1,0 +1,94 @@
+[
+  {
+    "factId": "fact_001",
+    "statement": "Hộ kinh doanh, cá nhân kinh doanh có doanh thu từ 1 tỷ đồng/năm trở xuống được miễn thuế giá trị gia tăng và thuế thu nhập cá nhân.",
+    "value": 1000000000,
+    "unit": "VND",
+    "effectiveAt": "2026-01-01T00:00:00Z",
+    "reviewByDate": "2026-12-31T23:59:59Z",
+    "sourceType": "official",
+    "sourceRef": "Nghị định 141/2026/NĐ-CP sửa đổi Nghị định 68/2026/NĐ-CP, hiệu lực từ 01/01/2026",
+    "ownerRole": "tax_specialist",
+    "sourceUrl": "https://thuvienphapluat.vn/phap-luat-doanh-nghiep/bai-viet/chinh-thuc-ho-kinh-doanh-duoi-1-ty-duoc-mien-thue-theo-nghi-dinh-141-2026-nd-cp-20747.html"
+  },
+  {
+    "factId": "fact_002",
+    "statement": "Giá phần mềm AutoTax POS gói Cơ Bản là 150.000 VNĐ/tháng.",
+    "value": 150000,
+    "unit": "VND/month",
+    "effectiveAt": "2026-01-01T00:00:00Z",
+    "reviewByDate": "2026-12-31T23:59:59Z",
+    "sourceType": "internal",
+    "sourceRef": "Bảng giá AutoTax POS 2026",
+    "ownerRole": "product_manager"
+  },
+  {
+    "factId": "fact_003",
+    "statement": "Kể từ ngày 1/7/2022, 100% doanh nghiệp và hộ kinh doanh nộp thuế theo phương pháp kê khai bắt buộc phải sử dụng hóa đơn điện tử.",
+    "value": 100,
+    "unit": "%",
+    "effectiveAt": "2022-07-01T00:00:00Z",
+    "reviewByDate": "2026-12-31T23:59:59Z",
+    "sourceType": "official",
+    "sourceRef": "Nghị định 123/2020/NĐ-CP",
+    "ownerRole": "tax_specialist",
+    "sourceUrl": "https://thuvienphapluat.vn/phap-luat-doanh-nghiep/bai-viet/quy-dinh-ve-ho-kinh-doanh-duoi-1-ty-nam-2026-thue-ke-toan-hoa-don-20598.html"
+  },
+  {
+    "factId": "fact_005",
+    "statement": "Phần mềm AutoTax POS có chức năng chốt ca cuối ngày và đối chiếu tiền mặt cho cửa hàng.",
+    "value": null,
+    "unit": null,
+    "effectiveAt": "2026-01-01T00:00:00Z",
+    "reviewByDate": "2026-12-31T23:59:59Z",
+    "sourceType": "internal",
+    "sourceRef": "Tính năng 'chốt ca thu ngân (đối chiếu tiền mặt)' — README.md AutoTax ERP",
+    "ownerRole": "product_manager"
+  },
+  {
+    "factId": "fact_006",
+    "statement": "Phần mềm AutoTax POS hỗ trợ quản lý lô hàng theo hạn sử dụng và ưu tiên bán lô sắp hết hạn trước.",
+    "value": null,
+    "unit": null,
+    "effectiveAt": "2026-01-01T00:00:00Z",
+    "reviewByDate": "2026-12-31T23:59:59Z",
+    "sourceType": "internal",
+    "sourceRef": "Tính năng 'Lô & hạn sử dụng, bán tự trừ lô sắp hết hạn trước (FEFO)' — README.md AutoTax ERP",
+    "ownerRole": "product_manager"
+  },
+  {
+    "factId": "fact_007",
+    "statement": "Phần mềm AutoTax POS cho phép phân quyền nhân viên theo từng nhóm chức năng và ghi lại nhật ký thao tác.",
+    "value": null,
+    "unit": null,
+    "effectiveAt": "2026-01-01T00:00:00Z",
+    "reviewByDate": "2026-12-31T23:59:59Z",
+    "sourceType": "internal",
+    "sourceRef": "Tính năng 'phân quyền nhân viên theo module' và 'nhật ký thao tác' — README.md AutoTax ERP",
+    "ownerRole": "product_manager"
+  },
+  {
+    "factId": "fact_004",
+    "statement": "Từ ngày 01/01/2026, hình thức thuế khoán và lệ phí môn bài đối với hộ kinh doanh, cá nhân kinh doanh được xóa bỏ.",
+    "value": 2026,
+    "unit": "year",
+    "effectiveAt": "2026-01-01T00:00:00Z",
+    "reviewByDate": "2026-12-31T23:59:59Z",
+    "sourceType": "official",
+    "sourceRef": "Điều 10 Nghị quyết 198/2025/QH15",
+    "ownerRole": "tax_specialist",
+    "sourceUrl": "https://thuvienphapluat.vn/ma-so-thue/phap-luat-thue/bo-thue-khoan-tu-nam-2026-che-do-nop-thue-ho-kinh-doanh-se-thay-doi-nhu-the-nao-va-ho-kinh-doanh-na-412857-212378.html"
+  },
+  {
+    "factId": "fact_008",
+    "statement": "Từ năm 2026, hộ kinh doanh và cá nhân kinh doanh chuyển từ phương pháp khoán sang phương pháp kê khai và tự nộp thuế, chỉ còn nộp thuế giá trị gia tăng và thuế thu nhập cá nhân.",
+    "value": 2026,
+    "unit": "year",
+    "effectiveAt": "2026-01-01T00:00:00Z",
+    "reviewByDate": "2026-12-31T23:59:59Z",
+    "sourceType": "official",
+    "sourceRef": "Nghị quyết 198/2025/QH15 và Nghị định 68/2026/NĐ-CP",
+    "sourceUrl": "https://thuvienphapluat.vn/chinh-sach-phap-luat-moi/vn/ho-tro-phap-luat/chinh-sach-moi/111651/cap-nhat-04-nhom-ho-kinh-doanh-moi-nhat-va-cach-tinh-thue-ho-kinh-doanh-2026",
+    "ownerRole": "tax_specialist"
+  }
+]

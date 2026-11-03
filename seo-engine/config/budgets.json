@@ -1,0 +1,9 @@
+{
+  "version": "1.0",
+  "dailyBudgetUsd": 5.0,
+  "monthlyBudgetUsd": 150.0,
+  "maxCostPerNewArticleUsd": 0.5,
+  "maxCostPerUpdateUsd": 0.2,
+  "reservePctForRecovery": 10,
+  "onBudgetBreach": "stop_new_content_allow_monitoring"
+}

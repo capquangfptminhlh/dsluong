@@ -1,0 +1,273 @@
+/* AutoTax readability + contrast hardening.
+   Presentation-only. Loaded last so it can correct overly-muted legacy dark-theme values
+   without changing business logic, routing, data flow, or component structure. */
+
+/* Stronger typography and controls across the authenticated app. */
+.autotax-shell,
+.autotax-shell button,
+.autotax-shell input,
+.autotax-shell select,
+.autotax-shell textarea {
+  -webkit-font-smoothing: auto !important;
+  text-rendering: optimizeLegibility;
+}
+
+.autotax-page-enter .page-title,
+.autotax-page-enter h1,
+.autotax-page-enter h2,
+.autotax-page-enter h3,
+.autotax-page-enter h4 {
+  color: #f8fafc !important;
+}
+
+.autotax-page-enter .text-slate-950,
+.autotax-page-enter .text-slate-900,
+.autotax-page-enter .text-slate-800,
+.autotax-page-enter .text-slate-700 {
+  color: #eef3f7 !important;
+}
+.autotax-page-enter .text-slate-600 { color: #d8e0e7 !important; }
+.autotax-page-enter .text-slate-500 { color: #c2ccd5 !important; }
+.autotax-page-enter .text-slate-400 { color: #aebac5 !important; }
+.autotax-page-enter .text-slate-300 { color: #c8d1d9 !important; }
+.autotax-page-enter .page-subtitle { color: #c2ccd5 !important; }
+
+.autotax-page-enter .metric-label {
+  color: #c3cdd6 !important;
+  font-size: 11px !important;
+  font-weight: 750 !important;
+}
+.autotax-page-enter .metric-value { color: #ffffff !important; }
+.autotax-page-enter .dashboard-metric-note { color: #b6c1cb !important; }
+
+/* Opaque surfaces eliminate the washed-out look caused by stacked alpha layers. */
+.autotax-page-enter .surface,
+.autotax-page-enter .surface-muted,
+.autotax-page-enter .metric-card,
+.autotax-page-enter .table-shell,
+.autotax-page-enter .bg-white.rounded-lg,
+.autotax-page-enter .bg-white.rounded-xl,
+.autotax-page-enter .bg-white.rounded-2xl {
+  background: #111820 !important;
+  border-color: #35414d !important;
+  box-shadow: 0 8px 24px rgb(0 0 0 / .16) !important;
+}
+.autotax-page-enter .surface-muted,
+.autotax-page-enter .bg-slate-50,
+.autotax-page-enter .bg-slate-50\/50,
+.autotax-page-enter .bg-slate-100 {
+  background: #0d141b !important;
+  border-color: #303b46 !important;
+}
+
+/* Tables need a stronger reading hierarchy than the visual-reference palette supplied. */
+.autotax-page-enter table thead,
+.autotax-page-enter thead {
+  background: #0b1219 !important;
+}
+.autotax-page-enter table th {
+  color: #c5ced7 !important;
+  border-color: #3a4652 !important;
+  font-size: .74rem !important;
+  font-weight: 750 !important;
+}
+.autotax-page-enter table td {
+  color: #edf2f6 !important;
+  border-color: #303b46 !important;
+}
+.autotax-page-enter table tbody,
+.autotax-page-enter table tbody tr,
+.autotax-page-enter table tbody tr:nth-child(even) {
+  background: #111820 !important;
+}
+.autotax-page-enter table tbody tr:nth-child(even) {
+  background: #0f161e !important;
+}
+.autotax-page-enter table tbody tr:hover {
+  background: #19232d !important;
+}
+
+/* Form fields: visible borders, clear placeholder, stronger focus state. */
+.autotax-page-enter input,
+.autotax-page-enter select,
+.autotax-page-enter textarea,
+.autotax-global-search {
+  background: #0b1219 !important;
+  border-color: #4a5866 !important;
+  color: #f5f7f9 !important;
+  box-shadow: none !important;
+}
+.autotax-page-enter input::placeholder,
+.autotax-page-enter textarea::placeholder,
+.autotax-global-search::placeholder {
+  color: #aeb9c4 !important;
+  opacity: 1 !important;
+}
+.autotax-page-enter input:hover,
+.autotax-page-enter select:hover,
+.autotax-page-enter textarea:hover,
+.autotax-global-search:hover {
+  border-color: #647383 !important;
+  background: #0e161e !important;
+}
+.autotax-page-enter input:focus,
+.autotax-page-enter select:focus,
+.autotax-page-enter textarea:focus,
+.autotax-global-search:focus {
+  border-color: #ff9258 !important;
+  box-shadow: 0 0 0 3px rgb(255 122 50 / .22) !important;
+}
+.autotax-page-enter select option {
+  background: #101820 !important;
+  color: #f5f7f9 !important;
+}
+
+/* Buttons and links: retain semantic colors but avoid pale / low-opacity treatment. */
+.autotax-page-enter .btn-primary,
+.autotax-page-enter button[class*="bg-blue-"],
+.autotax-page-enter button[class*="bg-indigo-"],
+.autotax-page-enter button[class*="bg-purple-"],
+.autotax-page-enter button[class*="bg-violet-"] {
+  background: #f26722 !important;
+  background-image: none !important;
+  border-color: #ff9a62 !important;
+  color: #ffffff !important;
+  box-shadow: 0 6px 16px rgb(242 103 34 / .22) !important;
+}
+.autotax-page-enter .btn-secondary {
+  background: #17212b !important;
+  border-color: #526170 !important;
+  color: #f1f5f9 !important;
+}
+.autotax-page-enter a.text-blue-600,
+.autotax-page-enter .text-blue-500,
+.autotax-page-enter .text-blue-600,
+.autotax-page-enter .text-blue-700,
+.autotax-page-enter .text-indigo-500,
+.autotax-page-enter .text-indigo-600,
+.autotax-page-enter .text-indigo-700 {
+  color: #ff9a62 !important;
+}
+.autotax-page-enter button:disabled,
+.autotax-page-enter input:disabled,
+.autotax-page-enter select:disabled,
+.autotax-page-enter textarea:disabled {
+  opacity: .62 !important;
+}
+
+/* Sidebar/header need clearer separation from the page body. */
+.autotax-header {
+  background: #0b1118 !important;
+  border-bottom-color: #35414d !important;
+  box-shadow: 0 1px 0 rgb(255 255 255 / .03), 0 8px 24px rgb(0 0 0 / .14) !important;
+  backdrop-filter: none !important;
+}
+.autotax-header .text-slate-950,
+.autotax-header .text-slate-900,
+.autotax-header .text-slate-800,
+.autotax-header .text-slate-700 { color: #f4f7f9 !important; }
+.autotax-header .text-slate-600 { color: #d6dee6 !important; }
+.autotax-header .text-slate-500,
+.autotax-header .text-slate-400 { color: #b5c0ca !important; }
+
+.autotax-shell > aside {
+  background: #081019 !important;
+  border-right-color: #33404d !important;
+}
+.autotax-shell > aside .sidebar-item { color: #c5d0da !important; }
+.autotax-shell > aside .sidebar-child { color: #acb9c5 !important; }
+.autotax-shell > aside .sidebar-item:hover,
+.autotax-shell > aside .sidebar-child:hover {
+  background: #17212b !important;
+  color: #ffffff !important;
+}
+.autotax-shell > aside .sidebar-item-active {
+  background: rgb(242 103 34 / .18) !important;
+  color: #ffa06d !important;
+  box-shadow: inset 3px 0 0 #f26722 !important;
+}
+.autotax-shell > aside .sidebar-child-active {
+  background: rgb(242 103 34 / .13) !important;
+  color: #ffad82 !important;
+}
+.autotax-shell > aside select {
+  background: #111a23 !important;
+  border-color: #465463 !important;
+  color: #f0f4f7 !important;
+}
+
+/* Semantic status colors: stronger foregrounds on dark surfaces. */
+.autotax-page-enter .text-green-500,
+.autotax-page-enter .text-green-600,
+.autotax-page-enter .text-green-700,
+.autotax-page-enter .text-emerald-500,
+.autotax-page-enter .text-emerald-600,
+.autotax-page-enter .text-emerald-700 { color: #6ee7a0 !important; }
+.autotax-page-enter .text-red-500,
+.autotax-page-enter .text-red-600,
+.autotax-page-enter .text-red-700,
+.autotax-page-enter .text-rose-500,
+.autotax-page-enter .text-rose-600,
+.autotax-page-enter .text-rose-700 { color: #ff8da1 !important; }
+.autotax-page-enter .text-yellow-500,
+.autotax-page-enter .text-yellow-600,
+.autotax-page-enter .text-yellow-700,
+.autotax-page-enter .text-amber-500,
+.autotax-page-enter .text-amber-600,
+.autotax-page-enter .text-amber-700 { color: #ffd166 !important; }
+
+/* Toast copy was intentionally faded before; messages should be fully readable. */
+.autotax-toast-message { opacity: 1 !important; }
+.autotax-toast-close { opacity: .82 !important; }
+
+@media (min-width: 1024px) {
+  .autotax-shell { background: #070c11 !important; }
+  .autotax-workspace { background: #090f15 !important; }
+}
+
+@media (max-width: 1023px) {
+  .autotax-shell,
+  .autotax-shell > main,
+  .autotax-workspace,
+  .autotax-mobile-content {
+    background: #080e14 !important;
+  }
+
+  .autotax-page-enter {
+    font-size: 14.5px !important;
+  }
+  .autotax-page-enter .metric-label {
+    font-size: 10.5px !important;
+  }
+
+  .autotax-mobile-bottom-nav {
+    background: #101820 !important;
+    border-color: #465463 !important;
+    box-shadow: 0 12px 32px rgb(0 0 0 / .34) !important;
+    backdrop-filter: none !important;
+  }
+  .autotax-mobile-nav-item {
+    color: #bcc7d1 !important;
+    font-size: 10px !important;
+    font-weight: 700 !important;
+  }
+  .autotax-mobile-nav-item.is-active {
+    color: #ff9a62 !important;
+    background: rgb(242 103 34 / .13) !important;
+  }
+
+  .autotax-notification-bell,
+  .autotax-header .icon-btn {
+    color: #c4ced7 !important;
+  }
+
+  .autotax-page-enter .surface,
+  .autotax-page-enter .surface-muted,
+  .autotax-page-enter .metric-card,
+  .autotax-page-enter .table-shell,
+  .autotax-page-enter .bg-white.rounded-lg,
+  .autotax-page-enter .bg-white.rounded-xl,
+  .autotax-page-enter .bg-white.rounded-2xl {
+    border-width: 1px !important;
+  }
+}

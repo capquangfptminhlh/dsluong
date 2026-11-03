@@ -1,0 +1,13 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "properties": {
+    "sourceId": { "type": "string" },
+    "url": { "type": "string" },
+    "title": { "type": "string" },
+    "contentSnapshot": { "type": "string" },
+    "retrievedAt": { "type": "string", "format": "date-time" },
+    "hash": { "type": "string" }
+  },
+  "required": ["sourceId", "url", "contentSnapshot", "retrievedAt", "hash"]
+}

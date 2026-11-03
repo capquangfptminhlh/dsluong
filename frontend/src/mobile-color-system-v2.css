@@ -1,0 +1,56 @@
+/* AutoTaxPOS Mobile Color System v2
+   Stronger commercial hierarchy for touch/POS while staying visually aligned with desktop. */
+@media (max-width:1023px){
+  .autotax-shell{--at-primary:#2563eb;--at-primary2:#4f46e5;--at-cyan:#06b6d4;--at-mint:#10b981;--at-amber:#f59e0b;--at-rose:#ef476f;--at-ink:#10203f;--at-soft:#f4f7fc;background:linear-gradient(180deg,#f7faff 0,#f3f7fd 48%,#f7f9fd 100%)!important}
+  .autotax-header{background:rgba(255,255,255,.96)!important;border-bottom-color:#dfe7f4!important;box-shadow:0 8px 26px rgba(31,67,130,.08)!important}
+  .autotax-header .icon-btn{background:linear-gradient(145deg,#fff,#f3f6fd)!important;border-color:#dce5f2!important;color:#51627e!important}
+  .autotax-avatar{background:linear-gradient(145deg,#eaf1ff,#dfe8ff)!important;color:#2755c7!important;border-color:#d5e0f6!important}
+
+  /* POS is light, vivid and task-oriented instead of charcoal-on-charcoal. */
+  .autotax-pos-screen,.autotax-pos-screen>div,.autotax-pos-screen .flex-1{color:var(--at-ink)}
+  .autotax-pos-screen{background:linear-gradient(180deg,#f8fbff,#f1f6fd)!important}
+  .autotax-pos-screen>div:first-of-type,.autotax-pos-screen .bg-slate-50\/50{background:#f6f9fe!important}
+  .autotax-pos-screen .sticky.top-0.bg-white{background:rgba(255,255,255,.97)!important;border-color:#e2e9f4!important;box-shadow:0 8px 24px rgba(31,67,130,.06)!important}
+  .autotax-pos-screen input{background:#f8faff!important;color:#172743!important;border:1px solid #dbe4f1!important;box-shadow:inset 0 1px 0 #fff!important}
+  .autotax-pos-screen input:focus{background:#fff!important;border-color:#77a1ff!important;box-shadow:0 0 0 4px rgba(37,99,235,.1)!important}
+
+  /* Camera and AI become clearly differentiated actions. */
+  .autotax-pos-screen button[data-testid="pos-open-barcode-scanner"]{background:linear-gradient(145deg,#ecfeff,#e5f9ff)!important;color:#087f9a!important;border:1px solid #bdebf3!important;box-shadow:0 7px 16px rgba(6,182,212,.10)!important}
+  .autotax-pos-screen button[data-testid="pos-open-barcode-scanner"]:active{background:#cff7ff!important;color:#06677d!important}
+  .autotax-pos-screen button[data-autotax-variant="primary"],.autotax-pos-screen .bg-blue-600{background:linear-gradient(135deg,#2477f3,#5157e8)!important;color:#fff!important;border-color:transparent!important;box-shadow:0 10px 22px rgba(37,99,235,.22)!important}
+
+  /* Category chips: colorful active state + clean inactive chips. */
+  .autotax-pos-screen .no-scrollbar button{background:#fff!important;color:#506078!important;border:1px solid #dbe4f0!important;box-shadow:0 3px 10px rgba(31,67,130,.04)!important}
+  .autotax-pos-screen .no-scrollbar button.bg-slate-800{background:linear-gradient(135deg,#2563eb,#4f46e5)!important;color:#fff!important;border-color:transparent!important;box-shadow:0 8px 18px rgba(55,78,205,.20)!important}
+
+  /* Product cards use alternating subtle color washes to create scanability. */
+  .autotax-pos-screen .grid.content-start>div.bg-white{background:linear-gradient(155deg,#fff 0,#f7faff 100%)!important;border-color:#dfe7f3!important;box-shadow:0 7px 20px rgba(31,67,130,.055)!important}
+  .autotax-pos-screen .grid.content-start>div.bg-white:nth-child(4n+2){background:linear-gradient(155deg,#fff,#f7f5ff)!important}
+  .autotax-pos-screen .grid.content-start>div.bg-white:nth-child(4n+3){background:linear-gradient(155deg,#fff,#f2fcf8)!important}
+  .autotax-pos-screen .grid.content-start>div.bg-white:nth-child(4n+4){background:linear-gradient(155deg,#fff,#fff8ed)!important}
+  .autotax-pos-screen .grid.content-start .bg-slate-100{background:#edf3fb!important}
+  .autotax-pos-screen .grid.content-start .text-blue-600{color:#1f63df!important}
+
+  /* Cart panel and checkout remain visually separate. */
+  .autotax-pos-screen>div:last-child{background:#fff!important;border-color:#dfe7f2!important;box-shadow:-12px 0 32px rgba(31,67,130,.08)!important}
+  .autotax-pos-screen>div:last-child .bg-slate-50\/50{background:#f7f9fd!important}
+  .autotax-pos-screen>div:last-child .bg-white{background:#fff!important}
+  .autotax-pos-screen .text-blue-600{color:#2563eb!important}
+  .autotax-pos-screen .bg-red-50{background:#fff0f3!important}.autotax-pos-screen .text-red-500{color:#df3e5d!important}
+
+  /* Checkout choices carry semantic color instead of two dark blocks. */
+  .autotax-pos-screen button.bg-slate-800{background:linear-gradient(135deg,#6257d9,#4338ca)!important;color:#fff!important;box-shadow:0 10px 22px rgba(79,70,229,.20)!important}
+  .autotax-pos-screen button.bg-green-600,.autotax-pos-screen button.bg-emerald-600{background:linear-gradient(135deg,#12a779,#059669)!important;color:#fff!important;box-shadow:0 10px 22px rgba(5,150,105,.20)!important}
+  .autotax-pos-screen button[class*="border-blue-200"]{background:#eef5ff!important;color:#245fc9!important;border-color:#bfd4fb!important}
+
+  /* Bottom nav gets a visible brand accent and selected capsule. */
+  .autotax-mobile-bottom-nav{background:rgba(255,255,255,.97)!important;border-color:#dce5f2!important;box-shadow:0 18px 44px rgba(31,67,130,.17)!important}
+  .autotax-mobile-nav-item{color:#718096!important}
+  .autotax-mobile-nav-item-active{background:linear-gradient(145deg,#edf4ff,#eeeaff)!important;color:#245dcc!important;box-shadow:inset 0 0 0 1px #d8e3fb,0 5px 14px rgba(55,78,205,.08)!important}
+
+  /* Semantic status palette across mobile app. */
+  .autotax-page-enter .bg-green-50,.autotax-page-enter .bg-emerald-50{background:#e9fbf4!important}.autotax-page-enter .text-green-600,.autotax-page-enter .text-emerald-600{color:#07845e!important}
+  .autotax-page-enter .bg-amber-50,.autotax-page-enter .bg-yellow-50{background:#fff6df!important}.autotax-page-enter .text-amber-700,.autotax-page-enter .text-yellow-700{color:#a65e05!important}
+  .autotax-page-enter .bg-red-50,.autotax-page-enter .bg-rose-50{background:#fff0f3!important}.autotax-page-enter .text-red-600,.autotax-page-enter .text-rose-600{color:#cf3854!important}
+  .autotax-page-enter .bg-blue-50,.autotax-page-enter .bg-indigo-50{background:#edf4ff!important}.autotax-page-enter .text-blue-600,.autotax-page-enter .text-indigo-600{color:#245dcc!important}
+}

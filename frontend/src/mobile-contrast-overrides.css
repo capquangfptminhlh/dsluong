@@ -1,0 +1,147 @@
+/* Final mobile contrast layer.
+   Loaded after all legacy app styles. Selectors intentionally outrank the
+   old shell normalization rules that also use !important. */
+@media (max-width: 1023px) {
+  /* Switch the legacy shell design tokens themselves to the dark palette. */
+  .autotax-shell .autotax-workspace .autotax-page-enter {
+    --autotax-accent: #ff955d;
+    --autotax-accent-hover: #ff7a32;
+    --autotax-accent-soft: rgba(242, 103, 34, .12);
+    --autotax-accent-border: rgba(255, 149, 93, .32);
+    --autotax-surface: #10161d;
+    --autotax-surface-muted: #0d1319;
+    --autotax-border: #2a3540;
+    --autotax-text: #edf1f4;
+    --autotax-muted: #aab4bd;
+    color: var(--autotax-text) !important;
+  }
+
+  /* shell-fixes.css has `.autotax-page-enter > * > :first-child h1/h2`
+     with !important. These selectors have higher specificity and must win. */
+  .autotax-shell .autotax-workspace .autotax-page-enter .page-title,
+  .autotax-shell .autotax-workspace .autotax-page-enter h1,
+  .autotax-shell .autotax-workspace .autotax-page-enter h2,
+  .autotax-shell .autotax-workspace .autotax-page-enter h3,
+  .autotax-shell .autotax-workspace .autotax-page-enter h4,
+  .autotax-shell .autotax-workspace .autotax-page-enter .text-slate-950,
+  .autotax-shell .autotax-workspace .autotax-page-enter .text-slate-900,
+  .autotax-shell .autotax-workspace .autotax-page-enter .text-slate-800,
+  .autotax-shell .autotax-workspace .autotax-page-enter .text-slate-700 {
+    color: #edf1f4 !important;
+  }
+
+  .autotax-shell .autotax-workspace .autotax-page-enter > * > :first-child h1,
+  .autotax-shell .autotax-workspace .autotax-page-enter > * > :first-child h2 {
+    color: #edf1f4 !important;
+  }
+  .autotax-shell .autotax-workspace .autotax-page-enter > * > :first-child p {
+    color: #aab4bd !important;
+  }
+
+  .autotax-shell .autotax-workspace .autotax-page-enter .text-slate-600 { color: #c1c9d1 !important; }
+  .autotax-shell .autotax-workspace .autotax-page-enter .text-slate-500 { color: #aab4bd !important; }
+  .autotax-shell .autotax-workspace .autotax-page-enter .text-slate-400 { color: #98a4af !important; }
+  .autotax-shell .autotax-workspace .autotax-page-enter .text-slate-300 { color: #87939f !important; }
+  .autotax-shell .autotax-workspace .autotax-page-enter .text-slate-200 { color: #aeb7c0 !important; }
+  .autotax-shell .autotax-workspace .autotax-page-enter .text-black { color: #f5f7f9 !important; }
+  .autotax-shell .autotax-workspace .autotax-page-enter .text-primary { color: #ff955d !important; }
+
+  /* Legacy light surfaces must not remain white after text utilities are lifted. */
+  .autotax-shell .autotax-workspace .autotax-page-enter .bg-white,
+  .autotax-shell .autotax-workspace .autotax-page-enter tbody.bg-white,
+  .autotax-shell .autotax-workspace .autotax-page-enter tr.bg-white,
+  .autotax-shell .autotax-workspace .autotax-page-enter td.bg-white,
+  .autotax-shell .autotax-workspace .autotax-page-enter th.bg-white {
+    background-color: #10161d !important;
+  }
+  .autotax-shell .autotax-workspace .autotax-page-enter .bg-slate-50,
+  .autotax-shell .autotax-workspace .autotax-page-enter .bg-slate-50\/50,
+  .autotax-shell .autotax-workspace .autotax-page-enter .bg-slate-100 {
+    background-color: #0d1319 !important;
+  }
+  .autotax-shell .autotax-workspace .autotax-page-enter .bg-slate-200 { background-color: #202933 !important; }
+  .autotax-shell .autotax-workspace .autotax-page-enter .bg-slate-800 { background-color: #151c24 !important; }
+  .autotax-shell .autotax-workspace .autotax-page-enter .bg-slate-900 { background-color: #0b1016 !important; }
+
+  .autotax-shell .autotax-workspace .autotax-page-enter table,
+  .autotax-shell .autotax-workspace .autotax-page-enter table tbody,
+  .autotax-shell .autotax-workspace .autotax-page-enter table tbody tr,
+  .autotax-shell .autotax-workspace .autotax-page-enter table tbody tr:nth-child(even) {
+    background-color: #10161d !important;
+  }
+  .autotax-shell .autotax-workspace .autotax-page-enter table thead {
+    background: #0d1319 !important;
+  }
+  .autotax-shell .autotax-workspace .autotax-page-enter table tbody tr:hover { background: #151c24 !important; }
+  .autotax-shell .autotax-workspace .autotax-page-enter table th { color: #a2adb7 !important; border-color: #2a3540 !important; }
+  .autotax-shell .autotax-workspace .autotax-page-enter table td { color: #d7dde2 !important; border-color: #27313b !important; }
+
+  /* Readable brand/semantic utility colors on charcoal surfaces. */
+  .autotax-shell .autotax-workspace .autotax-page-enter .text-blue-500,
+  .autotax-shell .autotax-workspace .autotax-page-enter .text-blue-600,
+  .autotax-shell .autotax-workspace .autotax-page-enter .text-blue-700,
+  .autotax-shell .autotax-workspace .autotax-page-enter .text-indigo-500,
+  .autotax-shell .autotax-workspace .autotax-page-enter .text-indigo-600,
+  .autotax-shell .autotax-workspace .autotax-page-enter .text-indigo-700,
+  .autotax-shell .autotax-workspace .autotax-page-enter .text-purple-600,
+  .autotax-shell .autotax-workspace .autotax-page-enter .text-violet-600 { color: #ff955d !important; }
+
+  .autotax-shell .autotax-workspace .autotax-page-enter .bg-blue-50,
+  .autotax-shell .autotax-workspace .autotax-page-enter .bg-blue-100,
+  .autotax-shell .autotax-workspace .autotax-page-enter .bg-indigo-50,
+  .autotax-shell .autotax-workspace .autotax-page-enter .bg-indigo-100,
+  .autotax-shell .autotax-workspace .autotax-page-enter .bg-purple-50,
+  .autotax-shell .autotax-workspace .autotax-page-enter .bg-violet-50 {
+    background-color: rgba(242, 103, 34, .12) !important;
+  }
+
+  .autotax-shell .autotax-workspace .autotax-page-enter .bg-green-50,
+  .autotax-shell .autotax-workspace .autotax-page-enter .bg-green-100,
+  .autotax-shell .autotax-workspace .autotax-page-enter .bg-emerald-50,
+  .autotax-shell .autotax-workspace .autotax-page-enter .bg-emerald-100 { background-color: rgba(34, 197, 94, .14) !important; }
+  .autotax-shell .autotax-workspace .autotax-page-enter .text-green-500,
+  .autotax-shell .autotax-workspace .autotax-page-enter .text-green-600,
+  .autotax-shell .autotax-workspace .autotax-page-enter .text-green-700,
+  .autotax-shell .autotax-workspace .autotax-page-enter .text-emerald-500,
+  .autotax-shell .autotax-workspace .autotax-page-enter .text-emerald-600,
+  .autotax-shell .autotax-workspace .autotax-page-enter .text-emerald-700 { color: #4ade80 !important; }
+
+  .autotax-shell .autotax-workspace .autotax-page-enter .bg-red-50,
+  .autotax-shell .autotax-workspace .autotax-page-enter .bg-red-100,
+  .autotax-shell .autotax-workspace .autotax-page-enter .bg-rose-50,
+  .autotax-shell .autotax-workspace .autotax-page-enter .bg-rose-100 { background-color: rgba(239, 68, 68, .14) !important; }
+  .autotax-shell .autotax-workspace .autotax-page-enter .text-red-500,
+  .autotax-shell .autotax-workspace .autotax-page-enter .text-red-600,
+  .autotax-shell .autotax-workspace .autotax-page-enter .text-red-700,
+  .autotax-shell .autotax-workspace .autotax-page-enter .text-rose-500,
+  .autotax-shell .autotax-workspace .autotax-page-enter .text-rose-600,
+  .autotax-shell .autotax-workspace .autotax-page-enter .text-rose-700 { color: #fb7185 !important; }
+
+  .autotax-shell .autotax-workspace .autotax-page-enter .bg-yellow-50,
+  .autotax-shell .autotax-workspace .autotax-page-enter .bg-yellow-100,
+  .autotax-shell .autotax-workspace .autotax-page-enter .bg-amber-50,
+  .autotax-shell .autotax-workspace .autotax-page-enter .bg-amber-100 { background-color: rgba(245, 158, 11, .14) !important; }
+  .autotax-shell .autotax-workspace .autotax-page-enter .text-yellow-500,
+  .autotax-shell .autotax-workspace .autotax-page-enter .text-yellow-600,
+  .autotax-shell .autotax-workspace .autotax-page-enter .text-yellow-700,
+  .autotax-shell .autotax-workspace .autotax-page-enter .text-amber-500,
+  .autotax-shell .autotax-workspace .autotax-page-enter .text-amber-600,
+  .autotax-shell .autotax-workspace .autotax-page-enter .text-amber-700 { color: #fbbf24 !important; }
+
+  .autotax-shell .autotax-workspace .autotax-page-enter input,
+  .autotax-shell .autotax-workspace .autotax-page-enter select,
+  .autotax-shell .autotax-workspace .autotax-page-enter textarea {
+    background: #0d1319 !important;
+    border-color: #34404c !important;
+    color: #eef2f5 !important;
+  }
+  .autotax-shell .autotax-workspace .autotax-page-enter input::placeholder,
+  .autotax-shell .autotax-workspace .autotax-page-enter textarea::placeholder {
+    color: #929eaa !important;
+    opacity: 1 !important;
+  }
+  .autotax-shell .autotax-workspace .autotax-page-enter select option {
+    background: #11171e !important;
+    color: #eef2f5 !important;
+  }
+}

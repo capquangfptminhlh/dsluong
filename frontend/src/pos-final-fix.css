@@ -1,0 +1,291 @@
+/* Final POS-only guardrail. Loaded last so legacy dark/mobile layers cannot override
+   the retail POS task layout. Presentation only; business logic remains unchanged. */
+
+.autotax-page-enter[data-route="/app/pos"] {
+  min-width: 0 !important;
+  width: 100% !important;
+}
+
+.autotax-page-enter[data-route="/app/pos"] > div {
+  min-width: 0 !important;
+  width: 100% !important;
+  background: #f8fafc !important;
+  color: #0f172a !important;
+  border-color: #e2e8f0 !important;
+}
+
+/* Restore the intended light POS palette after older dark-theme overrides. */
+.autotax-page-enter[data-route="/app/pos"] div[class~="bg-white"],
+.autotax-page-enter[data-route="/app/pos"] section[class~="bg-white"],
+.autotax-page-enter[data-route="/app/pos"] aside[class~="bg-white"] {
+  background: #ffffff !important;
+  color: #0f172a !important;
+}
+
+.autotax-page-enter[data-route="/app/pos"] div[class~="bg-slate-50"],
+.autotax-page-enter[data-route="/app/pos"] div[class~="bg-slate-50/50"] {
+  background: #f8fafc !important;
+}
+
+.autotax-page-enter[data-route="/app/pos"] div[class~="bg-slate-100"] {
+  background: #f1f5f9 !important;
+}
+
+.autotax-page-enter[data-route="/app/pos"] button[class~="bg-white"] {
+  background: #ffffff !important;
+  background-image: none !important;
+  border-color: #e2e8f0 !important;
+  color: #475569 !important;
+  box-shadow: none !important;
+}
+
+.autotax-page-enter[data-route="/app/pos"] button[class~="bg-slate-100"] {
+  background: #f1f5f9 !important;
+  background-image: none !important;
+  border-color: #e2e8f0 !important;
+  color: #334155 !important;
+}
+
+.autotax-page-enter[data-route="/app/pos"] button[class~="bg-slate-800"] {
+  background: #1e293b !important;
+  color: #ffffff !important;
+}
+
+.autotax-page-enter[data-route="/app/pos"] button[class~="bg-blue-600"] {
+  background: #2563eb !important;
+  color: #ffffff !important;
+}
+
+.autotax-page-enter[data-route="/app/pos"] button[class~="bg-green-500"] {
+  background: #22c55e !important;
+  color: #ffffff !important;
+}
+
+.autotax-page-enter[data-route="/app/pos"] .text-slate-800 { color: #1e293b !important; }
+.autotax-page-enter[data-route="/app/pos"] .text-slate-700 { color: #334155 !important; }
+.autotax-page-enter[data-route="/app/pos"] .text-slate-600 { color: #475569 !important; }
+.autotax-page-enter[data-route="/app/pos"] .text-slate-500 { color: #64748b !important; }
+.autotax-page-enter[data-route="/app/pos"] .text-slate-400 { color: #94a3b8 !important; }
+.autotax-page-enter[data-route="/app/pos"] .text-blue-600 { color: #2563eb !important; }
+
+/* Toolbar stays compact and never forces the product area wider than the viewport. */
+.autotax-page-enter[data-route="/app/pos"] > div > .flex-1 {
+  min-width: 0 !important;
+}
+
+.autotax-page-enter[data-route="/app/pos"] > div > .flex-1 > .sticky.top-0 {
+  background: rgba(255,255,255,.98) !important;
+  border-color: #e2e8f0 !important;
+  box-shadow: 0 4px 16px rgba(15,23,42,.05) !important;
+}
+
+/* Categories must always remain a single horizontal rail. */
+.autotax-page-enter[data-route="/app/pos"] > div > .flex-1 > .no-scrollbar {
+  display: flex !important;
+  flex-wrap: nowrap !important;
+  overflow-x: auto !important;
+  overflow-y: hidden !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  min-width: 0 !important;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+
+.autotax-page-enter[data-route="/app/pos"] > div > .flex-1 > .no-scrollbar > button {
+  flex: 0 0 auto !important;
+  white-space: nowrap !important;
+  background: #ffffff !important;
+  color: #475569 !important;
+  border-color: #e2e8f0 !important;
+}
+
+.autotax-page-enter[data-route="/app/pos"] > div > .flex-1 > .no-scrollbar > button[class~="bg-slate-800"] {
+  background: #1e293b !important;
+  color: #ffffff !important;
+  border-color: #1e293b !important;
+}
+
+/* Product cards: preserve real product imagery; only the out-of-stock badge is muted. */
+.autotax-page-enter[data-route="/app/pos"] .grid.content-start > div[class~="bg-white"] {
+  background: #ffffff !important;
+  border-color: #e2e8f0 !important;
+  box-shadow: 0 4px 14px rgba(15,23,42,.05) !important;
+}
+
+.autotax-page-enter[data-route="/app/pos"] .grid.content-start > div[class~="bg-white"]:not(.grayscale) {
+  opacity: 1 !important;
+  filter: none !important;
+}
+
+/* Desktop: fixed two-pane POS. The cart must never be pushed outside the viewport. */
+@media (min-width: 1024px) {
+  .autotax-page-enter[data-route="/app/pos"] {
+    height: calc(100dvh - 122px) !important;
+    min-height: 620px !important;
+  }
+
+  .autotax-page-enter[data-route="/app/pos"] > div {
+    display: flex !important;
+    flex-direction: row !important;
+    height: 100% !important;
+    max-height: 100% !important;
+    overflow: hidden !important;
+  }
+
+  .autotax-page-enter[data-route="/app/pos"] > div > .flex-1 {
+    flex: 1 1 auto !important;
+    min-width: 0 !important;
+    height: 100% !important;
+    overflow: hidden !important;
+  }
+
+  .autotax-page-enter[data-route="/app/pos"] > div > .w-full {
+    width: 420px !important;
+    min-width: 360px !important;
+    max-width: 420px !important;
+    height: 100% !important;
+    flex: 0 0 420px !important;
+    background: #ffffff !important;
+    border-left: 1px solid #e2e8f0 !important;
+  }
+
+  .autotax-page-enter[data-route="/app/pos"] .grid.content-start {
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    min-width: 0 !important;
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+  }
+}
+
+@media (min-width: 1280px) {
+  .autotax-page-enter[data-route="/app/pos"] .grid.content-start {
+    grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+  }
+}
+
+@media (min-width: 1536px) {
+  .autotax-page-enter[data-route="/app/pos"] .grid.content-start {
+    grid-template-columns: repeat(5, minmax(0, 1fr)) !important;
+  }
+}
+
+/* Tablet/mobile: keep controls readable and product cards touch-sized. */
+@media (max-width: 1023px) {
+  .autotax-page-enter[data-route="/app/pos"] {
+    height: auto !important;
+    min-height: 0 !important;
+  }
+
+  .autotax-page-enter[data-route="/app/pos"] > div {
+    display: flex !important;
+    flex-direction: column !important;
+    height: auto !important;
+    min-height: 0 !important;
+    overflow: visible !important;
+    border-radius: 16px !important;
+  }
+
+  .autotax-page-enter[data-route="/app/pos"] > div > .flex-1 {
+    height: auto !important;
+    min-height: 0 !important;
+    overflow: visible !important;
+  }
+
+  .autotax-page-enter[data-route="/app/pos"] > div > .w-full {
+    width: 100% !important;
+    height: auto !important;
+    min-height: 0 !important;
+    border-left: 0 !important;
+    border-top: 1px solid #e2e8f0 !important;
+    background: #ffffff !important;
+  }
+
+  .autotax-page-enter[data-route="/app/pos"] .grid.content-start {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 10px !important;
+    padding: 10px !important;
+    overflow: visible !important;
+  }
+
+  .autotax-page-enter[data-route="/app/pos"] .grid.content-start > div {
+    min-width: 0 !important;
+    padding: 9px !important;
+    border-radius: 14px !important;
+  }
+
+  .autotax-page-enter[data-route="/app/pos"] .grid.content-start > div .text-lg {
+    font-size: 1rem !important;
+    line-height: 1.25rem !important;
+  }
+
+  .autotax-page-enter[data-route="/app/pos"] > div > .flex-1 > .no-scrollbar {
+    padding: 10px 10px 6px !important;
+    gap: 7px !important;
+  }
+
+  .autotax-page-enter[data-route="/app/pos"] > div > .flex-1 > .no-scrollbar > button {
+    padding: 8px 12px !important;
+    font-size: 12px !important;
+  }
+
+  /* Keep the primary checkout actions visible and tappable above the app bottom nav.
+     !important is intentional because older route/theme layers also target this block. */
+  .autotax-page-enter[data-route="/app/pos"] .pb-safe {
+    padding-bottom: calc(12rem + env(safe-area-inset-bottom)) !important;
+  }
+
+  .autotax-page-enter[data-route="/app/pos"] .pb-safe > .px-4.pb-4.grid {
+    position: fixed !important;
+    z-index: 45 !important;
+    left: 10px !important;
+    right: 10px !important;
+    bottom: calc(82px + env(safe-area-inset-bottom)) !important;
+    width: auto !important;
+    margin: 0 !important;
+    padding: 8px !important;
+    border: 1px solid rgba(226,232,240,.96) !important;
+    border-radius: 18px !important;
+    background: rgba(255,255,255,.98) !important;
+    box-shadow: 0 16px 38px rgba(15,23,42,.16) !important;
+    backdrop-filter: blur(14px) !important;
+  }
+
+  .autotax-page-enter[data-route="/app/pos"] .pb-safe > .px-4.pb-4.grid > button {
+    min-height: 58px !important;
+  }
+}
+
+@media (max-width: 639px) {
+  .autotax-page-enter[data-route="/app/pos"] > div > .flex-1 > .sticky.top-0 {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 8px !important;
+    padding: 10px !important;
+  }
+
+  .autotax-page-enter[data-route="/app/pos"] > div > .flex-1 > .sticky.top-0 > .relative {
+    grid-column: 1 / -1 !important;
+    width: 100% !important;
+    max-width: none !important;
+    min-width: 0 !important;
+  }
+
+  .autotax-page-enter[data-route="/app/pos"] > div > .flex-1 > .sticky.top-0 > button {
+    width: 100% !important;
+    min-height: 42px !important;
+    justify-content: center !important;
+  }
+
+  .autotax-page-enter[data-route="/app/pos"] .grid.content-start {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+
+  .autotax-page-enter[data-route="/app/pos"] .pb-safe > .px-4.pb-4.grid {
+    left: 8px !important;
+    right: 8px !important;
+    bottom: calc(72px + env(safe-area-inset-bottom)) !important;
+    gap: 8px !important;
+    border-radius: 16px !important;
+  }
+}

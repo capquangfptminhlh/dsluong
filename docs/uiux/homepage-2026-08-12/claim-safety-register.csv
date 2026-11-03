@@ -1,0 +1,13 @@
+current_claim,status,replacement
+"10.000+ hộ kinh doanh tin dùng","UNVERIFIED_REMOVE","No customer-count claim"
+"95B+ doanh thu được xử lý","UNVERIFIED_REMOVE","No processed-revenue claim"
+"99.9% độ chính xác dữ liệu","UNVERIFIED_REMOVE","Explain deterministic controls without percentage"
+"Hỗ trợ 24/7","UNVERIFIED_REMOVE","Link to product/help only when source exists"
+"Miễn phí 7 ngày / không cần thẻ","UNVERIFIED_REMOVE","Use neutral CTA: Tạo tài khoản"
+"Tự động tính thuế / tính đúng tính đủ","UNSAFE_REMOVE","Kiểm soát dữ liệu thuế; yêu cầu rule context where needed"
+"Xuất tờ khai 01/CNKD sẵn sàng nộp","UNSAFE_REMOVE","No official-filing promise; old endpoint is fail-closed"
+"Cảnh báo sắp vượt ngưỡng thuế","UNVERIFIED_REMOVE","Use generic control alerts only when backed by configured rules"
+"Bán hàng, đơn hàng, kho, khách hàng","VERIFIED_KEEP","Use exact plain-language module names"
+"Thu chi & công nợ","VERIFIED_KEEP","Use exact product module names"
+"Kiểm soát thuế fail-closed khi thiếu ngữ cảnh","VERIFIED_KEEP","Explain as safety behavior, not legal conclusion"
+"Mobile/PWA notifications","VERIFIED_KEEP","Describe as app/mobile capability without background-push overclaim"

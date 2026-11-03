@@ -1,0 +1,70 @@
+{
+  "id": "/app",
+  "name": "AutoTax Business Control",
+  "short_name": "AutoTax",
+  "description": "Quản lý bán hàng, kho, tài chính và kiểm soát thuế trong một ứng dụng.",
+  "start_url": "/app",
+  "scope": "/",
+  "display": "standalone",
+  "display_override": ["standalone", "minimal-ui"],
+  "background_color": "#07111f",
+  "theme_color": "#0f172a",
+  "lang": "vi-VN",
+  "dir": "ltr",
+  "orientation": "any",
+  "categories": ["business", "productivity", "finance"],
+  "prefer_related_applications": false,
+  "launch_handler": {
+    "client_mode": "navigate-existing"
+  },
+  "icons": [
+    {
+      "src": "/autotax-pwa-v3.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "/autotax-pwa-maskable-v3.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/autotax-logo.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "monochrome"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Bán hàng",
+      "short_name": "POS",
+      "description": "Mở màn hình bán hàng",
+      "url": "/app/pos",
+      "icons": [{ "src": "/autotax-pwa-v3.svg", "sizes": "any", "type": "image/svg+xml" }]
+    },
+    {
+      "name": "Đơn hàng",
+      "short_name": "Đơn hàng",
+      "description": "Xem đơn bán hàng",
+      "url": "/app/pos/orders",
+      "icons": [{ "src": "/autotax-pwa-v3.svg", "sizes": "any", "type": "image/svg+xml" }]
+    },
+    {
+      "name": "Sản phẩm",
+      "short_name": "Sản phẩm",
+      "description": "Quản lý sản phẩm và tồn kho",
+      "url": "/app/products",
+      "icons": [{ "src": "/autotax-pwa-v3.svg", "sizes": "any", "type": "image/svg+xml" }]
+    },
+    {
+      "name": "Khách hàng",
+      "short_name": "Khách hàng",
+      "description": "Mở danh sách khách hàng",
+      "url": "/app/customers",
+      "icons": [{ "src": "/autotax-pwa-v3.svg", "sizes": "any", "type": "image/svg+xml" }]
+    }
+  ]
+}

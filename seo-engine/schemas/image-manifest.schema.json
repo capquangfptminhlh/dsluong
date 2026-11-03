@@ -1,0 +1,25 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "properties": {
+    "imageId": { "type": "string" },
+    "purpose": { "type": "string" },
+    "aspectRatio": { "type": "string" },
+    "formats": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "format": { "type": "string" },
+          "width": { "type": "number" },
+          "height": { "type": "number" },
+          "path": { "type": "string" },
+          "hash": { "type": "string" }
+        }
+      }
+    },
+    "altText": { "type": "string" },
+    "overlayText": { "type": "string" }
+  },
+  "required": ["imageId", "purpose", "formats"]
+}

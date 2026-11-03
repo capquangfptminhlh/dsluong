@@ -1,0 +1,315 @@
+/* AutoTax mobile dark reference theme.
+   Presentation-only; loaded after existing layout/mobile fixes. */
+@media (max-width: 1023px) {
+  .autotax-shell {
+    --atm-bg: #080c11;
+    --atm-panel: #10161d;
+    --atm-panel-2: #141b23;
+    --atm-line: #222b35;
+    --atm-text: #f3f5f7;
+    --atm-muted: #98a4af;
+    --atm-accent: #f26722;
+    --atm-accent-2: #ff7a32;
+    background: var(--atm-bg) !important;
+    color: var(--atm-text) !important;
+  }
+
+  .autotax-shell > main,
+  .autotax-workspace,
+  .autotax-mobile-content {
+    background: var(--atm-bg) !important;
+    color: var(--atm-text) !important;
+  }
+
+  .autotax-workspace {
+    background-image: radial-gradient(circle at 50% -15%, rgba(242,103,34,.09), transparent 260px) !important;
+  }
+
+  .autotax-header {
+    background: rgba(8,12,17,.96) !important;
+    border-bottom: 1px solid #1d2630 !important;
+    box-shadow: none !important;
+    backdrop-filter: blur(16px) !important;
+  }
+
+  .autotax-header .text-slate-950,
+  .autotax-header .text-slate-900,
+  .autotax-header .text-slate-800,
+  .autotax-header .text-slate-700 { color: #eef1f4 !important; }
+  .autotax-header .text-slate-600 { color: #bdc6ce !important; }
+  .autotax-header .text-slate-500,
+  .autotax-header .text-slate-400 { color: #9ba6b1 !important; }
+
+  .autotax-header .icon-btn,
+  .autotax-notification-bell {
+    border: 1px solid transparent !important;
+    color: #a8b2bc !important;
+    background: transparent !important;
+    border-radius: 10px !important;
+  }
+  .autotax-header .icon-btn:active,
+  .autotax-notification-bell:active {
+    background: #151c24 !important;
+    border-color: #252f39 !important;
+    color: #fff !important;
+  }
+  .autotax-notification-bell.is-enabled { color: var(--atm-accent-2) !important; background: rgba(242,103,34,.09) !important; }
+  .autotax-notification-dot { border-color: #080c11 !important; background: #f26722 !important; }
+  .autotax-avatar { background: linear-gradient(145deg,#323c47,#151b22) !important; border: 1px solid #36414d; color: #fff !important; box-shadow: none !important; }
+
+  .autotax-global-search {
+    background: #10161d !important;
+    border-color: #222b35 !important;
+    color: #e4e9ed !important;
+    box-shadow: none !important;
+  }
+
+  /* Drawer/sidebar */
+  .autotax-shell > aside {
+    background: #090e14 !important;
+    border-right: 1px solid #202933 !important;
+    box-shadow: 18px 0 50px rgba(0,0,0,.36) !important;
+  }
+  .autotax-shell > aside .sidebar-item {
+    border-radius: 8px !important;
+    color: #a6b0ba !important;
+    font-weight: 520 !important;
+  }
+  .autotax-shell > aside .sidebar-item-active {
+    background: rgba(242,103,34,.11) !important;
+    color: #ff8a4d !important;
+    box-shadow: inset 2px 0 0 #f26722 !important;
+  }
+  .autotax-shell > aside .sidebar-child { color: #99a4af !important; font-weight: 500 !important; }
+  .autotax-shell > aside .sidebar-child-active { background: rgba(242,103,34,.08) !important; color: #ff955d !important; }
+  .autotax-shell > aside select { background: #111820 !important; border-color: #26313c !important; color: #e0e5e9 !important; }
+
+  /* Global app typography */
+  .autotax-page-enter {
+    color: var(--atm-text) !important;
+    font-family: Inter, "SF Pro Text", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif !important;
+  }
+  .autotax-page-enter::before { display: none !important; }
+  .autotax-page-enter .page-title,
+  .autotax-page-enter h1,
+  .autotax-page-enter h2,
+  .autotax-page-enter h3,
+  .autotax-page-enter h4,
+  .autotax-page-enter .text-slate-950,
+  .autotax-page-enter .text-slate-900,
+  .autotax-page-enter .text-slate-800,
+  .autotax-page-enter .text-slate-700 { color: #edf1f4 !important; }
+  .autotax-page-enter .text-slate-600 { color: #bdc6ce !important; }
+  .autotax-page-enter .text-slate-500 { color: #a5afb9 !important; }
+  .autotax-page-enter .text-slate-400 { color: #929eaa !important; }
+  .autotax-page-enter .text-black { color: #f5f7f9 !important; }
+  .autotax-page-enter .page-title { font-weight: 650 !important; letter-spacing: -.025em !important; }
+  .autotax-page-enter .page-subtitle { color: #a5afb9 !important; }
+
+  /* Every legacy white/light surface must become a dark surface. This closes
+     the white tbody + light-text failure that made Inventory unreadable. */
+  .autotax-page-enter .bg-white,
+  .autotax-page-enter tbody.bg-white,
+  .autotax-page-enter tr.bg-white,
+  .autotax-page-enter td.bg-white,
+  .autotax-page-enter th.bg-white {
+    background-color: var(--atm-panel) !important;
+  }
+  .autotax-page-enter .bg-slate-50,
+  .autotax-page-enter .bg-slate-50\/50,
+  .autotax-page-enter .bg-slate-100 { background: #0d1319 !important; border-color: #202933 !important; }
+  .autotax-page-enter .bg-slate-200 { background: #202933 !important; }
+  .autotax-page-enter .bg-slate-800 { background: #151c24 !important; }
+  .autotax-page-enter .bg-slate-900 { background: #0b1016 !important; }
+
+  /* Cards/panels */
+  .autotax-page-enter .surface,
+  .autotax-page-enter .surface-muted,
+  .autotax-page-enter .metric-card,
+  .autotax-page-enter .table-shell,
+  .autotax-page-enter .bg-white.rounded-xl,
+  .autotax-page-enter .bg-white.rounded-2xl,
+  .autotax-page-enter .bg-white.rounded-lg {
+    background: var(--atm-panel) !important;
+    border-color: var(--atm-line) !important;
+    box-shadow: none !important;
+  }
+  .autotax-page-enter .surface,
+  .autotax-page-enter .metric-card,
+  .autotax-page-enter .table-shell { border-radius: 11px !important; }
+
+  .autotax-page-enter .metric-card {
+    min-height: 116px !important;
+    padding: 13px !important;
+  }
+  .autotax-page-enter .metric-label {
+    color: #9ba6b1 !important;
+    font-size: 9px !important;
+    font-weight: 650 !important;
+    letter-spacing: .055em !important;
+  }
+  .autotax-page-enter .metric-value {
+    color: #f6f7f8 !important;
+    font-size: 1.36rem !important;
+    font-weight: 650 !important;
+    letter-spacing: -.025em !important;
+  }
+  .autotax-page-enter .dashboard-metric-note { color: #929eaa !important; }
+  .autotax-page-enter .dashboard-metrics .metric-card::after { display: none !important; }
+  .autotax-page-enter .dashboard-metrics .metric-card > .flex > div[class*="bg-slate-"] {
+    background: rgba(242,103,34,.10) !important;
+    color: #ff8a4d !important;
+    border: 1px solid rgba(242,103,34,.12) !important;
+  }
+
+  /* Inputs/forms */
+  .autotax-page-enter input,
+  .autotax-page-enter select,
+  .autotax-page-enter textarea {
+    background: #0d1319 !important;
+    border-color: #34404c !important;
+    color: #eef2f5 !important;
+    box-shadow: none !important;
+    border-radius: 9px !important;
+  }
+  .autotax-page-enter input::placeholder,
+  .autotax-page-enter textarea::placeholder { color: #8f9aa5 !important; opacity: 1 !important; }
+  .autotax-page-enter select option { background: #11171e !important; color: #eef2f5 !important; }
+  .autotax-page-enter input:focus,
+  .autotax-page-enter select:focus,
+  .autotax-page-enter textarea:focus {
+    border-color: #f26722 !important;
+    box-shadow: 0 0 0 3px rgba(242,103,34,.11) !important;
+  }
+
+  /* Actions */
+  .autotax-page-enter .btn-primary,
+  .autotax-page-enter button[class*="bg-blue-"],
+  .autotax-page-enter button[class*="bg-indigo-"],
+  .autotax-page-enter button[class*="bg-purple-"],
+  .autotax-page-enter button[class*="bg-violet-"] {
+    background: #f26722 !important;
+    background-image: none !important;
+    border-color: #f26722 !important;
+    color: #fff !important;
+    box-shadow: none !important;
+    border-radius: 9px !important;
+  }
+  .autotax-page-enter .btn-secondary {
+    background: #151c24 !important;
+    border-color: #34404c !important;
+    color: #e0e6eb !important;
+    box-shadow: none !important;
+    border-radius: 9px !important;
+  }
+  .autotax-page-enter button[class*="bg-blue-50"],
+  .autotax-page-enter button[class*="bg-indigo-50"],
+  .autotax-page-enter button[class*="bg-purple-50"] {
+    background: rgba(242,103,34,.09) !important;
+    border-color: rgba(242,103,34,.22) !important;
+    color: #ff945b !important;
+  }
+  .autotax-page-enter a.text-blue-600,
+  .autotax-page-enter .text-blue-600,
+  .autotax-page-enter .text-blue-700 { color: #ff8a4d !important; }
+
+  /* Semantic colors keep meaning and readable contrast. */
+  .autotax-page-enter .bg-green-50,
+  .autotax-page-enter .bg-green-100,
+  .autotax-page-enter .bg-emerald-50,
+  .autotax-page-enter .bg-emerald-100 { background: rgba(34,197,94,.13) !important; }
+  .autotax-page-enter .text-green-600,
+  .autotax-page-enter .text-green-700,
+  .autotax-page-enter .text-emerald-600,
+  .autotax-page-enter .text-emerald-700 { color: #4ade80 !important; }
+  .autotax-page-enter .bg-red-50,
+  .autotax-page-enter .bg-red-100,
+  .autotax-page-enter .bg-rose-50,
+  .autotax-page-enter .bg-rose-100 { background: rgba(239,68,68,.13) !important; }
+  .autotax-page-enter .text-red-600,
+  .autotax-page-enter .text-red-700,
+  .autotax-page-enter .text-rose-600,
+  .autotax-page-enter .text-rose-700 { color: #fb7185 !important; }
+  .autotax-page-enter .bg-yellow-50,
+  .autotax-page-enter .bg-yellow-100,
+  .autotax-page-enter .bg-amber-50,
+  .autotax-page-enter .bg-amber-100 { background: rgba(245,158,11,.13) !important; }
+  .autotax-page-enter .text-yellow-600,
+  .autotax-page-enter .text-yellow-700,
+  .autotax-page-enter .text-amber-600,
+  .autotax-page-enter .text-amber-700 { color: #fbbf24 !important; }
+  .autotax-page-enter .bg-blue-50,
+  .autotax-page-enter .bg-blue-100 { background: rgba(59,130,246,.13) !important; }
+  .autotax-page-enter .bg-cyan-50,
+  .autotax-page-enter .bg-cyan-100 { background: rgba(34,211,238,.12) !important; }
+
+  /* Tables/lists */
+  .autotax-page-enter table,
+  .autotax-page-enter table thead,
+  .autotax-page-enter thead { background: transparent !important; }
+  .autotax-page-enter table thead { background: #0d1319 !important; }
+  .autotax-page-enter table th { color: #9aa5b0 !important; border-color: #2a3540 !important; font-weight: 600 !important; }
+  .autotax-page-enter table td { color: #d4dae0 !important; border-color: #27313b !important; }
+  .autotax-page-enter table tbody,
+  .autotax-page-enter table tbody tr,
+  .autotax-page-enter table tbody tr:nth-child(even) { background: var(--atm-panel) !important; }
+  .autotax-page-enter table tbody tr:hover { background: #151c24 !important; }
+  .autotax-page-enter .divide-slate-100 > :not([hidden]) ~ :not([hidden]),
+  .autotax-page-enter .border-slate-100,
+  .autotax-page-enter .border-slate-200 { border-color: #2a3540 !important; }
+
+  /* Dashboard chart */
+  .autotax-page-enter .bg-slate-900\/90 { background: linear-gradient(180deg,#ff8b4a,#f26722) !important; }
+  .autotax-page-enter div[class*="bg-[#3b82f6]"] { background: linear-gradient(180deg,#ff8b4a,#f26722)!important; box-shadow:none!important; }
+
+  /* Bottom navigation becomes a true dark app bar. */
+  .autotax-mobile-bottom-nav {
+    right: 8px !important;
+    left: 8px !important;
+    bottom: max(8px, env(safe-area-inset-bottom)) !important;
+    height: 62px !important;
+    border: 1px solid #303b46 !important;
+    border-radius: 16px !important;
+    background: rgba(14,20,26,.98) !important;
+    box-shadow: 0 16px 40px rgba(0,0,0,.42) !important;
+    backdrop-filter: blur(18px) !important;
+  }
+  .autotax-mobile-nav-item { color: #9aa5b0 !important; font-weight: 550 !important; }
+  .autotax-mobile-nav-item.is-active {
+    color: #ff8a4d !important;
+    background: linear-gradient(180deg,rgba(242,103,34,.12),transparent) !important;
+  }
+  .autotax-mobile-nav-item.is-active svg { filter: drop-shadow(0 3px 8px rgba(242,103,34,.28)) !important; }
+
+  /* Mobile fixed action panel from legacy sidebar. */
+  .autotax-shell .pb-safe > .px-4.pb-4.grid {
+    background: rgba(14,20,26,.98) !important;
+    border-color: #303b46 !important;
+    box-shadow: 0 16px 40px rgba(0,0,0,.40) !important;
+  }
+
+  /* Toasts/loaders/modals */
+  .autotax-route-loader-overlay { background: rgba(8,12,17,.80) !important; }
+  .autotax-loader-title { color: #f3f5f7 !important; }
+  .autotax-loader-subtitle { color: #98a4af !important; }
+  .autotax-toast { background: rgba(17,23,30,.98) !important; border-color: #34404c !important; color: #eef2f5 !important; box-shadow: 0 18px 50px rgba(0,0,0,.40) !important; }
+  .autotax-toast-icon { background: #1b232c !important; }
+
+  .autotax-shell [role="dialog"],
+  .autotax-shell .fixed.inset-0 > .bg-white,
+  .autotax-shell .fixed.inset-0 .bg-white.rounded-xl,
+  .autotax-shell .fixed.inset-0 .bg-white.rounded-2xl {
+    background: #11171e !important;
+    border-color: #34404c !important;
+    color: #eef2f5 !important;
+  }
+}
+
+@media (max-width: 639px) {
+  .autotax-mobile-content { padding: 10px 10px calc(102px + env(safe-area-inset-bottom)) !important; }
+  .autotax-page-enter .page-header { margin-bottom: 13px !important; }
+  .autotax-page-enter .page-title { font-size: 1.18rem !important; line-height: 1.25 !important; }
+  .autotax-page-enter .page-subtitle { font-size: 11.5px !important; line-height: 1.45 !important; }
+  .autotax-page-enter .dashboard-metrics { gap: 9px !important; }
+  .autotax-page-enter .surface { padding-left: 14px; padding-right: 14px; }
+}

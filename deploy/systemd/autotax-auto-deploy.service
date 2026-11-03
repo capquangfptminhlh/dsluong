@@ -1,0 +1,17 @@
+[Unit]
+Description=AutoTax VPS-native auto deploy
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+EnvironmentFile=-/etc/autotax-auto-deploy.env
+ExecStart=/usr/local/bin/autotax-auto-deploy
+User=root
+Group=root
+Nice=10
+IOSchedulingClass=best-effort
+IOSchedulingPriority=6
+
+[Install]
+WantedBy=multi-user.target

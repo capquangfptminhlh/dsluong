@@ -1,0 +1,3030 @@
+[
+  {
+    "topicId": "pilot-store-closing-checklist-001",
+    "siteId": "autotax-blogger-pilot",
+    "title": "Checklist kiểm tra cuối ca cho cửa hàng nhỏ",
+    "intent": "cash-control-checklist",
+    "cluster": "store-closing-operations",
+    "sourceFactIds": [
+      "fact_001"
+    ],
+    "contentVersion": "v1",
+    "status": "COMPLETED",
+    "channel": "main"
+  },
+  {
+    "topicId": "pilot-e-invoice-guide-001",
+    "siteId": "autotax-blogger-pilot",
+    "title": "Hướng dẫn xuất hóa đơn điện tử từ máy tính tiền cho Hộ kinh doanh",
+    "intent": "e-invoice-guide",
+    "cluster": "tax-reporting",
+    "sourceFactIds": [
+      "fact_003"
+    ],
+    "contentVersion": "v1",
+    "status": "HOLD",
+    "channel": "main"
+  },
+  {
+    "topicId": "pilot-revenue-monitoring-002",
+    "siteId": "autotax-blogger-pilot",
+    "title": "Hướng dẫn theo dõi doanh thu để quản lý ngưỡng chịu thuế",
+    "intent": "revenue-tax-monitoring-guide",
+    "cluster": "revenue-monitoring",
+    "sourceFactIds": [
+      "fact_001"
+    ],
+    "contentVersion": "v1",
+    "status": "COMPLETED",
+    "channel": "main"
+  },
+  {
+    "topicId": "auto-nguong-500-trieu-001",
+    "siteId": "autotax-blogger-pilot",
+    "title": "Checklist tự kiểm tra ngưỡng doanh thu chịu thuế cho chủ tiệm nhỏ",
+    "intent": "tax-threshold-self-check-checklist",
+    "cluster": "tax-reporting",
+    "sourceFactIds": [
+      "fact_001"
+    ],
+    "contentVersion": "v1",
+    "status": "COMPLETED",
+    "channel": "main"
+  },
+  {
+    "topicId": "auto-bo-thue-khoan-ke-khai-001",
+    "siteId": "autotax-blogger-pilot",
+    "title": "Checklist chuyển từ thuế khoán sang kê khai cho chủ tiệm nhỏ",
+    "intent": "lump-sum-to-declaration-transition-checklist",
+    "cluster": "business-overview",
+    "sourceFactIds": [
+      "fact_004"
+    ],
+    "contentVersion": "v1",
+    "status": "COMPLETED",
+    "channel": "main"
+  },
+  {
+    "topicId": "auto-hoa-don-dien-tu-mtt-001",
+    "siteId": "autotax-blogger-pilot",
+    "title": "Checklist chuẩn bị hóa đơn điện tử khi dùng máy tính tiền",
+    "intent": "e-invoice-cash-register-preparation-checklist",
+    "cluster": "e-invoice",
+    "sourceFactIds": [
+      "fact_003"
+    ],
+    "contentVersion": "v1",
+    "status": "PENDING",
+    "channel": "main"
+  },
+  {
+    "topicId": "bank-doanh-thu-0-dong",
+    "siteId": "autotax-blogger-pilot",
+    "title": "Doanh thu 0 đồng vẫn phải nộp tờ khai: điều nhiều chủ tiệm chưa biết",
+    "intent": "zero-revenue-still-must-file",
+    "cluster": "tax-reporting",
+    "sourceFactIds": [
+      "fact_004"
+    ],
+    "contentVersion": "v1",
+    "status": "PENDING",
+    "channel": "main"
+  },
+  {
+    "topicId": "bank-co-bi-truy-thu-nam-cu",
+    "siteId": "autotax-blogger-pilot",
+    "title": "Chuyển sang kê khai rồi có bị truy thu các năm trước không",
+    "intent": "retroactive-audit-fear",
+    "cluster": "tax-reporting",
+    "sourceFactIds": [
+      "fact_004"
+    ],
+    "contentVersion": "v1",
+    "status": "PENDING",
+    "channel": "main"
+  },
+  {
+    "topicId": "bank-tin-don-facebook",
+    "siteId": "autotax-blogger-pilot",
+    "title": "Những tin đồn về thuế hộ kinh doanh đang lan trên mạng và sự thật",
+    "intent": "debunk-social-media-rumors",
+    "cluster": "business-overview",
+    "sourceFactIds": [
+      "fact_004"
+    ],
+    "contentVersion": "v1",
+    "status": "PENDING",
+    "channel": "main"
+  },
+  {
+    "topicId": "bank-co-phai-dong-cua",
+    "siteId": "autotax-blogger-pilot",
+    "title": "Không kham nổi sổ sách thì có phải đóng cửa hàng không",
+    "intent": "must-i-close-my-shop",
+    "cluster": "business-overview",
+    "sourceFactIds": [
+      "fact_004"
+    ],
+    "contentVersion": "v1",
+    "status": "PENDING",
+    "channel": "main"
+  },
+  {
+    "topicId": "bank-ban-nho-le-co-phai-ke-khai",
+    "siteId": "autotax-blogger-pilot",
+    "title": "Bán lặt vặt tại nhà có phải kê khai thuế như cửa hàng lớn không",
+    "intent": "micro-seller-obligations",
+    "cluster": "tax-reporting",
+    "sourceFactIds": [
+      "fact_004"
+    ],
+    "contentVersion": "v1",
+    "status": "PENDING",
+    "channel": "main"
+  },
+  {
+    "topicId": "bank-khai-cao-hon-truoc-day",
+    "siteId": "autotax-blogger-pilot",
+    "title": "Khai doanh thu cao hơn mức khoán cũ có bị để ý không",
+    "intent": "declaring-higher-than-quota",
+    "cluster": "revenue-monitoring",
+    "sourceFactIds": [
+      "fact_004"
+    ],
+    "contentVersion": "v1",
+    "status": "PENDING",
+    "channel": "main"
+  },
+  {
+    "topicId": "bank-quen-nop-to-khai",
+    "siteId": "autotax-blogger-pilot",
+    "title": "Lỡ quên nộp tờ khai đúng hạn thì xử lý thế nào",
+    "intent": "missed-filing-deadline",
+    "cluster": "tax-reporting",
+    "sourceFactIds": [
+      "fact_004"
+    ],
+    "contentVersion": "v1",
+    "status": "PENDING",
+    "channel": "main"
+  },
+  {
+    "topicId": "bank-bi-goi-giai-trinh",
+    "siteId": "autotax-blogger-pilot",
+    "title": "Cơ quan thuế mời lên giải trình số liệu: mang theo những gì",
+    "intent": "summoned-for-explanation",
+    "cluster": "tax-reporting",
+    "sourceFactIds": [
+      "fact_004"
+    ],
+    "contentVersion": "v1",
+    "status": "PENDING",
+    "channel": "main"
+  },
+  {
+    "topicId": "bank-mat-so-sach-chung-tu",
+    "siteId": "autotax-blogger-pilot",
+    "title": "Mất sổ sách và chứng từ bán hàng thì khôi phục ra sao",
+    "intent": "lost-records-recovery",
+    "cluster": "tax-reporting",
+    "sourceFactIds": [
+      "fact_007"
+    ],
+    "contentVersion": "v1",
+    "status": "PENDING",
+    "channel": "main"
+  },
+  {
+    "topicId": "bank-khong-co-hoa-don-dau-vao",
+    "siteId": "autotax-blogger-pilot",
+    "title": "Nhập hàng chợ đầu mối không có hóa đơn thì ghi sổ thế nào",
+    "intent": "no-input-invoice-bookkeeping",
+    "cluster": "inventory-management",
+    "sourceFactIds": [
+      "fact_006"
+    ],
+    "contentVersion": "v1",
+    "status": "PENDING",
+    "channel": "main"
+  },
+  {
+    "topicId": "bank-khai-sai-so-lieu",
+    "siteId": "autotax-blogger-pilot",
+    "title": "Phát hiện đã khai sai số liệu kỳ trước thì sửa bằng cách nào",
+    "intent": "correcting-past-declaration",
+    "cluster": "tax-reporting",
+    "sourceFactIds": [
+      "fact_004"
+    ],
+    "contentVersion": "v1",
+    "status": "PENDING",
+    "channel": "main"
+  },
+  {
+    "topicId": "bank-doi-nguoi-lam-so-sach",
+    "siteId": "autotax-blogger-pilot",
+    "title": "Người giữ sổ sách nghỉ đột ngột, chủ tiệm tiếp quản từ đâu",
+    "intent": "bookkeeper-quit-handover",
+    "cluster": "tax-reporting",
+    "sourceFactIds": [
+      "fact_007"
+    ],
+    "contentVersion": "v1",
+    "status": "PENDING",
+    "channel": "main"
+  },
+  {
+    "topicId": "bank-quan-cafe-ke-khai",
+    "siteId": "autotax-blogger-pilot",
+    "title": "Chủ quán cà phê ghi sổ và kê khai thế nào cho gọn",
+    "intent": "cafe-owner-bookkeeping",
+    "cluster": "pos-operations",
+    "sourceFactIds": [
+      "fact_005"
+    ],
+    "contentVersion": "v1",
+    "status": "PENDING",
+    "channel": "main"
+  },
+  {
+    "topicId": "bank-tap-hoa-ke-khai",
+    "siteId": "autotax-blogger-pilot",
+    "title": "Tiệm tạp hóa hàng trăm mặt hàng thì quản lý sổ sách ra sao",
+    "intent": "grocery-store-bookkeeping",
+    "cluster": "product-management",
+    "sourceFactIds": [
+      "fact_006"
+    ],
+    "contentVersion": "v1",
+    "status": "PENDING",
+    "channel": "main"
+  },
+  {
+    "topicId": "bank-quan-an-ke-khai",
+    "siteId": "autotax-blogger-pilot",
+    "title": "Quán ăn bán tại chỗ và mang về ghi nhận doanh thu thế nào",
+    "intent": "restaurant-revenue-recording",
+    "cluster": "pos-operations",
+    "sourceFactIds": [
+      "fact_005"
+    ],
+    "contentVersion": "v1",
+    "status": "PENDING",
+    "channel": "main"
+  },
+  {
+    "topicId": "bank-spa-lam-dep-ke-khai",
+    "siteId": "autotax-blogger-pilot",
+    "title": "Spa và tiệm làm đẹp bán liệu trình thì ghi doanh thu khi nào",
+    "intent": "spa-package-revenue-timing",
+    "cluster": "revenue-monitoring",
+    "sourceFactIds": [
+      "fact_005"
+    ],
+    "contentVersion": "v1",
+    "status": "PENDING",
+    "channel": "main"
+  },
+  {
+    "topicId": "bank-nha-nghi-ke-khai",
+    "siteId": "autotax-blogger-pilot",
+    "title": "Nhà nghỉ và homestay theo dõi doanh thu phòng thế nào cho đúng",
+    "intent": "lodging-revenue-tracking",
+    "cluster": "revenue-monitoring",
+    "sourceFactIds": [
+      "fact_005"
+    ],
+    "contentVersion": "v1",
+    "status": "PENDING",
+    "channel": "main"
+  },
+  {
+    "topicId": "bank-pet-shop-ke-khai",
+    "siteId": "autotax-blogger-pilot",
+    "title": "Pet shop vừa bán hàng vừa làm dịch vụ thì tách doanh thu ra sao",
+    "intent": "petshop-mixed-revenue",
+    "cluster": "revenue-monitoring",
+    "sourceFactIds": [
+      "fact_005"
+    ],
+    "contentVersion": "v1",
+    "status": "PENDING",
+    "channel": "main"
+  },
+  {
+    "topicId": "bank-ban-online-ke-khai",
+    "siteId": "autotax-blogger-pilot",
+    "title": "Bán online qua sàn và livestream ghi nhận doanh thu thế nào",
+    "intent": "online-seller-revenue",
+    "cluster": "revenue-monitoring",
+    "sourceFactIds": [
+      "fact_004"
+    ],
+    "contentVersion": "v1",
+    "status": "PENDING",
+    "channel": "main"
+  },
+  {
+    "topicId": "bank-tiem-thuoc-ke-khai",
+    "siteId": "autotax-blogger-pilot",
+    "title": "Tiệm thuốc quản lý hạn dùng và sổ sách cùng lúc thế nào",
+    "intent": "pharmacy-expiry-and-books",
+    "cluster": "inventory-management",
+    "sourceFactIds": [
+      "fact_006"
+    ],
+    "contentVersion": "v1",
+    "status": "PENDING",
+    "channel": "main"
+  },
+  {
+    "topicId": "bank-ghi-so-ngay-tai-quay",
+    "siteId": "autotax-blogger-pilot",
+    "title": "Ghi sổ ngay tại quầy: quy trình một đơn hàng từ đầu đến cuối",
+    "intent": "at-counter-recording-workflow",
+    "cluster": "pos-operations",
+    "sourceFactIds": [
+      "fact_005"
+    ],
+    "contentVersion": "v1",
+    "status": "PENDING",
+    "channel": "main"
+  },
+  {
+    "topicId": "bank-mot-ngay-sau-bo-khoan",
+    "siteId": "autotax-blogger-pilot",
+    "title": "Một ngày của chủ tiệm sau khi bỏ thuế khoán",
+    "intent": "day-in-the-life-post-quota",
+    "cluster": "business-overview",
+    "sourceFactIds": [
+      "fact_004"
+    ],
+    "contentVersion": "v1",
+    "status": "PENDING",
+    "channel": "main"
+  },
+  {
+    "topicId": "bank-chot-ca-lech-tien",
+    "siteId": "autotax-blogger-pilot",
+    "title": "Chốt ca lệch tiền: cách truy ra nguyên nhân trong mười phút",
+    "intent": "shift-variance-investigation",
+    "cluster": "store-closing-operations",
+    "sourceFactIds": [
+      "fact_005"
+    ],
+    "contentVersion": "v1",
+    "status": "PENDING",
+    "channel": "main"
+  },
+  {
+    "topicId": "bank-kiem-ke-khong-dong-cua",
+    "siteId": "autotax-blogger-pilot",
+    "title": "Kiểm kê kho mà không phải đóng cửa hàng",
+    "intent": "stocktake-without-closing",
+    "cluster": "inventory-management",
+    "sourceFactIds": [
+      "fact_006"
+    ],
+    "contentVersion": "v1",
+    "status": "PENDING",
+    "channel": "main"
+  },
+  {
+    "topicId": "bank-giao-quay-cho-nhan-vien",
+    "siteId": "autotax-blogger-pilot",
+    "title": "Giao quầy cho nhân viên mà vẫn kiểm soát được doanh thu",
+    "intent": "delegating-counter-safely",
+    "cluster": "store-closing-operations",
+    "sourceFactIds": [
+      "fact_007"
+    ],
+    "contentVersion": "v1",
+    "status": "PENDING",
+    "channel": "main"
+  },
+  {
+    "topicId": "bank-so-sach-tu-don-hang",
+    "siteId": "autotax-blogger-pilot",
+    "title": "Từ đơn hàng đến sổ sách: dữ liệu chạy qua những bước nào",
+    "intent": "order-to-books-dataflow",
+    "cluster": "tax-reporting",
+    "sourceFactIds": [
+      "fact_005"
+    ],
+    "contentVersion": "v1",
+    "status": "PENDING",
+    "channel": "main"
+  },
+  {
+    "topicId": "bank-thue-ke-toan-hay-tu-lam",
+    "siteId": "autotax-blogger-pilot",
+    "title": "Thuê kế toán dịch vụ hay tự làm bằng phần mềm: chọn thế nào",
+    "intent": "accountant-vs-software",
+    "cluster": "business-overview",
+    "sourceFactIds": [
+      "fact_007"
+    ],
+    "contentVersion": "v1",
+    "status": "PENDING",
+    "channel": "main"
+  },
+  {
+    "topicId": "bank-excel-hay-phan-mem",
+    "siteId": "autotax-blogger-pilot",
+    "title": "Ghi sổ bằng Excel hay dùng phần mềm: đâu là điểm gãy",
+    "intent": "excel-vs-software-breakpoint",
+    "cluster": "product-management",
+    "sourceFactIds": [
+      "fact_007"
+    ],
+    "contentVersion": "v1",
+    "status": "PENDING",
+    "channel": "main"
+  },
+  {
+    "topicId": "bank-tieu-chi-chon-phan-mem",
+    "siteId": "autotax-blogger-pilot",
+    "title": "Chủ tiệm nhỏ nên xét những tiêu chí nào khi chọn phần mềm bán hàng",
+    "intent": "pos-selection-criteria",
+    "cluster": "pos-operations",
+    "sourceFactIds": [
+      "fact_007"
+    ],
+    "contentVersion": "v1",
+    "status": "PENDING",
+    "channel": "main"
+  },
+  {
+    "topicId": "bank-chi-phi-chuyen-doi",
+    "siteId": "autotax-blogger-pilot",
+    "title": "Chuyển sang kê khai tốn những khoản gì ngoài tiền phần mềm",
+    "intent": "true-cost-of-transition",
+    "cluster": "business-overview",
+    "sourceFactIds": [
+      "fact_007"
+    ],
+    "contentVersion": "v1",
+    "status": "PENDING",
+    "channel": "main"
+  },
+  {
+    "topicId": "blog-mo-quan-buoi-sang",
+    "siteId": "autotax-blogger-pilot",
+    "channel": "blogger",
+    "title": "Checklist mở quán buổi sáng cho cửa hàng nhỏ",
+    "intent": "morning-opening-checklist",
+    "cluster": "pos-operations",
+    "sourceFactIds": [
+      "fact_005"
+    ],
+    "contentVersion": "v1",
+    "status": "PENDING"
+  },
+  {
+    "topicId": "blog-ban-giao-ca-truc",
+    "siteId": "autotax-blogger-pilot",
+    "channel": "blogger",
+    "title": "Checklist bàn giao giữa hai ca trực",
+    "intent": "shift-handover-checklist",
+    "cluster": "store-closing-operations",
+    "sourceFactIds": [
+      "fact_005"
+    ],
+    "contentVersion": "v1",
+    "status": "PENDING"
+  },
+  {
+    "topicId": "blog-dong-quan-cuoi-ngay",
+    "siteId": "autotax-blogger-pilot",
+    "channel": "blogger",
+    "title": "Checklist đóng quán cuối ngày không bỏ sót",
+    "intent": "closing-checklist",
+    "cluster": "store-closing-operations",
+    "sourceFactIds": [
+      "fact_005"
+    ],
+    "contentVersion": "v1",
+    "status": "PENDING"
+  },
+  {
+    "topicId": "blog-ra-soat-cuoi-tuan",
+    "siteId": "autotax-blogger-pilot",
+    "channel": "blogger",
+    "title": "Checklist rà soát sổ sách cuối tuần trong mười lăm phút",
+    "intent": "weekly-review-checklist",
+    "cluster": "tax-reporting",
+    "sourceFactIds": [
+      "fact_005"
+    ],
+    "contentVersion": "v1",
+    "status": "PENDING"
+  },
+  {
+    "topicId": "blog-chot-so-cuoi-thang",
+    "siteId": "autotax-blogger-pilot",
+    "channel": "blogger",
+    "title": "Checklist chốt số cuối tháng trước khi kê khai",
+    "intent": "monthly-closing-checklist",
+    "cluster": "tax-reporting",
+    "sourceFactIds": [
+      "fact_004"
+    ],
+    "contentVersion": "v1",
+    "status": "PENDING"
+  },
+  {
+    "topicId": "blog-chuan-bi-cuoi-quy",
+    "siteId": "autotax-blogger-pilot",
+    "channel": "blogger",
+    "title": "Checklist chuẩn bị hồ sơ cuối quý cho chủ tiệm",
+    "intent": "quarterly-prep-checklist",
+    "cluster": "tax-reporting",
+    "sourceFactIds": [
+      "fact_004"
+    ],
+    "contentVersion": "v1",
+    "status": "PENDING"
+  },
+  {
+    "topicId": "blog-quay-mat-dien",
+    "siteId": "autotax-blogger-pilot",
+    "channel": "blogger",
+    "title": "Checklist xử lý khi quầy mất điện hoặc mất mạng giữa giờ bán",
+    "intent": "power-network-outage-checklist",
+    "cluster": "pos-operations",
+    "sourceFactIds": [
+      "fact_005"
+    ],
+    "contentVersion": "v1",
+    "status": "PENDING"
+  },
+  {
+    "topicId": "blog-may-in-bill-loi",
+    "siteId": "autotax-blogger-pilot",
+    "channel": "blogger",
+    "title": "Checklist xử lý khi máy in hóa đơn ngừng hoạt động",
+    "intent": "printer-failure-checklist",
+    "cluster": "pos-operations",
+    "sourceFactIds": [
+      "fact_005"
+    ],
+    "contentVersion": "v1",
+    "status": "PENDING"
+  },
+  {
+    "topicId": "blog-khach-doi-tra-hang",
+    "siteId": "autotax-blogger-pilot",
+    "channel": "blogger",
+    "title": "Checklist tiếp nhận khách đổi trả hàng cho đúng quy trình",
+    "intent": "returns-handling-checklist",
+    "cluster": "pos-operations",
+    "sourceFactIds": [
+      "fact_005"
+    ],
+    "contentVersion": "v1",
+    "status": "PENDING"
+  },
+  {
+    "topicId": "blog-khach-khieu-nai-hoa-don",
+    "siteId": "autotax-blogger-pilot",
+    "channel": "blogger",
+    "title": "Checklist xử lý khi khách khiếu nại hóa đơn sai",
+    "intent": "invoice-complaint-checklist",
+    "cluster": "e-invoice",
+    "sourceFactIds": [
+      "fact_003"
+    ],
+    "contentVersion": "v1",
+    "status": "PENDING"
+  },
+  {
+    "topicId": "blog-thu-nham-tien-khach",
+    "siteId": "autotax-blogger-pilot",
+    "channel": "blogger",
+    "title": "Checklist xử lý khi thu nhầm tiền của khách",
+    "intent": "wrong-charge-checklist",
+    "cluster": "store-closing-operations",
+    "sourceFactIds": [
+      "fact_005"
+    ],
+    "contentVersion": "v1",
+    "status": "PENDING"
+  },
+  {
+    "topicId": "blog-don-hang-bi-huy-giua-chung",
+    "siteId": "autotax-blogger-pilot",
+    "channel": "blogger",
+    "title": "Checklist xử lý đơn hàng bị hủy khi đã thu tiền",
+    "intent": "cancelled-paid-order-checklist",
+    "cluster": "pos-operations",
+    "sourceFactIds": [
+      "fact_005"
+    ],
+    "contentVersion": "v1",
+    "status": "PENDING"
+  },
+  {
+    "topicId": "blog-nhan-hang-tu-ncc",
+    "siteId": "autotax-blogger-pilot",
+    "channel": "blogger",
+    "title": "Checklist nhận hàng từ nhà cung cấp tại cửa hàng",
+    "intent": "goods-receiving-checklist",
+    "cluster": "inventory-management",
+    "sourceFactIds": [
+      "fact_006"
+    ],
+    "contentVersion": "v1",
+    "status": "PENDING"
+  },
+  {
+    "topicId": "blog-ra-soat-hang-can-han",
+    "siteId": "autotax-blogger-pilot",
+    "channel": "blogger",
+    "title": "Checklist rà soát hàng cận hạn hằng tuần",
+    "intent": "expiry-review-checklist",
+    "cluster": "inventory-management",
+    "sourceFactIds": [
+      "fact_006"
+    ],
+    "contentVersion": "v1",
+    "status": "PENDING"
+  },
+  {
+    "topicId": "blog-kiem-ke-dot-xuat",
+    "siteId": "autotax-blogger-pilot",
+    "channel": "blogger",
+    "title": "Checklist kiểm kê đột xuất một nhóm hàng",
+    "intent": "spot-stocktake-checklist",
+    "cluster": "inventory-management",
+    "sourceFactIds": [
+      "fact_006"
+    ],
+    "contentVersion": "v1",
+    "status": "PENDING"
+  },
+  {
+    "topicId": "blog-xu-ly-hang-hong-vo",
+    "siteId": "autotax-blogger-pilot",
+    "channel": "blogger",
+    "title": "Checklist ghi nhận hàng hỏng vỡ trong ca bán",
+    "intent": "damaged-goods-checklist",
+    "cluster": "inventory-management",
+    "sourceFactIds": [
+      "fact_006"
+    ],
+    "contentVersion": "v1",
+    "status": "PENDING"
+  },
+  {
+    "topicId": "blog-sap-xep-kho-cuoi-thang",
+    "siteId": "autotax-blogger-pilot",
+    "channel": "blogger",
+    "title": "Checklist sắp xếp lại kho vào cuối tháng",
+    "intent": "monthly-warehouse-tidy-checklist",
+    "cluster": "inventory-management",
+    "sourceFactIds": [
+      "fact_006"
+    ],
+    "contentVersion": "v1",
+    "status": "PENDING"
+  },
+  {
+    "topicId": "blog-dat-hang-bo-sung",
+    "siteId": "autotax-blogger-pilot",
+    "channel": "blogger",
+    "title": "Checklist trước khi đặt hàng bổ sung cho nhà cung cấp",
+    "intent": "reorder-checklist",
+    "cluster": "inventory-management",
+    "sourceFactIds": [
+      "fact_006"
+    ],
+    "contentVersion": "v1",
+    "status": "PENDING"
+  },
+  {
+    "topicId": "blog-them-mat-hang-moi",
+    "siteId": "autotax-blogger-pilot",
+    "channel": "blogger",
+    "title": "Checklist đưa một mặt hàng mới lên quầy",
+    "intent": "new-product-onboarding-checklist",
+    "cluster": "product-management",
+    "sourceFactIds": [
+      "fact_006"
+    ],
+    "contentVersion": "v1",
+    "status": "PENDING"
+  },
+  {
+    "topicId": "blog-doi-gia-ban",
+    "siteId": "autotax-blogger-pilot",
+    "channel": "blogger",
+    "title": "Checklist trước khi điều chỉnh giá bán tại quầy",
+    "intent": "price-change-checklist",
+    "cluster": "product-management",
+    "sourceFactIds": [
+      "fact_007"
+    ],
+    "contentVersion": "v1",
+    "status": "PENDING"
+  },
+  {
+    "topicId": "blog-ra-soat-ma-hang-trung",
+    "siteId": "autotax-blogger-pilot",
+    "channel": "blogger",
+    "title": "Checklist rà soát mã hàng trùng và tên hàng khó tra",
+    "intent": "duplicate-sku-audit-checklist",
+    "cluster": "product-management",
+    "sourceFactIds": [
+      "fact_006"
+    ],
+    "contentVersion": "v1",
+    "status": "PENDING"
+  },
+  {
+    "topicId": "blog-chuan-bi-dot-khuyen-mai",
+    "siteId": "autotax-blogger-pilot",
+    "channel": "blogger",
+    "title": "Checklist chuẩn bị một đợt khuyến mãi tại cửa hàng",
+    "intent": "promotion-launch-checklist",
+    "cluster": "product-management",
+    "sourceFactIds": [
+      "fact_007"
+    ],
+    "contentVersion": "v1",
+    "status": "PENDING"
+  },
+  {
+    "topicId": "blog-nhan-vien-moi-ngay-dau",
+    "siteId": "autotax-blogger-pilot",
+    "channel": "blogger",
+    "title": "Checklist ngày đầu tiên của nhân viên bán hàng mới",
+    "intent": "new-staff-day-one-checklist",
+    "cluster": "store-closing-operations",
+    "sourceFactIds": [
+      "fact_007"
+    ],
+    "contentVersion": "v1",
+    "status": "PENDING"
+  },
+  {
+    "topicId": "blog-cap-quyen-nhan-vien",
+    "siteId": "autotax-blogger-pilot",
+    "channel": "blogger",
+    "title": "Checklist cấp quyền cho nhân viên trên phần mềm bán hàng",
+    "intent": "staff-permission-checklist",
+    "cluster": "store-closing-operations",
+    "sourceFactIds": [
+      "fact_007"
+    ],
+    "contentVersion": "v1",
+    "status": "PENDING"
+  },
+  {
+    "topicId": "blog-nhan-vien-nghi-viec",
+    "siteId": "autotax-blogger-pilot",
+    "channel": "blogger",
+    "title": "Checklist thu hồi quyền khi nhân viên nghỉ việc",
+    "intent": "offboarding-access-checklist",
+    "cluster": "store-closing-operations",
+    "sourceFactIds": [
+      "fact_007"
+    ],
+    "contentVersion": "v1",
+    "status": "PENDING"
+  },
+  {
+    "topicId": "blog-ra-soat-nhat-ky-thao-tac",
+    "siteId": "autotax-blogger-pilot",
+    "channel": "blogger",
+    "title": "Checklist rà soát nhật ký thao tác hằng tuần",
+    "intent": "audit-log-review-checklist",
+    "cluster": "store-closing-operations",
+    "sourceFactIds": [
+      "fact_007"
+    ],
+    "contentVersion": "v1",
+    "status": "PENDING"
+  },
+  {
+    "topicId": "blog-thiet-lap-quay-lan-dau",
+    "siteId": "autotax-blogger-pilot",
+    "channel": "blogger",
+    "title": "Checklist thiết lập quầy bán hàng trong ngày đầu dùng phần mềm",
+    "intent": "first-day-setup-checklist",
+    "cluster": "pos-operations",
+    "sourceFactIds": [
+      "fact_007"
+    ],
+    "contentVersion": "v1",
+    "status": "PENDING"
+  },
+  {
+    "topicId": "blog-chuyen-tu-so-giay",
+    "siteId": "autotax-blogger-pilot",
+    "channel": "blogger",
+    "title": "Checklist chuyển dữ liệu từ sổ giấy sang phần mềm",
+    "intent": "paper-to-software-migration-checklist",
+    "cluster": "business-overview",
+    "sourceFactIds": [
+      "fact_007"
+    ],
+    "contentVersion": "v1",
+    "status": "PENDING"
+  },
+  {
+    "topicId": "blog-sao-luu-du-lieu",
+    "siteId": "autotax-blogger-pilot",
+    "channel": "blogger",
+    "title": "Checklist sao lưu dữ liệu bán hàng định kỳ",
+    "intent": "backup-routine-checklist",
+    "cluster": "business-overview",
+    "sourceFactIds": [
+      "fact_007"
+    ],
+    "contentVersion": "v1",
+    "status": "PENDING"
+  },
+  {
+    "topicId": "blog-ra-soat-truoc-khi-mo-them-chi-nhanh",
+    "siteId": "autotax-blogger-pilot",
+    "channel": "blogger",
+    "title": "Checklist rà soát trước khi mở thêm điểm bán",
+    "intent": "new-branch-readiness-checklist",
+    "cluster": "business-overview",
+    "sourceFactIds": [
+      "fact_007"
+    ],
+    "contentVersion": "v1",
+    "status": "PENDING"
+  },
+  {
+    "topicId": "quan-nho-fnb-order-theo-ban",
+    "siteId": "quan-nho-fnb",
+    "channel": "blogger",
+    "title": "Nhận order theo bàn sao cho bếp không làm nhầm món",
+    "intent": "table-order-accuracy",
+    "cluster": "pos-operations",
+    "sourceFactIds": [
+      "fact_005"
+    ],
+    "contentVersion": "v1",
+    "status": "PENDING"
+  },
+  {
+    "topicId": "quan-nho-fnb-gop-tach-ban",
+    "siteId": "quan-nho-fnb",
+    "channel": "blogger",
+    "title": "Gộp bàn và tách bàn khi khách đổi chỗ giữa chừng",
+    "intent": "merge-split-table",
+    "cluster": "pos-operations",
+    "sourceFactIds": [
+      "fact_005"
+    ],
+    "contentVersion": "v1",
+    "status": "PENDING"
+  },
+  {
+    "topicId": "quan-nho-fnb-dinh-luong-nguyen-lieu",
+    "siteId": "quan-nho-fnb",
+    "channel": "blogger",
+    "title": "Định lượng nguyên liệu cho từng món để biết lãi thật",
+    "intent": "recipe-costing",
+    "cluster": "product-management",
+    "sourceFactIds": [
+      "fact_006"
+    ],
+    "contentVersion": "v1",
+    "status": "PENDING"
+  },
+  {
+    "topicId": "quan-nho-fnb-gio-cao-diem",
+    "siteId": "quan-nho-fnb",
+    "channel": "blogger",
+    "title": "Chuẩn bị trước giờ cao điểm để không nghẽn quầy pha chế",
+    "intent": "peak-hour-prep",
+    "cluster": "pos-operations",
+    "sourceFactIds": [
+      "fact_005"
+    ],
+    "contentVersion": "v1",
+    "status": "PENDING"
+  },
+  {
+    "topicId": "quan-nho-fnb-hao-hut-bep",
+    "siteId": "quan-nho-fnb",
+    "channel": "blogger",
+    "title": "Theo dõi hao hụt nguyên liệu trong bếp mà không cần cân từng ly",
+    "intent": "kitchen-waste-tracking",
+    "cluster": "inventory-management",
+    "sourceFactIds": [
+      "fact_006"
+    ],
+    "contentVersion": "v1",
+    "status": "PENDING"
+  },
+  {
+    "topicId": "quan-nho-fnb-ca-sang-ca-toi",
+    "siteId": "quan-nho-fnb",
+    "channel": "blogger",
+    "title": "Bàn giao giữa ca sáng và ca tối trong quán ăn",
+    "intent": "fnb-shift-handover",
+    "cluster": "store-closing-operations",
+    "sourceFactIds": [
+      "fact_005"
+    ],
+    "contentVersion": "v1",
+    "status": "PENDING"
+  },
+  {
+    "topicId": "quan-nho-fnb-mon-het-hang",
+    "siteId": "quan-nho-fnb",
+    "channel": "blogger",
+    "title": "Xử lý khi món hết nguyên liệu giữa giờ bán",
+    "intent": "sold-out-item-handling",
+    "cluster": "product-management",
+    "sourceFactIds": [
+      "fact_006"
+    ],
+    "contentVersion": "v1",
+    "status": "PENDING"
+  },
+  {
+    "topicId": "quan-nho-fnb-khach-huy-mon",
+    "siteId": "quan-nho-fnb",
+    "channel": "blogger",
+    "title": "Khách hủy món đã báo bếp: ghi nhận thế nào cho đúng",
+    "intent": "cancelled-dish-handling",
+    "cluster": "pos-operations",
+    "sourceFactIds": [
+      "fact_005"
+    ],
+    "contentVersion": "v1",
+    "status": "PENDING"
+  },
+  {
+    "topicId": "quan-nho-fnb-ban-mang-ve-va-tai-cho",
+    "siteId": "quan-nho-fnb",
+    "channel": "blogger",
+    "title": "Tách doanh thu bán tại chỗ và mang về",
+    "intent": "dine-in-vs-takeaway-revenue",
+    "cluster": "revenue-monitoring",
+    "sourceFactIds": [
+      "fact_005"
+    ],
+    "contentVersion": "v1",
+    "status": "PENDING"
+  },
+  {
+    "topicId": "quan-nho-fnb-combo-nuoc-do-an",
+    "siteId": "quan-nho-fnb",
+    "channel": "blogger",
+    "title": "Bán combo nước kèm đồ ăn mà vẫn trừ kho đúng",
+    "intent": "fnb-combo-inventory",
+    "cluster": "product-management",
+    "sourceFactIds": [
+      "fact_006"
+    ],
+    "contentVersion": "v1",
+    "status": "PENDING"
+  },
+  {
+    "topicId": "tap-hoa-retail-hang-nghin-ma-hang",
+    "siteId": "tap-hoa-retail",
+    "channel": "blogger",
+    "title": "Sắp xếp hàng nghìn mã hàng để tra cứu trong vài giây",
+    "intent": "large-catalog-organization",
+    "cluster": "product-management",
+    "sourceFactIds": [
+      "fact_006"
+    ],
+    "contentVersion": "v1",
+    "status": "PENDING"
+  },
+  {
+    "topicId": "tap-hoa-retail-gia-nhap-thay-doi",
+    "siteId": "tap-hoa-retail",
+    "channel": "blogger",
+    "title": "Giá nhập thay đổi liên tục thì cập nhật giá bán thế nào",
+    "intent": "purchase-price-volatility",
+    "cluster": "product-management",
+    "sourceFactIds": [
+      "fact_007"
+    ],
+    "contentVersion": "v1",
+    "status": "PENDING"
+  },
+  {
+    "topicId": "tap-hoa-retail-ban-ghi-so-khach-quen",
+    "siteId": "tap-hoa-retail",
+    "channel": "blogger",
+    "title": "Bán ghi sổ cho khách quen mà không thất thoát",
+    "intent": "informal-credit-sales",
+    "cluster": "revenue-monitoring",
+    "sourceFactIds": [
+      "fact_007"
+    ],
+    "contentVersion": "v1",
+    "status": "PENDING"
+  },
+  {
+    "topicId": "tap-hoa-retail-hang-can-date",
+    "siteId": "tap-hoa-retail",
+    "channel": "blogger",
+    "title": "Phát hiện hàng cận hạn trước khi phải đổ bỏ",
+    "intent": "near-expiry-detection",
+    "cluster": "inventory-management",
+    "sourceFactIds": [
+      "fact_006"
+    ],
+    "contentVersion": "v1",
+    "status": "PENDING"
+  },
+  {
+    "topicId": "tap-hoa-retail-kiem-ke-khong-dong-quay",
+    "siteId": "tap-hoa-retail",
+    "channel": "blogger",
+    "title": "Kiểm kê từng nhóm hàng mà vẫn mở cửa bán",
+    "intent": "partial-stocktake",
+    "cluster": "inventory-management",
+    "sourceFactIds": [
+      "fact_006"
+    ],
+    "contentVersion": "v1",
+    "status": "PENDING"
+  },
+  {
+    "topicId": "tap-hoa-retail-thung-loc-lon",
+    "siteId": "tap-hoa-retail",
+    "channel": "blogger",
+    "title": "Bán lẻ từ thùng lớn: quy đổi đơn vị sao cho khỏi lệch kho",
+    "intent": "unit-conversion-retail",
+    "cluster": "product-management",
+    "sourceFactIds": [
+      "fact_006"
+    ],
+    "contentVersion": "v1",
+    "status": "PENDING"
+  },
+  {
+    "topicId": "tap-hoa-retail-hang-ban-cham",
+    "siteId": "tap-hoa-retail",
+    "channel": "blogger",
+    "title": "Nhận ra hàng bán chậm đang chôn vốn",
+    "intent": "slow-moving-stock",
+    "cluster": "inventory-management",
+    "sourceFactIds": [
+      "fact_006"
+    ],
+    "contentVersion": "v1",
+    "status": "PENDING"
+  },
+  {
+    "topicId": "tap-hoa-retail-nhap-hang-cho-dau-moi",
+    "siteId": "tap-hoa-retail",
+    "channel": "blogger",
+    "title": "Nhập hàng chợ đầu mối và ghi nhận vào sổ kho",
+    "intent": "wholesale-market-receiving",
+    "cluster": "inventory-management",
+    "sourceFactIds": [
+      "fact_006"
+    ],
+    "contentVersion": "v1",
+    "status": "PENDING"
+  },
+  {
+    "topicId": "tap-hoa-retail-khuyen-mai-mua-2-tang-1",
+    "siteId": "tap-hoa-retail",
+    "channel": "blogger",
+    "title": "Chạy khuyến mãi mua hai tặng một mà vẫn kiểm soát tồn",
+    "intent": "bogo-promo-inventory",
+    "cluster": "product-management",
+    "sourceFactIds": [
+      "fact_007"
+    ],
+    "contentVersion": "v1",
+    "status": "PENDING"
+  },
+  {
+    "topicId": "tap-hoa-retail-quay-nhieu-nguoi-ban",
+    "siteId": "tap-hoa-retail",
+    "channel": "blogger",
+    "title": "Nhiều người cùng đứng bán một quầy trong ngày đông",
+    "intent": "multi-cashier-day",
+    "cluster": "store-closing-operations",
+    "sourceFactIds": [
+      "fact_007"
+    ],
+    "contentVersion": "v1",
+    "status": "PENDING"
+  },
+  {
+    "topicId": "spa-beauty-dat-lich-khong-trung",
+    "siteId": "spa-beauty",
+    "channel": "blogger",
+    "title": "Đặt lịch cho khách mà không trùng giờ kỹ thuật viên",
+    "intent": "appointment-conflict-prevention",
+    "cluster": "business-overview",
+    "sourceFactIds": [
+      "fact_007"
+    ],
+    "contentVersion": "v1",
+    "status": "PENDING"
+  },
+  {
+    "topicId": "spa-beauty-lieu-trinh-nhieu-buoi",
+    "siteId": "spa-beauty",
+    "channel": "blogger",
+    "title": "Theo dõi liệu trình nhiều buổi của từng khách",
+    "intent": "multi-session-treatment-tracking",
+    "cluster": "revenue-monitoring",
+    "sourceFactIds": [
+      "fact_005"
+    ],
+    "contentVersion": "v1",
+    "status": "PENDING"
+  },
+  {
+    "topicId": "spa-beauty-ghi-doanh-thu-lieu-trinh",
+    "siteId": "spa-beauty",
+    "channel": "blogger",
+    "title": "Khách trả trước cả liệu trình: ghi nhận doanh thu khi nào",
+    "intent": "prepaid-package-revenue",
+    "cluster": "revenue-monitoring",
+    "sourceFactIds": [
+      "fact_005"
+    ],
+    "contentVersion": "v1",
+    "status": "PENDING"
+  },
+  {
+    "topicId": "spa-beauty-hoa-hong-ky-thuat-vien",
+    "siteId": "spa-beauty",
+    "channel": "blogger",
+    "title": "Tính hoa hồng kỹ thuật viên minh bạch để giữ người",
+    "intent": "technician-commission",
+    "cluster": "store-closing-operations",
+    "sourceFactIds": [
+      "fact_007"
+    ],
+    "contentVersion": "v1",
+    "status": "PENDING"
+  },
+  {
+    "topicId": "spa-beauty-khach-den-tre-huy-hen",
+    "siteId": "spa-beauty",
+    "channel": "blogger",
+    "title": "Khách đến trễ hoặc hủy hẹn sát giờ thì xử lý ra sao",
+    "intent": "late-cancel-handling",
+    "cluster": "business-overview",
+    "sourceFactIds": [
+      "fact_007"
+    ],
+    "contentVersion": "v1",
+    "status": "PENDING"
+  },
+  {
+    "topicId": "spa-beauty-quan-ly-phong-giuong",
+    "siteId": "spa-beauty",
+    "channel": "blogger",
+    "title": "Sắp phòng và giường sao cho kín lịch mà không dồn khách",
+    "intent": "room-bed-scheduling",
+    "cluster": "business-overview",
+    "sourceFactIds": [
+      "fact_007"
+    ],
+    "contentVersion": "v1",
+    "status": "PENDING"
+  },
+  {
+    "topicId": "spa-beauty-my-pham-ton-kho",
+    "siteId": "spa-beauty",
+    "channel": "blogger",
+    "title": "Quản lý mỹ phẩm dùng trong dịch vụ và mỹ phẩm bán lẻ",
+    "intent": "consumable-vs-retail-stock",
+    "cluster": "inventory-management",
+    "sourceFactIds": [
+      "fact_006"
+    ],
+    "contentVersion": "v1",
+    "status": "PENDING"
+  },
+  {
+    "topicId": "spa-beauty-giu-chan-khach-cu",
+    "siteId": "spa-beauty",
+    "channel": "blogger",
+    "title": "Nhắc lịch quay lại cho khách cũ mà không làm phiền",
+    "intent": "client-retention-followup",
+    "cluster": "business-overview",
+    "sourceFactIds": [
+      "fact_007"
+    ],
+    "contentVersion": "v1",
+    "status": "PENDING"
+  },
+  {
+    "topicId": "spa-beauty-ban-the-thanh-vien",
+    "siteId": "spa-beauty",
+    "channel": "blogger",
+    "title": "Bán thẻ thành viên và theo dõi số buổi còn lại",
+    "intent": "membership-card-tracking",
+    "cluster": "revenue-monitoring",
+    "sourceFactIds": [
+      "fact_005"
+    ],
+    "contentVersion": "v1",
+    "status": "PENDING"
+  },
+  {
+    "topicId": "spa-beauty-ky-thuat-vien-nghi",
+    "siteId": "spa-beauty",
+    "channel": "blogger",
+    "title": "Kỹ thuật viên nghỉ đột xuất, sắp lại lịch khách thế nào",
+    "intent": "staff-absence-rescheduling",
+    "cluster": "business-overview",
+    "sourceFactIds": [
+      "fact_007"
+    ],
+    "contentVersion": "v1",
+    "status": "PENDING"
+  },
+  {
+    "topicId": "ban-online-ecom-doi-soat-san",
+    "siteId": "ban-online-ecom",
+    "channel": "blogger",
+    "title": "Đối soát tiền sàn chuyển về với đơn đã giao",
+    "intent": "marketplace-settlement-reconciliation",
+    "cluster": "revenue-monitoring",
+    "sourceFactIds": [
+      "fact_004"
+    ],
+    "contentVersion": "v1",
+    "status": "PENDING"
+  },
+  {
+    "topicId": "ban-online-ecom-dong-bo-ton-nhieu-kenh",
+    "siteId": "ban-online-ecom",
+    "channel": "blogger",
+    "title": "Bán cùng lúc nhiều kênh mà không bị vượt tồn",
+    "intent": "multichannel-stock-sync",
+    "cluster": "inventory-management",
+    "sourceFactIds": [
+      "fact_006"
+    ],
+    "contentVersion": "v1",
+    "status": "PENDING"
+  },
+  {
+    "topicId": "ban-online-ecom-hang-hoan-ve",
+    "siteId": "ban-online-ecom",
+    "channel": "blogger",
+    "title": "Hàng hoàn về kho: kiểm và nhập lại thế nào cho đúng",
+    "intent": "return-restocking",
+    "cluster": "inventory-management",
+    "sourceFactIds": [
+      "fact_006"
+    ],
+    "contentVersion": "v1",
+    "status": "PENDING"
+  },
+  {
+    "topicId": "ban-online-ecom-chot-don-livestream",
+    "siteId": "ban-online-ecom",
+    "channel": "blogger",
+    "title": "Chốt đơn trong livestream mà không sót khách",
+    "intent": "livestream-order-capture",
+    "cluster": "pos-operations",
+    "sourceFactIds": [
+      "fact_005"
+    ],
+    "contentVersion": "v1",
+    "status": "PENDING"
+  },
+  {
+    "topicId": "ban-online-ecom-phi-san-giu-lai",
+    "siteId": "ban-online-ecom",
+    "channel": "blogger",
+    "title": "Các khoản sàn giữ lại và cách ghi nhận vào sổ",
+    "intent": "marketplace-fee-recording",
+    "cluster": "revenue-monitoring",
+    "sourceFactIds": [
+      "fact_004"
+    ],
+    "contentVersion": "v1",
+    "status": "PENDING"
+  },
+  {
+    "topicId": "ban-online-ecom-ma-hang-tren-san",
+    "siteId": "ban-online-ecom",
+    "channel": "blogger",
+    "title": "Đặt mã hàng thống nhất giữa kho và các sàn",
+    "intent": "sku-mapping-across-channels",
+    "cluster": "product-management",
+    "sourceFactIds": [
+      "fact_006"
+    ],
+    "contentVersion": "v1",
+    "status": "PENDING"
+  },
+  {
+    "topicId": "ban-online-ecom-don-ao-don-huy",
+    "siteId": "ban-online-ecom",
+    "channel": "blogger",
+    "title": "Đơn ảo và đơn hủy hàng loạt: nhận ra và xử lý",
+    "intent": "fake-cancelled-orders",
+    "cluster": "revenue-monitoring",
+    "sourceFactIds": [
+      "fact_004"
+    ],
+    "contentVersion": "v1",
+    "status": "PENDING"
+  },
+  {
+    "topicId": "ban-online-ecom-dong-goi-nhieu-don",
+    "siteId": "ban-online-ecom",
+    "channel": "blogger",
+    "title": "Đóng gói hàng chục đơn mỗi ngày không nhầm địa chỉ",
+    "intent": "bulk-packing-accuracy",
+    "cluster": "pos-operations",
+    "sourceFactIds": [
+      "fact_005"
+    ],
+    "contentVersion": "v1",
+    "status": "PENDING"
+  },
+  {
+    "topicId": "ban-online-ecom-ban-si-va-le-cung-luc",
+    "siteId": "ban-online-ecom",
+    "channel": "blogger",
+    "title": "Vừa bán sỉ vừa bán lẻ online với hai bảng giá",
+    "intent": "wholesale-retail-pricing-online",
+    "cluster": "product-management",
+    "sourceFactIds": [
+      "fact_007"
+    ],
+    "contentVersion": "v1",
+    "status": "PENDING"
+  },
+  {
+    "topicId": "ban-online-ecom-doanh-thu-nhieu-san",
+    "siteId": "ban-online-ecom",
+    "channel": "blogger",
+    "title": "Tổng hợp doanh thu từ nhiều sàn về một chỗ",
+    "intent": "consolidated-marketplace-revenue",
+    "cluster": "revenue-monitoring",
+    "sourceFactIds": [
+      "fact_004"
+    ],
+    "contentVersion": "v1",
+    "status": "PENDING"
+  },
+  {
+    "topicId": "autotax-blogger-pilot-mo-tiem-bang-checklist-ngan",
+    "siteId": "autotax-blogger-pilot",
+    "title": "Mở tiệm bằng checklist ngắn",
+    "intent": "mo-tiem-bang-checklist-ngan-thuc-hanh",
+    "cluster": "pos-operations",
+    "sourceFactIds": [],
+    "contentVersion": "v1",
+    "status": "PENDING",
+    "channel": "blogger"
+  },
+  {
+    "topicId": "autotax-blogger-pilot-ban-giao-ca-ro-nguoi-ro-viec",
+    "siteId": "autotax-blogger-pilot",
+    "title": "Bàn giao ca rõ người rõ việc",
+    "intent": "ban-giao-ca-ro-nguoi-ro-viec-thuc-hanh",
+    "cluster": "business-overview",
+    "sourceFactIds": [],
+    "contentVersion": "v1",
+    "status": "PENDING",
+    "channel": "blogger"
+  },
+  {
+    "topicId": "autotax-blogger-pilot-chot-ca-khong-bo-sot",
+    "siteId": "autotax-blogger-pilot",
+    "title": "Chốt ca không bỏ sót",
+    "intent": "chot-ca-khong-bo-sot-thuc-hanh",
+    "cluster": "store-closing-operations",
+    "sourceFactIds": [],
+    "contentVersion": "v1",
+    "status": "PENDING",
+    "channel": "blogger"
+  },
+  {
+    "topicId": "autotax-blogger-pilot-sap-viec-theo-muc-uu-tien",
+    "siteId": "autotax-blogger-pilot",
+    "title": "Sắp việc theo mức ưu tiên",
+    "intent": "sap-viec-theo-muc-uu-tien-thuc-hanh",
+    "cluster": "business-overview",
+    "sourceFactIds": [],
+    "contentVersion": "v1",
+    "status": "PENDING",
+    "channel": "blogger"
+  },
+  {
+    "topicId": "autotax-blogger-pilot-giao-viec-khong-can-nhac-lai",
+    "siteId": "autotax-blogger-pilot",
+    "title": "Giao việc không cần nhắc lại",
+    "intent": "giao-viec-khong-can-nhac-lai-thuc-hanh",
+    "cluster": "business-overview",
+    "sourceFactIds": [],
+    "contentVersion": "v1",
+    "status": "PENDING",
+    "channel": "blogger"
+  },
+  {
+    "topicId": "autotax-blogger-pilot-theo-doi-viec-dang-do",
+    "siteId": "autotax-blogger-pilot",
+    "title": "Theo dõi việc dang dở",
+    "intent": "theo-doi-viec-dang-do-thuc-hanh",
+    "cluster": "business-overview",
+    "sourceFactIds": [],
+    "contentVersion": "v1",
+    "status": "PENDING",
+    "channel": "blogger"
+  },
+  {
+    "topicId": "autotax-blogger-pilot-kiem-ton-theo-dinh-ky",
+    "siteId": "autotax-blogger-pilot",
+    "title": "Kiểm tồn theo định kỳ",
+    "intent": "kiem-ton-theo-dinh-ky-thuc-hanh",
+    "cluster": "inventory-management",
+    "sourceFactIds": [],
+    "contentVersion": "v1",
+    "status": "PENDING",
+    "channel": "blogger"
+  },
+  {
+    "topicId": "autotax-blogger-pilot-phan-biet-hang-ban-va-hang-dung-noi-bo",
+    "siteId": "autotax-blogger-pilot",
+    "title": "Phân biệt hàng bán và hàng dùng nội bộ",
+    "intent": "phan-biet-hang-ban-va-hang-dung-noi-bo-thuc-hanh",
+    "cluster": "inventory-management",
+    "sourceFactIds": [],
+    "contentVersion": "v1",
+    "status": "PENDING",
+    "channel": "blogger"
+  },
+  {
+    "topicId": "autotax-blogger-pilot-ghi-nhan-that-thoat",
+    "siteId": "autotax-blogger-pilot",
+    "title": "Ghi nhận thất thoát",
+    "intent": "ghi-nhan-that-thoat-thuc-hanh",
+    "cluster": "revenue-monitoring",
+    "sourceFactIds": [],
+    "contentVersion": "v1",
+    "status": "PENDING",
+    "channel": "blogger"
+  },
+  {
+    "topicId": "autotax-blogger-pilot-xu-ly-chenh-lech-tien-mat",
+    "siteId": "autotax-blogger-pilot",
+    "title": "Xử lý chênh lệch tiền mặt",
+    "intent": "xu-ly-chenh-lech-tien-mat-thuc-hanh",
+    "cluster": "revenue-monitoring",
+    "sourceFactIds": [],
+    "contentVersion": "v1",
+    "status": "PENDING",
+    "channel": "blogger"
+  },
+  {
+    "topicId": "autotax-blogger-pilot-luu-quy-trinh-cho-nguoi-moi",
+    "siteId": "autotax-blogger-pilot",
+    "title": "Lưu quy trình cho người mới",
+    "intent": "luu-quy-trinh-cho-nguoi-moi-thuc-hanh",
+    "cluster": "business-overview",
+    "sourceFactIds": [],
+    "contentVersion": "v1",
+    "status": "PENDING",
+    "channel": "blogger"
+  },
+  {
+    "topicId": "autotax-blogger-pilot-to-chuc-kho-nho-gon",
+    "siteId": "autotax-blogger-pilot",
+    "title": "Tổ chức kho nhỏ gọn",
+    "intent": "to-chuc-kho-nho-gon-thuc-hanh",
+    "cluster": "inventory-management",
+    "sourceFactIds": [],
+    "contentVersion": "v1",
+    "status": "PENDING",
+    "channel": "blogger"
+  },
+  {
+    "topicId": "autotax-blogger-pilot-chuan-hoa-ten-hang",
+    "siteId": "autotax-blogger-pilot",
+    "title": "Chuẩn hóa tên hàng",
+    "intent": "chuan-hoa-ten-hang-thuc-hanh",
+    "cluster": "product-management",
+    "sourceFactIds": [],
+    "contentVersion": "v1",
+    "status": "PENDING",
+    "channel": "blogger"
+  },
+  {
+    "topicId": "autotax-blogger-pilot-xu-ly-phan-hoi-cua-khach",
+    "siteId": "autotax-blogger-pilot",
+    "title": "Xử lý phản hồi của khách",
+    "intent": "xu-ly-phan-hoi-cua-khach-thuc-hanh",
+    "cluster": "business-overview",
+    "sourceFactIds": [],
+    "contentVersion": "v1",
+    "status": "PENDING",
+    "channel": "blogger"
+  },
+  {
+    "topicId": "autotax-blogger-pilot-giu-quay-gon-khi-dong-khach",
+    "siteId": "autotax-blogger-pilot",
+    "title": "Giữ quầy gọn khi đông khách",
+    "intent": "giu-quay-gon-khi-dong-khach-thuc-hanh",
+    "cluster": "pos-operations",
+    "sourceFactIds": [],
+    "contentVersion": "v1",
+    "status": "PENDING",
+    "channel": "blogger"
+  },
+  {
+    "topicId": "autotax-blogger-pilot-chuan-bi-vat-dung-truoc-ca",
+    "siteId": "autotax-blogger-pilot",
+    "title": "Chuẩn bị vật dụng trước ca",
+    "intent": "chuan-bi-vat-dung-truoc-ca-thuc-hanh",
+    "cluster": "pos-operations",
+    "sourceFactIds": [],
+    "contentVersion": "v1",
+    "status": "PENDING",
+    "channel": "blogger"
+  },
+  {
+    "topicId": "autotax-blogger-pilot-phan-quyen-mo-va-khoa-tu",
+    "siteId": "autotax-blogger-pilot",
+    "title": "Phân quyền mở và khóa tủ",
+    "intent": "phan-quyen-mo-va-khoa-tu-thuc-hanh",
+    "cluster": "business-overview",
+    "sourceFactIds": [],
+    "contentVersion": "v1",
+    "status": "PENDING",
+    "channel": "blogger"
+  },
+  {
+    "topicId": "autotax-blogger-pilot-theo-doi-do-muon-trong-tiem",
+    "siteId": "autotax-blogger-pilot",
+    "title": "Theo dõi đồ mượn trong tiệm",
+    "intent": "theo-doi-do-muon-trong-tiem-thuc-hanh",
+    "cluster": "inventory-management",
+    "sourceFactIds": [],
+    "contentVersion": "v1",
+    "status": "PENDING",
+    "channel": "blogger"
+  },
+  {
+    "topicId": "autotax-blogger-pilot-quan-ly-chia-khoa",
+    "siteId": "autotax-blogger-pilot",
+    "title": "Quản lý chìa khóa",
+    "intent": "quan-ly-chia-khoa-thuc-hanh",
+    "cluster": "business-overview",
+    "sourceFactIds": [],
+    "contentVersion": "v1",
+    "status": "PENDING",
+    "channel": "blogger"
+  },
+  {
+    "topicId": "autotax-blogger-pilot-ghi-su-co-van-hanh",
+    "siteId": "autotax-blogger-pilot",
+    "title": "Ghi sự cố vận hành",
+    "intent": "ghi-su-co-van-hanh-thuc-hanh",
+    "cluster": "business-overview",
+    "sourceFactIds": [],
+    "contentVersion": "v1",
+    "status": "PENDING",
+    "channel": "blogger"
+  },
+  {
+    "topicId": "autotax-blogger-pilot-ra-viec-truoc-khi-nghi",
+    "siteId": "autotax-blogger-pilot",
+    "title": "Rà việc trước khi nghỉ",
+    "intent": "ra-viec-truoc-khi-nghi-thuc-hanh",
+    "cluster": "store-closing-operations",
+    "sourceFactIds": [],
+    "contentVersion": "v1",
+    "status": "PENDING",
+    "channel": "blogger"
+  },
+  {
+    "topicId": "autotax-blogger-pilot-xep-lich-ve-sinh",
+    "siteId": "autotax-blogger-pilot",
+    "title": "Xếp lịch vệ sinh",
+    "intent": "xep-lich-ve-sinh-thuc-hanh",
+    "cluster": "store-closing-operations",
+    "sourceFactIds": [],
+    "contentVersion": "v1",
+    "status": "PENDING",
+    "channel": "blogger"
+  },
+  {
+    "topicId": "autotax-blogger-pilot-kiem-thiet-bi-truoc-khi-dung",
+    "siteId": "autotax-blogger-pilot",
+    "title": "Kiểm thiết bị trước khi dùng",
+    "intent": "kiem-thiet-bi-truoc-khi-dung-thuc-hanh",
+    "cluster": "pos-operations",
+    "sourceFactIds": [],
+    "contentVersion": "v1",
+    "status": "PENDING",
+    "channel": "blogger"
+  },
+  {
+    "topicId": "autotax-blogger-pilot-xu-ly-khi-thieu-nguoi",
+    "siteId": "autotax-blogger-pilot",
+    "title": "Xử lý khi thiếu người",
+    "intent": "xu-ly-khi-thieu-nguoi-thuc-hanh",
+    "cluster": "business-overview",
+    "sourceFactIds": [],
+    "contentVersion": "v1",
+    "status": "PENDING",
+    "channel": "blogger"
+  },
+  {
+    "topicId": "autotax-blogger-pilot-ban-giao-thong-tin-khach",
+    "siteId": "autotax-blogger-pilot",
+    "title": "Bàn giao thông tin khách",
+    "intent": "ban-giao-thong-tin-khach-thuc-hanh",
+    "cluster": "business-overview",
+    "sourceFactIds": [],
+    "contentVersion": "v1",
+    "status": "PENDING",
+    "channel": "blogger"
+  },
+  {
+    "topicId": "autotax-blogger-pilot-tach-viec-khan-va-viec-co-the-cho",
+    "siteId": "autotax-blogger-pilot",
+    "title": "Tách việc khẩn và việc có thể chờ",
+    "intent": "tach-viec-khan-va-viec-co-the-cho-thuc-hanh",
+    "cluster": "business-overview",
+    "sourceFactIds": [],
+    "contentVersion": "v1",
+    "status": "PENDING",
+    "channel": "blogger"
+  },
+  {
+    "topicId": "autotax-blogger-pilot-giu-nhip-hop-ca-ngan",
+    "siteId": "autotax-blogger-pilot",
+    "title": "Giữ nhịp họp ca ngắn",
+    "intent": "giu-nhip-hop-ca-ngan-thuc-hanh",
+    "cluster": "business-overview",
+    "sourceFactIds": [],
+    "contentVersion": "v1",
+    "status": "PENDING",
+    "channel": "blogger"
+  },
+  {
+    "topicId": "autotax-blogger-pilot-theo-doi-viec-sua-chua",
+    "siteId": "autotax-blogger-pilot",
+    "title": "Theo dõi việc sửa chữa",
+    "intent": "theo-doi-viec-sua-chua-thuc-hanh",
+    "cluster": "business-overview",
+    "sourceFactIds": [],
+    "contentVersion": "v1",
+    "status": "PENDING",
+    "channel": "blogger"
+  },
+  {
+    "topicId": "autotax-blogger-pilot-luu-danh-ba-nha-cung-cap",
+    "siteId": "autotax-blogger-pilot",
+    "title": "Lưu danh bạ nhà cung cấp",
+    "intent": "luu-danh-ba-nha-cung-cap-thuc-hanh",
+    "cluster": "business-overview",
+    "sourceFactIds": [],
+    "contentVersion": "v1",
+    "status": "PENDING",
+    "channel": "blogger"
+  },
+  {
+    "topicId": "autotax-blogger-pilot-tu-ra-soat-van-hanh-cuoi-chu-ky",
+    "siteId": "autotax-blogger-pilot",
+    "title": "Tự rà soát vận hành cuối chu kỳ",
+    "intent": "tu-ra-soat-van-hanh-cuoi-chu-ky-thuc-hanh",
+    "cluster": "business-overview",
+    "sourceFactIds": [],
+    "contentVersion": "v1",
+    "status": "PENDING",
+    "channel": "blogger"
+  },
+  {
+    "topicId": "ban-online-ecom-doi-soat-tien-ve-tu-san",
+    "siteId": "ban-online-ecom",
+    "title": "Đối soát tiền về từ sàn",
+    "intent": "doi-soat-tien-ve-tu-san-thuc-hanh",
+    "cluster": "revenue-monitoring",
+    "sourceFactIds": [],
+    "contentVersion": "v1",
+    "status": "PENDING",
+    "channel": "blogger"
+  },
+  {
+    "topicId": "ban-online-ecom-tach-don-dang-cho-va-don-da-gui",
+    "siteId": "ban-online-ecom",
+    "title": "Tách đơn đang chờ và đơn đã gửi",
+    "intent": "tach-don-dang-cho-va-don-da-gui-thuc-hanh",
+    "cluster": "pos-operations",
+    "sourceFactIds": [],
+    "contentVersion": "v1",
+    "status": "PENDING",
+    "channel": "blogger"
+  },
+  {
+    "topicId": "ban-online-ecom-xu-ly-hang-hoan-khong-roi-ton",
+    "siteId": "ban-online-ecom",
+    "title": "Xử lý hàng hoàn không rối tồn",
+    "intent": "xu-ly-hang-hoan-khong-roi-ton-thuc-hanh",
+    "cluster": "inventory-management",
+    "sourceFactIds": [],
+    "contentVersion": "v1",
+    "status": "PENDING",
+    "channel": "blogger"
+  },
+  {
+    "topicId": "ban-online-ecom-dong-bo-ton-giua-nhieu-kenh",
+    "siteId": "ban-online-ecom",
+    "title": "Đồng bộ tồn giữa nhiều kênh",
+    "intent": "dong-bo-ton-giua-nhieu-kenh-thuc-hanh",
+    "cluster": "inventory-management",
+    "sourceFactIds": [],
+    "contentVersion": "v1",
+    "status": "PENDING",
+    "channel": "blogger"
+  },
+  {
+    "topicId": "ban-online-ecom-chot-don-livestream-khong-sot-khach",
+    "siteId": "ban-online-ecom",
+    "title": "Chốt đơn livestream không sót khách",
+    "intent": "chot-don-livestream-khong-sot-khach-thuc-hanh",
+    "cluster": "pos-operations",
+    "sourceFactIds": [],
+    "contentVersion": "v1",
+    "status": "PENDING",
+    "channel": "blogger"
+  },
+  {
+    "topicId": "ban-online-ecom-gan-ma-don-khi-dong-goi",
+    "siteId": "ban-online-ecom",
+    "title": "Gắn mã đơn khi đóng gói",
+    "intent": "gan-ma-don-khi-dong-goi-thuc-hanh",
+    "cluster": "pos-operations",
+    "sourceFactIds": [],
+    "contentVersion": "v1",
+    "status": "PENDING",
+    "channel": "blogger"
+  },
+  {
+    "topicId": "ban-online-ecom-kiem-hang-truoc-khi-ban-giao-van-chuyen",
+    "siteId": "ban-online-ecom",
+    "title": "Kiểm hàng trước khi bàn giao vận chuyển",
+    "intent": "kiem-hang-truoc-khi-ban-giao-van-chuyen-thuc-hanh",
+    "cluster": "store-closing-operations",
+    "sourceFactIds": [],
+    "contentVersion": "v1",
+    "status": "PENDING",
+    "channel": "blogger"
+  },
+  {
+    "topicId": "ban-online-ecom-xu-ly-don-doi-dia-chi",
+    "siteId": "ban-online-ecom",
+    "title": "Xử lý đơn đổi địa chỉ",
+    "intent": "xu-ly-don-doi-dia-chi-thuc-hanh",
+    "cluster": "pos-operations",
+    "sourceFactIds": [],
+    "contentVersion": "v1",
+    "status": "PENDING",
+    "channel": "blogger"
+  },
+  {
+    "topicId": "ban-online-ecom-tach-don-co-qua-tang",
+    "siteId": "ban-online-ecom",
+    "title": "Tách đơn có quà tặng",
+    "intent": "tach-don-co-qua-tang-thuc-hanh",
+    "cluster": "product-management",
+    "sourceFactIds": [],
+    "contentVersion": "v1",
+    "status": "PENDING",
+    "channel": "blogger"
+  },
+  {
+    "topicId": "ban-online-ecom-theo-doi-don-giao-that-bai",
+    "siteId": "ban-online-ecom",
+    "title": "Theo dõi đơn giao thất bại",
+    "intent": "theo-doi-don-giao-that-bai-thuc-hanh",
+    "cluster": "business-overview",
+    "sourceFactIds": [],
+    "contentVersion": "v1",
+    "status": "PENDING",
+    "channel": "blogger"
+  },
+  {
+    "topicId": "ban-online-ecom-phan-loai-ly-do-hang-hoan",
+    "siteId": "ban-online-ecom",
+    "title": "Phân loại lý do hàng hoàn",
+    "intent": "phan-loai-ly-do-hang-hoan-thuc-hanh",
+    "cluster": "business-overview",
+    "sourceFactIds": [],
+    "contentVersion": "v1",
+    "status": "PENDING",
+    "channel": "blogger"
+  },
+  {
+    "topicId": "ban-online-ecom-nhap-lai-ton-tu-hang-hoan",
+    "siteId": "ban-online-ecom",
+    "title": "Nhập lại tồn từ hàng hoàn",
+    "intent": "nhap-lai-ton-tu-hang-hoan-thuc-hanh",
+    "cluster": "inventory-management",
+    "sourceFactIds": [],
+    "contentVersion": "v1",
+    "status": "PENDING",
+    "channel": "blogger"
+  },
+  {
+    "topicId": "ban-online-ecom-xu-ly-don-trung-giua-cac-kenh",
+    "siteId": "ban-online-ecom",
+    "title": "Xử lý đơn trùng giữa các kênh",
+    "intent": "xu-ly-don-trung-giua-cac-kenh-thuc-hanh",
+    "cluster": "pos-operations",
+    "sourceFactIds": [],
+    "contentVersion": "v1",
+    "status": "PENDING",
+    "channel": "blogger"
+  },
+  {
+    "topicId": "ban-online-ecom-giu-nhip-tra-loi-khi-livestream",
+    "siteId": "ban-online-ecom",
+    "title": "Giữ nhịp trả lời khi livestream",
+    "intent": "giu-nhip-tra-loi-khi-livestream-thuc-hanh",
+    "cluster": "pos-operations",
+    "sourceFactIds": [],
+    "contentVersion": "v1",
+    "status": "PENDING",
+    "channel": "blogger"
+  },
+  {
+    "topicId": "ban-online-ecom-ban-giao-hoi-thoai-cho-nguoi-chot-don",
+    "siteId": "ban-online-ecom",
+    "title": "Bàn giao hội thoại cho người chốt đơn",
+    "intent": "ban-giao-hoi-thoai-cho-nguoi-chot-don-thuc-hanh",
+    "cluster": "pos-operations",
+    "sourceFactIds": [],
+    "contentVersion": "v1",
+    "status": "PENDING",
+    "channel": "blogger"
+  },
+  {
+    "topicId": "ban-online-ecom-chuan-bi-san-pham-truoc-buoi-phat-truc-tiep",
+    "siteId": "ban-online-ecom",
+    "title": "Chuẩn bị sản phẩm trước buổi phát trực tiếp",
+    "intent": "chuan-bi-san-pham-truoc-buoi-phat-truc-tiep-thuc-hanh",
+    "cluster": "product-management",
+    "sourceFactIds": [],
+    "contentVersion": "v1",
+    "status": "PENDING",
+    "channel": "blogger"
+  },
+  {
+    "topicId": "ban-online-ecom-theo-doi-ton-ao",
+    "siteId": "ban-online-ecom",
+    "title": "Theo dõi tồn ảo",
+    "intent": "theo-doi-ton-ao-thuc-hanh",
+    "cluster": "inventory-management",
+    "sourceFactIds": [],
+    "contentVersion": "v1",
+    "status": "PENDING",
+    "channel": "blogger"
+  },
+  {
+    "topicId": "ban-online-ecom-kiem-hang-thieu-sau-dong-goi",
+    "siteId": "ban-online-ecom",
+    "title": "Kiểm hàng thiếu sau đóng gói",
+    "intent": "kiem-hang-thieu-sau-dong-goi-thuc-hanh",
+    "cluster": "inventory-management",
+    "sourceFactIds": [],
+    "contentVersion": "v1",
+    "status": "PENDING",
+    "channel": "blogger"
+  },
+  {
+    "topicId": "ban-online-ecom-xu-ly-san-pham-het-ton-khi-da-chot",
+    "siteId": "ban-online-ecom",
+    "title": "Xử lý sản phẩm hết tồn khi đã chốt",
+    "intent": "xu-ly-san-pham-het-ton-khi-da-chot-thuc-hanh",
+    "cluster": "pos-operations",
+    "sourceFactIds": [],
+    "contentVersion": "v1",
+    "status": "PENDING",
+    "channel": "blogger"
+  },
+  {
+    "topicId": "ban-online-ecom-tach-hang-loi-khoi-hang-ban",
+    "siteId": "ban-online-ecom",
+    "title": "Tách hàng lỗi khỏi hàng bán",
+    "intent": "tach-hang-loi-khoi-hang-ban-thuc-hanh",
+    "cluster": "inventory-management",
+    "sourceFactIds": [],
+    "contentVersion": "v1",
+    "status": "PENDING",
+    "channel": "blogger"
+  },
+  {
+    "topicId": "ban-online-ecom-ghi-nhan-chiet-khau-tu-san",
+    "siteId": "ban-online-ecom",
+    "title": "Ghi nhận chiết khấu từ sàn",
+    "intent": "ghi-nhan-chiet-khau-tu-san-thuc-hanh",
+    "cluster": "revenue-monitoring",
+    "sourceFactIds": [],
+    "contentVersion": "v1",
+    "status": "PENDING",
+    "channel": "blogger"
+  },
+  {
+    "topicId": "ban-online-ecom-so-khop-don-va-phieu-gui",
+    "siteId": "ban-online-ecom",
+    "title": "So khớp đơn và phiếu gửi",
+    "intent": "so-khop-don-va-phieu-gui-thuc-hanh",
+    "cluster": "revenue-monitoring",
+    "sourceFactIds": [],
+    "contentVersion": "v1",
+    "status": "PENDING",
+    "channel": "blogger"
+  },
+  {
+    "topicId": "ban-online-ecom-quan-ly-vat-tu-dong-goi",
+    "siteId": "ban-online-ecom",
+    "title": "Quản lý vật tư đóng gói",
+    "intent": "quan-ly-vat-tu-dong-goi-thuc-hanh",
+    "cluster": "inventory-management",
+    "sourceFactIds": [],
+    "contentVersion": "v1",
+    "status": "PENDING",
+    "channel": "blogger"
+  },
+  {
+    "topicId": "ban-online-ecom-xep-thu-tu-don-can-xu-ly",
+    "siteId": "ban-online-ecom",
+    "title": "Xếp thứ tự đơn cần xử lý",
+    "intent": "xep-thu-tu-don-can-xu-ly-thuc-hanh",
+    "cluster": "business-overview",
+    "sourceFactIds": [],
+    "contentVersion": "v1",
+    "status": "PENDING",
+    "channel": "blogger"
+  },
+  {
+    "topicId": "ban-online-ecom-theo-doi-don-khach-tu-choi-nhan",
+    "siteId": "ban-online-ecom",
+    "title": "Theo dõi đơn khách từ chối nhận",
+    "intent": "theo-doi-don-khach-tu-choi-nhan-thuc-hanh",
+    "cluster": "business-overview",
+    "sourceFactIds": [],
+    "contentVersion": "v1",
+    "status": "PENDING",
+    "channel": "blogger"
+  },
+  {
+    "topicId": "ban-online-ecom-ghi-chu-khach-mua-nhieu-kenh",
+    "siteId": "ban-online-ecom",
+    "title": "Ghi chú khách mua nhiều kênh",
+    "intent": "ghi-chu-khach-mua-nhieu-kenh-thuc-hanh",
+    "cluster": "business-overview",
+    "sourceFactIds": [],
+    "contentVersion": "v1",
+    "status": "PENDING",
+    "channel": "blogger"
+  },
+  {
+    "topicId": "ban-online-ecom-chot-so-lieu-khi-ket-thuc-ca",
+    "siteId": "ban-online-ecom",
+    "title": "Chốt số liệu khi kết thúc ca",
+    "intent": "chot-so-lieu-khi-ket-thuc-ca-thuc-hanh",
+    "cluster": "store-closing-operations",
+    "sourceFactIds": [],
+    "contentVersion": "v1",
+    "status": "PENDING",
+    "channel": "blogger"
+  },
+  {
+    "topicId": "ban-online-ecom-kiem-luong-don-truoc-dot-ban-manh",
+    "siteId": "ban-online-ecom",
+    "title": "Kiểm luồng đơn trước đợt bán mạnh",
+    "intent": "kiem-luong-don-truoc-dot-ban-manh-thuc-hanh",
+    "cluster": "business-overview",
+    "sourceFactIds": [],
+    "contentVersion": "v1",
+    "status": "PENDING",
+    "channel": "blogger"
+  },
+  {
+    "topicId": "ban-online-ecom-ban-giao-kho-cho-ca-sau",
+    "siteId": "ban-online-ecom",
+    "title": "Bàn giao kho cho ca sau",
+    "intent": "ban-giao-kho-cho-ca-sau-thuc-hanh",
+    "cluster": "store-closing-operations",
+    "sourceFactIds": [],
+    "contentVersion": "v1",
+    "status": "PENDING",
+    "channel": "blogger"
+  },
+  {
+    "topicId": "ban-online-ecom-ra-lai-kenh-ban-truoc-khi-nghi",
+    "siteId": "ban-online-ecom",
+    "title": "Rà lại kênh bán trước khi nghỉ",
+    "intent": "ra-lai-kenh-ban-truoc-khi-nghi-thuc-hanh",
+    "cluster": "store-closing-operations",
+    "sourceFactIds": [],
+    "contentVersion": "v1",
+    "status": "PENDING",
+    "channel": "blogger"
+  },
+  {
+    "topicId": "quan-nho-fnb-kiem-nguyen-lieu-truoc-khi-mo-quan",
+    "siteId": "quan-nho-fnb",
+    "title": "Kiểm nguyên liệu trước khi mở quán",
+    "intent": "kiem-nguyen-lieu-truoc-khi-mo-quan-thuc-hanh",
+    "cluster": "inventory-management",
+    "sourceFactIds": [],
+    "contentVersion": "v1",
+    "status": "PENDING",
+    "channel": "blogger"
+  },
+  {
+    "topicId": "quan-nho-fnb-ban-giao-ca-khong-sot-viec",
+    "siteId": "quan-nho-fnb",
+    "title": "Bàn giao ca không sót việc",
+    "intent": "ban-giao-ca-khong-sot-viec-thuc-hanh",
+    "cluster": "pos-operations",
+    "sourceFactIds": [],
+    "contentVersion": "v1",
+    "status": "PENDING",
+    "channel": "blogger"
+  },
+  {
+    "topicId": "quan-nho-fnb-sap-ban-de-nhan-order-ro-rang",
+    "siteId": "quan-nho-fnb",
+    "title": "Sắp bàn để nhận order rõ ràng",
+    "intent": "sap-ban-de-nhan-order-ro-rang-thuc-hanh",
+    "cluster": "pos-operations",
+    "sourceFactIds": [],
+    "contentVersion": "v1",
+    "status": "PENDING",
+    "channel": "blogger"
+  },
+  {
+    "topicId": "quan-nho-fnb-ghi-mon-sua-mon-tranh-nham-bep",
+    "siteId": "quan-nho-fnb",
+    "title": "Ghi món sửa món tránh nhầm bếp",
+    "intent": "ghi-mon-sua-mon-tranh-nham-bep-thuc-hanh",
+    "cluster": "pos-operations",
+    "sourceFactIds": [],
+    "contentVersion": "v1",
+    "status": "PENDING",
+    "channel": "blogger"
+  },
+  {
+    "topicId": "quan-nho-fnb-dinh-luong-do-uong-bang-dung-cu-co-dinh",
+    "siteId": "quan-nho-fnb",
+    "title": "Định lượng đồ uống bằng dụng cụ cố định",
+    "intent": "dinh-luong-do-uong-bang-dung-cu-co-dinh-thuc-hanh",
+    "cluster": "product-management",
+    "sourceFactIds": [],
+    "contentVersion": "v1",
+    "status": "PENDING",
+    "channel": "blogger"
+  },
+  {
+    "topicId": "quan-nho-fnb-kiem-mon-truoc-khi-mang-ra-ban",
+    "siteId": "quan-nho-fnb",
+    "title": "Kiểm món trước khi mang ra bàn",
+    "intent": "kiem-mon-truoc-khi-mang-ra-ban-thuc-hanh",
+    "cluster": "pos-operations",
+    "sourceFactIds": [],
+    "contentVersion": "v1",
+    "status": "PENDING",
+    "channel": "blogger"
+  },
+  {
+    "topicId": "quan-nho-fnb-xu-ly-order-don-vao-luc-dong-khach",
+    "siteId": "quan-nho-fnb",
+    "title": "Xử lý order dồn vào lúc đông khách",
+    "intent": "xu-ly-order-don-vao-luc-dong-khach-thuc-hanh",
+    "cluster": "pos-operations",
+    "sourceFactIds": [],
+    "contentVersion": "v1",
+    "status": "PENDING",
+    "channel": "blogger"
+  },
+  {
+    "topicId": "quan-nho-fnb-chia-khu-phuc-vu-cho-nhan-vien",
+    "siteId": "quan-nho-fnb",
+    "title": "Chia khu phục vụ cho nhân viên",
+    "intent": "chia-khu-phuc-vu-cho-nhan-vien-thuc-hanh",
+    "cluster": "business-overview",
+    "sourceFactIds": [],
+    "contentVersion": "v1",
+    "status": "PENDING",
+    "channel": "blogger"
+  },
+  {
+    "topicId": "quan-nho-fnb-theo-doi-mon-dang-cho-o-bep",
+    "siteId": "quan-nho-fnb",
+    "title": "Theo dõi món đang chờ ở bếp",
+    "intent": "theo-doi-mon-dang-cho-o-bep-thuc-hanh",
+    "cluster": "pos-operations",
+    "sourceFactIds": [],
+    "contentVersion": "v1",
+    "status": "PENDING",
+    "channel": "blogger"
+  },
+  {
+    "topicId": "quan-nho-fnb-giam-hao-hut-rau-cu-khi-so-che",
+    "siteId": "quan-nho-fnb",
+    "title": "Giảm hao hụt rau củ khi sơ chế",
+    "intent": "giam-hao-hut-rau-cu-khi-so-che-thuc-hanh",
+    "cluster": "inventory-management",
+    "sourceFactIds": [],
+    "contentVersion": "v1",
+    "status": "PENDING",
+    "channel": "blogger"
+  },
+  {
+    "topicId": "quan-nho-fnb-quan-ly-topping-de-hong",
+    "siteId": "quan-nho-fnb",
+    "title": "Quản lý topping dễ hỏng",
+    "intent": "quan-ly-topping-de-hong-thuc-hanh",
+    "cluster": "inventory-management",
+    "sourceFactIds": [],
+    "contentVersion": "v1",
+    "status": "PENDING",
+    "channel": "blogger"
+  },
+  {
+    "topicId": "quan-nho-fnb-tach-nguyen-lieu-ban-chay-va-cham",
+    "siteId": "quan-nho-fnb",
+    "title": "Tách nguyên liệu bán chạy và chậm",
+    "intent": "tach-nguyen-lieu-ban-chay-va-cham-thuc-hanh",
+    "cluster": "inventory-management",
+    "sourceFactIds": [],
+    "contentVersion": "v1",
+    "status": "PENDING",
+    "channel": "blogger"
+  },
+  {
+    "topicId": "quan-nho-fnb-chuan-bi-quay-pha-che-truoc-ca",
+    "siteId": "quan-nho-fnb",
+    "title": "Chuẩn bị quầy pha chế trước ca",
+    "intent": "chuan-bi-quay-pha-che-truoc-ca-thuc-hanh",
+    "cluster": "pos-operations",
+    "sourceFactIds": [],
+    "contentVersion": "v1",
+    "status": "PENDING",
+    "channel": "blogger"
+  },
+  {
+    "topicId": "quan-nho-fnb-bo-sung-vat-dung-giua-ca",
+    "siteId": "quan-nho-fnb",
+    "title": "Bổ sung vật dụng giữa ca",
+    "intent": "bo-sung-vat-dung-giua-ca-thuc-hanh",
+    "cluster": "inventory-management",
+    "sourceFactIds": [],
+    "contentVersion": "v1",
+    "status": "PENDING",
+    "channel": "blogger"
+  },
+  {
+    "topicId": "quan-nho-fnb-xu-ly-khach-doi-mon-sau-khi-bep-nhan",
+    "siteId": "quan-nho-fnb",
+    "title": "Xử lý khách đổi món sau khi bếp nhận",
+    "intent": "xu-ly-khach-doi-mon-sau-khi-bep-nhan-thuc-hanh",
+    "cluster": "pos-operations",
+    "sourceFactIds": [],
+    "contentVersion": "v1",
+    "status": "PENDING",
+    "channel": "blogger"
+  },
+  {
+    "topicId": "quan-nho-fnb-nhan-ban-dat-truoc-khong-lam-roi-quan",
+    "siteId": "quan-nho-fnb",
+    "title": "Nhận bàn đặt trước không làm rối quán",
+    "intent": "nhan-ban-dat-truoc-khong-lam-roi-quan-thuc-hanh",
+    "cluster": "business-overview",
+    "sourceFactIds": [],
+    "contentVersion": "v1",
+    "status": "PENDING",
+    "channel": "blogger"
+  },
+  {
+    "topicId": "quan-nho-fnb-xep-ca-theo-nhip-khach",
+    "siteId": "quan-nho-fnb",
+    "title": "Xếp ca theo nhịp khách",
+    "intent": "xep-ca-theo-nhip-khach-thuc-hanh",
+    "cluster": "business-overview",
+    "sourceFactIds": [],
+    "contentVersion": "v1",
+    "status": "PENDING",
+    "channel": "blogger"
+  },
+  {
+    "topicId": "quan-nho-fnb-ban-giao-tien-mat-khi-doi-ca",
+    "siteId": "quan-nho-fnb",
+    "title": "Bàn giao tiền mặt khi đổi ca",
+    "intent": "ban-giao-tien-mat-khi-doi-ca-thuc-hanh",
+    "cluster": "revenue-monitoring",
+    "sourceFactIds": [],
+    "contentVersion": "v1",
+    "status": "PENDING",
+    "channel": "blogger"
+  },
+  {
+    "topicId": "quan-nho-fnb-kiem-dung-cu-sau-khi-ket-thuc-ca",
+    "siteId": "quan-nho-fnb",
+    "title": "Kiểm dụng cụ sau khi kết thúc ca",
+    "intent": "kiem-dung-cu-sau-khi-ket-thuc-ca-thuc-hanh",
+    "cluster": "store-closing-operations",
+    "sourceFactIds": [],
+    "contentVersion": "v1",
+    "status": "PENDING",
+    "channel": "blogger"
+  },
+  {
+    "topicId": "quan-nho-fnb-ve-sinh-bep-khong-can-tro-phuc-vu",
+    "siteId": "quan-nho-fnb",
+    "title": "Vệ sinh bếp không cản trở phục vụ",
+    "intent": "ve-sinh-bep-khong-can-tro-phuc-vu-thuc-hanh",
+    "cluster": "store-closing-operations",
+    "sourceFactIds": [],
+    "contentVersion": "v1",
+    "status": "PENDING",
+    "channel": "blogger"
+  },
+  {
+    "topicId": "quan-nho-fnb-theo-doi-mon-bo-va-ly-do",
+    "siteId": "quan-nho-fnb",
+    "title": "Theo dõi món bỏ và lý do",
+    "intent": "theo-doi-mon-bo-va-ly-do-thuc-hanh",
+    "cluster": "revenue-monitoring",
+    "sourceFactIds": [],
+    "contentVersion": "v1",
+    "status": "PENDING",
+    "channel": "blogger"
+  },
+  {
+    "topicId": "quan-nho-fnb-ghi-nhan-mon-tang-khach-dung-cach",
+    "siteId": "quan-nho-fnb",
+    "title": "Ghi nhận món tặng khách đúng cách",
+    "intent": "ghi-nhan-mon-tang-khach-dung-cach-thuc-hanh",
+    "cluster": "revenue-monitoring",
+    "sourceFactIds": [],
+    "contentVersion": "v1",
+    "status": "PENDING",
+    "channel": "blogger"
+  },
+  {
+    "topicId": "quan-nho-fnb-quan-ly-phan-an-nhan-vien",
+    "siteId": "quan-nho-fnb",
+    "title": "Quản lý phần ăn nhân viên",
+    "intent": "quan-ly-phan-an-nhan-vien-thuc-hanh",
+    "cluster": "inventory-management",
+    "sourceFactIds": [],
+    "contentVersion": "v1",
+    "status": "PENDING",
+    "channel": "blogger"
+  },
+  {
+    "topicId": "quan-nho-fnb-giu-chat-luong-mon-khi-doi-nguoi-lam",
+    "siteId": "quan-nho-fnb",
+    "title": "Giữ chất lượng món khi đổi người làm",
+    "intent": "giu-chat-luong-mon-khi-doi-nguoi-lam-thuc-hanh",
+    "cluster": "product-management",
+    "sourceFactIds": [],
+    "contentVersion": "v1",
+    "status": "PENDING",
+    "channel": "blogger"
+  },
+  {
+    "topicId": "quan-nho-fnb-phan-luong-khach-mua-mang-di",
+    "siteId": "quan-nho-fnb",
+    "title": "Phân luồng khách mua mang đi",
+    "intent": "phan-luong-khach-mua-mang-di-thuc-hanh",
+    "cluster": "pos-operations",
+    "sourceFactIds": [],
+    "contentVersion": "v1",
+    "status": "PENDING",
+    "channel": "blogger"
+  },
+  {
+    "topicId": "quan-nho-fnb-xu-ly-thieu-nguyen-lieu-giua-ca",
+    "siteId": "quan-nho-fnb",
+    "title": "Xử lý thiếu nguyên liệu giữa ca",
+    "intent": "xu-ly-thieu-nguyen-lieu-giua-ca-thuc-hanh",
+    "cluster": "inventory-management",
+    "sourceFactIds": [],
+    "contentVersion": "v1",
+    "status": "PENDING",
+    "channel": "blogger"
+  },
+  {
+    "topicId": "quan-nho-fnb-chot-ton-sau-khi-ket-thuc-ca",
+    "siteId": "quan-nho-fnb",
+    "title": "Chốt tồn sau khi kết thúc ca",
+    "intent": "chot-ton-sau-khi-ket-thuc-ca-thuc-hanh",
+    "cluster": "store-closing-operations",
+    "sourceFactIds": [],
+    "contentVersion": "v1",
+    "status": "PENDING",
+    "channel": "blogger"
+  },
+  {
+    "topicId": "quan-nho-fnb-luu-cong-thuc-de-nguoi-moi-lam-dung",
+    "siteId": "quan-nho-fnb",
+    "title": "Lưu công thức để người mới làm đúng",
+    "intent": "luu-cong-thuc-de-nguoi-moi-lam-dung-thuc-hanh",
+    "cluster": "product-management",
+    "sourceFactIds": [],
+    "contentVersion": "v1",
+    "status": "PENDING",
+    "channel": "blogger"
+  },
+  {
+    "topicId": "quan-nho-fnb-kiem-chenh-lech-giua-order-va-bep",
+    "siteId": "quan-nho-fnb",
+    "title": "Kiểm chênh lệch giữa order và bếp",
+    "intent": "kiem-chenh-lech-giua-order-va-bep-thuc-hanh",
+    "cluster": "revenue-monitoring",
+    "sourceFactIds": [],
+    "contentVersion": "v1",
+    "status": "PENDING",
+    "channel": "blogger"
+  },
+  {
+    "topicId": "quan-nho-fnb-ra-lai-quan-truoc-khi-khoa-cua",
+    "siteId": "quan-nho-fnb",
+    "title": "Rà lại quán trước khi khóa cửa",
+    "intent": "ra-lai-quan-truoc-khi-khoa-cua-thuc-hanh",
+    "cluster": "store-closing-operations",
+    "sourceFactIds": [],
+    "contentVersion": "v1",
+    "status": "PENDING",
+    "channel": "blogger"
+  },
+  {
+    "topicId": "spa-beauty-xac-nhan-lich-hen-truoc-khi-khach-toi",
+    "siteId": "spa-beauty",
+    "title": "Xác nhận lịch hẹn trước khi khách tới",
+    "intent": "xac-nhan-lich-hen-truoc-khi-khach-toi-thuc-hanh",
+    "cluster": "pos-operations",
+    "sourceFactIds": [],
+    "contentVersion": "v1",
+    "status": "PENDING",
+    "channel": "blogger"
+  },
+  {
+    "topicId": "spa-beauty-sap-lich-tranh-chong-khach",
+    "siteId": "spa-beauty",
+    "title": "Sắp lịch tránh chồng khách",
+    "intent": "sap-lich-tranh-chong-khach-thuc-hanh",
+    "cluster": "business-overview",
+    "sourceFactIds": [],
+    "contentVersion": "v1",
+    "status": "PENDING",
+    "channel": "blogger"
+  },
+  {
+    "topicId": "spa-beauty-ghi-tinh-trang-khach-truoc-dich-vu",
+    "siteId": "spa-beauty",
+    "title": "Ghi tình trạng khách trước dịch vụ",
+    "intent": "ghi-tinh-trang-khach-truoc-dich-vu-thuc-hanh",
+    "cluster": "product-management",
+    "sourceFactIds": [],
+    "contentVersion": "v1",
+    "status": "PENDING",
+    "channel": "blogger"
+  },
+  {
+    "topicId": "spa-beauty-theo-doi-lieu-trinh-nhieu-buoi",
+    "siteId": "spa-beauty",
+    "title": "Theo dõi liệu trình nhiều buổi",
+    "intent": "theo-doi-lieu-trinh-nhieu-buoi-thuc-hanh",
+    "cluster": "product-management",
+    "sourceFactIds": [],
+    "contentVersion": "v1",
+    "status": "PENDING",
+    "channel": "blogger"
+  },
+  {
+    "topicId": "spa-beauty-ban-giao-khach-giua-le-tan-va-tho",
+    "siteId": "spa-beauty",
+    "title": "Bàn giao khách giữa lễ tân và thợ",
+    "intent": "ban-giao-khach-giua-le-tan-va-tho-thuc-hanh",
+    "cluster": "pos-operations",
+    "sourceFactIds": [],
+    "contentVersion": "v1",
+    "status": "PENDING",
+    "channel": "blogger"
+  },
+  {
+    "topicId": "spa-beauty-tinh-hoa-hong-theo-dich-vu-thuc-hien",
+    "siteId": "spa-beauty",
+    "title": "Tính hoa hồng theo dịch vụ thực hiện",
+    "intent": "tinh-hoa-hong-theo-dich-vu-thuc-hien-thuc-hanh",
+    "cluster": "revenue-monitoring",
+    "sourceFactIds": [],
+    "contentVersion": "v1",
+    "status": "PENDING",
+    "channel": "blogger"
+  },
+  {
+    "topicId": "spa-beauty-xu-ly-khach-den-tre",
+    "siteId": "spa-beauty",
+    "title": "Xử lý khách đến trễ",
+    "intent": "xu-ly-khach-den-tre-thuc-hanh",
+    "cluster": "pos-operations",
+    "sourceFactIds": [],
+    "contentVersion": "v1",
+    "status": "PENDING",
+    "channel": "blogger"
+  },
+  {
+    "topicId": "spa-beauty-xu-ly-khach-bo-lich-sat-thoi-diem",
+    "siteId": "spa-beauty",
+    "title": "Xử lý khách bỏ lịch sát thời điểm",
+    "intent": "xu-ly-khach-bo-lich-sat-thoi-diem-thuc-hanh",
+    "cluster": "business-overview",
+    "sourceFactIds": [],
+    "contentVersion": "v1",
+    "status": "PENDING",
+    "channel": "blogger"
+  },
+  {
+    "topicId": "spa-beauty-giu-khung-lich-cho-khach-cu",
+    "siteId": "spa-beauty",
+    "title": "Giữ khung lịch cho khách cũ",
+    "intent": "giu-khung-lich-cho-khach-cu-thuc-hanh",
+    "cluster": "business-overview",
+    "sourceFactIds": [],
+    "contentVersion": "v1",
+    "status": "PENDING",
+    "channel": "blogger"
+  },
+  {
+    "topicId": "spa-beauty-nhac-khach-quay-lai-dung-luc",
+    "siteId": "spa-beauty",
+    "title": "Nhắc khách quay lại đúng lúc",
+    "intent": "nhac-khach-quay-lai-dung-luc-thuc-hanh",
+    "cluster": "business-overview",
+    "sourceFactIds": [],
+    "contentVersion": "v1",
+    "status": "PENDING",
+    "channel": "blogger"
+  },
+  {
+    "topicId": "spa-beauty-luu-so-thich-cua-khach-quen",
+    "siteId": "spa-beauty",
+    "title": "Lưu sở thích của khách quen",
+    "intent": "luu-so-thich-cua-khach-quen-thuc-hanh",
+    "cluster": "product-management",
+    "sourceFactIds": [],
+    "contentVersion": "v1",
+    "status": "PENDING",
+    "channel": "blogger"
+  },
+  {
+    "topicId": "spa-beauty-kiem-vat-tu-truoc-ca",
+    "siteId": "spa-beauty",
+    "title": "Kiểm vật tư trước ca",
+    "intent": "kiem-vat-tu-truoc-ca-thuc-hanh",
+    "cluster": "inventory-management",
+    "sourceFactIds": [],
+    "contentVersion": "v1",
+    "status": "PENDING",
+    "channel": "blogger"
+  },
+  {
+    "topicId": "spa-beauty-theo-doi-vat-tu-dung-theo-dich-vu",
+    "siteId": "spa-beauty",
+    "title": "Theo dõi vật tư dùng theo dịch vụ",
+    "intent": "theo-doi-vat-tu-dung-theo-dich-vu-thuc-hanh",
+    "cluster": "inventory-management",
+    "sourceFactIds": [],
+    "contentVersion": "v1",
+    "status": "PENDING",
+    "channel": "blogger"
+  },
+  {
+    "topicId": "spa-beauty-giam-that-thoat-my-pham",
+    "siteId": "spa-beauty",
+    "title": "Giảm thất thoát mỹ phẩm",
+    "intent": "giam-that-thoat-my-pham-thuc-hanh",
+    "cluster": "inventory-management",
+    "sourceFactIds": [],
+    "contentVersion": "v1",
+    "status": "PENDING",
+    "channel": "blogger"
+  },
+  {
+    "topicId": "spa-beauty-bao-quan-dung-cu-sau-su-dung",
+    "siteId": "spa-beauty",
+    "title": "Bảo quản dụng cụ sau sử dụng",
+    "intent": "bao-quan-dung-cu-sau-su-dung-thuc-hanh",
+    "cluster": "store-closing-operations",
+    "sourceFactIds": [],
+    "contentVersion": "v1",
+    "status": "PENDING",
+    "channel": "blogger"
+  },
+  {
+    "topicId": "spa-beauty-chia-phong-va-ghe-hop-ly",
+    "siteId": "spa-beauty",
+    "title": "Chia phòng và ghế hợp lý",
+    "intent": "chia-phong-va-ghe-hop-ly-thuc-hanh",
+    "cluster": "business-overview",
+    "sourceFactIds": [],
+    "contentVersion": "v1",
+    "status": "PENDING",
+    "channel": "blogger"
+  },
+  {
+    "topicId": "spa-beauty-xep-luot-tho-cong-bang",
+    "siteId": "spa-beauty",
+    "title": "Xếp lượt thợ công bằng",
+    "intent": "xep-luot-tho-cong-bang-thuc-hanh",
+    "cluster": "business-overview",
+    "sourceFactIds": [],
+    "contentVersion": "v1",
+    "status": "PENDING",
+    "channel": "blogger"
+  },
+  {
+    "topicId": "spa-beauty-xu-ly-khach-doi-dich-vu",
+    "siteId": "spa-beauty",
+    "title": "Xử lý khách đổi dịch vụ",
+    "intent": "xu-ly-khach-doi-dich-vu-thuc-hanh",
+    "cluster": "pos-operations",
+    "sourceFactIds": [],
+    "contentVersion": "v1",
+    "status": "PENDING",
+    "channel": "blogger"
+  },
+  {
+    "topicId": "spa-beauty-ghi-phan-hoi-sau-buoi-lam",
+    "siteId": "spa-beauty",
+    "title": "Ghi phản hồi sau buổi làm",
+    "intent": "ghi-phan-hoi-sau-buoi-lam-thuc-hanh",
+    "cluster": "product-management",
+    "sourceFactIds": [],
+    "contentVersion": "v1",
+    "status": "PENDING",
+    "channel": "blogger"
+  },
+  {
+    "topicId": "spa-beauty-tiep-nhan-khieu-nai-nhe-nhang",
+    "siteId": "spa-beauty",
+    "title": "Tiếp nhận khiếu nại nhẹ nhàng",
+    "intent": "tiep-nhan-khieu-nai-nhe-nhang-thuc-hanh",
+    "cluster": "business-overview",
+    "sourceFactIds": [],
+    "contentVersion": "v1",
+    "status": "PENDING",
+    "channel": "blogger"
+  },
+  {
+    "topicId": "spa-beauty-giu-trai-nghiem-dong-deu-giua-tho",
+    "siteId": "spa-beauty",
+    "title": "Giữ trải nghiệm đồng đều giữa thợ",
+    "intent": "giu-trai-nghiem-dong-deu-giua-tho-thuc-hanh",
+    "cluster": "product-management",
+    "sourceFactIds": [],
+    "contentVersion": "v1",
+    "status": "PENDING",
+    "channel": "blogger"
+  },
+  {
+    "topicId": "spa-beauty-quan-ly-the-lieu-trinh-giay",
+    "siteId": "spa-beauty",
+    "title": "Quản lý thẻ liệu trình giấy",
+    "intent": "quan-ly-the-lieu-trinh-giay-thuc-hanh",
+    "cluster": "product-management",
+    "sourceFactIds": [],
+    "contentVersion": "v1",
+    "status": "PENDING",
+    "channel": "blogger"
+  },
+  {
+    "topicId": "spa-beauty-ban-giao-tien-coc",
+    "siteId": "spa-beauty",
+    "title": "Bàn giao tiền cọc",
+    "intent": "ban-giao-tien-coc-thuc-hanh",
+    "cluster": "revenue-monitoring",
+    "sourceFactIds": [],
+    "contentVersion": "v1",
+    "status": "PENDING",
+    "channel": "blogger"
+  },
+  {
+    "topicId": "spa-beauty-theo-doi-khach-chua-quay-lai",
+    "siteId": "spa-beauty",
+    "title": "Theo dõi khách chưa quay lại",
+    "intent": "theo-doi-khach-chua-quay-lai-thuc-hanh",
+    "cluster": "business-overview",
+    "sourceFactIds": [],
+    "contentVersion": "v1",
+    "status": "PENDING",
+    "channel": "blogger"
+  },
+  {
+    "topicId": "spa-beauty-cham-khach-sau-dich-vu",
+    "siteId": "spa-beauty",
+    "title": "Chăm khách sau dịch vụ",
+    "intent": "cham-khach-sau-dich-vu-thuc-hanh",
+    "cluster": "business-overview",
+    "sourceFactIds": [],
+    "contentVersion": "v1",
+    "status": "PENDING",
+    "channel": "blogger"
+  },
+  {
+    "topicId": "spa-beauty-chuan-bi-quay-le-tan-truoc-ca",
+    "siteId": "spa-beauty",
+    "title": "Chuẩn bị quầy lễ tân trước ca",
+    "intent": "chuan-bi-quay-le-tan-truoc-ca-thuc-hanh",
+    "cluster": "pos-operations",
+    "sourceFactIds": [],
+    "contentVersion": "v1",
+    "status": "PENDING",
+    "channel": "blogger"
+  },
+  {
+    "topicId": "spa-beauty-chot-lich-khi-ket-thuc-ca",
+    "siteId": "spa-beauty",
+    "title": "Chốt lịch khi kết thúc ca",
+    "intent": "chot-lich-khi-ket-thuc-ca-thuc-hanh",
+    "cluster": "store-closing-operations",
+    "sourceFactIds": [],
+    "contentVersion": "v1",
+    "status": "PENDING",
+    "channel": "blogger"
+  },
+  {
+    "topicId": "spa-beauty-dao-tao-tho-moi-theo-quy-trinh",
+    "siteId": "spa-beauty",
+    "title": "Đào tạo thợ mới theo quy trình",
+    "intent": "dao-tao-tho-moi-theo-quy-trinh-thuc-hanh",
+    "cluster": "business-overview",
+    "sourceFactIds": [],
+    "contentVersion": "v1",
+    "status": "PENDING",
+    "channel": "blogger"
+  },
+  {
+    "topicId": "spa-beauty-tach-khach-tu-van-va-khach-lam-ngay",
+    "siteId": "spa-beauty",
+    "title": "Tách khách tư vấn và khách làm ngay",
+    "intent": "tach-khach-tu-van-va-khach-lam-ngay-thuc-hanh",
+    "cluster": "pos-operations",
+    "sourceFactIds": [],
+    "contentVersion": "v1",
+    "status": "PENDING",
+    "channel": "blogger"
+  },
+  {
+    "topicId": "spa-beauty-ra-lai-tiem-truoc-khi-dong-cua",
+    "siteId": "spa-beauty",
+    "title": "Rà lại tiệm trước khi đóng cửa",
+    "intent": "ra-lai-tiem-truoc-khi-dong-cua-thuc-hanh",
+    "cluster": "store-closing-operations",
+    "sourceFactIds": [],
+    "contentVersion": "v1",
+    "status": "PENDING",
+    "channel": "blogger"
+  },
+  {
+    "topicId": "tap-hoa-retail-phan-khu-ke-theo-toc-do-ban",
+    "siteId": "tap-hoa-retail",
+    "title": "Phân khu kệ theo tốc độ bán",
+    "intent": "phan-khu-ke-theo-toc-do-ban-thuc-hanh",
+    "cluster": "product-management",
+    "sourceFactIds": [],
+    "contentVersion": "v1",
+    "status": "PENDING",
+    "channel": "blogger"
+  },
+  {
+    "topicId": "tap-hoa-retail-kiem-han-dung-theo-loi-di",
+    "siteId": "tap-hoa-retail",
+    "title": "Kiểm hạn dùng theo lối đi",
+    "intent": "kiem-han-dung-theo-loi-di-thuc-hanh",
+    "cluster": "inventory-management",
+    "sourceFactIds": [],
+    "contentVersion": "v1",
+    "status": "PENDING",
+    "channel": "blogger"
+  },
+  {
+    "topicId": "tap-hoa-retail-nhan-hang-khong-bo-sot-ma",
+    "siteId": "tap-hoa-retail",
+    "title": "Nhận hàng không bỏ sót mã",
+    "intent": "nhan-hang-khong-bo-sot-ma-thuc-hanh",
+    "cluster": "inventory-management",
+    "sourceFactIds": [],
+    "contentVersion": "v1",
+    "status": "PENDING",
+    "channel": "blogger"
+  },
+  {
+    "topicId": "tap-hoa-retail-ghi-muc-nhap-thay-doi",
+    "siteId": "tap-hoa-retail",
+    "title": "Ghi mức nhập thay đổi",
+    "intent": "ghi-muc-nhap-thay-doi-thuc-hanh",
+    "cluster": "revenue-monitoring",
+    "sourceFactIds": [],
+    "contentVersion": "v1",
+    "status": "PENDING",
+    "channel": "blogger"
+  },
+  {
+    "topicId": "tap-hoa-retail-dat-nhan-ke-de-tim-hang",
+    "siteId": "tap-hoa-retail",
+    "title": "Đặt nhãn kệ dễ tìm hàng",
+    "intent": "dat-nhan-ke-de-tim-hang-thuc-hanh",
+    "cluster": "product-management",
+    "sourceFactIds": [],
+    "contentVersion": "v1",
+    "status": "PENDING",
+    "channel": "blogger"
+  },
+  {
+    "topicId": "tap-hoa-retail-quan-ly-hang-ban-theo-loc-va-le",
+    "siteId": "tap-hoa-retail",
+    "title": "Quản lý hàng bán theo lốc và lẻ",
+    "intent": "quan-ly-hang-ban-theo-loc-va-le-thuc-hanh",
+    "cluster": "product-management",
+    "sourceFactIds": [],
+    "contentVersion": "v1",
+    "status": "PENDING",
+    "channel": "blogger"
+  },
+  {
+    "topicId": "tap-hoa-retail-theo-doi-no-khach-quen",
+    "siteId": "tap-hoa-retail",
+    "title": "Theo dõi nợ khách quen",
+    "intent": "theo-doi-no-khach-quen-thuc-hanh",
+    "cluster": "revenue-monitoring",
+    "sourceFactIds": [],
+    "contentVersion": "v1",
+    "status": "PENDING",
+    "channel": "blogger"
+  },
+  {
+    "topicId": "tap-hoa-retail-nhac-no-kheo-khong-mat-khach",
+    "siteId": "tap-hoa-retail",
+    "title": "Nhắc nợ khéo không mất khách",
+    "intent": "nhac-no-kheo-khong-mat-khach-thuc-hanh",
+    "cluster": "revenue-monitoring",
+    "sourceFactIds": [],
+    "contentVersion": "v1",
+    "status": "PENDING",
+    "channel": "blogger"
+  },
+  {
+    "topicId": "tap-hoa-retail-tach-hang-can-han",
+    "siteId": "tap-hoa-retail",
+    "title": "Tách hàng cận hạn",
+    "intent": "tach-hang-can-han-thuc-hanh",
+    "cluster": "inventory-management",
+    "sourceFactIds": [],
+    "contentVersion": "v1",
+    "status": "PENDING",
+    "channel": "blogger"
+  },
+  {
+    "topicId": "tap-hoa-retail-xu-ly-hang-hong-bao-bi",
+    "siteId": "tap-hoa-retail",
+    "title": "Xử lý hàng hỏng bao bì",
+    "intent": "xu-ly-hang-hong-bao-bi-thuc-hanh",
+    "cluster": "inventory-management",
+    "sourceFactIds": [],
+    "contentVersion": "v1",
+    "status": "PENDING",
+    "channel": "blogger"
+  },
+  {
+    "topicId": "tap-hoa-retail-kiem-quay-truoc-khi-mo-tiem",
+    "siteId": "tap-hoa-retail",
+    "title": "Kiểm quầy trước khi mở tiệm",
+    "intent": "kiem-quay-truoc-khi-mo-tiem-thuc-hanh",
+    "cluster": "pos-operations",
+    "sourceFactIds": [],
+    "contentVersion": "v1",
+    "status": "PENDING",
+    "channel": "blogger"
+  },
+  {
+    "topicId": "tap-hoa-retail-chot-tien-mat-khi-doi-ca",
+    "siteId": "tap-hoa-retail",
+    "title": "Chốt tiền mặt khi đổi ca",
+    "intent": "chot-tien-mat-khi-doi-ca-thuc-hanh",
+    "cluster": "revenue-monitoring",
+    "sourceFactIds": [],
+    "contentVersion": "v1",
+    "status": "PENDING",
+    "channel": "blogger"
+  },
+  {
+    "topicId": "tap-hoa-retail-tranh-nham-ma-hang-gan-giong",
+    "siteId": "tap-hoa-retail",
+    "title": "Tránh nhầm mã hàng gần giống",
+    "intent": "tranh-nham-ma-hang-gan-giong-thuc-hanh",
+    "cluster": "product-management",
+    "sourceFactIds": [],
+    "contentVersion": "v1",
+    "status": "PENDING",
+    "channel": "blogger"
+  },
+  {
+    "topicId": "tap-hoa-retail-quan-ly-hang-gui-ban",
+    "siteId": "tap-hoa-retail",
+    "title": "Quản lý hàng gửi bán",
+    "intent": "quan-ly-hang-gui-ban-thuc-hanh",
+    "cluster": "inventory-management",
+    "sourceFactIds": [],
+    "contentVersion": "v1",
+    "status": "PENDING",
+    "channel": "blogger"
+  },
+  {
+    "topicId": "tap-hoa-retail-kiem-hang-tang-kem",
+    "siteId": "tap-hoa-retail",
+    "title": "Kiểm hàng tặng kèm",
+    "intent": "kiem-hang-tang-kem-thuc-hanh",
+    "cluster": "product-management",
+    "sourceFactIds": [],
+    "contentVersion": "v1",
+    "status": "PENDING",
+    "channel": "blogger"
+  },
+  {
+    "topicId": "tap-hoa-retail-bo-sung-ke-theo-nhip-ban",
+    "siteId": "tap-hoa-retail",
+    "title": "Bổ sung kệ theo nhịp bán",
+    "intent": "bo-sung-ke-theo-nhip-ban-thuc-hanh",
+    "cluster": "inventory-management",
+    "sourceFactIds": [],
+    "contentVersion": "v1",
+    "status": "PENDING",
+    "channel": "blogger"
+  },
+  {
+    "topicId": "tap-hoa-retail-theo-doi-hang-hay-that-thoat",
+    "siteId": "tap-hoa-retail",
+    "title": "Theo dõi hàng hay thất thoát",
+    "intent": "theo-doi-hang-hay-that-thoat-thuc-hanh",
+    "cluster": "inventory-management",
+    "sourceFactIds": [],
+    "contentVersion": "v1",
+    "status": "PENDING",
+    "channel": "blogger"
+  },
+  {
+    "topicId": "tap-hoa-retail-sap-kho-nho-de-de-lay",
+    "siteId": "tap-hoa-retail",
+    "title": "Sắp kho nhỏ để dễ lấy",
+    "intent": "sap-kho-nho-de-de-lay-thuc-hanh",
+    "cluster": "inventory-management",
+    "sourceFactIds": [],
+    "contentVersion": "v1",
+    "status": "PENDING",
+    "channel": "blogger"
+  },
+  {
+    "topicId": "tap-hoa-retail-xu-ly-hang-tra-tu-khach",
+    "siteId": "tap-hoa-retail",
+    "title": "Xử lý hàng trả từ khách",
+    "intent": "xu-ly-hang-tra-tu-khach-thuc-hanh",
+    "cluster": "pos-operations",
+    "sourceFactIds": [],
+    "contentVersion": "v1",
+    "status": "PENDING",
+    "channel": "blogger"
+  },
+  {
+    "topicId": "tap-hoa-retail-ghi-nguon-hang-thay-the",
+    "siteId": "tap-hoa-retail",
+    "title": "Ghi nguồn hàng thay thế",
+    "intent": "ghi-nguon-hang-thay-the-thuc-hanh",
+    "cluster": "business-overview",
+    "sourceFactIds": [],
+    "contentVersion": "v1",
+    "status": "PENDING",
+    "channel": "blogger"
+  },
+  {
+    "topicId": "tap-hoa-retail-quan-ly-mat-hang-theo-mua",
+    "siteId": "tap-hoa-retail",
+    "title": "Quản lý mặt hàng theo mùa",
+    "intent": "quan-ly-mat-hang-theo-mua-thuc-hanh",
+    "cluster": "business-overview",
+    "sourceFactIds": [],
+    "contentVersion": "v1",
+    "status": "PENDING",
+    "channel": "blogger"
+  },
+  {
+    "topicId": "tap-hoa-retail-kiem-chenh-muc-ban-giua-ke-va-quay",
+    "siteId": "tap-hoa-retail",
+    "title": "Kiểm chênh mức bán giữa kệ và quầy",
+    "intent": "kiem-chenh-muc-ban-giua-ke-va-quay-thuc-hanh",
+    "cluster": "revenue-monitoring",
+    "sourceFactIds": [],
+    "contentVersion": "v1",
+    "status": "PENDING",
+    "channel": "blogger"
+  },
+  {
+    "topicId": "tap-hoa-retail-giu-loi-di-gon-khi-nhap-hang",
+    "siteId": "tap-hoa-retail",
+    "title": "Giữ lối đi gọn khi nhập hàng",
+    "intent": "giu-loi-di-gon-khi-nhap-hang-thuc-hanh",
+    "cluster": "pos-operations",
+    "sourceFactIds": [],
+    "contentVersion": "v1",
+    "status": "PENDING",
+    "channel": "blogger"
+  },
+  {
+    "topicId": "tap-hoa-retail-phan-cong-nguoi-kiem-han-dung",
+    "siteId": "tap-hoa-retail",
+    "title": "Phân công người kiểm hạn dùng",
+    "intent": "phan-cong-nguoi-kiem-han-dung-thuc-hanh",
+    "cluster": "business-overview",
+    "sourceFactIds": [],
+    "contentVersion": "v1",
+    "status": "PENDING",
+    "channel": "blogger"
+  },
+  {
+    "topicId": "tap-hoa-retail-xu-ly-ma-hang-ngung-ban",
+    "siteId": "tap-hoa-retail",
+    "title": "Xử lý mã hàng ngừng bán",
+    "intent": "xu-ly-ma-hang-ngung-ban-thuc-hanh",
+    "cluster": "product-management",
+    "sourceFactIds": [],
+    "contentVersion": "v1",
+    "status": "PENDING",
+    "channel": "blogger"
+  },
+  {
+    "topicId": "tap-hoa-retail-chot-danh-sach-can-nhap",
+    "siteId": "tap-hoa-retail",
+    "title": "Chốt danh sách cần nhập",
+    "intent": "chot-danh-sach-can-nhap-thuc-hanh",
+    "cluster": "inventory-management",
+    "sourceFactIds": [],
+    "contentVersion": "v1",
+    "status": "PENDING",
+    "channel": "blogger"
+  },
+  {
+    "topicId": "tap-hoa-retail-theo-doi-hang-ban-cham",
+    "siteId": "tap-hoa-retail",
+    "title": "Theo dõi hàng bán chậm",
+    "intent": "theo-doi-hang-ban-cham-thuc-hanh",
+    "cluster": "business-overview",
+    "sourceFactIds": [],
+    "contentVersion": "v1",
+    "status": "PENDING",
+    "channel": "blogger"
+  },
+  {
+    "topicId": "tap-hoa-retail-chuan-hoa-cach-ghi-so-no",
+    "siteId": "tap-hoa-retail",
+    "title": "Chuẩn hóa cách ghi sổ nợ",
+    "intent": "chuan-hoa-cach-ghi-so-no-thuc-hanh",
+    "cluster": "revenue-monitoring",
+    "sourceFactIds": [],
+    "contentVersion": "v1",
+    "status": "PENDING",
+    "channel": "blogger"
+  },
+  {
+    "topicId": "tap-hoa-retail-kiem-tui-goi-va-vat-dung-quay",
+    "siteId": "tap-hoa-retail",
+    "title": "Kiểm túi gói và vật dụng quầy",
+    "intent": "kiem-tui-goi-va-vat-dung-quay-thuc-hanh",
+    "cluster": "pos-operations",
+    "sourceFactIds": [],
+    "contentVersion": "v1",
+    "status": "PENDING",
+    "channel": "blogger"
+  },
+  {
+    "topicId": "tap-hoa-retail-ra-soat-tiem-truoc-khi-khoa-cua",
+    "siteId": "tap-hoa-retail",
+    "title": "Rà soát tiệm trước khi khóa cửa",
+    "intent": "ra-soat-tiem-truoc-khi-khoa-cua-thuc-hanh",
+    "cluster": "store-closing-operations",
+    "sourceFactIds": [],
+    "contentVersion": "v1",
+    "status": "PENDING",
+    "channel": "blogger"
+  }
+]

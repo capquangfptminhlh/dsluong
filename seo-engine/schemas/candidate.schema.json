@@ -1,0 +1,139 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://autotax.vn/schemas/candidate.schema.json",
+  "title": "KeywordCandidate",
+  "description": "JSON schema for keyword candidates discovered and prioritized by the SEO/AEO system",
+  "type": "object",
+  "required": [
+    "candidateId",
+    "primaryQuery",
+    "intent",
+    "source",
+    "priorityScore",
+    "status"
+  ],
+  "properties": {
+    "candidateId": {
+      "type": "string",
+      "pattern": "^cand_[a-zA-Z0-9_-]+$",
+      "description": "Unique identifier for the keyword candidate"
+    },
+    "primaryQuery": {
+      "type": "string",
+      "minLength": 1,
+      "description": "The main keyword query being targeted"
+    },
+    "secondaryQueries": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Related terms or secondary queries"
+    },
+    "intent": {
+      "type": "string",
+      "enum": [
+        "informational",
+        "commercial_investigation",
+        "transactional",
+        "navigational"
+      ],
+      "description": "Search intent classification"
+    },
+    "source": {
+      "type": "string",
+      "enum": [
+        "gsc",
+        "bing",
+        "topical_gap",
+        "freshness_event",
+        "site_search",
+        "crm",
+        "product_database",
+        "manual"
+      ],
+      "description": "Source from which the candidate was generated"
+    },
+    "reasonCodes": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Reason codes supporting selection of candidate"
+    },
+    "metrics": {
+      "type": "object",
+      "properties": {
+        "impressions": { "type": "number", "minimum": 0 },
+        "clicks": { "type": "number", "minimum": 0 },
+        "position": { "type": "number", "minimum": 0 },
+        "ctr": { "type": "number", "minimum": 0, "maximum": 1 },
+        "searchVolume": { "type": "number", "minimum": 0 },
+        "growthDecay": { "type": "number" }
+      },
+      "additionalProperties": true
+    },
+    "priorityFactors": {
+      "type": "object",
+      "required": [
+        "businessValue",
+        "intentFit",
+        "topicalRelevance",
+        "rankingFeasibility",
+        "informationGainPotential",
+        "freshnessNeed",
+        "conversionPotential",
+        "evidenceAvailability",
+        "cannibalizationRisk",
+        "productionRisk",
+        "estimatedCost"
+      ],
+      "properties": {
+        "businessValue": { "type": "number", "minimum": 0, "maximum": 1 },
+        "intentFit": { "type": "number", "minimum": 0, "maximum": 1 },
+        "topicalRelevance": { "type": "number", "minimum": 0, "maximum": 1 },
+        "rankingFeasibility": { "type": "number", "minimum": 0, "maximum": 1 },
+        "informationGainPotential": { "type": "number", "minimum": 0, "maximum": 1 },
+        "freshnessNeed": { "type": "number", "minimum": 0, "maximum": 1 },
+        "conversionPotential": { "type": "number", "minimum": 0, "maximum": 1 },
+        "evidenceAvailability": { "type": "number", "minimum": 0, "maximum": 1 },
+        "cannibalizationRisk": { "type": "number", "minimum": 0, "maximum": 1 },
+        "productionRisk": { "type": "number", "minimum": 0, "maximum": 1 },
+        "estimatedCost": { "type": "number", "minimum": 0, "maximum": 1 }
+      },
+      "additionalProperties": false
+    },
+    "priorityScore": {
+      "type": "number",
+      "description": "Calculated priority score (0-1 normalized)"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "PROPOSED",
+        "ACCEPTED",
+        "REJECTED",
+        "CREATE_NEW",
+        "UPDATE",
+        "EXPAND",
+        "MERGE",
+        "REDIRECT",
+        "NO_ACTION"
+      ],
+      "description": "Current status or action decision for candidate"
+    },
+    "targetUrl": {
+      "type": "string",
+      "description": "Target URL if decision is UPDATE, MERGE, or REDIRECT"
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "updatedAt": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "additionalProperties": true
+}

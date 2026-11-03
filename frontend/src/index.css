@@ -1,0 +1,136 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --color-primary: #0f172a;
+  --color-primary-hover: #1e293b;
+}
+
+@layer base {
+  * { box-sizing: border-box; }
+  html { font-size: 14px; background: #f4f7fb; }
+  body { margin: 0; min-width: 320px; background: #f4f7fb; color: #1e293b; font-family: var(--font-sans); -webkit-font-smoothing: antialiased; }
+  button, input, select, textarea { font: inherit; }
+  button { cursor: pointer; }
+  button:disabled { cursor: not-allowed; }
+  :focus-visible { outline: 2px solid #2563eb; outline-offset: 2px; }
+  ::selection { background: #dbeafe; color: #172554; }
+  ::-webkit-scrollbar { width: 8px; height: 8px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 999px; }
+  ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+  input:focus, select:focus, textarea:focus { border-color: #60a5fa; box-shadow: 0 0 0 3px rgb(59 130 246 / .12); outline: none; }
+  th { font-size: .72rem; font-weight: 700; letter-spacing: .05em; text-transform: uppercase; color: #64748b; }
+}
+
+@layer components {
+  .surface { @apply rounded-2xl border border-slate-200 bg-white shadow-sm; }
+  .surface-muted { @apply rounded-2xl border border-slate-200 bg-slate-50; }
+  .page-header { @apply mb-5 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between; }
+  .page-title { @apply text-xl font-extrabold tracking-tight text-slate-950 sm:text-2xl; }
+  .page-subtitle { @apply mt-1 text-sm leading-5 text-slate-500; }
+  .btn-primary { @apply inline-flex items-center justify-center gap-2 rounded-xl bg-slate-950 px-4 py-2.5 text-sm font-bold text-white shadow-sm hover:bg-slate-800 disabled:opacity-50; }
+  .btn-secondary { @apply inline-flex items-center justify-center gap-2 rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-sm font-bold text-slate-700 hover:bg-slate-50 disabled:opacity-50; }
+  .icon-btn { @apply inline-flex h-9 w-9 items-center justify-center rounded-xl text-slate-500 transition-colors hover:bg-slate-100 hover:text-slate-800; }
+  .sidebar-item { @apply flex min-h-10 items-center gap-3 rounded-xl px-3 py-2 text-sm font-semibold transition-colors; }
+  .sidebar-item-active { @apply text-white; }
+  .sidebar-child { @apply block rounded-lg px-3 py-2 text-xs font-semibold transition-colors; }
+  .sidebar-child-active { @apply text-white; }
+  .metric-card { @apply rounded-2xl border border-slate-200 bg-white p-4 shadow-sm sm:p-5; }
+  .metric-label { @apply text-[11px] font-bold uppercase tracking-[0.08em] text-slate-400; }
+  .metric-value { @apply mt-2 text-2xl font-extrabold tracking-tight text-slate-950; }
+  .empty-state { @apply flex flex-col items-center justify-center rounded-2xl border border-slate-200 bg-white p-8 text-center shadow-sm; }
+  .empty-state-icon { @apply mb-4 flex h-12 w-12 items-center justify-center rounded-2xl bg-slate-100 text-xl; }
+  .status-pill { @apply inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-[11px] font-bold; }
+  .table-shell { @apply overflow-hidden rounded-2xl border border-slate-200 bg-white; }
+}
+
+.glass { @apply border border-white/50 bg-white/75 backdrop-blur-md; }
+
+/* AutoTax Command Center shell */
+.autotax-shell { background: #f4f7fb; }
+.autotax-workspace { background: radial-gradient(circle at 18% -15%, rgb(219 234 254 / .38), transparent 34%), #f4f7fb; }
+.autotax-header { border-bottom: 1px solid #e7edf5; background: rgb(255 255 255 / .94); backdrop-filter: blur(14px); box-shadow: 0 1px 0 rgb(15 23 42 / .02); }
+.autotax-global-search { border: 1px solid #e7edf5; border-radius: 13px; background: #f8fafc; transition: .18s ease; }
+.autotax-global-search:hover { border-color: #cbd5e1; background: #fff; box-shadow: 0 8px 24px rgb(15 23 42 / .05); }
+.autotax-profile-button { border: 1px solid transparent; transition: .18s ease; }
+.autotax-profile-button:hover { border-color: #e2e8f0; background: #f8fafc; }
+.autotax-avatar { display: grid; width: 36px; height: 36px; place-items: center; border-radius: 12px; background: linear-gradient(135deg, #081225, #1e3a8a); color: #fff; font-size: 12px; font-weight: 800; box-shadow: 0 8px 20px rgb(15 23 42 / .14); }
+
+/* Make the existing permission-aware sidebar feel like a native business app. */
+.autotax-shell > aside { border-right-color: rgb(148 163 184 / .14) !important; background: linear-gradient(180deg, #07111f 0%, #0b1830 62%, #0c1b35 100%) !important; color: #fff; box-shadow: 16px 0 40px rgb(2 8 23 / .08) !important; }
+.autotax-shell > aside > div { border-color: rgb(148 163 184 / .12) !important; }
+.autotax-shell > aside .text-slate-950,
+.autotax-shell > aside .text-slate-800,
+.autotax-shell > aside .text-slate-700 { color: #f8fafc !important; }
+.autotax-shell > aside .text-slate-400 { color: #7890b2 !important; }
+.autotax-shell > aside .bg-slate-950 { background: linear-gradient(135deg, #2563eb, #06b6d4) !important; box-shadow: 0 8px 24px rgb(37 99 235 / .28); }
+.autotax-shell > aside select { border-color: rgb(148 163 184 / .16) !important; background: #10203b !important; color: #dbeafe !important; }
+.autotax-shell > aside select option { background: #10203b; color: #e2e8f0; }
+.autotax-shell > aside .sidebar-item { color: #aebed5; }
+.autotax-shell > aside .sidebar-item:hover { background: rgb(255 255 255 / .07); color: #fff; }
+.autotax-shell > aside .sidebar-item-active { background: linear-gradient(90deg, #2563eb, #1d4ed8) !important; color: #fff !important; box-shadow: 0 8px 24px rgb(37 99 235 / .24); }
+.autotax-shell > aside .sidebar-child { color: #8196b4; }
+.autotax-shell > aside .sidebar-child:hover { background: rgb(255 255 255 / .055); color: #fff; }
+.autotax-shell > aside .sidebar-child-active { background: rgb(37 99 235 / .18) !important; color: #93c5fd !important; }
+.autotax-shell > aside .border-slate-200,
+.autotax-shell > aside .border-slate-100 { border-color: rgb(148 163 184 / .12) !important; }
+.autotax-shell > aside .icon-btn { color: #8fa3bf; }
+.autotax-shell > aside .icon-btn:hover { background: rgb(255 255 255 / .08); color: #fff; }
+
+/* Page transition + branded progress */
+.autotax-page-enter { animation: autotax-page-enter .28s cubic-bezier(.22,.7,.27,1); }
+@keyframes autotax-page-enter { from { opacity: 0; transform: translateY(9px) scale(.997); } to { opacity: 1; transform: none; } }
+.autotax-top-progress { position: fixed; z-index: 100; top: 0; left: 0; height: 3px; width: 0; opacity: 0; background: linear-gradient(90deg, #2563eb, #06b6d4); box-shadow: 0 0 18px rgb(6 182 212 / .48); }
+.autotax-top-progress.is-running { opacity: 1; animation: autotax-progress 1.05s ease forwards; }
+@keyframes autotax-progress { 0% { width: 0; } 45% { width: 68%; } 80% { width: 89%; } 100% { width: 100%; } }
+
+.autotax-route-loader-overlay { position: fixed; inset: 0; z-index: 80; display: grid; place-items: center; background: rgb(244 247 251 / .68); backdrop-filter: blur(3px); animation: autotax-loader-fade .16s ease; }
+.autotax-inline-loader { display: grid; min-height: 360px; place-items: center; }
+.autotax-loader-box { text-align: center; animation: autotax-loader-box-in .2s ease; }
+.autotax-loader-mark { position: relative; width: 84px; height: 84px; margin: 0 auto; filter: drop-shadow(0 15px 28px rgb(37 99 235 / .22)); }
+.autotax-loader-ring { position: absolute; border: 3px solid transparent; }
+.autotax-loader-ring-one { inset: 0; border-radius: 25px; border-top-color: #2563eb; border-right-color: #06b6d4; animation: autotax-spin .88s linear infinite; }
+.autotax-loader-ring-two { inset: 10px; border-radius: 18px; border-top-color: #06b6d4; border-right-color: #2563eb; animation: autotax-spin 1.16s linear infinite reverse; }
+.autotax-loader-core { position: absolute; inset: 25px; display: grid; place-items: center; border-radius: 12px; background: linear-gradient(135deg, #2563eb, #06b6d4); color: #fff; font-weight: 900; box-shadow: 0 10px 28px rgb(37 99 235 / .3); animation: autotax-core-pulse .9s ease-in-out infinite alternate; }
+.autotax-loader-title { margin-top: 15px; color: #0f172a; font-size: 14px; font-weight: 850; }
+.autotax-loader-subtitle { margin-top: 5px; color: #64748b; font-size: 12px; }
+@keyframes autotax-spin { to { transform: rotate(360deg); } }
+@keyframes autotax-core-pulse { to { transform: scale(1.08); box-shadow: 0 0 26px rgb(6 182 212 / .42); } }
+@keyframes autotax-loader-fade { from { opacity: 0; } to { opacity: 1; } }
+@keyframes autotax-loader-box-in { from { opacity: 0; transform: translateY(7px) scale(.98); } to { opacity: 1; transform: none; } }
+
+/* Toasts and device-notification control */
+.autotax-notification-bell { position: relative; display: inline-flex; width: 38px; height: 38px; align-items: center; justify-content: center; border: 1px solid transparent; border-radius: 12px; background: transparent; color: #64748b; transition: .18s ease; }
+.autotax-notification-bell:hover { border-color: #e2e8f0; background: #f8fafc; color: #0f172a; }
+.autotax-notification-bell.is-enabled { background: #eff6ff; color: #2563eb; }
+.autotax-notification-dot { position: absolute; top: 6px; right: 6px; width: 7px; height: 7px; border: 2px solid #fff; border-radius: 999px; background: #10b981; box-sizing: content-box; }
+.autotax-toast-stack { position: fixed; z-index: 95; top: 76px; right: 16px; display: flex; width: min(390px, calc(100vw - 28px)); flex-direction: column; gap: 10px; pointer-events: none; }
+.autotax-toast { display: flex; align-items: flex-start; gap: 10px; border: 1px solid; border-radius: 16px; padding: 12px 12px 12px 13px; box-shadow: 0 18px 50px rgb(15 23 42 / .15); backdrop-filter: blur(14px); pointer-events: auto; animation: autotax-toast-in .26s cubic-bezier(.2,.8,.2,1); }
+.autotax-toast-icon { display: grid; width: 34px; height: 34px; flex: 0 0 auto; place-items: center; border-radius: 11px; background: rgb(255 255 255 / .72); }
+.autotax-toast-title { font-size: 12px; font-weight: 850; }
+.autotax-toast-message { margin-top: 3px; font-size: 11px; line-height: 1.45; opacity: .82; }
+.autotax-toast-close { display: inline-flex; width: 28px; height: 28px; flex: 0 0 auto; align-items: center; justify-content: center; border: 0; border-radius: 9px; background: transparent; color: currentColor; opacity: .55; }
+.autotax-toast-close:hover { background: rgb(255 255 255 / .6); opacity: 1; }
+@keyframes autotax-toast-in { from { opacity: 0; transform: translateX(18px) scale(.98); } to { opacity: 1; transform: none; } }
+
+/* Mobile = app-like bottom navigation, large tap targets, no sidebar dependency. */
+.autotax-mobile-bottom-nav { position: fixed; z-index: 35; right: 10px; bottom: max(10px, env(safe-area-inset-bottom)); left: 10px; display: grid; height: 64px; grid-template-columns: repeat(5, minmax(0,1fr)); overflow: hidden; border: 1px solid rgb(226 232 240 / .9); border-radius: 20px; background: rgb(255 255 255 / .96); box-shadow: 0 18px 45px rgb(15 23 42 / .16); backdrop-filter: blur(16px); }
+.autotax-mobile-nav-item { display: flex; min-width: 0; align-items: center; justify-content: center; gap: 3px; border: 0; background: transparent; color: #64748b; font-size: 9px; font-weight: 750; flex-direction: column; transition: .16s ease; }
+.autotax-mobile-nav-item.is-active { color: #2563eb; }
+.autotax-mobile-nav-item.is-active svg { filter: drop-shadow(0 4px 8px rgb(37 99 235 / .22)); }
+
+@media (max-width: 639px) {
+  .autotax-header { height: 58px; }
+  .autotax-workspace { background: #f4f7fb; }
+  .autotax-toast-stack { top: 68px; right: 10px; width: calc(100vw - 20px); }
+  .autotax-toast { border-radius: 14px; }
+  .autotax-loader-mark { width: 74px; height: 74px; }
+  .autotax-loader-core { inset: 22px; }
+  .autotax-loader-ring-two { inset: 9px; }
+  .sticky.top-0 .max-w-xl > .absolute.right-3.top-3 { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .autotax-page-enter, .autotax-loader-ring, .autotax-loader-core, .autotax-toast, .autotax-top-progress.is-running { animation-duration: .01ms !important; animation-iteration-count: 1 !important; }
+}

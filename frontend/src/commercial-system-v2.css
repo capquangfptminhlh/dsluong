@@ -1,0 +1,99 @@
+/* AutoTaxPOS Commercial System v2
+   Global cross-feature visual system. Preserves business logic and route behavior. */
+:root {
+  --at-canvas:#f7f9fc; --at-panel:#fff; --at-border:#e7ecf3; --at-text:#12213d; --at-muted:#738096;
+  --at-primary:#2563eb; --at-primary-2:#4f46e5; --at-success:#10b981; --at-warning:#f59e0b; --at-danger:#f43f5e;
+  --at-radius:16px; --at-shadow:0 8px 28px rgba(31,50,89,.055); --at-shadow-lg:0 20px 55px rgba(31,50,89,.10);
+}
+
+/* Workspace rhythm shared by every feature */
+.autotax-workspace{background:linear-gradient(180deg,#fbfcff 0,#f7f9fc 100%)}
+.autotax-mobile-content{max-width:1680px!important}
+.autotax-page-enter>div{min-width:0}
+.autotax-page-enter h1,.autotax-page-enter h2,.autotax-page-enter h3{letter-spacing:-.025em;color:var(--at-text)}
+.autotax-page-enter p{line-height:1.55}
+
+/* Universal panels/cards */
+.autotax-page-enter :is(.bg-white,.surface){border-color:var(--at-border)!important}
+.autotax-page-enter .bg-white:not(button):not(input):not(select):not(textarea){box-shadow:0 1px 0 rgba(255,255,255,.9)}
+.autotax-page-enter :is(.rounded-xl,.rounded-2xl){transition:border-color .15s ease,box-shadow .15s ease,transform .15s ease}
+.autotax-page-enter :is(.shadow-sm,.shadow-md){box-shadow:var(--at-shadow)!important}
+
+/* Buttons */
+.autotax-page-enter button:not(.autotax-mobile-nav-item):not([class*="absolute"]){min-height:38px}
+.autotax-page-enter button[class*="bg-blue-600"],.autotax-page-enter a[class*="bg-blue-600"]{
+  background:linear-gradient(135deg,var(--at-primary),#3977ef)!important;border:1px solid rgba(37,99,235,.12);box-shadow:0 7px 18px rgba(37,99,235,.17)!important
+}
+.autotax-page-enter button[class*="bg-blue-600"]:hover,.autotax-page-enter a[class*="bg-blue-600"]:hover{filter:brightness(.98);transform:translateY(-1px)}
+.autotax-page-enter button[class*="bg-slate-100"]{background:#f6f8fb!important;border:1px solid #edf0f5}
+
+/* Inputs/search/filter bars */
+.autotax-page-enter :is(input,select,textarea){font-family:inherit;color:#263550}
+.autotax-page-enter input:not([type=checkbox]):not([type=radio]),.autotax-page-enter select,.autotax-page-enter textarea{
+  min-height:42px;border:1px solid #e2e8f0!important;background:#fff!important;box-shadow:inset 0 1px 1px rgba(15,23,42,.018)
+}
+.autotax-page-enter input:focus,.autotax-page-enter select:focus,.autotax-page-enter textarea:focus{border-color:#a9bff5!important;box-shadow:0 0 0 3px rgba(37,99,235,.08)!important}
+
+/* Tables across orders, stock, finance, tax, staff, audit, CRM */
+.autotax-page-enter table{width:100%;border-collapse:separate;border-spacing:0;background:#fff}
+.autotax-page-enter thead{position:relative;z-index:1}
+.autotax-page-enter thead th{height:44px;background:#fafbfe!important;color:#7d899c!important;font-size:10px!important;font-weight:800!important;letter-spacing:.045em;text-transform:uppercase;border-bottom:1px solid #edf1f6!important;white-space:nowrap}
+.autotax-page-enter tbody td{min-height:48px;padding-top:12px!important;padding-bottom:12px!important;color:#42506a;border-bottom:1px solid #f0f3f7!important}
+.autotax-page-enter tbody tr:hover td{background:#fafcff}
+.autotax-page-enter tbody tr:last-child td{border-bottom:0!important}
+
+/* Generic status pills */
+.autotax-page-enter [class*="bg-emerald-"],.autotax-page-enter [class*="bg-green-"]{border-color:rgba(16,185,129,.12)}
+.autotax-page-enter [class*="bg-amber-"],.autotax-page-enter [class*="bg-yellow-"]{border-color:rgba(245,158,11,.12)}
+.autotax-page-enter [class*="bg-red-"],.autotax-page-enter [class*="bg-rose-"]{border-color:rgba(244,63,94,.12)}
+
+/* Modals/drawers */
+.autotax-page-enter [class*="fixed"][class*="inset-0"]{backdrop-filter:blur(3px)}
+.autotax-page-enter [role=dialog],.autotax-page-enter .modal-content{border:1px solid var(--at-border);border-radius:20px;box-shadow:var(--at-shadow-lg)}
+
+/* Dashboard: reference-inspired KPI composition */
+[data-route="/app/overview"] .dashboard-metrics{gap:14px!important}
+[data-route="/app/overview"] .metric-card{border-radius:18px!important;min-height:134px;box-shadow:0 8px 24px rgba(39,62,101,.045)!important}
+[data-route="/app/overview"] .surface{border-radius:18px!important}
+[data-route="/app/overview"] .surface>.border-b{background:linear-gradient(180deg,#fff,#fcfdff)}
+
+/* POS: fast operation layout, separate from management dashboard */
+[data-route="/app/pos"]{height:calc(100dvh - 122px);min-height:620px}
+[data-route="/app/pos"]>div{border:1px solid var(--at-border);border-radius:20px;overflow:hidden;box-shadow:var(--at-shadow-lg);background:#fff!important}
+[data-route="/app/pos"] .sticky.top-0{box-shadow:0 4px 18px rgba(31,50,89,.04)!important;border-color:#ebeff5!important}
+[data-route="/app/pos"] [class*="grid-cols-2"]>div[class*="cursor-pointer"]{border-color:#e8edf4!important;border-radius:16px!important;box-shadow:0 5px 16px rgba(31,50,89,.04)!important}
+[data-route="/app/pos"] [class*="grid-cols-2"]>div[class*="cursor-pointer"]:hover{border-color:#bed0f7!important;box-shadow:0 14px 30px rgba(37,99,235,.10)!important;transform:translateY(-2px)!important}
+[data-route="/app/pos"] .lg\:w-\[420px\]{border-left-color:#e8edf4!important;box-shadow:-14px 0 35px rgba(31,50,89,.055)!important}
+[data-route="/app/pos"] button[class*="rounded-full"]{border-radius:11px!important}
+
+/* Orders / inventory / finance / reports / tax: dense management surfaces */
+[data-route^="/app/pos/orders"]>div,[data-route^="/app/inventory"]>div,[data-route^="/app/finance"]>div,[data-route="/app/reports"]>div,[data-route="/app/report"]>div,[data-route="/app/audit"]>div,[data-route^="/app/products"]>div,[data-route^="/app/customers"]>div,[data-route^="/app/staff"]>div,[data-route^="/app/purchase"]>div,[data-route^="/app/suppliers"]>div{
+  border-radius:18px
+}
+[data-route="/app/reports"] svg,[data-route="/app/overview"] svg{shape-rendering:geometricPrecision}
+
+/* Header and account area */
+.autotax-profile-button{border:1px solid transparent;transition:.15s ease}
+.autotax-profile-button:hover{border-color:#e6ebf2;background:#fff;box-shadow:0 7px 18px rgba(31,50,89,.05)}
+.autotax-avatar{background:linear-gradient(135deg,#eef4ff,#ede9fe)!important;color:#315dcc!important;border:1px solid #e0e7fb}
+
+/* Mobile feature system */
+@media(max-width:1023px){
+  .autotax-mobile-content{padding:12px 12px 92px!important}
+  .autotax-page-enter table{min-width:720px}
+  .autotax-page-enter .overflow-x-auto{border-radius:14px}
+  [data-route="/app/pos"]{height:auto;min-height:0}
+  [data-route="/app/pos"]>div{border-radius:16px}
+}
+@media(max-width:640px){
+  .autotax-page-enter h2{font-size:1.35rem!important}
+  .autotax-page-enter button{touch-action:manipulation}
+  .autotax-page-enter input:not([type=checkbox]):not([type=radio]),.autotax-page-enter select{font-size:16px}
+  .autotax-page-enter :is(.p-6,.p-5){padding:16px!important}
+  .dashboard-metrics{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+  [data-route="/app/pos"] [class*="grid-cols-2"]{gap:10px!important}
+}
+
+/* Accessibility and motion */
+.autotax-page-enter :focus-visible{outline:2px solid rgba(37,99,235,.55);outline-offset:2px}
+@media(prefers-reduced-motion:reduce){.autotax-page-enter *{scroll-behavior:auto!important;transition-duration:.01ms!important;animation-duration:.01ms!important}}
