@@ -1,0 +1,54 @@
+# ===== KHOA BI MAT — TUYET DOI KHONG DAY LEN =====
+secrets.bat
+.env
+.env.local
+*.pem
+*.key
+
+# ===== DU LIEU KINH DOANH THAT =====
+*.db
+*.db-shm
+*.db-wal
+*.sqlite
+backend/autotax.db
+backend/autotax.db-shm
+backend/autotax.db-wal
+backend/autotax.sqlite
+backend/backups/
+backend/restore-pending.db
+backend/tmp-upload/
+backend/uploads/
+
+# ===== THU VIEN & BAN BUILD =====
+node_modules/
+backend/node_modules/
+frontend/node_modules/
+dist/
+build/
+frontend/dist/
+npm-debug.log
+yarn-error.log
+
+# ===== FILE TAM / LOG =====
+.tmp/
+.temp/
+*.log
+backend/log-out.txt
+backend/log-err.txt
+backend/server-log.txt
+backend/server-err.txt
+
+# ===== FILE NHI PHAN LON =====
+cloudflared.exe
+*.exe
+
+# ===== FILE EXCEL MAU / XUAT RA =====
+*.xlsx
+!backend/templates/*.xlsx
+
+# ===== HE DIEU HANH / IDE =====
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+.claude/
