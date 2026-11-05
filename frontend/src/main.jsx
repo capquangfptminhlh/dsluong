@@ -38,8 +38,10 @@ axios.interceptors.response.use(
     if (err.response && err.response.status === 401 && localStorage.getItem('token')) {
       localStorage.removeItem('token');
       localStorage.removeItem('user');
-      if (!window.location.pathname.startsWith('/login')) {
-        window.location.href = '/login';
+      const isGh = window.location.pathname.startsWith('/dsluong');
+      const target = isGh ? '/dsluong/login' : '/login';
+      if (!window.location.pathname.includes('/login')) {
+        window.location.href = target;
       }
     }
     return Promise.reject(err);
