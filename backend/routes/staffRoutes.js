@@ -6,11 +6,21 @@ const { requireAuth, requireOwner, requireAnyPermission, writeAudit } = require(
 
 router.use(requireAuth);
 
-// Đảm bảo các cột lương của bảng staff luôn tồn tại
-db.serialize(() => {
-  db.run("ALTER TABLE staff ADD COLUMN base_salary REAL DEFAULT 0", () => {});
-  db.run("ALTER TABLE staff ADD COLUMN hourly_rate REAL DEFAULT 25000", () => {});
-  db.run("ALTER TABLE staff ADD COLUMN allowance REAL DEFAULT 0", () => {});
+// Đảm bảo các cột lương của bảng staff & commissions luôn tồn tại trên từng tenant DB
+const migratedStaffTenants = new Set();
+router.use((req, res, next) => {
+  const key = String(req.tenantId || 'default');
+  if (migratedStaffTenants.has(key)) return next();
+  migratedStaffTenants.add(key);
+  db.serialize(() => {
+    db.run("ALTER TABLE staff ADD COLUMN base_salary REAL DEFAULT 0", () => {});
+    db.run("ALTER TABLE staff ADD COLUMN hourly_rate REAL DEFAULT 25000", () => {});
+    db.run("ALTER TABLE staff ADD COLUMN allowance REAL DEFAULT 0", () => {});
+    db.run("ALTER TABLE commissions ADD COLUMN createdAt DATETIME", () => {});
+    db.run("ALTER TABLE commissions ADD COLUMN order_id TEXT", () => {
+      next();
+    });
+  });
 });
 
 router.get('/', requireAnyPermission('staff', 'pos', 'appointments'), (req, res) => {
@@ -96,11 +106,12 @@ router.get('/commissions', requireOwner, (req, res) => {
 router.post('/commissions', requireOwner, (req, res) => {
   const { staff_id, amount, order_id } = req.body;
   if (!staff_id || !amount) return res.status(400).json({ error: 'Cần chọn nhân viên và số tiền' });
+  const nowIso = new Date().toISOString();
 
   db.run(
-    `INSERT INTO commissions (staff_id, order_id, amount)
-     SELECT id, ?, ? FROM staff WHERE id = ? AND user_id = ?`,
-    [order_id || null, Math.round(Number(amount) || 0), staff_id, req.tenantId],
+    `INSERT INTO commissions (staff_id, order_id, amount, createdAt)
+     SELECT id, ?, ?, ? FROM staff WHERE id = ? AND user_id = ?`,
+    [order_id || null, Math.round(Number(amount) || 0), nowIso, staff_id, req.tenantId],
     function (err) {
       if (err) return res.status(500).json({ error: err.message });
       if (this.changes === 0) return res.status(404).json({ error: 'Không tìm thấy nhân viên' });

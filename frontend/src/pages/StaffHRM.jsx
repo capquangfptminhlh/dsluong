@@ -257,11 +257,13 @@ export default function StaffHRM() {
   const handleAddBonus = async (e) => {
     e.preventDefault();
     if (!bonusModal || !bonusAmount) return;
+    const parsedOrderId = bonusOrder && /^\d+$/.test(String(bonusOrder).trim()) ? Number(bonusOrder) : null;
     try {
       await axios.post(`${API_BASE}/api/staff/commissions`, {
         staff_id: bonusModal.staff_id,
         amount: Number(bonusAmount),
-        order_id: bonusOrder || null
+        order_id: parsedOrderId,
+        note: bonusOrder || null
       });
       setBonusModal(null);
       setBonusAmount('');
@@ -547,22 +549,22 @@ export default function StaffHRM() {
                                 </div>
                               )}
                             </td>
-                            <td className="py-3 px-4 text-right font-bold text-slate-800">
+                            <td className="py-3 px-4 text-right font-bold text-slate-800 whitespace-nowrap">
                               {isCompleted ? `${hours}h` : '—'}
                             </td>
-                            <td className="py-3 px-4 text-right font-bold text-emerald-700">
+                            <td className="py-3 px-4 text-right font-bold text-emerald-700 whitespace-nowrap">
                               {isCompleted ? money(pay) : '—'}
                             </td>
-                            <td className="py-3 px-4 text-right">
+                            <td className="py-3 px-4 text-right whitespace-nowrap">
                               <div className="flex items-center justify-end gap-1.5">
                                 {isCompleted ? (
-                                  <span className="px-2.5 py-1 bg-slate-100 text-slate-700 rounded-full text-xs font-bold">
+                                  <span className="inline-block whitespace-nowrap px-2.5 py-1 bg-slate-100 text-slate-700 rounded-full text-xs font-bold">
                                     Đã chốt ca ✓
                                   </span>
                                 ) : (
                                   <button
                                     onClick={() => openCheckoutModal(shift)}
-                                    className="px-3 py-1 bg-rose-600 hover:bg-rose-700 text-white rounded-lg text-xs font-bold cursor-pointer"
+                                    className="whitespace-nowrap px-3 py-1 bg-rose-600 hover:bg-rose-700 text-white rounded-lg text-xs font-bold cursor-pointer"
                                   >
                                     Chốt ca ngay
                                   </button>
@@ -642,19 +644,19 @@ export default function StaffHRM() {
                           {row.completed_shifts} ca ({row.total_hours}h)
                         </span>
                       </td>
-                      <td className="py-3.5 px-4 text-right font-semibold text-slate-700">
+                      <td className="py-3.5 px-4 text-right font-semibold text-slate-700 whitespace-nowrap">
                         {money(row.base_salary)}
                       </td>
-                      <td className="py-3.5 px-4 text-right">
+                      <td className="py-3.5 px-4 text-right whitespace-nowrap">
                         <div className="font-bold text-slate-800">{money(row.hourly_pay)}</div>
                         <div className="text-[11px] text-slate-400">
                           {row.total_hours}h × {money(row.hourly_rate)}/h
                         </div>
                       </td>
-                      <td className="py-3.5 px-4 text-right font-semibold text-slate-700">
+                      <td className="py-3.5 px-4 text-right font-semibold text-slate-700 whitespace-nowrap">
                         {money(row.allowance)}
                       </td>
-                      <td className="py-3.5 px-4 text-right">
+                      <td className="py-3.5 px-4 text-right whitespace-nowrap">
                         <div className="font-bold text-pink-600">+ {money(row.commission_pay)}</div>
                         <button
                           onClick={() => setBonusModal(row)}
@@ -663,12 +665,12 @@ export default function StaffHRM() {
                           + Cộng thưởng
                         </button>
                       </td>
-                      <td className="py-3.5 px-4 text-right">
-                        <span className="text-base font-black text-emerald-700 bg-emerald-50 px-3 py-1.5 rounded-xl border border-emerald-200">
+                      <td className="py-3.5 px-4 text-right whitespace-nowrap">
+                        <span className="inline-block whitespace-nowrap text-base font-black text-emerald-700 bg-emerald-50 px-3 py-1.5 rounded-xl border border-emerald-200">
                           {money(row.total_salary)}
                         </span>
                       </td>
-                      <td className="py-3.5 px-4 text-right">
+                      <td className="py-3.5 px-4 text-right whitespace-nowrap">
                         <button
                           onClick={() => setPayslipModal(row)}
                           className="px-3 py-1.5 bg-slate-900 hover:bg-slate-800 text-white rounded-xl text-xs font-bold inline-flex items-center gap-1.5 cursor-pointer"

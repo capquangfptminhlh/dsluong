@@ -5,14 +5,24 @@ const { requireAuth } = require('../middleware/auth');
 
 router.use(requireAuth);
 
-// Tự động đảm bảo các cột mở rộng cho chấm công & tính lương tồn tại
-db.serialize(() => {
-  db.run("ALTER TABLE shifts ADD COLUMN hours_worked REAL DEFAULT 0", () => {});
-  db.run("ALTER TABLE shifts ADD COLUMN shift_type TEXT DEFAULT 'Ca tiêu chuẩn'", () => {});
-  db.run("ALTER TABLE shifts ADD COLUMN note TEXT", () => {});
-  db.run("ALTER TABLE staff ADD COLUMN base_salary REAL DEFAULT 0", () => {});
-  db.run("ALTER TABLE staff ADD COLUMN hourly_rate REAL DEFAULT 25000", () => {});
-  db.run("ALTER TABLE staff ADD COLUMN allowance REAL DEFAULT 0", () => {});
+// Tự động đảm bảo các cột mở rộng cho chấm công & tính lương tồn tại trên từng tenant DB
+const migratedTenants = new Set();
+router.use((req, res, next) => {
+  const key = String(req.tenantId || 'default');
+  if (migratedTenants.has(key)) return next();
+  migratedTenants.add(key);
+  db.serialize(() => {
+    db.run("ALTER TABLE shifts ADD COLUMN hours_worked REAL DEFAULT 0", () => {});
+    db.run("ALTER TABLE shifts ADD COLUMN shift_type TEXT DEFAULT 'Ca tiêu chuẩn'", () => {});
+    db.run("ALTER TABLE shifts ADD COLUMN note TEXT", () => {});
+    db.run("ALTER TABLE staff ADD COLUMN base_salary REAL DEFAULT 0", () => {});
+    db.run("ALTER TABLE staff ADD COLUMN hourly_rate REAL DEFAULT 25000", () => {});
+    db.run("ALTER TABLE staff ADD COLUMN allowance REAL DEFAULT 0", () => {});
+    db.run("ALTER TABLE commissions ADD COLUMN createdAt DATETIME", () => {});
+    db.run("ALTER TABLE commissions ADD COLUMN order_id TEXT", () => {
+      next();
+    });
+  });
 });
 
 // Lấy danh sách ca chấm công gần đây
@@ -159,8 +169,8 @@ router.get('/payroll', (req, res) => {
           db.all(
             `SELECT c.* FROM commissions c
              JOIN staff st ON c.staff_id = st.id
-             WHERE st.user_id = ? AND strftime('%Y-%m', c.createdAt) = ?`,
-            [userId, month],
+             WHERE st.user_id = ?`,
+            [userId],
             (err3, commRows) => {
               if (err3) return res.status(500).json({ error: err3.message });
 
@@ -172,7 +182,11 @@ router.get('/payroll', (req, res) => {
 
               const commByStaff = {};
               (commRows || []).forEach((cm) => {
-                commByStaff[cm.staff_id] = (commByStaff[cm.staff_id] || 0) + (Number(cm.amount) || 0);
+                const rawDate = cm.createdAt || cm.created_at || '';
+                const cmMonth = typeof rawDate === 'string' && rawDate.length >= 7 ? rawDate.slice(0, 7) : '';
+                if (!cmMonth || cmMonth === month) {
+                  commByStaff[cm.staff_id] = (commByStaff[cm.staff_id] || 0) + (Number(cm.amount) || 0);
+                }
               });
 
               const payroll = (staffRows || []).map((st) => {

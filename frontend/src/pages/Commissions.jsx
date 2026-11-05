@@ -28,11 +28,13 @@ export default function Commissions() {
   const handleAdd = async (e) => {
     e.preventDefault();
     if (!form.staff_id || !form.amount) return alert('Vui lòng chọn Dược sĩ / Nhân viên và nhập số tiền!');
+    const parsedOrderId = form.order_id && /^\d+$/.test(String(form.order_id).trim()) ? Number(form.order_id) : null;
     try {
       await axios.post(`${API_BASE}/api/staff/commissions`, {
         staff_id: Number(form.staff_id),
         amount: Number(form.amount),
-        order_id: form.order_id || null,
+        order_id: parsedOrderId,
+        note: form.order_id || null,
       });
       setForm({ staff_id: '', amount: '', order_id: '' });
       fetchData();
