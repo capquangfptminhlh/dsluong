@@ -73,8 +73,15 @@ const getPharmacyMenu = () => {
         { label: 'Chăm sóc khách hàng (CRM)', path: '/app/customers/crm', mod: ['customers'] },
       ]
     },
-    // 7. DƯỢC SĨ & NHÂN SỰ
-    { id: 'staff', label: 'Dược sĩ & Nhân viên', icon: Users, path: '/app/staff', mod: ['staff'] },
+    // 7. DƯỢC SĨ, CHẤM CÔNG & TÍNH LƯƠNG
+    {
+      id: 'staff', label: 'Dược sĩ & Tính lương', icon: Users, mod: ['staff', 'pos'],
+      children: [
+        { label: 'Chấm công & Tính lương', path: '/app/staff', mod: ['staff'] },
+        { label: 'Thưởng & Hoa hồng đơn', path: '/app/staff/commissions', mod: ['staff'] },
+        { label: 'Chốt ca & Bàn giao két', path: '/app/pos/shift', mod: ['pos', 'finance'] },
+      ]
+    },
     // 8. TÀI CHÍNH & CÔNG NỢ
     {
       id: 'finance', label: 'Sổ quỹ & Công nợ', icon: Wallet, mod: ['finance', 'debt'],
@@ -100,7 +107,7 @@ const getPharmacyMenu = () => {
 
 export default function Sidebar({ onClose }) {
   const location = useLocation();
-  const [expanded, setExpanded] = useState({ pos: true, products: true, inventory: true });
+  const [expanded, setExpanded] = useState({ pos: true, products: true, inventory: true, staff: true });
 
   const handleNavClick = () => {
     if (onClose) onClose();
