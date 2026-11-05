@@ -2,9 +2,16 @@
 <html lang="vi">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/png" href="./favicon.png" />
+    <link rel="icon" type="image/png" href="/dsluong/favicon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     
+    <!-- Trailing slash redirect for GitHub Pages repo root -->
+    <script>
+      if (location.pathname === '/dsluong') {
+        location.replace('/dsluong/' + location.search + location.hash);
+      }
+    </script>
+
     <!-- Primary SEO Meta Tags -->
     <title>Nhà Thuốc Nhân Đức — Hệ Thống Nhà Thuốc Chuẩn GPP Cần Giuộc, Long An</title>
     <meta name="title" content="Nhà Thuốc Nhân Đức — Hệ Thống Nhà Thuốc Chuẩn GPP Cần Giuộc, Long An" />
@@ -16,14 +23,14 @@
     <meta property="og:type" content="website" />
     <meta property="og:title" content="Nhà Thuốc Nhân Đức — Chuẩn Y Đức, Vững Niềm Tin" />
     <meta property="og:description" content="Hệ thống nhà thuốc đạt chuẩn GPP Bộ Y Tế tại 172 Quốc Lộ 50, Cần Giuộc, Long An. 100% thuốc chính hãng, Dược sĩ tư vấn tận tâm. Hotline: 0933.324.368." />
-    <meta property="og:image" content="./logo.png" />
+    <meta property="og:image" content="/dsluong/logo.png" />
     <meta property="og:locale" content="vi_VN" />
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Nhà Thuốc Nhân Đức — Hệ Thống Nhà Thuốc Chuẩn GPP Cần Giuộc" />
     <meta name="twitter:description" content="Địa chỉ: 172 Quốc Lộ 50, KP4, TT. Cần Giuộc, Long An. Hotline Dược sĩ: 0933.324.368." />
-    <meta name="twitter:image" content="./logo.png" />
+    <meta name="twitter:image" content="/dsluong/logo.png" />
 
     <!-- JSON-LD Structured Data for Local Pharmacy & Medical Organization -->
     <script type="application/ld+json">
@@ -32,7 +39,7 @@
       "@type": "Pharmacy",
       "name": "Nhà Thuốc Nhân Đức",
       "alternateName": "Hệ Thống Nhà Thuốc Nhân Đức Chuẩn GPP",
-      "image": "./logo.png",
+      "image": "/dsluong/logo.png",
       "telephone": "+84933324368",
       "email": "nhathuocnhanduc.cangiuoc@gmail.com",
       "priceRange": "$$",
@@ -62,6 +69,6 @@
   </head>
   <body>
     <div id="root"></div>
-    <script type="module" src="./src/main.jsx"></script>
+    <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>
