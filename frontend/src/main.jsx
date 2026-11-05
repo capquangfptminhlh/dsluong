@@ -11,8 +11,8 @@ import Register from './pages/Register'
 import AdminUsers from './pages/AdminUsers'
 import Landing from './pages/Landing'
 
-import PhanMemBanHangMienPhi from './pages/PhanMemBanHangMienPhi'
-import PhanMemKhaiThueHKD from './pages/PhanMemKhaiThueHKD'
+// Removed legacy SEO routes
+
 import TaxGuide from './pages/TaxGuide'
 import { HelmetProvider } from 'react-helmet-async'
 import Finance from './pages/Finance'
@@ -143,8 +143,8 @@ createRoot(document.getElementById('root')).render(
         <Routes>
           <Route path="/" element={<Landing />} />
 
-          <Route path="/phan-mem-quan-ly-ban-hang-mien-phi" element={<PhanMemBanHangMienPhi />} />
-          <Route path="/phan-mem-khai-thue-ho-kinh-doanh" element={<PhanMemKhaiThueHKD />} />
+
+
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           

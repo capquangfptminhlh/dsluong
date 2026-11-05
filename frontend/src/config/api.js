@@ -1,22 +1,26 @@
 import axios from 'axios';
+import { initPharmacyStandaloneEngine } from './pharmacyStandaloneEngine';
 
-// Kết nối API:
-// 1. Môi trường dev (localhost) -> http://localhost:3001
-// 2. Chạy trên GitHub Pages (dsluong) -> https://autotaxpos.com
-// 3. Chạy trực tiếp trên domain autotaxpos.com -> '' (same-origin)
-const isGithubPages = typeof window !== 'undefined' && window.location.hostname.includes('github.io');
-const API_BASE = import.meta.env.DEV 
-  ? 'http://localhost:3001' 
-  : (isGithubPages ? 'https://autotaxpos.com' : '');
+// Cấu hình kết nối độc lập cho Hệ thống Quản lý Nhà Thuốc Nhân Đức GPP
+const customBackendUrl = import.meta.env.VITE_API_URL || (typeof localStorage !== 'undefined' && localStorage.getItem('NHANDUC_API_URL')) || '';
+const API_BASE = customBackendUrl;
 
-// Tự động gắn Authorization token cho TẤT CẢ request
-axios.interceptors.request.use((config) => {
-  const token = localStorage.getItem('token');
-  if (token) {
-    config.headers.Authorization = `Bearer ${token}`;
-  }
-  return config;
-}, (error) => Promise.reject(error));
+// Kích hoạt cơ sở dữ liệu độc lập Nhà Thuốc Nhân Đức khi chạy trực tiếp trên web tĩnh (GitHub Pages / Cloudflare)
+if (!customBackendUrl) {
+  initPharmacyStandaloneEngine(axios);
+}
+
+// Tự động gắn Authorization token cho mọi request
+axios.interceptors.request.use(
+  (config) => {
+    const token = localStorage.getItem('token');
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`;
+    }
+    return config;
+  },
+  (error) => Promise.reject(error)
+);
 
 export default API_BASE;
 
