@@ -43,7 +43,7 @@ async function chiNhanhMacDinh(userId) {
   if (!cn) cn = await get('SELECT id FROM branches WHERE user_id = ? ORDER BY id ASC LIMIT 1', [userId]);
   if (!cn && userId) {
     try {
-      const r = await run('INSERT INTO branches (user_id, name, is_default) VALUES (?, ?, 1)', [userId, 'Nhà Thuốc Nhân Đức - Cơ Sở Chính']);
+      const r = await run('INSERT INTO branches (user_id, name, address, phone, is_default) VALUES (?, ?, ?, ?, 1)', [userId, 'Nhà Thuốc Nhân Đức - Cơ Sở Chính', '172 Quốc Lộ 50, KP4, TT. Cần Giuộc, H. Cần Giuộc, Long An', '0933.324.368']);
       return r.lastID;
     } catch (e) {
       cn = await get('SELECT id FROM branches WHERE user_id = ? ORDER BY id ASC LIMIT 1', [userId]);

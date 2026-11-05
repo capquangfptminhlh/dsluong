@@ -376,7 +376,7 @@ export default function Branches() {
                 <input 
                   value={form.address} 
                   onChange={(e) => setForm({ ...form, address: e.target.value })} 
-                  placeholder="VD: 123 Nguyễn Thị Thập, P. Tân Quy, Quận 7, TP.HCM"
+                  placeholder="VD: 172 Quốc Lộ 50, KP4, TT. Cần Giuộc, H. Cần Giuộc, Long An"
                   className="w-full px-3 py-2.5 border border-slate-200 rounded-xl text-xs outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-50" 
                 />
               </div>
@@ -385,7 +385,7 @@ export default function Branches() {
                 <input 
                   value={form.phone} 
                   onChange={(e) => setForm({ ...form, phone: e.target.value })} 
-                  placeholder="VD: 0909.123.456 (DS. Minh)"
+                  placeholder="VD: 0933.324.368 (DS. Minh)"
                   className="w-full px-3 py-2.5 border border-slate-200 rounded-xl text-xs outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-50" 
                 />
               </div>

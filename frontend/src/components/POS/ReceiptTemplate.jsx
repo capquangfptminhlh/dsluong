@@ -11,9 +11,9 @@ export const ReceiptTemplate = forwardRef(({
   paymentMethods, 
   cashierName,
   shopInfo = {
-    name: 'Nhà Thuốc Nhân Đức',
-    address: 'Địa chỉ nhà thuốc',
-    phone: 'Hotline tư vấn dược'
+    name: 'NHÀ THUỐC NHÂN ĐỨC',
+    address: '172 Quốc Lộ 50, KP4, TT. Cần Giuộc, H. Cần Giuộc, Long An',
+    phone: '0933.324.368'
   }
 }, ref) => {
   return (
@@ -31,67 +31,81 @@ export const ReceiptTemplate = forwardRef(({
     }}>
       {/* Header */}
       <div style={{ textAlign: 'center', marginBottom: '15px' }}>
-        <h2 style={{ margin: '0 0 5px 0', fontSize: '18px', textTransform: 'uppercase' }}>{shopInfo.name}</h2>
-        <p style={{ margin: '2px 0' }}>{shopInfo.address}</p>
-        <p style={{ margin: '2px 0' }}>Tel: {shopInfo.phone}</p>
+        <h2 style={{ margin: '0 0 5px 0', fontSize: '18px', textTransform: 'uppercase', fontWeight: 'bold' }}>{shopInfo.name || 'NHÀ THUỐC NHÂN ĐỨC'}</h2>
+        <p style={{ margin: '2px 0', fontSize: '11px' }}>{shopInfo.address || '172 Quốc Lộ 50, KP4, TT. Cần Giuộc, H. Cần Giuộc, Long An'}</p>
+        <p style={{ margin: '2px 0', fontSize: '11px' }}>Hotline Dược sĩ: {shopInfo.phone || '0933.324.368'}</p>
+        <p style={{ margin: '2px 0', fontSize: '10px', fontStyle: 'italic' }}>Chuẩn Thực Hành Tốt Nhà Thuốc (GPP)</p>
         <div style={{ borderTop: '1px dashed #000', margin: '10px 0' }}></div>
-        <h3 style={{ margin: '5px 0' }}>PHIẾU THANH TOÁN</h3>
+        <h3 style={{ margin: '5px 0', fontSize: '15px', fontWeight: 'bold' }}>HÓA ĐƠN BÁN THUỐC</h3>
       </div>
 
       {/* Meta Info */}
-      <div style={{ marginBottom: '10px' }}>
-        <p style={{ margin: '2px 0' }}>Ngày: {new Date().toLocaleString('vi-VN')}</p>
-        <p style={{ margin: '2px 0' }}>Thu ngân: {cashierName || 'Admin'}</p>
-        {customer && <p style={{ margin: '2px 0' }}>Khách hàng: {customer.name}</p>}
+      <div style={{ marginBottom: '10px', fontSize: '11px' }}>
+        <div>Ngày: {new Date().toLocaleString('vi-VN')}</div>
+        <div>Khách hàng: {customer?.name || 'Khách lẻ'}</div>
+        {customer?.phone && <div>SĐT: {customer.phone}</div>}
+        <div>Dược sĩ / Thu ngân: {cashierName || 'Dược sĩ trực quầy'}</div>
       </div>
 
-      <div style={{ borderTop: '1px dashed #000', margin: '10px 0' }}></div>
+      <div style={{ borderTop: '1px dashed #000', margin: '5px 0' }}></div>
 
-      {/* Items */}
-      <table style={{ width: '100%', borderCollapse: 'collapse', marginBottom: '10px', tableLayout: 'fixed' }}>
+      {/* Cart Items Table */}
+      <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '11px', textAlign: 'left' }}>
         <thead>
-          <tr>
-            <th style={{ width: '50%', textAlign: 'left', paddingBottom: '5px' }}>Món</th>
-            <th style={{ width: '15%', textAlign: 'center', paddingBottom: '5px' }}>SL</th>
-            <th style={{ width: '35%', textAlign: 'right', paddingBottom: '5px' }}>T.Tiền</th>
+          <tr style={{ borderBottom: '1px solid #000' }}>
+            <th style={{ padding: '4px 0', width: '45%' }}>Tên thuốc</th>
+            <th style={{ padding: '4px 0', textAlign: 'center', width: '15%' }}>SL</th>
+            <th style={{ padding: '4px 0', textAlign: 'right', width: '20%' }}>Đ.Giá</th>
+            <th style={{ padding: '4px 0', textAlign: 'right', width: '20%' }}>T.Tiền</th>
           </tr>
         </thead>
         <tbody>
-          {cart.map((item, index) => (
-            <tr key={index}>
-              <td style={{ verticalAlign: 'top', padding: '3px 0' }}>{item.name}</td>
-              <td style={{ verticalAlign: 'top', textAlign: 'center', padding: '3px 0' }}>{item.quantity}</td>
-              <td style={{ verticalAlign: 'top', textAlign: 'right', padding: '3px 0' }}>{item.total.toLocaleString('vi-VN')}</td>
-            </tr>
-          ))}
+          {cart && cart.map((item, idx) => {
+            const itemTotal = (item.price || 0) * (item.quantity || 1);
+            return (
+              <tr key={idx} style={{ borderBottom: '1px dotted #ccc' }}>
+                <td style={{ padding: '4px 0' }}>
+                  <div>{item.name}</div>
+                  {item.unit_name && <span style={{ fontSize: '9px', color: '#555' }}>ĐVT: {item.unit_name}</span>}
+                </td>
+                <td style={{ padding: '4px 0', textAlign: 'center' }}>{item.quantity}</td>
+                <td style={{ padding: '4px 0', textAlign: 'right' }}>{(item.price || 0).toLocaleString('vi-VN')}</td>
+                <td style={{ padding: '4px 0', textAlign: 'right' }}>{itemTotal.toLocaleString('vi-VN')}</td>
+              </tr>
+            );
+          })}
         </tbody>
       </table>
 
       <div style={{ borderTop: '1px dashed #000', margin: '10px 0' }}></div>
 
-      {/* Totals */}
-      <div style={{ display: 'flex', justifyContent: 'space-between', fontWeight: 'bold', fontSize: '14px' }}>
-        <span>TỔNG CỘNG:</span>
-        <span>{total.toLocaleString('vi-VN')} đ</span>
+      {/* Summary */}
+      <div style={{ fontSize: '12px' }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '3px' }}>
+          <span>Tổng tiền thuốc:</span>
+          <span>{(total?.subtotal || total?.grandTotal || 0).toLocaleString('vi-VN')} đ</span>
+        </div>
+        {total?.discount > 0 && (
+          <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '3px' }}>
+            <span>Giảm giá:</span>
+            <span>-{(total.discount).toLocaleString('vi-VN')} đ</span>
+          </div>
+        )}
+        <div style={{ display: 'flex', justifyContent: 'space-between', fontWeight: 'bold', fontSize: '14px', marginTop: '5px' }}>
+          <span>KHÁCH PHẢI TRẢ:</span>
+          <span>{(total?.grandTotal || 0).toLocaleString('vi-VN')} đ</span>
+        </div>
       </div>
 
-      {/* Payment Details */}
-      {paymentMethods && paymentMethods.length > 0 && (
-        <div style={{ marginTop: '10px' }}>
-          {paymentMethods.map((pm, idx) => (
-            <div key={idx} style={{ display: 'flex', justifyContent: 'space-between', fontSize: '12px' }}>
-              <span>Thanh toán {pm.type}:</span>
-              <span>{pm.amount.toLocaleString('vi-VN')} đ</span>
-            </div>
-          ))}
-        </div>
-      )}
+      <div style={{ borderTop: '1px dashed #000', margin: '10px 0' }}></div>
 
-      {/* Footer */}
-      <div style={{ textAlign: 'center', marginTop: '20px' }}>
-        <p style={{ margin: '2px 0' }}>Xin cảm ơn quý khách!</p>
-        <p style={{ margin: '2px 0' }}>Hẹn gặp lại!</p>
-        <p style={{ margin: '10px 0 0 0', fontSize: '10px', fontStyle: 'italic' }}>Nhà Thuốc Nhân Đức - Chuẩn GPP</p>
+      {/* Footer / Medical Reminders */}
+      <div style={{ textAlign: 'center', fontSize: '10px', marginTop: '10px' }}>
+        <p style={{ margin: '2px 0', fontWeight: 'bold' }}>LƯU Ý DÙNG THUỐC:</p>
+        <p style={{ margin: '2px 0' }}>Uống thuốc đúng liều và thời gian theo hướng dẫn của Dược sĩ.</p>
+        <p style={{ margin: '2px 0' }}>Đổi trả trong 48h nếu thuốc có lỗi bao bì sản xuất.</p>
+        <p style={{ margin: '6px 0 2px 0', fontWeight: 'bold' }}>Kính chúc Quý khách nhiều sức khỏe!</p>
+        <p style={{ margin: '2px 0' }}>Hotline Dược sĩ: 0933.324.368</p>
       </div>
     </div>
   );
