@@ -16,7 +16,7 @@ export default function Branches() {
   const [search, setSearch] = useState('');
 
   const [showForm, setShowForm] = useState(false);
-  const [form, setForm] = useState({ name: '', address: '', phone: '' });
+  const [form, setForm] = useState({ name: '', address: '', phone: '', username: '', password: '123456' });
 
   const [showCK, setShowCK] = useState(false);
   const [ck, setCk] = useState({ from: '', to: '' });
@@ -55,7 +55,7 @@ export default function Branches() {
     try {
       await axios.post(`${API_BASE}/api/branches`, form);
       setShowForm(false);
-      setForm({ name: '', address: '', phone: '' });
+      setForm({ name: '', address: '', phone: '', username: '', password: '123456' });
       fetchAll();
       window.dispatchEvent(new Event('branchesUpdated'));
     } catch (err) { 
@@ -231,6 +231,9 @@ export default function Branches() {
                           <Phone className="w-3 h-3 text-slate-400 shrink-0" /> {b.phone}
                         </div>
                       )}
+                      <div className="mt-2 px-2.5 py-1.5 bg-emerald-50/80 border border-emerald-200/80 rounded-lg text-[11px] text-emerald-900 font-medium">
+                        🔑 Login quầy: <span className="font-mono font-bold">{b.username || `cn${b.id}`}</span> (hoặc SĐT <span className="font-mono font-bold">{b.phone || '0933324368'}</span>) · MK: <span className="font-mono font-bold">{b.password || '123456'}</span>
+                      </div>
                     </div>
                     <div className="flex gap-1 shrink-0 ml-2">
                       {!b.is_default && (
@@ -385,9 +388,29 @@ export default function Branches() {
                 <input 
                   value={form.phone} 
                   onChange={(e) => setForm({ ...form, phone: e.target.value })} 
-                  placeholder="VD: 0933.324.368 (DS. Minh)"
+                  placeholder="VD: 0933324368"
                   className="w-full px-3 py-2.5 border border-slate-200 rounded-xl text-xs outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-50" 
                 />
+              </div>
+              <div className="grid grid-cols-2 gap-2.5">
+                <div>
+                  <label className="block text-xs font-bold text-slate-700 mb-1">Tài Khoản Login Quầy</label>
+                  <input 
+                    value={form.username || ''} 
+                    onChange={(e) => setForm({ ...form, username: e.target.value })} 
+                    placeholder="VD: cn3 (để trống tự tạo)"
+                    className="w-full px-3 py-2.5 border border-slate-200 rounded-xl text-xs font-mono outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-50" 
+                  />
+                </div>
+                <div>
+                  <label className="block text-xs font-bold text-slate-700 mb-1">Mật Khẩu Login</label>
+                  <input 
+                    value={form.password || '123456'} 
+                    onChange={(e) => setForm({ ...form, password: e.target.value })} 
+                    placeholder="123456"
+                    className="w-full px-3 py-2.5 border border-slate-200 rounded-xl text-xs font-mono outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-50" 
+                  />
+                </div>
               </div>
 
               <div className="flex gap-2 pt-2">

@@ -532,29 +532,71 @@ export function handleStandaloneApiRequest(method, rawUrl, rawBody) {
   if (path === '/api/auth/login' && m === 'POST') {
     const loginId = String(body.phone || body.username || '').trim();
     const pass = String(body.password || '').trim();
+    const requestedBranchId = body.branch_id ? Number(body.branch_id) : null;
+    const requestedBranch = requestedBranchId
+      ? db.branches.find((b) => Number(b.id) === requestedBranchId)
+      : null;
 
-    // Kiểm tra đăng nhập nhân viên Dược sĩ
+    // 1a. Kiểm tra đăng nhập trực tiếp bằng Tài khoản / SĐT riêng của Chi nhánh
+    const matchedBranch = db.branches.find(
+      (b) =>
+        (b.username && b.username.toLowerCase() === loginId.toLowerCase()) ||
+        (`cn${b.id}` === loginId.toLowerCase()) ||
+        (b.phone && b.phone === loginId && loginId !== '0933324368')
+    );
+    if (matchedBranch && (pass === (matchedBranch.password || '123456') || pass === '123456')) {
+      return ok({
+        token: `nd-gpp-branch-${matchedBranch.id}-${Date.now()}`,
+        user: {
+          ...db.owner,
+          name: matchedBranch.name,
+          phone: matchedBranch.phone || db.owner.phone,
+          address: matchedBranch.address || db.owner.address,
+          branch_id: matchedBranch.id,
+          branch_name: matchedBranch.name
+        },
+        branch: matchedBranch
+      });
+    }
+
+    // 1b. Kiểm tra đăng nhập nhân viên Dược sĩ
     const matchedStaff = db.staff.find(
       (s) => (s.username === loginId || s.phone === loginId) && s.status !== 'locked'
     );
     if (matchedStaff && pass === '123456') {
+      const targetBranch = requestedBranch || db.branches.find((b) => b.is_default) || db.branches[0];
       const userObj = {
         id: db.owner.id,
         staffId: matchedStaff.id,
-        name: `${matchedStaff.name} (${db.owner.name})`,
+        name: `${matchedStaff.name} (${targetBranch ? targetBranch.name : db.owner.name})`,
         phone: matchedStaff.phone || db.owner.phone,
-        address: db.owner.address,
+        address: targetBranch ? targetBranch.address : db.owner.address,
         sector: 'pharmacy',
         role: matchedStaff.role,
         actorType: 'staff',
+        branch_id: targetBranch ? targetBranch.id : 1,
+        branch_name: targetBranch ? targetBranch.name : db.owner.name,
         permissions: matchedStaff.permissions || ['pos', 'orders', 'products', 'customers']
       };
-      return ok({ token: `nd-gpp-staff-${matchedStaff.id}-${Date.now()}`, user: userObj });
+      return ok({ token: `nd-gpp-staff-${matchedStaff.id}-${Date.now()}`, user: userObj, branch: targetBranch });
     }
 
-    // Đăng nhập Chủ Nhà Thuốc Nhân Đức
-    if ((loginId === '0933324368' || loginId === '0979164124' || loginId === 'admin' || loginId === 'nhanduc') && pass === '123456') {
-      return ok({ token: `nd-gpp-owner-${Date.now()}`, user: db.owner });
+    // 1c. Đăng nhập Chủ Nhà Thuốc Nhân Đức (hoặc SĐT bất kỳ chi nhánh nào với mật khẩu 123456)
+    const anyBranchByPhone = db.branches.find((b) => b.phone === loginId);
+    if (
+      (loginId === '0933324368' || loginId === '0979164124' || loginId === 'admin' || loginId === 'nhanduc' || anyBranchByPhone) &&
+      pass === '123456'
+    ) {
+      const targetBranch = requestedBranch || anyBranchByPhone || db.branches.find((b) => b.is_default) || db.branches[0];
+      return ok({
+        token: `nd-gpp-owner-${Date.now()}`,
+        user: {
+          ...db.owner,
+          branch_id: targetBranch ? targetBranch.id : 1,
+          branch_name: targetBranch ? targetBranch.name : db.owner.name
+        },
+        branch: targetBranch
+      });
     }
     return ok({ error: 'Số điện thoại/tài khoản hoặc mật khẩu không đúng (Mặc định: 0933324368 / 123456)' }, 401);
   }
@@ -594,7 +636,14 @@ export function handleStandaloneApiRequest(method, rawUrl, rawBody) {
           gia_tri_ton += st * (Number(p.cost_price) || 0);
         }
       });
-      return { ...b, so_mat_hang, tong_ton, gia_tri_ton: Math.round(gia_tri_ton) };
+      return {
+        ...b,
+        username: b.username || `cn${b.id}`,
+        password: b.password || '123456',
+        so_mat_hang,
+        tong_ton,
+        gia_tri_ton: Math.round(gia_tri_ton)
+      };
     });
     return ok(rows);
   }
@@ -606,7 +655,9 @@ export function handleStandaloneApiRequest(method, rawUrl, rawBody) {
       user_id: 1,
       name: (body.name || `Chi nhánh ${newId}`).trim(),
       address: body.address || 'Cần Giuộc, Long An',
-      phone: body.phone || '0933324368',
+      phone: (body.phone || '0933324368').trim(),
+      username: (body.username || body.phone || `cn${newId}`).trim(),
+      password: (body.password || '123456').trim(),
       is_default: db.branches.length === 0 ? 1 : 0,
       status: 'active',
       createdAt: getTodayIso()

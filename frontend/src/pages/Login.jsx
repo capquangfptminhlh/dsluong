@@ -1,13 +1,15 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate, Link } from 'react-router-dom';
-import { Phone, Lock } from 'lucide-react';
+import { Phone, Lock, Store } from 'lucide-react';
 import API_BASE from '../config/api';
 import logo from '../assets/logo.png';
 
 export default function Login() {
   const [phone, setPhone] = useState('');
   const [password, setPassword] = useState('');
+  const [branches, setBranches] = useState([]);
+  const [selectedBranchId, setSelectedBranchId] = useState('');
   const [otp, setOtp] = useState('');
   const [step, setStep] = useState(1);
   const [loading, setLoading] = useState(false);
@@ -17,15 +19,29 @@ export default function Login() {
     if (localStorage.getItem('token')) {
       navigate('/app');
     }
+    axios
+      .get(`${API_BASE}/api/branches`)
+      .then((res) => {
+        const list = Array.isArray(res.data) ? res.data : [];
+        setBranches(list);
+        const savedId = localStorage.getItem('active_branch_id');
+        const def = list.find((b) => String(b.id) === String(savedId)) || list.find((b) => b.is_default) || list[0];
+        if (def) setSelectedBranchId(String(def.id));
+      })
+      .catch(() => {});
   }, [navigate]);
 
   const handleLogin = async (e) => {
     e.preventDefault();
-    if (!phone || !password) return alert('Vui lòng nhập số điện thoại và mật khẩu!');
+    if (!phone || !password) return alert('Vui lòng nhập số điện thoại/tài khoản và mật khẩu!');
 
     setLoading(true);
     try {
-      const res = await axios.post(`${API_BASE}/api/auth/login`, { phone, password });
+      const res = await axios.post(`${API_BASE}/api/auth/login`, {
+        phone,
+        password,
+        branch_id: selectedBranchId ? Number(selectedBranchId) : undefined
+      });
       if (res.data.requireOtp) {
         if (res.data.otp) {
           alert(`[Dev/Test] Mã OTP của bạn là: ${res.data.otp}`);
@@ -36,6 +52,11 @@ export default function Login() {
         localStorage.setItem('user', JSON.stringify(res.data.user));
         if (res.data.user.sector) {
           localStorage.setItem('industry_type', res.data.user.sector);
+        }
+        const activeBranch = res.data.branch || branches.find((b) => String(b.id) === String(selectedBranchId));
+        if (activeBranch) {
+          localStorage.setItem('active_branch_id', String(activeBranch.id));
+          localStorage.setItem('active_branch_name', activeBranch.name);
         }
         navigate('/app');
       }
@@ -87,18 +108,40 @@ export default function Login() {
 
         {step === 1 ? (
           <form onSubmit={handleLogin} className="space-y-4">
+            {branches.length > 0 && (
+              <div>
+                <label className="block text-sm font-medium text-slate-700 mb-1">Chi nhánh / Quầy thuốc làm việc</label>
+                <div className="relative">
+                  <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-emerald-600">
+                    <Store className="w-5 h-5" />
+                  </div>
+                  <select
+                    value={selectedBranchId}
+                    onChange={(e) => setSelectedBranchId(e.target.value)}
+                    className="w-full pl-10 pr-4 py-3 bg-emerald-50/60 border border-emerald-200 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition-all outline-none font-bold text-slate-800 text-sm"
+                  >
+                    {branches.map((b) => (
+                      <option key={b.id} value={b.id}>
+                        {b.name} {b.is_default ? '(Cơ sở chính)' : `(TK: ${b.username || 'cn' + b.id})`}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+              </div>
+            )}
+
             <div>
-              <label className="block text-sm font-medium text-slate-700 mb-1">Số điện thoại</label>
+              <label className="block text-sm font-medium text-slate-700 mb-1">Số điện thoại / Tài khoản chi nhánh</label>
               <div className="relative">
                 <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400">
                   <Phone className="w-5 h-5" />
                 </div>
                 <input
-                  type="tel"
+                  type="text"
                   value={phone}
                   onChange={e => setPhone(e.target.value)}
                   className="w-full pl-10 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-primary focus:border-primary transition-all outline-none"
-                  placeholder="0912345678"
+                  placeholder="0933324368 hoặc cn2, duocsiminh..."
                   required
                 />
               </div>
