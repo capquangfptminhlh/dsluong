@@ -1,19 +1,11 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Package, Plus, Search, Edit2, Trash2, ChevronDown, ChevronRight, Tags, Filter, Image as ImageIcon, FileText, X, Upload, Printer, DollarSign, Eye } from 'lucide-react';
+import * as XLSX from 'xlsx';
+import { Package, Plus, Search, Edit2, Trash2, ChevronDown, ChevronRight, Tags, Info, Filter, MoreHorizontal, Image as ImageIcon, FileText, X, Upload, Printer, DollarSign, Eye } from 'lucide-react';
 import API_BASE from '../config/api';
-
-const moneyDigits = (value) => String(value ?? '').replace(/[^0-9]/g, '');
-const formatMoneyInput = (value) => {
-  const digits = moneyDigits(value);
-  if (!digits) return '';
-  return new Intl.NumberFormat('vi-VN').format(Number(digits));
-};
-const moneyNumber = (value) => Number(moneyDigits(value) || 0);
 
 export default function Products() {
   const [products, setProducts] = useState([]);
-  const [categories, setCategories] = useState([]);
   const [loading, setLoading] = useState(true);
   const [showModal, setShowModal] = useState(false);
   const [showImportModal, setShowImportModal] = useState(false);
@@ -21,9 +13,8 @@ export default function Products() {
   const [importing, setImporting] = useState(false);
   const [expandedRows, setExpandedRows] = useState({});
   const [searchQuery, setSearchQuery] = useState('');
-  const [showAdvancedFilters, setShowAdvancedFilters] = useState(false);
-  const [categoryFilter, setCategoryFilter] = useState('all');
-  const [stockFilter, setStockFilter] = useState('all');
+  const [currentPage, setCurrentPage] = useState(1);
+  const pageSize = 50;
 
   // Multi-select & Description States
   const [selectedIds, setSelectedIds] = useState([]);
@@ -45,8 +36,6 @@ export default function Products() {
 
   // Form State
   const [form, setForm] = useState({ name: '', category: '', image_url: '', description: '' });
-  const [createParentId, setCreateParentId] = useState('');
-  const [editCategoryParentId, setEditCategoryParentId] = useState('');
   const [attributes, setAttributes] = useState([{ name: 'Màu sắc', values: 'Đỏ, Xanh' }]);
   const [hasVariants, setHasVariants] = useState(false);
   const [generatedVariants, setGeneratedVariants] = useState([]);
@@ -57,55 +46,27 @@ export default function Products() {
   const [singleStock, setSingleStock] = useState('0');
   const [singleSku, setSingleSku] = useState('');
   const [singleBarcode, setSingleBarcode] = useState('');
-  const [singleWarrantyMonths, setSingleWarrantyMonths] = useState('0');
-  const [singleWarrantyOptions, setSingleWarrantyOptions] = useState([]);
 
   useEffect(() => {
     fetchProducts();
-    fetchCategories();
+    const onUpdated = () => fetchProducts();
+    window.addEventListener('productsUpdated', onUpdated);
+    window.addEventListener('branchChanged', onUpdated);
+    return () => {
+      window.removeEventListener('productsUpdated', onUpdated);
+      window.removeEventListener('branchChanged', onUpdated);
+    };
   }, []);
 
   const fetchProducts = async () => {
     try {
       const res = await axios.get(`${API_BASE}/api/products`);
-      setProducts(res.data);
+      setProducts(Array.isArray(res.data) ? res.data : []);
     } catch (err) {
       console.error(err);
     } finally {
       setLoading(false);
     }
-  };
-
-  const fetchCategories = async () => {
-    try {
-      const res = await axios.get(`${API_BASE}/api/categories`);
-      setCategories(res.data || []);
-    } catch (err) {
-      console.error('Không tải được danh mục', err);
-    }
-  };
-
-  const childrenFor = (parentId) => categories.filter((c) => Number(c.parent_id) === Number(parentId));
-  const categoryRoots = categories.filter((c) => !c.parent_id);
-
-  const handleCreateParentChange = (parentId) => {
-    const root = categoryRoots.find((c) => String(c.id) === String(parentId));
-    const children = childrenFor(parentId);
-    setCreateParentId(parentId);
-    setForm((prev) => ({ ...prev, category: children.length ? '' : (root?.name || '') }));
-  };
-
-  const openEditProduct = (product) => {
-    const category = categories.find((c) => c.name === String(product.category || '').trim());
-    setEditCategoryParentId(category ? String(category.parent_id || category.id) : '');
-    setEditProductModal({ ...product });
-  };
-
-  const handleEditParentChange = (parentId) => {
-    const root = categoryRoots.find((c) => String(c.id) === String(parentId));
-    const children = childrenFor(parentId);
-    setEditCategoryParentId(parentId);
-    setEditProductModal((prev) => prev ? { ...prev, category: children.length ? '' : (root?.name || '') } : prev);
   };
 
   const toggleRow = (id) => {
@@ -170,7 +131,6 @@ export default function Products() {
   const handleSaveProductEdit = async (e) => {
     e.preventDefault();
     if (!editProductModal) return;
-    if (!String(editProductModal.category || '').trim()) return alert('Vui lòng chọn Nhóm hàng / Danh mục đã tạo trước.');
     setSavingEdit(true);
     try {
       await axios.put(`${API_BASE}/api/products/${editProductModal.id}`, editProductModal);
@@ -206,7 +166,7 @@ export default function Products() {
     };
     reader.readAsDataURL(file);
   };
-  const generateVariants = useCallback(() => {
+  const generateVariants = () => {
     if (attributes.length === 0 || !attributes[0].values) return;
     
     const parsedAttrs = attributes.filter(a => a.name.trim() !== '' && a.values.trim() !== '').map(a => ({
@@ -233,7 +193,7 @@ export default function Products() {
       
       const skuSuffix = combo.map(c => c.substring(0,3).toUpperCase()).join('-');
       return {
-        sku: `SKU-${skuSuffix}-${String(idx + 1).padStart(3, '0')}`,
+        sku: `SKU-${Math.floor(Math.random()*1000)}-${skuSuffix}`,
         attributes: attrObj,
         price: singlePrice,
         cost_price: singleCost,
@@ -242,23 +202,20 @@ export default function Products() {
     });
 
     setGeneratedVariants(variants);
-  }, [attributes, singleCost, singlePrice]);
+  };
 
   useEffect(() => {
     if (hasVariants) generateVariants();
-  }, [generateVariants, hasVariants]);
+  }, [attributes, hasVariants]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!String(form.category || '').trim()) return alert('Vui lòng chọn Nhóm hàng / Danh mục đã tạo trước.');
     try {
       if (hasVariants && generatedVariants.length > 0) {
         await axios.post(`${API_BASE}/api/products/with-variants`, {
           name: form.name,
           category: form.category,
           image_url: form.image_url,
-          warranty_months: Number(singleWarrantyMonths) || 0,
-          warranty_options: singleWarrantyOptions.map((option) => ({ months: Number(option.months), price: moneyNumber(option.price) })),
           variants: generatedVariants.map(v => ({
             ...v,
             price: Number(v.price),
@@ -271,8 +228,6 @@ export default function Products() {
           name: form.name,
           category: form.category,
           image_url: form.image_url,
-          warranty_months: Number(singleWarrantyMonths) || 0,
-          warranty_options: singleWarrantyOptions.map((option) => ({ months: Number(option.months), price: moneyNumber(option.price) })),
           variants: [{
             sku: singleSku.trim() || `SKU-${Math.floor(10000 + Math.random()*90000)}`,
             barcode: singleBarcode.trim() || singleSku.trim(),
@@ -295,7 +250,6 @@ export default function Products() {
 
   const resetForm = () => {
     setForm({ name: '', category: '', image_url: '' });
-    setCreateParentId('');
     setHasVariants(false);
     setAttributes([{ name: 'Màu sắc', values: 'Đỏ, Xanh' }]);
     setGeneratedVariants([]);
@@ -304,8 +258,6 @@ export default function Products() {
     setSingleStock('0');
     setSingleSku('');
     setSingleBarcode('');
-    setSingleWarrantyMonths('0');
-    setSingleWarrantyOptions([]);
   };
 
   const handleDelete = async (id) => {
@@ -326,20 +278,150 @@ export default function Products() {
 
   const handleImport = async (e) => {
     e.preventDefault();
-    if (!importFile) return alert('Vui lòng chọn file Excel');
+    if (!importFile) return alert('Vui lòng chọn file Excel (.xlsx, .xls, .csv)');
     setImporting(true);
-    const formData = new FormData();
-    formData.append('file', importFile);
     try {
-      const res = await axios.post(`${API_BASE}/api/products/import`, formData, {
-        headers: { 'Content-Type': 'multipart/form-data' }
+      const buf = await importFile.arrayBuffer();
+      const workbook = XLSX.read(buf, { type: 'array' });
+      const sheetName = workbook.SheetNames[0];
+      const sheet = workbook.Sheets[sheetName];
+      const rows = XLSX.utils.sheet_to_json(sheet, { header: 1 });
+
+      if (!rows || rows.length < 2) {
+        alert('File Excel trống hoặc không có dữ liệu sản phẩm!');
+        return;
+      }
+
+      let headerIdx = 0;
+      for (let i = 0; i < Math.min(10, rows.length); i++) {
+        const r = rows[i] || [];
+        const joined = r.map((x) => String(x || '').toLowerCase()).join(' ');
+        if (joined.includes('tên hàng') || joined.includes('tên sản phẩm') || joined.includes('mã hàng') || joined.includes('giá bán')) {
+          headerIdx = i;
+          break;
+        }
+      }
+
+      const headers = (rows[headerIdx] || []).map((h) => String(h || '').toLowerCase().trim());
+      const findCol = (preds) => headers.findIndex((h) => preds.some((p) => (typeof p === 'function' ? p(h) : h.includes(p))));
+
+      let colName = findCol([(h) => h === 'tên hàng', (h) => h === 'tên sản phẩm*', 'tên sản phẩm', 'tên hàng', 'tên thuốc']);
+      if (colName === -1) colName = headers[0]?.includes('loại hàng') ? 3 : 0;
+
+      const colSku = findCol([(h) => h === 'mã hàng', (h) => h === 'mã sku*', 'mã hàng', 'mã sku', (h) => h === 'sku', 'mã vạch', 'barcode']);
+      const colCat = findCol(['nhóm hàng', 'loại sản phẩm', 'danh mục', 'phân loại']);
+      const colPrice = findCol([(h) => h === 'giá bán', 'giá lẻ', 'giá bán', 'đơn giá']);
+      const colCost = findCol([(h) => h === 'giá vốn', 'giá nhập', 'giá vốn']);
+      const colStock = findCol([(h) => h === 'tồn kho', 'tồn kho', 'số lượng']);
+      const colUnit = findCol([(h) => h === 'đvt', 'đơn vị tính', 'đvt']);
+      const colBaseSku = findCol(['mã đvt cơ bản']);
+      const colRatio = findCol([(h) => h === 'quy đổi', 'quy đổi']);
+      const colImage = findCol(['hình ảnh', 'ảnh đại diện', (h) => h === 'ảnh']);
+      const colLot1 = findCol([(h) => h === 'lô 1']);
+      const colExp1 = findCol([(h) => h === 'hạn sử dụng 1']);
+      const colQty1 = findCol([(h) => h === 'tồn 1']);
+
+      const parseNum = (v) => {
+        if (typeof v === 'number') return isFinite(v) ? v : 0;
+        if (!v) return 0;
+        const cleaned = String(v).replace(/[^\d.-]/g, '');
+        return Number(cleaned) || 0;
+      };
+
+      const excelDateToIso = (v) => {
+        if (!v) return '';
+        if (typeof v === 'number' && v > 20000 && v < 80000) {
+          return new Date(Math.round((v - 25569) * 86400 * 1000)).toISOString().slice(0, 10);
+        }
+        const s = String(v).trim();
+        const m = s.match(/^(\d{1,2})[\/\-](\d{1,2})[\/\-](\d{4})/);
+        if (m) return `${m[3]}-${m[2].padStart(2, '0')}-${m[1].padStart(2, '0')}`;
+        return s.slice(0, 10);
+      };
+
+      const items = [];
+      const batches = [];
+      const units = [];
+
+      for (let i = headerIdx + 1; i < rows.length; i++) {
+        const r = rows[i];
+        if (!r || r.length === 0) continue;
+        const baseName = colName !== -1 && r[colName] !== undefined ? String(r[colName]).trim() : '';
+        if (!baseName) continue;
+
+        const rawCat = colCat !== -1 && r[colCat] ? String(r[colCat]).trim() : 'THUỐC';
+        const topCat = rawCat.split('>>')[0].trim() || 'THUỐC';
+        const unit = colUnit !== -1 && r[colUnit] ? String(r[colUnit]).trim() : 'Hộp';
+        const sku = colSku !== -1 && r[colSku] ? String(r[colSku]).trim() : `KV-${1000 + i}`;
+        const baseSku = colBaseSku !== -1 && r[colBaseSku] ? String(r[colBaseSku]).trim() : '';
+        const ratio = colRatio !== -1 ? Math.max(1, parseNum(r[colRatio])) : 1;
+        const price = colPrice !== -1 ? Math.max(0, Math.round(parseNum(r[colPrice]))) : 0;
+        const cost_price = colCost !== -1 ? Math.max(0, Math.round(parseNum(r[colCost]))) : 0;
+        const stock = colStock !== -1 ? Math.max(0, Math.round(parseNum(r[colStock]))) : 0;
+        const image_url = colImage !== -1 && r[colImage] ? String(r[colImage]).split(',')[0].trim() : '';
+
+        const displayName = unit ? `${baseName} (${unit})` : baseName;
+        const prodId = 1000 + items.length + 1;
+
+        items.push({
+          id: prodId,
+          name: displayName,
+          sku,
+          price,
+          cost_price,
+          stock,
+          category: topCat,
+          base_unit: unit || 'Hộp',
+          image_url
+        });
+
+        if (baseSku && ratio > 1) {
+          units.push({
+            id: units.length + 1,
+            product_id: prodId,
+            product_name: baseName,
+            unit_name: unit || 'Hộp',
+            ratio,
+            price,
+            barcode: sku
+          });
+        }
+
+        if (!baseSku && colLot1 !== -1 && r[colLot1]) {
+          batches.push({
+            id: batches.length + 1,
+            product_id: prodId,
+            product_name: baseName,
+            sku,
+            batch_code: String(r[colLot1]).trim(),
+            expiry_date: (colExp1 !== -1 ? excelDateToIso(r[colExp1]) : '') || '2027-12-31',
+            quantity: colQty1 !== -1 ? Math.max(0, Math.round(parseNum(r[colQty1]))) : stock,
+            cost_price,
+            note: 'Nhập từ KiotViet'
+          });
+        }
+      }
+
+      if (items.length === 0) {
+        alert('Không tìm thấy dòng sản phẩm hợp lệ trong file Excel!');
+        return;
+      }
+
+      const res = await axios.post(`${API_BASE}/api/products/import-json`, {
+        mode: items.length >= 500 ? 'replace' : 'merge',
+        items,
+        batches,
+        units
       });
-      alert(res.data.message || `Đã nhập thành công ${res.data.count} sản phẩm!`);
+
+      alert(res.data.message || `Đã nhập thành công ${items.length.toLocaleString('vi-VN')} sản phẩm!`);
       setShowImportModal(false);
       setImportFile(null);
+      setCurrentPage(1);
       fetchProducts();
     } catch (err) {
-      alert(err.response?.data?.error || 'Lỗi nhập dữ liệu');
+      console.error(err);
+      alert(err.response?.data?.error || 'Lỗi đọc hoặc nhập file Excel: ' + (err.message || ''));
     } finally {
       setImporting(false);
     }
@@ -347,15 +429,16 @@ export default function Products() {
 
   const formatPrice = (price) => new Intl.NumberFormat('vi-VN').format(price || 0) + ' đ';
 
-  const productCategories = [...new Set(products.map((p) => String(p.category || '').trim()).filter(Boolean))].sort((a, b) => a.localeCompare(b, 'vi'));
-  const filteredProducts = products.filter((p) => {
-    const query = searchQuery.toLowerCase();
-    const matchesSearch = p.name.toLowerCase().includes(query) || String(p.sku || '').toLowerCase().includes(query);
-    const matchesCategory = categoryFilter === 'all' || String(p.category || '').trim() === categoryFilter;
-    const stock = Number(p.stock || 0);
-    const matchesStock = stockFilter === 'all' || (stockFilter === 'in' && stock > 0) || (stockFilter === 'out' && stock <= 0);
-    return matchesSearch && matchesCategory && matchesStock;
-  });
+  const qLower = searchQuery.toLowerCase().trim();
+  const filteredProducts = products.filter((p) =>
+    !qLower ||
+    (p.name || '').toLowerCase().includes(qLower) ||
+    (p.sku || '').toLowerCase().includes(qLower) ||
+    (p.category || '').toLowerCase().includes(qLower)
+  );
+  const totalPages = Math.max(1, Math.ceil(filteredProducts.length / pageSize));
+  const safePage = Math.min(currentPage, totalPages);
+  const paginatedProducts = filteredProducts.slice((safePage - 1) * pageSize, safePage * pageSize);
 
   return (
     <div className="p-8 max-w-[1400px] mx-auto h-full flex flex-col relative bg-slate-50">
@@ -394,40 +477,21 @@ export default function Products() {
             <input 
               type="text" 
               value={searchQuery}
-              onChange={e => setSearchQuery(e.target.value)}
-              placeholder="Tìm theo tên, mã SKU..." 
+              onChange={e => { setSearchQuery(e.target.value); setCurrentPage(1); }}
+              placeholder="Tìm theo tên thuốc, mã SKU, danh mục..." 
               className="w-full pl-11 pr-4 py-2.5 bg-slate-100/80 rounded-xl border-transparent focus:bg-white focus:border-blue-500 focus:ring-4 focus:ring-blue-500/20 outline-none transition-all font-medium text-slate-700"
             />
           </div>
           
           <div className="flex items-center gap-3">
-            <button onClick={() => setShowAdvancedFilters((value) => !value)} aria-expanded={showAdvancedFilters} className="px-4 py-2.5 bg-white border border-slate-200 text-slate-700 font-bold rounded-xl hover:bg-slate-50 flex items-center gap-2 transition-colors">
+            <span className="px-3.5 py-2 bg-emerald-50 border border-emerald-200 text-emerald-700 text-xs font-black rounded-xl">
+              Tổng kho: {filteredProducts.length.toLocaleString('vi-VN')} sản phẩm
+            </span>
+            <button className="px-4 py-2.5 bg-white border border-slate-200 text-slate-700 font-bold rounded-xl hover:bg-slate-50 flex items-center gap-2 transition-colors">
               <Filter className="w-4 h-4" /> Lọc Nâng Cao
             </button>
           </div>
         </div>
-
-        {showAdvancedFilters && (
-          <div className="px-4 py-3 border-b border-slate-200 bg-slate-50 flex flex-wrap items-end gap-3">
-            <label className="text-xs font-bold text-slate-600">
-              <span className="block mb-1">Danh mục</span>
-              <select value={categoryFilter} onChange={(e) => setCategoryFilter(e.target.value)} className="min-w-48 px-3 py-2 bg-white border border-slate-200 rounded-lg text-sm">
-                <option value="all">Tất cả danh mục</option>
-                {productCategories.map((category) => <option key={category} value={category}>{category}</option>)}
-              </select>
-            </label>
-            <label className="text-xs font-bold text-slate-600">
-              <span className="block mb-1">Tồn kho</span>
-              <select value={stockFilter} onChange={(e) => setStockFilter(e.target.value)} className="min-w-40 px-3 py-2 bg-white border border-slate-200 rounded-lg text-sm">
-                <option value="all">Tất cả</option>
-                <option value="in">Còn hàng</option>
-                <option value="out">Hết hàng</option>
-              </select>
-            </label>
-            <button type="button" onClick={() => { setCategoryFilter('all'); setStockFilter('all'); }} className="px-3 py-2 text-xs font-bold text-slate-600 hover:text-blue-600">Xóa bộ lọc</button>
-            <span className="ml-auto text-xs font-semibold text-slate-500">{filteredProducts.length} / {products.length} sản phẩm</span>
-          </div>
-        )}
 
         {/* Data Table */}
         <div className="flex-1 overflow-auto bg-slate-50/50">
@@ -446,7 +510,7 @@ export default function Products() {
                 <th className="px-4 py-4">Sản Phẩm</th>
                 <th className="px-4 py-4">Phân Loại</th>
                 <th className="px-4 py-4">Mã SKU</th>
-                <th className="px-4 py-4 text-center">Biến thể</th>
+                <th className="px-4 py-4 text-right">Giá Bán</th>
                 <th className="px-4 py-4 text-center">Tồn Kho</th>
                 <th className="px-4 py-4 text-center">Trạng Thái</th>
                 <th className="px-4 py-4 text-right">Thao tác</th>
@@ -463,7 +527,7 @@ export default function Products() {
                   </div>
                 </td></tr>
               ) : (
-                filteredProducts.map(p => (
+                paginatedProducts.map(p => (
                   <React.Fragment key={p.id}>
                     {/* Parent Row */}
                     <tr 
@@ -492,17 +556,7 @@ export default function Products() {
                           </div>
                           <div>
                             <div className="font-bold text-slate-800 group-hover:text-blue-700 transition-colors line-clamp-1">{p.name}</div>
-                            {Number(p.warranty_months) > 0 && <div className="mt-0.5 text-[11px] font-bold text-teal-700">BH mặc định: {p.warranty_months} tháng</div>}
-                            {Array.isArray(p.warranty_options) && p.warranty_options.length > 0 && <div className="mt-0.5 text-[10px] font-semibold text-slate-500">{p.warranty_options.length} gói BH theo giá</div>}
-                            {p.attributes && Object.keys(typeof p.attributes === 'string' ? JSON.parse(p.attributes || '{}') : (p.attributes || {})).length > 0 && (
-                              <div className="flex flex-wrap gap-1 mt-1">
-                                {Object.entries(typeof p.attributes === 'string' ? JSON.parse(p.attributes || '{}') : (p.attributes || {})).map(([k, v], idx) => (
-                                  <span key={idx} className="px-1.5 py-0.5 bg-slate-100 text-slate-600 text-[10px] font-medium rounded border border-slate-200">
-                                    {k}: {v}
-                                  </span>
-                                ))}
-                              </div>
-                            )}
+                            <div className="text-[11px] text-slate-400 font-medium mt-0.5">ĐVT: {p.base_unit || 'Hộp'}</div>
                           </div>
                         </div>
                       </td>
@@ -510,10 +564,8 @@ export default function Products() {
                         <span className="px-3 py-1 bg-slate-100 border border-slate-200 text-slate-600 rounded-full text-[11px] font-bold uppercase tracking-wider">{p.category || 'Chưa phân loại'}</span>
                       </td>
                       <td className="px-4 py-4 font-mono text-slate-500 text-sm font-semibold">{p.sku}</td>
-                      <td className="px-4 py-4 text-center">
-                        <span className="px-2.5 py-1 bg-blue-50 border border-blue-100 text-blue-700 font-bold rounded-lg text-xs">
-                          {p.variants?.length || 0}
-                        </span>
+                      <td className="px-4 py-4 text-right font-black text-blue-600">
+                        {formatPrice(p.price)}
                       </td>
                       <td className="px-4 py-4 text-center font-black text-slate-700">
                         {p.stock}
@@ -542,7 +594,7 @@ export default function Products() {
                             </button>
                           )}
                           <button 
-                            onClick={() => openEditProduct(p)} 
+                            onClick={() => setEditProductModal({ ...p })} 
                             className="p-2 text-slate-500 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-colors"
                             title="Chỉnh sửa sản phẩm"
                           >
@@ -562,7 +614,6 @@ export default function Products() {
                         <td colSpan="2" className="px-4 py-3">
                           <div className="flex items-center gap-3 pl-4">
                             <div className="w-4 h-px bg-slate-300"></div>
-                            {/* Variant Thumbnail Image with Fallback */}
                             <div className="w-9 h-9 rounded-lg bg-white border border-slate-200 overflow-hidden flex items-center justify-center shrink-0 shadow-xs">
                               {(v.image_url || p.image_url) ? (
                                 <img src={v.image_url || p.image_url} alt="Variant" className="w-full h-full object-cover" />
@@ -580,11 +631,10 @@ export default function Products() {
                           </div>
                         </td>
                         <td className="px-4 py-3 font-mono text-xs text-slate-500 font-semibold">{v.sku}</td>
-                        <td className="px-4 py-3 text-center text-slate-400 text-xs">-</td>
+                        <td className="px-4 py-3 text-right font-black text-blue-600">{formatPrice(v.price)}</td>
                         <td className="px-4 py-3 text-center font-bold text-slate-600">{v.stock}</td>
                         <td className="px-4 py-3 text-right" colSpan="2">
                           <div className="flex items-center justify-end gap-2">
-                            <span className="font-black text-blue-600">{formatPrice(v.price)}</span>
                             <button 
                               onClick={() => setVariantDetailModal({ parent: p, activeIdx: vidx })} 
                               className="p-1.5 text-slate-400 hover:text-indigo-600 hover:bg-indigo-50 rounded-lg transition-colors"
@@ -616,6 +666,36 @@ export default function Products() {
             </tbody>
           </table>
         </div>
+
+        {/* Pagination Bar */}
+        {filteredProducts.length > 0 && (
+          <div className="px-6 py-3.5 border-t border-slate-200 bg-white flex flex-wrap items-center justify-between gap-4 text-sm">
+            <div className="text-slate-600 font-medium">
+              Hiển thị <span className="font-bold text-slate-800">{((safePage - 1) * pageSize + 1).toLocaleString('vi-VN')}</span> - <span className="font-bold text-slate-800">{Math.min(safePage * pageSize, filteredProducts.length).toLocaleString('vi-VN')}</span> trong tổng số <span className="font-black text-blue-600">{filteredProducts.length.toLocaleString('vi-VN')}</span> sản phẩm
+            </div>
+            <div className="flex items-center gap-2">
+              <button
+                type="button"
+                disabled={safePage <= 1}
+                onClick={() => setCurrentPage((p) => Math.max(1, p - 1))}
+                className="px-3.5 py-1.5 rounded-lg border border-slate-200 font-bold text-slate-700 hover:bg-slate-50 disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
+              >
+                ← Trang trước
+              </button>
+              <span className="px-3 py-1.5 bg-blue-50 text-blue-700 font-black rounded-lg text-xs">
+                Trang {safePage} / {totalPages.toLocaleString('vi-VN')}
+              </span>
+              <button
+                type="button"
+                disabled={safePage >= totalPages}
+                onClick={() => setCurrentPage((p) => Math.min(totalPages, p + 1))}
+                className="px-3.5 py-1.5 rounded-lg border border-slate-200 font-bold text-slate-700 hover:bg-slate-50 disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
+              >
+                Trang sau →
+              </button>
+            </div>
+          </div>
+        )}
       </div>
 
       {/* Floating Bulk Action Bar */}
@@ -701,44 +781,7 @@ export default function Products() {
                 </div>
                 <div>
                   <label className="block text-sm font-bold text-slate-700 mb-1.5">Nhóm hàng / Danh mục</label>
-                  <div className="grid grid-cols-2 gap-2">
-                    <select value={createParentId} onChange={(e) => handleCreateParentChange(e.target.value)} className="w-full px-3 py-3 bg-white border border-slate-200 rounded-xl focus:outline-none focus:border-blue-500 font-bold text-slate-700">
-                      <option value="">Chọn nhóm lớn</option>
-                      {categoryRoots.map((root) => <option key={root.id} value={root.id}>{root.name}</option>)}
-                    </select>
-                    <select disabled={!createParentId} value={form.category} onChange={(e) => setForm({ ...form, category: e.target.value })} className="w-full px-3 py-3 bg-white border border-slate-200 rounded-xl focus:outline-none focus:border-blue-500 font-bold text-slate-700 disabled:bg-slate-100">
-                      <option value="">Chọn danh mục</option>
-                      {createParentId && childrenFor(createParentId).length > 0
-                        ? childrenFor(createParentId).map((child) => <option key={child.id} value={child.name}>{child.name}</option>)
-                        : categoryRoots.filter((root) => String(root.id) === String(createParentId)).map((root) => <option key={root.id} value={root.name}>{root.name}</option>)}
-                    </select>
-                  </div>
-                  {categories.length === 0 && <p className="mt-1 text-[11px] font-semibold text-amber-600">Chưa có danh mục cố định. Hãy tạo ở mục Danh mục sản phẩm trước.</p>}
-                  <p className="mt-1 text-[11px] text-slate-500">Ví dụ: Nhóm lớn Điện lạnh → Danh mục Tủ lạnh / Máy giặt.</p>
-                </div>
-                <div>
-                  <label className="block text-sm font-bold text-slate-700 mb-1.5">Bảo hành mặc định (tháng)</label>
-                  <input type="number" min="0" max="240" step="1" value={singleWarrantyMonths} onChange={e => setSingleWarrantyMonths(e.target.value)} className="w-full px-4 py-3 bg-white border border-slate-200 rounded-xl focus:outline-none focus:border-teal-500 font-bold text-slate-800" placeholder="0" />
-                  <p className="mt-1 text-[11px] text-slate-500">Nếu có nhiều mức giá theo bảo hành, mặc định phải trùng một gói bên dưới.</p>
-                </div>
-                <div className="rounded-2xl border border-teal-200 bg-teal-50/60 p-3 space-y-2">
-                  <div className="flex items-center justify-between gap-2">
-                    <div>
-                      <div className="text-xs font-black uppercase tracking-wide text-teal-900">Gói bảo hành & giá bán</div>
-                      <div className="text-[11px] text-teal-700">Ví dụ 12 tháng = 15.000.000đ, 24 tháng = 16.000.000đ.</div>
-                    </div>
-                    <button type="button" onClick={() => setSingleWarrantyOptions([...singleWarrantyOptions, { months: singleWarrantyOptions.length ? '' : singleWarrantyMonths, price: singlePrice }])} className="shrink-0 rounded-lg border border-teal-300 bg-white px-2.5 py-1.5 text-[11px] font-black text-teal-800 hover:bg-teal-100">+ Thêm gói</button>
-                  </div>
-                  {singleWarrantyOptions.map((option, idx) => (
-                    <div key={idx} className="grid grid-cols-[76px_1fr_auto] items-center gap-2">
-                      <input type="number" min="0" max="240" value={option.months} onChange={(e) => setSingleWarrantyOptions(singleWarrantyOptions.map((item, index) => index === idx ? { ...item, months: e.target.value } : item))} className="w-full rounded-lg border border-teal-200 bg-white px-2 py-2 text-xs font-bold" placeholder="Tháng" />
-                      <input type="text" inputMode="numeric" value={formatMoneyInput(option.price)} onChange={(e) => setSingleWarrantyOptions(singleWarrantyOptions.map((item, index) => index === idx ? { ...item, price: moneyDigits(e.target.value) } : item))} className="w-full rounded-lg border border-teal-200 bg-white px-2 py-2 text-xs font-black text-blue-700" placeholder="Giá bán" />
-                      <div className="flex items-center gap-1">
-                        <label className="flex items-center gap-1 text-[10px] font-bold text-teal-800"><input type="radio" name="create-warranty-default" checked={Number(singleWarrantyMonths) === Number(option.months)} onChange={() => setSingleWarrantyMonths(String(option.months || 0))} /> Mặc định</label>
-                        <button type="button" onClick={() => setSingleWarrantyOptions(singleWarrantyOptions.filter((_, index) => index !== idx))} className="rounded-lg px-1.5 py-1 text-red-600 hover:bg-red-50">×</button>
-                      </div>
-                    </div>
-                  ))}
+                  <input type="text" value={form.category} onChange={e => setForm({...form, category: e.target.value})} className="w-full px-4 py-3 bg-white border border-slate-200 rounded-xl focus:outline-none focus:ring-4 focus:ring-blue-500/20 focus:border-blue-500 transition-all font-medium" placeholder="Ví dụ: Thời trang" />
                 </div>
                 <div className="grid grid-cols-2 gap-3">
                   <div>
@@ -799,12 +842,12 @@ export default function Products() {
                   <div className="space-y-5 pt-6 border-t border-slate-200">
                     <div>
                       <label className="block text-sm font-bold text-slate-700 mb-1.5">Giá bán lẻ (VNĐ)</label>
-                      <input type="text" inputMode="numeric" data-money-input="retail-price" value={formatMoneyInput(singlePrice)} onChange={e => setSinglePrice(moneyDigits(e.target.value))} className="w-full px-4 py-3 bg-white border border-slate-200 rounded-xl focus:outline-none focus:border-blue-500 font-black text-blue-600 text-lg" />
+                      <input type="number" value={singlePrice} onChange={e => setSinglePrice(e.target.value)} className="w-full px-4 py-3 bg-white border border-slate-200 rounded-xl focus:outline-none focus:border-blue-500 font-black text-blue-600 text-lg" />
                     </div>
                     <div className="grid grid-cols-2 gap-4">
                       <div>
                         <label className="block text-sm font-bold text-slate-700 mb-1.5">Giá vốn</label>
-                        <input type="text" inputMode="numeric" data-money-input="cost-price" value={formatMoneyInput(singleCost)} onChange={e => setSingleCost(moneyDigits(e.target.value))} className="w-full px-4 py-3 bg-white border border-slate-200 rounded-xl focus:outline-none focus:border-blue-500 font-medium" />
+                        <input type="number" value={singleCost} onChange={e => setSingleCost(e.target.value)} className="w-full px-4 py-3 bg-white border border-slate-200 rounded-xl focus:outline-none focus:border-blue-500 font-medium" />
                       </div>
                       <div>
                         <label className="block text-sm font-bold text-slate-700 mb-1.5">Tồn kho</label>
@@ -875,7 +918,7 @@ export default function Products() {
                                   <input type="text" value={v.sku} onChange={(e) => updateVariantField(idx, 'sku', e.target.value)} className="w-full px-3 py-1.5 border border-slate-200 rounded-lg bg-white font-mono text-xs font-bold text-slate-600 focus:outline-none focus:border-blue-500" />
                                 </td>
                                 <td className="p-3">
-                                  <input type="text" inputMode="numeric" data-money-input="variant-price" value={formatMoneyInput(v.price)} onChange={(e) => updateVariantField(idx, 'price', moneyDigits(e.target.value))} className="w-28 px-3 py-1.5 border border-slate-200 rounded-lg outline-none focus:border-blue-500 text-right font-black text-blue-600" />
+                                  <input type="number" value={v.price} onChange={(e) => updateVariantField(idx, 'price', e.target.value)} className="w-28 px-3 py-1.5 border border-slate-200 rounded-lg outline-none focus:border-blue-500 text-right font-black text-blue-600" />
                                 </td>
                                 <td className="p-3">
                                   <input type="number" value={v.stock} onChange={(e) => updateVariantField(idx, 'stock', e.target.value)} className="w-20 px-3 py-1.5 border border-slate-200 rounded-lg outline-none focus:border-blue-500 text-center font-bold" />
@@ -982,19 +1025,13 @@ export default function Products() {
 
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-xs font-bold text-slate-600 uppercase mb-2">Nhóm / Danh mục</label>
-                  <div className="grid grid-cols-1 gap-2">
-                    <select value={editCategoryParentId} onChange={(e) => handleEditParentChange(e.target.value)} className="w-full px-3 py-2.5 rounded-xl border border-slate-200 bg-white focus:border-blue-500 outline-none font-bold text-sm">
-                      <option value="">Chọn nhóm lớn</option>
-                      {categoryRoots.map((root) => <option key={root.id} value={root.id}>{root.name}</option>)}
-                    </select>
-                    <select disabled={!editCategoryParentId} value={editProductModal.category || ''} onChange={(e) => setEditProductModal({ ...editProductModal, category: e.target.value })} className="w-full px-3 py-2.5 rounded-xl border border-slate-200 bg-white focus:border-blue-500 outline-none font-bold text-sm disabled:bg-slate-100">
-                      <option value="">Chọn danh mục</option>
-                      {editCategoryParentId && childrenFor(editCategoryParentId).length > 0
-                        ? childrenFor(editCategoryParentId).map((child) => <option key={child.id} value={child.name}>{child.name}</option>)
-                        : categoryRoots.filter((root) => String(root.id) === String(editCategoryParentId)).map((root) => <option key={root.id} value={root.name}>{root.name}</option>)}
-                    </select>
-                  </div>
+                  <label className="block text-xs font-bold text-slate-600 uppercase mb-2">Danh mục / Phân loại</label>
+                  <input 
+                    type="text"
+                    value={editProductModal.category || ''}
+                    onChange={e => setEditProductModal({ ...editProductModal, category: e.target.value })}
+                    className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-blue-500 focus:ring-4 focus:ring-blue-500/20 outline-none font-medium"
+                  />
                 </div>
                 <div>
                   <label className="block text-xs font-bold text-slate-600 uppercase mb-2">Mã Sản Phẩm Mẹ (Product Code)</label>
@@ -1011,22 +1048,18 @@ export default function Products() {
                 <div>
                   <label className="block text-xs font-bold text-slate-600 uppercase mb-2">Giá bán (đ)</label>
                   <input 
-                    type="text"
-                    inputMode="numeric"
-                    data-money-input="edit-retail-price"
-                    value={formatMoneyInput(editProductModal.price || 0)}
-                    onChange={e => setEditProductModal({ ...editProductModal, price: moneyNumber(e.target.value) })}
+                    type="number"
+                    value={editProductModal.price || 0}
+                    onChange={e => setEditProductModal({ ...editProductModal, price: Number(e.target.value) })}
                     className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-blue-500 focus:ring-4 focus:ring-blue-500/20 outline-none font-bold text-blue-600"
                   />
                 </div>
                 <div>
                   <label className="block text-xs font-bold text-slate-600 uppercase mb-2">Giá vốn (đ)</label>
                   <input 
-                    type="text"
-                    inputMode="numeric"
-                    data-money-input="edit-cost-price"
-                    value={formatMoneyInput(editProductModal.cost_price || 0)}
-                    onChange={e => setEditProductModal({ ...editProductModal, cost_price: moneyNumber(e.target.value) })}
+                    type="number"
+                    value={editProductModal.cost_price || 0}
+                    onChange={e => setEditProductModal({ ...editProductModal, cost_price: Number(e.target.value) })}
                     className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-blue-500 focus:ring-4 focus:ring-blue-500/20 outline-none font-medium text-slate-700"
                   />
                 </div>
@@ -1039,43 +1072,6 @@ export default function Products() {
                     className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-blue-500 focus:ring-4 focus:ring-blue-500/20 outline-none font-bold text-slate-800"
                   />
                 </div>
-              </div>
-
-              <div>
-                <label className="block text-xs font-bold text-slate-600 uppercase mb-2">Bảo hành mặc định (tháng)</label>
-                <input
-                  type="number" min="0" max="240" step="1"
-                  value={editProductModal.warranty_months ?? 0}
-                  onChange={e => setEditProductModal({ ...editProductModal, warranty_months: Number(e.target.value) })}
-                  className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-teal-500 focus:ring-4 focus:ring-teal-500/10 outline-none font-bold text-slate-800"
-                />
-                <p className="mt-1 text-xs text-slate-500">POS sẽ lấy giá trị này làm mặc định. Nếu có gói giá bên dưới, nhân viên chỉ chọn các gói đã cấu hình.</p>
-              </div>
-
-              <div className="rounded-2xl border border-teal-200 bg-teal-50/60 p-4 space-y-3">
-                <div className="flex items-center justify-between gap-3">
-                  <div>
-                    <div className="text-xs font-black uppercase tracking-wide text-teal-900">Giá bán theo thời hạn bảo hành</div>
-                    <div className="mt-1 text-xs text-teal-700">Giá ở đây là giá bán cuối của sản phẩm khi chọn gói bảo hành đó trên POS.</div>
-                  </div>
-                  <button type="button" onClick={() => setEditProductModal({ ...editProductModal, warranty_options: [...(editProductModal.warranty_options || []), { months: editProductModal.warranty_options?.length ? 0 : (editProductModal.warranty_months || 0), price: editProductModal.price || 0 }] })} className="shrink-0 rounded-xl border border-teal-300 bg-white px-3 py-2 text-xs font-black text-teal-800 hover:bg-teal-100">+ Thêm gói</button>
-                </div>
-                {(editProductModal.warranty_options || []).length === 0 ? (
-                  <div className="rounded-xl border border-dashed border-teal-200 bg-white/70 px-3 py-4 text-center text-xs text-slate-500">Chưa có gói giá. POS dùng giá bán hiện tại và số tháng bảo hành mặc định.</div>
-                ) : (editProductModal.warranty_options || []).map((option, idx) => (
-                  <div key={idx} className="grid grid-cols-1 sm:grid-cols-[100px_1fr_auto] items-center gap-2 rounded-xl bg-white p-2 border border-teal-100">
-                    <label className="text-[11px] font-bold text-slate-600">Tháng BH
-                      <input type="number" min="0" max="240" value={option.months} onChange={(e) => { const next = [...(editProductModal.warranty_options || [])]; next[idx] = { ...next[idx], months: Number(e.target.value) }; setEditProductModal({ ...editProductModal, warranty_options: next }); }} className="mt-1 w-full rounded-lg border border-slate-200 px-2 py-2 font-black text-slate-800" />
-                    </label>
-                    <label className="text-[11px] font-bold text-slate-600">Giá bán
-                      <input type="text" inputMode="numeric" value={formatMoneyInput(option.price)} onChange={(e) => { const next = [...(editProductModal.warranty_options || [])]; next[idx] = { ...next[idx], price: moneyNumber(e.target.value) }; setEditProductModal({ ...editProductModal, warranty_options: next }); }} className="mt-1 w-full rounded-lg border border-slate-200 px-2 py-2 font-black text-blue-700" />
-                    </label>
-                    <div className="flex items-center gap-2 sm:pt-4">
-                      <label className="flex items-center gap-1 text-[11px] font-bold text-teal-800"><input type="radio" name="edit-warranty-default" checked={Number(editProductModal.warranty_months) === Number(option.months)} onChange={() => setEditProductModal({ ...editProductModal, warranty_months: Number(option.months) })} /> Mặc định</label>
-                      <button type="button" onClick={() => setEditProductModal({ ...editProductModal, warranty_options: (editProductModal.warranty_options || []).filter((_, index) => index !== idx) })} className="rounded-lg px-2 py-1.5 font-black text-red-600 hover:bg-red-50">×</button>
-                    </div>
-                  </div>
-                ))}
               </div>
 
               <div>
@@ -1167,22 +1163,18 @@ export default function Products() {
                 <div>
                   <label className="block text-xs font-bold text-slate-600 uppercase mb-1.5">Giá bán (đ)</label>
                   <input 
-                    type="text"
-                    inputMode="numeric"
-                    data-money-input="edit-variant-price"
-                    value={formatMoneyInput(editVariantModal.price || 0)}
-                    onChange={e => setEditVariantModal({ ...editVariantModal, price: moneyNumber(e.target.value) })}
+                    type="number"
+                    value={editVariantModal.price || 0}
+                    onChange={e => setEditVariantModal({ ...editVariantModal, price: Number(e.target.value) })}
                     className="w-full px-3 py-2.5 rounded-xl border border-slate-200 font-bold text-blue-600"
                   />
                 </div>
                 <div>
                   <label className="block text-xs font-bold text-slate-600 uppercase mb-1.5">Giá vốn (đ)</label>
                   <input 
-                    type="text"
-                    inputMode="numeric"
-                    data-money-input="edit-variant-cost"
-                    value={formatMoneyInput(editVariantModal.cost_price || 0)}
-                    onChange={e => setEditVariantModal({ ...editVariantModal, cost_price: moneyNumber(e.target.value) })}
+                    type="number"
+                    value={editVariantModal.cost_price || 0}
+                    onChange={e => setEditVariantModal({ ...editVariantModal, cost_price: Number(e.target.value) })}
                     className="w-full px-3 py-2.5 rounded-xl border border-slate-200 font-medium"
                   />
                 </div>

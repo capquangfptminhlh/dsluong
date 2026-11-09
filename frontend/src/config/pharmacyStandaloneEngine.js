@@ -1,4 +1,76 @@
 const STORAGE_KEY = 'nhanduc_gpp_standalone_v2';
+const IDB_NAME = 'NhanDucGPP_IDB';
+const IDB_STORE = 'state_store';
+const IDB_KEY = 'db_v2';
+
+let memoryDb = null;
+let idbHydrated = false;
+
+function openIdb() {
+  return new Promise((resolve, reject) => {
+    if (typeof indexedDB === 'undefined') return reject(new Error('No indexedDB'));
+    const req = indexedDB.open(IDB_NAME, 1);
+    req.onupgradeneeded = () => {
+      const db = req.result;
+      if (!db.objectStoreNames.contains(IDB_STORE)) {
+        db.createObjectStore(IDB_STORE);
+      }
+    };
+    req.onsuccess = () => resolve(req.result);
+    req.onerror = () => reject(req.error);
+  });
+}
+
+function saveToIdb(dbData) {
+  openIdb()
+    .then((idb) => {
+      const tx = idb.transaction(IDB_STORE, 'readwrite');
+      tx.objectStore(IDB_STORE).put(dbData, IDB_KEY);
+    })
+    .catch(() => {});
+}
+
+function seedFromBundledKiotViet() {
+  if (typeof window === 'undefined' || typeof window.fetch !== 'function') return;
+  window
+    .fetch('/kiotviet_nhanduc_7854.json')
+    .then((r) => (r.ok ? r.json() : null))
+    .then((kv) => {
+      if (!kv || !Array.isArray(kv.products) || kv.products.length === 0) return;
+      const base = memoryDb || createInitialDb();
+      if ((base.products?.length || 0) >= kv.products.length) return;
+      base.products = kv.products;
+      if (Array.isArray(kv.categories) && kv.categories.length > 0) base.categories = kv.categories;
+      if (Array.isArray(kv.batches) && kv.batches.length > 0) base.batches = kv.batches;
+      if (Array.isArray(kv.units) && kv.units.length > 0) base.units = kv.units;
+      saveDb(base);
+      window.dispatchEvent(new Event('productsUpdated'));
+    })
+    .catch(() => {});
+}
+
+function hydrateFromIdb() {
+  if (idbHydrated || typeof indexedDB === 'undefined') return;
+  idbHydrated = true;
+  openIdb()
+    .then((idb) => {
+      const tx = idb.transaction(IDB_STORE, 'readonly');
+      const req = tx.objectStore(IDB_STORE).get(IDB_KEY);
+      req.onsuccess = () => {
+        const stored = req.result;
+        if (stored && Array.isArray(stored.products) && stored.products.length >= 1000) {
+          memoryDb = stored;
+          if (typeof window !== 'undefined') {
+            window.dispatchEvent(new Event('productsUpdated'));
+          }
+        } else {
+          seedFromBundledKiotViet();
+        }
+      };
+      req.onerror = () => seedFromBundledKiotViet();
+    })
+    .catch(() => seedFromBundledKiotViet());
+}
 
 function getCurrentMonthStr() {
   return new Date().toISOString().slice(0, 7);
@@ -354,34 +426,72 @@ function createInitialDb() {
 }
 
 function loadDb() {
+  hydrateFromIdb();
+  if (memoryDb && Array.isArray(memoryDb.products) && memoryDb.products.length > 0) {
+    return memoryDb;
+  }
   try {
     const raw = localStorage.getItem(STORAGE_KEY);
     if (raw) {
       const parsed = JSON.parse(raw);
       if (parsed && Array.isArray(parsed.products) && parsed.products.length > 0) {
-        return parsed;
+        memoryDb = parsed;
+        return memoryDb;
       }
     }
   } catch (e) {
     console.warn('Resetting local pharmacy DB:', e);
   }
   const initial = createInitialDb();
+  memoryDb = initial;
   saveDb(initial);
   return initial;
 }
 
 function saveDb(db) {
+  memoryDb = db;
+  saveToIdb(db);
   try {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(db));
   } catch (e) {
-    console.warn('Failed to persist pharmacy DB:', e);
+    // Fallback khi 7.000+ sản phẩm vượt giới hạn 5MB của localStorage:
+    // Toàn bộ 7.000+ sản phẩm đã được lưu an toàn vào IndexedDB (NhanDucGPP_IDB) + memoryDb,
+    // đồng thời lưu bản rút gọn vào localStorage để khởi động tức thì.
+    try {
+      const compactDb = {
+        ...db,
+        products: db.products.slice(0, 1500).map((p) => ({
+          id: p.id,
+          name: p.name,
+          sku: p.sku,
+          price: p.price,
+          cost_price: p.cost_price,
+          stock: p.stock,
+          category: p.category,
+          base_unit: p.base_unit || 'Hộp'
+        })),
+        branch_stock: (db.branch_stock || []).slice(0, 3000)
+      };
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(compactDb));
+    } catch (_) {}
   }
 }
 
+function getBranchStockValue(db, branchId, prod) {
+  const bId = Number(branchId) || 1;
+  const row = (db.branch_stock || []).find(
+    (bs) => Number(bs.branch_id) === bId && Number(bs.product_id) === Number(prod.id)
+  );
+  if (row) return Number(row.stock) || 0;
+  const defaultBranch = (db.branches || []).find((b) => b.is_default) || db.branches?.[0];
+  const defId = defaultBranch ? Number(defaultBranch.id) : 1;
+  return bId === defId ? Number(prod.stock) || 0 : 0;
+}
+
 function syncProductTotalStock(db, productId) {
-  const total = db.branch_stock
-    .filter((bs) => Number(bs.product_id) === Number(productId))
-    .reduce((sum, bs) => sum + (Number(bs.stock) || 0), 0);
+  const rows = (db.branch_stock || []).filter((bs) => Number(bs.product_id) === Number(productId));
+  if (rows.length === 0) return;
+  const total = rows.reduce((sum, bs) => sum + (Number(bs.stock) || 0), 0);
   const prod = db.products.find((p) => Number(p.id) === Number(productId));
   if (prod) prod.stock = total;
 }
@@ -389,9 +499,11 @@ function syncProductTotalStock(db, productId) {
 function adjustBranchStock(db, branchId, productId, delta) {
   const bId = Number(branchId) || 1;
   const pId = Number(productId);
+  const prod = db.products.find((p) => Number(p.id) === pId);
   let row = db.branch_stock.find((bs) => Number(bs.branch_id) === bId && Number(bs.product_id) === pId);
   if (!row) {
-    row = { branch_id: bId, product_id: pId, stock: 0 };
+    const current = prod ? getBranchStockValue(db, bId, prod) : 0;
+    row = { branch_id: bId, product_id: pId, stock: current };
     db.branch_stock.push(row);
   }
   row.stock = Math.max(0, (Number(row.stock) || 0) + Number(delta));
@@ -461,14 +573,27 @@ export function handleStandaloneApiRequest(method, rawUrl, rawBody) {
 
   // 2. BRANCHES & MULTI-BRANCH INVENTORY
   if (path === '/api/branches' && m === 'GET') {
+    const bsMap = new Map();
+    (db.branch_stock || []).forEach((bs) => {
+      bsMap.set(`${bs.branch_id}_${bs.product_id}`, Number(bs.stock) || 0);
+    });
+    const defaultBranch = db.branches.find((b) => b.is_default) || db.branches[0];
+    const defId = defaultBranch ? Number(defaultBranch.id) : 1;
+
     const rows = db.branches.map((b) => {
-      const bStocks = db.branch_stock.filter((bs) => Number(bs.branch_id) === Number(b.id));
-      const so_mat_hang = bStocks.filter((bs) => bs.stock > 0).length;
-      const tong_ton = bStocks.reduce((s, bs) => s + (Number(bs.stock) || 0), 0);
-      const gia_tri_ton = bStocks.reduce((s, bs) => {
-        const p = db.products.find((x) => Number(x.id) === Number(bs.product_id));
-        return s + (Number(bs.stock) || 0) * (p ? Number(p.cost_price) || 0 : 0);
-      }, 0);
+      const bId = Number(b.id);
+      let so_mat_hang = 0;
+      let tong_ton = 0;
+      let gia_tri_ton = 0;
+      db.products.forEach((p) => {
+        const key = `${bId}_${p.id}`;
+        const st = bsMap.has(key) ? bsMap.get(key) : bId === defId ? Number(p.stock) || 0 : 0;
+        if (st > 0) {
+          so_mat_hang++;
+          tong_ton += st;
+          gia_tri_ton += st * (Number(p.cost_price) || 0);
+        }
+      });
       return { ...b, so_mat_hang, tong_ton, gia_tri_ton: Math.round(gia_tri_ton) };
     });
     return ok(rows);
@@ -487,28 +612,37 @@ export function handleStandaloneApiRequest(method, rawUrl, rawBody) {
       createdAt: getTodayIso()
     };
     db.branches.push(newBranch);
-    // Khởi tạo tồn kho riêng biệt (0) cho chi nhánh mới
-    db.products.forEach((p) => {
-      db.branch_stock.push({ branch_id: newId, product_id: p.id, stock: 0 });
-    });
     saveDb(db);
     return ok({ success: true, id: newId, branch: newBranch });
   }
 
+  const branchInventoryMatch = path.match(/^\/api\/branches\/(\d+)\/ton-kho$/);
+  if (branchInventoryMatch && m === 'GET') {
+    const bId = Number(branchInventoryMatch[1]);
+    const list = db.products.map((p) => ({
+      ...p,
+      stock: getBranchStockValue(db, bId, p)
+    }));
+    return ok(list);
+  }
+
   if (path === '/api/branches/ton-kho/tong-hop' && m === 'GET') {
     const map = {};
-    db.branch_stock.forEach((x) => {
+    (db.branch_stock || []).forEach((x) => {
       map[`${x.product_id}_${x.branch_id}`] = x.stock;
     });
+    const defaultBranch = db.branches.find((b) => b.is_default) || db.branches[0];
+    const defId = defaultBranch ? Number(defaultBranch.id) : 1;
     return ok({
       branches: db.branches.map((b) => ({ id: b.id, name: b.name })),
-      products: db.products.map((p) => ({
+      products: db.products.slice(0, 300).map((p) => ({
         id: p.id,
         name: p.name,
         sku: p.sku,
         stock: p.stock,
         ton: db.branches.reduce((acc, b) => {
-          acc[b.id] = map[`${p.id}_${b.id}`] || 0;
+          const key = `${p.id}_${b.id}`;
+          acc[b.id] = map[key] !== undefined ? map[key] : Number(b.id) === defId ? Number(p.stock) || 0 : 0;
           return acc;
         }, {})
       }))
@@ -525,10 +659,9 @@ export function handleStandaloneApiRequest(method, rawUrl, rawBody) {
 
     for (const it of items) {
       const qty = Number(it.quantity) || 0;
-      const bs = db.branch_stock.find((x) => Number(x.branch_id) === fromId && Number(x.product_id) === Number(it.product_id));
-      const avail = bs ? Number(bs.stock) : 0;
+      const p = db.products.find((x) => Number(x.id) === Number(it.product_id));
+      const avail = p ? getBranchStockValue(db, fromId, p) : 0;
       if (avail < qty) {
-        const p = db.products.find((x) => Number(x.id) === Number(it.product_id));
         return ok({ error: `"${p ? p.name : 'Thuốc'}" tại ${fromB.name} chỉ còn ${avail}, không đủ để chuyển ${qty}` }, 400);
       }
     }
@@ -586,41 +719,217 @@ export function handleStandaloneApiRequest(method, rawUrl, rawBody) {
   if (path === '/api/products' && m === 'GET') {
     const activeBranchId = Number(query.branch_id || (typeof localStorage !== 'undefined' && localStorage.getItem('active_branch_id')) || 0);
     if (activeBranchId > 0) {
-      const list = db.products.map((p) => {
-        const bs = db.branch_stock.find((x) => Number(x.branch_id) === activeBranchId && Number(x.product_id) === Number(p.id));
-        return { ...p, stock: bs ? Number(bs.stock) : p.stock };
-      });
+      const list = db.products.map((p) => ({
+        ...p,
+        stock: getBranchStockValue(db, activeBranchId, p)
+      }));
       return ok(list);
     }
     return ok(db.products);
   }
 
-  if (path === '/api/products' && m === 'POST') {
+  if ((path === '/api/products/import-json' || path === '/api/products/import') && m === 'POST') {
+    const rawItems = Array.isArray(body.items) ? body.items : [];
+    if (rawItems.length === 0) {
+      return ok({ error: 'Không tìm thấy dữ liệu sản phẩm trong file Excel' }, 400);
+    }
+
+    const mode = body.mode || 'merge';
+    if (mode === 'replace') {
+      db.products = [];
+      db.branch_stock = [];
+    }
+
+    const existingCatNames = new Set((db.categories || []).map((c) => (c.name || '').toLowerCase().trim()));
+    const skuIndexMap = new Map();
+    db.products.forEach((p, idx) => {
+      if (p.sku) skuIndexMap.set(String(p.sku).toLowerCase().trim(), idx);
+    });
+
+    let maxId = db.products.reduce((max, p) => Math.max(max, Number(p.id) || 0), 100);
+    let addedCount = 0;
+    let updatedCount = 0;
+
+    for (let i = 0; i < rawItems.length; i++) {
+      const item = rawItems[i];
+      const name = String(item.name || '').trim();
+      if (!name) continue;
+
+      const catName = String(item.category || 'Hàng hóa KiotViet').trim();
+      if (catName && !existingCatNames.has(catName.toLowerCase())) {
+        existingCatNames.add(catName.toLowerCase());
+        db.categories.push({
+          id: db.categories.length + 1,
+          name: catName,
+          description: 'Danh mục nhập từ KiotViet / Sapo',
+          status: 'active',
+          createdAt: getTodayIso()
+        });
+      }
+
+      const sku = String(item.sku || '').trim() || `KV-${maxId + 1}`;
+      const skuKey = sku.toLowerCase();
+      const price = Math.max(0, Number(item.price) || 0);
+      const costPrice = Math.max(0, Number(item.cost_price) || 0);
+      const stock = Math.max(0, Math.round(Number(item.stock) || 0));
+      const baseUnit = String(item.base_unit || 'Hộp').trim();
+      const imageUrl = String(item.image_url || '').trim();
+      const variants = Array.isArray(item.variants) ? item.variants : [];
+
+      if (skuIndexMap.has(skuKey)) {
+        const existingIdx = skuIndexMap.get(skuKey);
+        const existing = db.products[existingIdx];
+        db.products[existingIdx] = {
+          ...existing,
+          name,
+          price: price || existing.price,
+          cost_price: costPrice || existing.cost_price,
+          stock,
+          category: catName || existing.category,
+          base_unit: baseUnit || existing.base_unit || 'Hộp',
+          image_url: imageUrl || existing.image_url || '',
+          variants: variants.length > 0 ? variants : existing.variants
+        };
+        updatedCount++;
+      } else {
+        maxId++;
+        const newProd = {
+          id: maxId,
+          name,
+          sku,
+          price,
+          cost_price: costPrice,
+          stock,
+          category: catName,
+          base_unit: baseUnit,
+          track_batch: 1
+        };
+        if (imageUrl) newProd.image_url = imageUrl;
+        if (variants.length > 0) newProd.variants = variants;
+        skuIndexMap.set(skuKey, db.products.length);
+        db.products.push(newProd);
+        addedCount++;
+      }
+    }
+
+    if (Array.isArray(body.batches) && body.batches.length > 0) {
+      db.batches = body.batches;
+    }
+    if (Array.isArray(body.units) && body.units.length > 0) {
+      db.units = body.units;
+    }
+
+    saveDb(db);
+    if (typeof window !== 'undefined') {
+      window.dispatchEvent(new Event('productsUpdated'));
+    }
+
+    const totalImported = addedCount + updatedCount;
+    return ok({
+      success: true,
+      count: totalImported,
+      added: addedCount,
+      updated: updatedCount,
+      total: db.products.length,
+      message: `Đã nhập thành công ${totalImported.toLocaleString('vi-VN')} sản phẩm từ KiotViet/Sapo (Thêm mới: ${addedCount.toLocaleString('vi-VN')}, Cập nhật: ${updatedCount.toLocaleString('vi-VN')})! Tổng kho hiện có: ${db.products.length.toLocaleString('vi-VN')} sản phẩm.`
+    });
+  }
+
+  if ((path === '/api/products' || path === '/api/products/with-variants') && m === 'POST') {
     const newId = db.products.reduce((max, p) => Math.max(max, Number(p.id) || 0), 100) + 1;
-    const initStock = Number(body.stock) || 0;
+    const variants = Array.isArray(body.variants) ? body.variants : [];
+    const firstVar = variants[0] || {};
+    const initStock = variants.length > 0
+      ? variants.reduce((s, v) => s + (Number(v.stock) || 0), 0)
+      : Number(body.stock) || 0;
     const newProd = {
       id: newId,
       name: body.name || 'Thuốc mới',
-      sku: body.sku || `ND-TH${newId}`,
-      price: Number(body.price) || 0,
-      cost_price: Number(body.cost_price) || 0,
+      sku: body.sku || firstVar.sku || `ND-TH${newId}`,
+      price: Number(body.price ?? firstVar.price) || 0,
+      cost_price: Number(body.cost_price ?? firstVar.cost_price) || 0,
       stock: initStock,
       category: body.category || 'Thuốc Giảm Đau - Hạ Sốt - Kháng Viêm',
-      base_unit: body.base_unit || 'Hộp',
+      base_unit: body.base_unit || body.unit || 'Hộp',
       track_batch: 1,
-      image_url: body.image_url || ''
+      image_url: body.image_url || '',
+      variants: variants.map((v, idx) => ({
+        id: newId * 100 + idx + 1,
+        product_id: newId,
+        sku: v.sku || `ND-TH${newId}-${idx + 1}`,
+        price: Number(v.price) || 0,
+        cost_price: Number(v.cost_price) || 0,
+        stock: Number(v.stock) || 0,
+        image_url: v.image_url || body.image_url || '',
+        attributes: v.attributes || { 'Phiên bản': 'Mặc định' }
+      }))
     };
     db.products.unshift(newProd);
     const defaultBranch = db.branches.find((b) => b.is_default) || db.branches[0];
-    db.branches.forEach((b) => {
+    if (defaultBranch) {
       db.branch_stock.push({
-        branch_id: b.id,
+        branch_id: defaultBranch.id,
         product_id: newId,
-        stock: defaultBranch && Number(b.id) === Number(defaultBranch.id) ? initStock : 0
+        stock: initStock
       });
-    });
+    }
     saveDb(db);
     return ok({ success: true, id: newId, product: newProd });
+  }
+
+  if (path === '/api/products/bulk-delete' && m === 'POST') {
+    const ids = new Set((body.ids || []).map((x) => Number(x)));
+    const before = db.products.length;
+    db.products = db.products.filter((p) => !ids.has(Number(p.id)));
+    db.branch_stock = (db.branch_stock || []).filter((bs) => !ids.has(Number(bs.product_id)));
+    saveDb(db);
+    return ok({ success: true, deleted: before - db.products.length });
+  }
+
+  if (path === '/api/products/clear-all/confirm' && m === 'DELETE') {
+    const count = db.products.length;
+    db.products = [];
+    db.branch_stock = [];
+    saveDb(db);
+    return ok({ success: true, deleted: count });
+  }
+
+  if (path === '/api/products/bulk-update-price' && m === 'POST') {
+    const ids = new Set((body.ids || []).map((x) => Number(x)));
+    const type = body.type;
+    const numVal = Number(body.value) || 0;
+    let updated = 0;
+    db.products.forEach((p) => {
+      if (!ids.has(Number(p.id))) return;
+      let newPrice = Number(p.price) || 0;
+      if (type === 'percent_add') newPrice = Math.round(newPrice * (1 + numVal / 100));
+      else if (type === 'percent_sub') newPrice = Math.max(0, Math.round(newPrice * (1 - numVal / 100)));
+      else if (type === 'fixed_add') newPrice = newPrice + numVal;
+      else if (type === 'fixed_sub') newPrice = Math.max(0, newPrice - numVal);
+      else if (type === 'set_exact') newPrice = Math.max(0, numVal);
+      p.price = newPrice;
+      if (Array.isArray(p.variants)) {
+        p.variants.forEach((v) => { v.price = newPrice; });
+      }
+      updated++;
+    });
+    saveDb(db);
+    return ok({ success: true, count: updated });
+  }
+
+  const variantMatch = path.match(/^\/api\/products\/variants\/(\d+)$/);
+  if (variantMatch && m === 'PUT') {
+    const vId = Number(variantMatch[1]);
+    db.products.forEach((p) => {
+      if (Array.isArray(p.variants)) {
+        const idx = p.variants.findIndex((v) => Number(v.id) === vId);
+        if (idx !== -1) {
+          p.variants[idx] = { ...p.variants[idx], ...body };
+        }
+      }
+    });
+    saveDb(db);
+    return ok({ success: true });
   }
 
   const prodMatch = path.match(/^\/api\/products\/(\d+)$/);
@@ -639,6 +948,82 @@ export function handleStandaloneApiRequest(method, rawUrl, rawBody) {
     db.branch_stock = db.branch_stock.filter((bs) => Number(bs.product_id) !== id);
     saveDb(db);
     return ok({ success: true });
+  }
+
+  // 3B. STOCKTAKE / INVENTORY CHECK (/api/stocktake)
+  if (path === '/api/stocktake/danh-sach/hang' && m === 'GET') {
+    const bId = Number(query.branch_id || 1);
+    const items = db.products.map((p) => ({
+      id: p.id,
+      name: p.name,
+      sku: p.sku,
+      cost_price: Number(p.cost_price) || 0,
+      system_qty: getBranchStockValue(db, bId, p)
+    }));
+    return ok({ items });
+  }
+
+  if (path === '/api/stocktake' && m === 'GET') {
+    return ok(db.stocktakes || []);
+  }
+
+  if (path === '/api/stocktake' && m === 'POST') {
+    if (!Array.isArray(db.stocktakes)) db.stocktakes = [];
+    const bId = Number(body.branch_id || 1);
+    const branchObj = db.branches.find((b) => Number(b.id) === bId) || db.branches[0];
+    const items = Array.isArray(body.items) ? body.items : [];
+    const detailItems = [];
+    let totalDiffValue = 0;
+
+    items.forEach((it, idx) => {
+      const prod = db.products.find((p) => Number(p.id) === Number(it.product_id));
+      if (!prod) return;
+      const sysQty = getBranchStockValue(db, bId, prod);
+      const actQty = Math.max(0, Number(it.actual_qty) || 0);
+      const diff = actQty - sysQty;
+      if (diff !== 0) {
+        adjustBranchStock(db, bId, prod.id, diff);
+        totalDiffValue += diff * (Number(prod.cost_price) || 0);
+        detailItems.push({
+          id: idx + 1,
+          product_id: prod.id,
+          product_name: prod.name,
+          sku: prod.sku,
+          system_qty: sysQty,
+          actual_qty: actQty,
+          diff
+        });
+      }
+    });
+
+    const code = `KK-${Date.now().toString().slice(-6)}`;
+    const record = {
+      id: db.stocktakes.length + 1,
+      code,
+      branch_id: bId,
+      branch_name: branchObj ? branchObj.name : 'Cơ sở chính',
+      note: body.note || '',
+      total_items: detailItems.length,
+      total_difference: Math.round(totalDiffValue),
+      createdAt: getTodayIso(),
+      items: detailItems
+    };
+    db.stocktakes.unshift(record);
+    saveDb(db);
+    return ok({
+      success: true,
+      id: record.id,
+      code,
+      so_mat_hang_da_dem: items.length,
+      so_mat_hang_lech: detailItems.length
+    });
+  }
+
+  const stocktakeDetailMatch = path.match(/^\/api\/stocktake\/(\d+)$/);
+  if (stocktakeDetailMatch && m === 'GET') {
+    const id = Number(stocktakeDetailMatch[1]);
+    const found = (db.stocktakes || []).find((s) => Number(s.id) === id);
+    return ok(found || { items: [] });
   }
 
   if (path === '/api/categories' && m === 'GET') {
