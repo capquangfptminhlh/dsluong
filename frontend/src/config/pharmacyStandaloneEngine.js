@@ -38,13 +38,16 @@ function seedFromBundledKiotViet() {
     .then((kv) => {
       if (!kv || !Array.isArray(kv.products) || kv.products.length === 0) return;
       const base = memoryDb || createInitialDb();
-      if ((base.products?.length || 0) >= kv.products.length) return;
-      base.products = kv.products;
-      if (Array.isArray(kv.categories) && kv.categories.length > 0) base.categories = kv.categories;
-      if (Array.isArray(kv.batches) && kv.batches.length > 0) base.batches = kv.batches;
-      if (Array.isArray(kv.units) && kv.units.length > 0) base.units = kv.units;
+      if ((base.products?.length || 0) < kv.products.length) {
+        base.products = kv.products;
+        if (Array.isArray(kv.categories) && kv.categories.length > 0) base.categories = kv.categories;
+        if (Array.isArray(kv.batches) && kv.batches.length > 0) base.batches = kv.batches;
+        if (Array.isArray(kv.units) && kv.units.length > 0) base.units = kv.units;
+      }
+      ensureDefaultBranches(base);
       saveDb(base);
       window.dispatchEvent(new Event('productsUpdated'));
+      window.dispatchEvent(new Event('branchesUpdated'));
     })
     .catch(() => {});
 }
@@ -59,9 +62,12 @@ function hydrateFromIdb() {
       req.onsuccess = () => {
         const stored = req.result;
         if (stored && Array.isArray(stored.products) && stored.products.length >= 1000) {
+          const changed = ensureDefaultBranches(stored);
           memoryDb = stored;
+          if (changed) saveDb(stored);
           if (typeof window !== 'undefined') {
             window.dispatchEvent(new Event('productsUpdated'));
+            window.dispatchEvent(new Event('branchesUpdated'));
           }
         } else {
           seedFromBundledKiotViet();
@@ -70,6 +76,99 @@ function hydrateFromIdb() {
       req.onerror = () => seedFromBundledKiotViet();
     })
     .catch(() => seedFromBundledKiotViet());
+}
+
+const DEFAULT_BRANCH_DEFINITIONS = [
+  {
+    id: 1,
+    user_id: 1,
+    name: 'Nhà Thuốc Nhân Đức - Cơ sở chính',
+    address: '172 Quốc lộ 50, KP4, Thị trấn Cần Giuộc, Huyện Cần Giuộc, Tỉnh Long An',
+    phone: '0933324368',
+    username: 'admin',
+    password: '123456',
+    is_default: 1,
+    status: 'active'
+  },
+  {
+    id: 2,
+    user_id: 1,
+    name: 'Nhà thuốc nhân Đức 2',
+    address: '471 Đường 826C, ấp 2/5, xã Long Hậu, Cần Giuộc, Long an',
+    phone: '0907152117',
+    username: 'nhanduc2',
+    password: '123456',
+    is_default: 0,
+    status: 'active'
+  },
+  {
+    id: 3,
+    user_id: 1,
+    name: 'Nhà thuốc Minh Ánh',
+    address: '16 đường số 75, KDC Tân qui đông, phường Tân phong, q7',
+    phone: '0976772399',
+    username: 'minhanh',
+    password: '123456',
+    is_default: 0,
+    status: 'active'
+  },
+  {
+    id: 4,
+    user_id: 1,
+    name: 'Nhà Thuốc Quỳnh Hương',
+    address: 'Số 789, quốc lộ 50, ấp 3, xã cần giuộc, Tây ninh',
+    phone: '0971399399',
+    username: 'quynhhuong',
+    password: '123456',
+    is_default: 0,
+    status: 'active'
+  }
+];
+
+function ensureDefaultBranches(db) {
+  if (!db) return false;
+  if (!Array.isArray(db.branches)) db.branches = [];
+  let changed = false;
+
+  DEFAULT_BRANCH_DEFINITIONS.forEach((def) => {
+    const existingIdx = db.branches.findIndex(
+      (b) =>
+        (b.phone && b.phone === def.phone) ||
+        (b.name && b.name.toLowerCase().trim() === def.name.toLowerCase().trim()) ||
+        (def.id === 2 && b.id === 2 && b.name.toLowerCase().includes('tân kim'))
+    );
+
+    if (existingIdx !== -1) {
+      const existing = db.branches[existingIdx];
+      if (
+        existing.name !== def.name ||
+        existing.address !== def.address ||
+        existing.phone !== def.phone ||
+        !existing.username
+      ) {
+        db.branches[existingIdx] = {
+          ...existing,
+          name: def.name,
+          address: def.address,
+          phone: def.phone,
+          username: def.username || existing.username || `cn${existing.id}`,
+          password: def.password || existing.password || '123456'
+        };
+        changed = true;
+      }
+    } else {
+      const maxId = db.branches.reduce((max, b) => Math.max(max, Number(b.id) || 0), 0);
+      const newId = Math.max(def.id, maxId + 1);
+      db.branches.push({
+        ...def,
+        id: newId,
+        createdAt: getTodayIso()
+      });
+      changed = true;
+    }
+  });
+
+  return changed;
 }
 
 function getCurrentMonthStr() {
@@ -132,36 +231,15 @@ function createInitialDb() {
     { id: 134, name: 'Hộp que thử đường huyết Accu-Chek Instant (Hộp 25 que)', sku: 'ND-YT004', price: 265000, cost_price: 220000, stock: 45, category: 'Vật Tư Y Tế - Thiết Bị Chăm Sóc', base_unit: 'Hộp', track_batch: 1 }
   ];
 
-  const branches = [
-    {
-      id: 1,
-      user_id: 1,
-      name: 'Nhà Thuốc Nhân Đức - Cơ sở chính',
-      address: '172 Quốc lộ 50, KP4, Thị trấn Cần Giuộc, Huyện Cần Giuộc, Tỉnh Long An',
-      phone: '0933324368',
-      is_default: 1,
-      status: 'active',
-      createdAt: now
-    },
-    {
-      id: 2,
-      user_id: 1,
-      name: 'Nhà Thuốc Nhân Đức - Chi nhánh 2 (Tân Kim)',
-      address: 'Quốc lộ 50, Xã Tân Kim, Huyện Cần Giuộc, Tỉnh Long An',
-      phone: '0933324368',
-      is_default: 0,
-      status: 'active',
-      createdAt: now
-    }
-  ];
+  const branches = DEFAULT_BRANCH_DEFINITIONS.map((b) => ({ ...b, createdAt: now }));
 
-  // Phân bổ tồn kho độc lập cho Chi nhánh 1 (70%) và Chi nhánh 2 (30%)
+  // Phân bổ tồn kho khởi tạo cho Cơ sở chính
   const branch_stock = [];
   products.forEach((p) => {
-    const stock1 = Math.round(p.stock * 0.7);
-    const stock2 = p.stock - stock1;
-    branch_stock.push({ branch_id: 1, product_id: p.id, stock: stock1 });
-    branch_stock.push({ branch_id: 2, product_id: p.id, stock: stock2 });
+    branch_stock.push({ branch_id: 1, product_id: p.id, stock: p.stock });
+    branch_stock.push({ branch_id: 2, product_id: p.id, stock: 0 });
+    branch_stock.push({ branch_id: 3, product_id: p.id, stock: 0 });
+    branch_stock.push({ branch_id: 4, product_id: p.id, stock: 0 });
   });
 
   const batches = products.slice(0, 16).map((p, idx) => ({
@@ -428,6 +506,7 @@ function createInitialDb() {
 function loadDb() {
   hydrateFromIdb();
   if (memoryDb && Array.isArray(memoryDb.products) && memoryDb.products.length > 0) {
+    if (ensureDefaultBranches(memoryDb)) saveDb(memoryDb);
     return memoryDb;
   }
   try {
@@ -436,6 +515,7 @@ function loadDb() {
       const parsed = JSON.parse(raw);
       if (parsed && Array.isArray(parsed.products) && parsed.products.length > 0) {
         memoryDb = parsed;
+        if (ensureDefaultBranches(memoryDb)) saveDb(memoryDb);
         return memoryDb;
       }
     }
@@ -443,6 +523,7 @@ function loadDb() {
     console.warn('Resetting local pharmacy DB:', e);
   }
   const initial = createInitialDb();
+  ensureDefaultBranches(initial);
   memoryDb = initial;
   saveDb(initial);
   return initial;
