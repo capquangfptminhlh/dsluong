@@ -32,19 +32,22 @@ function saveToIdb(dbData) {
 
 function seedFromBundledKiotViet() {
   if (typeof window === 'undefined' || typeof window.fetch !== 'function') return;
+  const baseUrl = typeof window !== 'undefined' && window.location ? window.location.origin : '';
+  const jsonPath = '/kiotviet_nhanduc_7854.json';
   window
-    .fetch('/kiotviet_nhanduc_7854.json')
+    .fetch(jsonPath)
     .then((r) => (r.ok ? r.json() : null))
     .then((kv) => {
       if (!kv || !Array.isArray(kv.products) || kv.products.length === 0) return;
       const base = memoryDb || createInitialDb();
-      if ((base.products?.length || 0) < kv.products.length) {
+      if ((base.products?.length || 0) < 7000) {
         base.products = kv.products;
         if (Array.isArray(kv.categories) && kv.categories.length > 0) base.categories = kv.categories;
         if (Array.isArray(kv.batches) && kv.batches.length > 0) base.batches = kv.batches;
         if (Array.isArray(kv.units) && kv.units.length > 0) base.units = kv.units;
       }
       ensureDefaultBranches(base);
+      populateBranchStockIfEmpty(base);
       saveDb(base);
       window.dispatchEvent(new Event('productsUpdated'));
       window.dispatchEvent(new Event('branchesUpdated'));
@@ -61,8 +64,9 @@ function hydrateFromIdb() {
       const req = tx.objectStore(IDB_STORE).get(IDB_KEY);
       req.onsuccess = () => {
         const stored = req.result;
-        if (stored && Array.isArray(stored.products) && stored.products.length >= 1000) {
+        if (stored && Array.isArray(stored.products) && stored.products.length >= 7000) {
           const changed = ensureDefaultBranches(stored);
+          populateBranchStockIfEmpty(stored);
           memoryDb = stored;
           if (changed) saveDb(stored);
           if (typeof window !== 'undefined') {
@@ -558,12 +562,36 @@ function saveDb(db) {
   }
 }
 
+let branchStockMapCache = null;
+let lastBranchStockRef = null;
+
+function populateBranchStockIfEmpty(db) {
+  if (!db || !Array.isArray(db.products)) return;
+  if (!Array.isArray(db.branch_stock)) db.branch_stock = [];
+  if (db.branch_stock.length < db.products.length) {
+    const branches = Array.isArray(db.branches) && db.branches.length > 0 ? db.branches : DEFAULT_BRANCH_DEFINITIONS;
+    const defaultBranch = branches.find((b) => b.is_default) || branches[0];
+    const defId = defaultBranch ? Number(defaultBranch.id) : 1;
+    const newBranchStock = [];
+    db.products.forEach((p) => {
+      newBranchStock.push({ branch_id: defId, product_id: p.id, stock: Number(p.stock) || 0 });
+    });
+    db.branch_stock = newBranchStock;
+    branchStockMapCache = null;
+  }
+}
+
 function getBranchStockValue(db, branchId, prod) {
   const bId = Number(branchId) || 1;
-  const row = (db.branch_stock || []).find(
-    (bs) => Number(bs.branch_id) === bId && Number(bs.product_id) === Number(prod.id)
-  );
-  if (row) return Number(row.stock) || 0;
+  if (!branchStockMapCache || lastBranchStockRef !== db.branch_stock) {
+    lastBranchStockRef = db.branch_stock;
+    branchStockMapCache = new Map();
+    (db.branch_stock || []).forEach((bs) => {
+      branchStockMapCache.set(`${Number(bs.branch_id)}_${Number(bs.product_id)}`, Number(bs.stock) || 0);
+    });
+  }
+  const key = `${bId}_${Number(prod.id)}`;
+  if (branchStockMapCache.has(key)) return branchStockMapCache.get(key);
   const defaultBranch = (db.branches || []).find((b) => b.is_default) || db.branches?.[0];
   const defId = defaultBranch ? Number(defaultBranch.id) : 1;
   return bId === defId ? Number(prod.stock) || 0 : 0;
@@ -685,7 +713,8 @@ export function handleStandaloneApiRequest(method, rawUrl, rawBody) {
   if (path === '/api/auth/profile') {
     if (m === 'PUT') {
       db.owner = { ...db.owner, ...body };
-      saveDb(db);
+      populateBranchStockIfEmpty(db);
+    saveDb(db);
     }
     return ok({ user: db.owner, ...db.owner });
   }
@@ -744,6 +773,7 @@ export function handleStandaloneApiRequest(method, rawUrl, rawBody) {
       createdAt: getTodayIso()
     };
     db.branches.push(newBranch);
+    populateBranchStockIfEmpty(db);
     saveDb(db);
     return ok({ success: true, id: newId, branch: newBranch });
   }
@@ -819,6 +849,7 @@ export function handleStandaloneApiRequest(method, rawUrl, rawBody) {
       items
     };
     db.transfers.unshift(tr);
+    populateBranchStockIfEmpty(db);
     saveDb(db);
     return ok({ success: true, id: tr.id, code });
   }
@@ -831,6 +862,7 @@ export function handleStandaloneApiRequest(method, rawUrl, rawBody) {
   if (branchDefaultMatch && m === 'POST') {
     const id = Number(branchDefaultMatch[1]);
     db.branches.forEach((b) => { b.is_default = Number(b.id) === id ? 1 : 0; });
+    populateBranchStockIfEmpty(db);
     saveDb(db);
     return ok({ success: true });
   }
@@ -843,6 +875,7 @@ export function handleStandaloneApiRequest(method, rawUrl, rawBody) {
     db.branches = db.branches.filter((x) => Number(x.id) !== id);
     db.branch_stock = db.branch_stock.filter((x) => Number(x.branch_id) !== id);
     db.products.forEach((p) => syncProductTotalStock(db, p.id));
+    populateBranchStockIfEmpty(db);
     saveDb(db);
     return ok({ success: true });
   }
@@ -858,6 +891,14 @@ export function handleStandaloneApiRequest(method, rawUrl, rawBody) {
       return ok(list);
     }
     return ok(db.products);
+  }
+
+  if (path === '/api/products/sync-kiotviet') {
+    seedFromBundledKiotViet();
+    return ok({
+      success: true,
+      message: 'Đang kích hoạt nạp toàn bộ 7.854 sản phẩm KiotViet vào cơ sở dữ liệu...'
+    });
   }
 
   if ((path === '/api/products/import-json' || path === '/api/products/import') && m === 'POST') {
@@ -951,6 +992,7 @@ export function handleStandaloneApiRequest(method, rawUrl, rawBody) {
       db.units = body.units;
     }
 
+    populateBranchStockIfEmpty(db);
     saveDb(db);
     if (typeof window !== 'undefined') {
       window.dispatchEvent(new Event('productsUpdated'));
@@ -1005,6 +1047,7 @@ export function handleStandaloneApiRequest(method, rawUrl, rawBody) {
         stock: initStock
       });
     }
+    populateBranchStockIfEmpty(db);
     saveDb(db);
     return ok({ success: true, id: newId, product: newProd });
   }
@@ -1014,6 +1057,7 @@ export function handleStandaloneApiRequest(method, rawUrl, rawBody) {
     const before = db.products.length;
     db.products = db.products.filter((p) => !ids.has(Number(p.id)));
     db.branch_stock = (db.branch_stock || []).filter((bs) => !ids.has(Number(bs.product_id)));
+    populateBranchStockIfEmpty(db);
     saveDb(db);
     return ok({ success: true, deleted: before - db.products.length });
   }
@@ -1022,6 +1066,7 @@ export function handleStandaloneApiRequest(method, rawUrl, rawBody) {
     const count = db.products.length;
     db.products = [];
     db.branch_stock = [];
+    populateBranchStockIfEmpty(db);
     saveDb(db);
     return ok({ success: true, deleted: count });
   }
@@ -1045,6 +1090,7 @@ export function handleStandaloneApiRequest(method, rawUrl, rawBody) {
       }
       updated++;
     });
+    populateBranchStockIfEmpty(db);
     saveDb(db);
     return ok({ success: true, count: updated });
   }
@@ -1060,6 +1106,7 @@ export function handleStandaloneApiRequest(method, rawUrl, rawBody) {
         }
       }
     });
+    populateBranchStockIfEmpty(db);
     saveDb(db);
     return ok({ success: true });
   }
@@ -1070,7 +1117,8 @@ export function handleStandaloneApiRequest(method, rawUrl, rawBody) {
     const idx = db.products.findIndex((p) => Number(p.id) === id);
     if (idx !== -1) {
       db.products[idx] = { ...db.products[idx], ...body };
-      saveDb(db);
+      populateBranchStockIfEmpty(db);
+    saveDb(db);
     }
     return ok({ success: true });
   }
@@ -1078,6 +1126,7 @@ export function handleStandaloneApiRequest(method, rawUrl, rawBody) {
     const id = Number(prodMatch[1]);
     db.products = db.products.filter((p) => Number(p.id) !== id);
     db.branch_stock = db.branch_stock.filter((bs) => Number(bs.product_id) !== id);
+    populateBranchStockIfEmpty(db);
     saveDb(db);
     return ok({ success: true });
   }
@@ -1141,6 +1190,7 @@ export function handleStandaloneApiRequest(method, rawUrl, rawBody) {
       items: detailItems
     };
     db.stocktakes.unshift(record);
+    populateBranchStockIfEmpty(db);
     saveDb(db);
     return ok({
       success: true,
@@ -1170,6 +1220,7 @@ export function handleStandaloneApiRequest(method, rawUrl, rawBody) {
     const newId = db.categories.length + 1;
     const cat = { id: newId, name: body.name, description: body.description || '', status: 'active', createdAt: getTodayIso() };
     db.categories.push(cat);
+    populateBranchStockIfEmpty(db);
     saveDb(db);
     return ok({ success: true, id: newId });
   }
@@ -1193,7 +1244,8 @@ export function handleStandaloneApiRequest(method, rawUrl, rawBody) {
       db.batches.unshift(newBatch);
       const activeBranchId = Number((typeof localStorage !== 'undefined' && localStorage.getItem('active_branch_id')) || 1);
       adjustBranchStock(db, activeBranchId, newBatch.product_id, newBatch.quantity);
-      saveDb(db);
+      populateBranchStockIfEmpty(db);
+    saveDb(db);
       return ok({ success: true, id: newBatch.id });
     }
   }
@@ -1233,6 +1285,7 @@ export function handleStandaloneApiRequest(method, rawUrl, rawBody) {
       notes: `Đơn thuốc ${orderCode}`,
       created_at: newOrder.createdAt
     });
+    populateBranchStockIfEmpty(db);
     saveDb(db);
     return ok({ success: true, order_id: newOrder.id, order_code: orderCode, order: newOrder });
   }
@@ -1285,6 +1338,7 @@ export function handleStandaloneApiRequest(method, rawUrl, rawBody) {
       closed_at: null
     };
     db.cashier_shifts.unshift(newShift);
+    populateBranchStockIfEmpty(db);
     saveDb(db);
     return ok({ success: true, id: newShift.id });
   }
@@ -1308,6 +1362,7 @@ export function handleStandaloneApiRequest(method, rawUrl, rawBody) {
     openShift.note = body.note || openShift.note;
     openShift.status = 'closed';
     openShift.closed_at = getTodayIso();
+    populateBranchStockIfEmpty(db);
     saveDb(db);
 
     return ok({
@@ -1345,6 +1400,7 @@ export function handleStandaloneApiRequest(method, rawUrl, rawBody) {
       createdAt: getTodayIso()
     };
     db.staff.push(st);
+    populateBranchStockIfEmpty(db);
     saveDb(db);
     return ok({ success: true, id: newId });
   }
@@ -1361,7 +1417,8 @@ export function handleStandaloneApiRequest(method, rawUrl, rawBody) {
         hourly_rate: body.hourly_rate !== undefined ? Number(body.hourly_rate) : db.staff[idx].hourly_rate,
         allowance: body.allowance !== undefined ? Number(body.allowance) : db.staff[idx].allowance
       };
-      saveDb(db);
+      populateBranchStockIfEmpty(db);
+    saveDb(db);
     }
     return ok({ success: true });
   }
@@ -1372,7 +1429,8 @@ export function handleStandaloneApiRequest(method, rawUrl, rawBody) {
     const st = db.staff.find((s) => Number(s.id) === id);
     if (st) {
       st.status = body.locked ? 'locked' : 'active';
-      saveDb(db);
+      populateBranchStockIfEmpty(db);
+    saveDb(db);
     }
     return ok({ success: true, status: st ? st.status : 'active' });
   }
@@ -1402,6 +1460,7 @@ export function handleStandaloneApiRequest(method, rawUrl, rawBody) {
       createdAt: getTodayIso()
     };
     db.commissions.push(newComm);
+    populateBranchStockIfEmpty(db);
     saveDb(db);
     return ok({ success: true, id: newComm.id });
   }
@@ -1448,6 +1507,7 @@ export function handleStandaloneApiRequest(method, rawUrl, rawBody) {
       createdAt: getTodayIso()
     };
     db.shifts.unshift(newShift);
+    populateBranchStockIfEmpty(db);
     saveDb(db);
     return ok({ success: true, shift_id: newShift.id, check_in: newShift.check_in });
   }
@@ -1466,6 +1526,7 @@ export function handleStandaloneApiRequest(method, rawUrl, rawBody) {
     sh.hours_worked = hoursWorked;
     if (body.note !== undefined) sh.note = body.note;
     sh.status = 'COMPLETED';
+    populateBranchStockIfEmpty(db);
     saveDb(db);
 
     const st = db.staff.find((x) => Number(x.id) === Number(sh.staff_id)) || {};
@@ -1485,6 +1546,7 @@ export function handleStandaloneApiRequest(method, rawUrl, rawBody) {
   if (hrmDeleteMatch && m === 'DELETE') {
     const id = Number(hrmDeleteMatch[1]);
     db.shifts = db.shifts.filter((s) => Number(s.id) !== id);
+    populateBranchStockIfEmpty(db);
     saveDb(db);
     return ok({ success: true });
   }
@@ -1541,6 +1603,7 @@ export function handleStandaloneApiRequest(method, rawUrl, rawBody) {
   if (path === '/api/customers' && m === 'POST') {
     const c = { id: db.customers.length + 1, ...body, total_spend: 0, createdAt: getTodayIso() };
     db.customers.unshift(c);
+    populateBranchStockIfEmpty(db);
     saveDb(db);
     return ok({ success: true, id: c.id, customer: c });
   }
@@ -1550,6 +1613,7 @@ export function handleStandaloneApiRequest(method, rawUrl, rawBody) {
   if (path === '/api/suppliers' && m === 'POST') {
     const s = { id: db.suppliers.length + 1, ...body, total_purchased: 0, total_debt: 0, status: 'active' };
     db.suppliers.unshift(s);
+    populateBranchStockIfEmpty(db);
     saveDb(db);
     return ok({ success: true, id: s.id });
   }
@@ -1559,7 +1623,8 @@ export function handleStandaloneApiRequest(method, rawUrl, rawBody) {
     if (m === 'POST') {
       const c = { id: db.combos.length + 1, ...body, status: 'active' };
       db.combos.push(c);
-      saveDb(db);
+      populateBranchStockIfEmpty(db);
+    saveDb(db);
       return ok({ success: true, id: c.id });
     }
   }
@@ -1569,7 +1634,8 @@ export function handleStandaloneApiRequest(method, rawUrl, rawBody) {
     if (m === 'POST') {
       const u = { id: db.units.length + 1, ...body };
       db.units.push(u);
-      saveDb(db);
+      populateBranchStockIfEmpty(db);
+    saveDb(db);
       return ok({ success: true, id: u.id });
     }
   }
@@ -1583,7 +1649,8 @@ export function handleStandaloneApiRequest(method, rawUrl, rawBody) {
   if (path === '/api/settings') {
     if (m === 'POST' || m === 'PUT') {
       db.settings = { ...db.settings, ...body };
-      saveDb(db);
+      populateBranchStockIfEmpty(db);
+    saveDb(db);
     }
     return ok(db.settings || {});
   }

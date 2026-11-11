@@ -9,6 +9,7 @@ import {
   Settings as SettingsIcon
 } from 'lucide-react';
 import logo from '../assets/logo.png';
+import PWAInstallPrompt from './PWAInstallPrompt';
 
 // ==============================================================
 //  MENU CHUẨN 100% CHO NHÀ THUỐC (Nhà Thuốc Nhân Đức)
@@ -212,6 +213,11 @@ export default function Sidebar({ onClose }) {
       <nav className="flex-1 overflow-y-auto px-3 py-3 space-y-0.5">
         {menuItems.map(renderItem)}
       </nav>
+
+      {/* PWA Install Button */}
+      <div className="px-3 pb-2 pt-1 shrink-0">
+        <PWAInstallPrompt variant="sidebar" />
+      </div>
 
       {/* Footer System Info */}
       <div className="p-3 border-t border-slate-100 shrink-0 bg-slate-50/70">

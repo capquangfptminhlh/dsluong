@@ -11,6 +11,7 @@ export default function Products() {
   const [showImportModal, setShowImportModal] = useState(false);
   const [importFile, setImportFile] = useState(null);
   const [importing, setImporting] = useState(false);
+  const [importStatus, setImportStatus] = useState('');
   const [expandedRows, setExpandedRows] = useState({});
   const [searchQuery, setSearchQuery] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
@@ -276,11 +277,49 @@ export default function Products() {
     setGeneratedVariants(newVariants);
   };
 
+  const handleSyncKiotViet = async () => {
+    setImporting(true);
+    setImportStatus('Đang tải kho 7.854 sản phẩm KiotViet...');
+    try {
+      const res = await fetch('/kiotviet_nhanduc_7854.json');
+      if (res.ok) {
+        const kv = await res.json();
+        if (kv && Array.isArray(kv.products) && kv.products.length > 0) {
+          setImportStatus(`Đang lưu ${kv.products.length.toLocaleString('vi-VN')} thuốc vào hệ thống...`);
+          await axios.post(`${API_BASE}/api/products/import-json`, {
+            mode: 'replace',
+            items: kv.products,
+            batches: kv.batches || [],
+            units: kv.units || []
+          });
+          alert(`Đã nạp thành công toàn bộ ${kv.products.length.toLocaleString('vi-VN')} thuốc từ KiotViet!`);
+          setShowImportModal(false);
+          setImportFile(null);
+          setCurrentPage(1);
+          fetchProducts();
+          return;
+        }
+      }
+      const apiRes = await axios.post(`${API_BASE}/api/products/sync-kiotviet`);
+      alert(apiRes.data.message || 'Đã đồng bộ 7.854 sản phẩm KiotViet!');
+      setShowImportModal(false);
+      fetchProducts();
+    } catch (err) {
+      console.error(err);
+      alert('Lỗi nạp dữ liệu: ' + (err.message || ''));
+    } finally {
+      setImporting(false);
+      setImportStatus('');
+    }
+  };
+
   const handleImport = async (e) => {
     e.preventDefault();
     if (!importFile) return alert('Vui lòng chọn file Excel (.xlsx, .xls, .csv)');
     setImporting(true);
+    setImportStatus(`Đang đọc file Excel (${(importFile.size / (1024 * 1024)).toFixed(1)} MB)...`);
     try {
+      await new Promise((r) => setTimeout(r, 60));
       const buf = await importFile.arrayBuffer();
       const workbook = XLSX.read(buf, { type: 'array' });
       const sheetName = workbook.SheetNames[0];
@@ -291,6 +330,9 @@ export default function Products() {
         alert('File Excel trống hoặc không có dữ liệu sản phẩm!');
         return;
       }
+
+      setImportStatus(`Đang phân tích ${(rows.length - 1).toLocaleString('vi-VN')} dòng sản phẩm...`);
+      await new Promise((r) => setTimeout(r, 60));
 
       let headerIdx = 0;
       for (let i = 0; i < Math.min(10, rows.length); i++) {
@@ -407,6 +449,9 @@ export default function Products() {
         return;
       }
 
+      setImportStatus(`Đang lưu ${items.length.toLocaleString('vi-VN')} thuốc vào hệ thống...`);
+      await new Promise((r) => setTimeout(r, 60));
+
       const res = await axios.post(`${API_BASE}/api/products/import-json`, {
         mode: items.length >= 500 ? 'replace' : 'merge',
         items,
@@ -424,6 +469,7 @@ export default function Products() {
       alert(err.response?.data?.error || 'Lỗi đọc hoặc nhập file Excel: ' + (err.message || ''));
     } finally {
       setImporting(false);
+      setImportStatus('');
     }
   };
 
@@ -487,6 +533,17 @@ export default function Products() {
             <span className="px-3.5 py-2 bg-emerald-50 border border-emerald-200 text-emerald-700 text-xs font-black rounded-xl">
               Tổng kho: {filteredProducts.length.toLocaleString('vi-VN')} sản phẩm
             </span>
+            {products.length < 7000 && (
+              <button
+                type="button"
+                onClick={handleSyncKiotViet}
+                disabled={importing}
+                className="px-3 py-2 bg-amber-500 hover:bg-amber-600 text-white text-xs font-black rounded-xl shadow-xs transition-colors flex items-center gap-1.5"
+                title="Đồng bộ nạp đủ 7.854 sản phẩm KiotViet"
+              >
+                ⚡ Nạp Đủ 7.854 Thuốc
+              </button>
+            )}
             <button className="px-4 py-2.5 bg-white border border-slate-200 text-slate-700 font-bold rounded-xl hover:bg-slate-50 flex items-center gap-2 transition-colors">
               <Filter className="w-4 h-4" /> Lọc Nâng Cao
             </button>
@@ -964,8 +1021,36 @@ export default function Products() {
                 ✕
               </button>
             </div>
-            <div className="p-6">
-              <div className="border-2 border-dashed border-slate-200 rounded-2xl p-8 text-center hover:bg-slate-50 transition-colors">
+            <div className="p-6 space-y-4">
+              {/* Card nạp trực tiếp dữ liệu chuẩn 7.854 sản phẩm */}
+              <div className="p-4 bg-emerald-50 border border-emerald-200 rounded-2xl flex flex-col gap-2.5">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <h4 className="font-black text-emerald-900 text-sm">Kho Thuốc KiotViet Đã Có Sẵn</h4>
+                    <p className="text-xs text-emerald-700 mt-0.5">7.854 thuốc (Tên, Giá, Tồn, ĐVT, Lô & Hạn Dùng)</p>
+                  </div>
+                  <span className="px-2 py-0.5 bg-emerald-200 text-emerald-900 font-black text-[10px] rounded-md">
+                    7.854 SP
+                  </span>
+                </div>
+                <button
+                  type="button"
+                  onClick={handleSyncKiotViet}
+                  disabled={importing}
+                  className="w-full py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white font-black text-xs rounded-xl shadow-md shadow-emerald-600/20 transition-all flex items-center justify-center gap-1.5"
+                >
+                  ⚡ Nạp Ngay 7.854 Thuốc KiotViet (1 Chạm)
+                </button>
+              </div>
+
+              <div className="flex items-center gap-2 text-slate-400 text-xs uppercase tracking-wider font-bold my-2">
+                <div className="h-px bg-slate-200 flex-1"></div>
+                <span>Hoặc chọn file Excel mới</span>
+                <div className="h-px bg-slate-200 flex-1"></div>
+              </div>
+
+              {/* Upload file mới */}
+              <div className="border-2 border-dashed border-slate-200 rounded-2xl p-6 text-center hover:bg-slate-50 transition-colors">
                 <input 
                   type="file" 
                   accept=".xlsx, .xls, .csv"
@@ -974,25 +1059,33 @@ export default function Products() {
                   id="excel-upload" 
                 />
                 <label htmlFor="excel-upload" className="cursor-pointer flex flex-col items-center">
-                  <div className="w-16 h-16 bg-emerald-100 text-emerald-600 rounded-2xl flex items-center justify-center mb-4">
-                    <Package className="w-8 h-8" />
+                  <div className="w-12 h-12 bg-emerald-100 text-emerald-600 rounded-2xl flex items-center justify-center mb-2">
+                    <Package className="w-6 h-6" />
                   </div>
-                  <span className="text-slate-700 font-bold text-lg mb-1">
-                    {importFile ? importFile.name : 'Nhấn để chọn file Excel'}
+                  <span className="text-slate-700 font-bold text-sm mb-0.5">
+                    {importFile ? importFile.name : 'Nhấn để chọn file Excel (.xlsx)'}
                   </span>
-                  <span className="text-slate-500 text-sm">Hỗ trợ định dạng .xlsx, .xls, .csv</span>
+                  <span className="text-slate-400 text-[11px]">Hỗ trợ file danh mục KiotViet, Sapo</span>
                 </label>
               </div>
-              <div className="mt-6 flex justify-end gap-3">
-                <button onClick={() => setShowImportModal(false)} className="px-6 py-3 font-bold text-slate-500 hover:bg-slate-100 rounded-xl transition-colors">
+
+              {importing && (
+                <div className="p-3 bg-blue-50 border border-blue-200 rounded-xl text-center animate-pulse">
+                  <div className="text-xs font-bold text-blue-800">{importStatus || 'Đang xử lý dữ liệu...'}</div>
+                  <div className="text-[10px] text-blue-600 mt-0.5">Vui lòng đợi giây lát, hệ thống đang đồng bộ kho</div>
+                </div>
+              )}
+
+              <div className="mt-4 flex justify-end gap-3 pt-2 border-t border-slate-100">
+                <button onClick={() => setShowImportModal(false)} className="px-5 py-2.5 font-bold text-slate-500 hover:bg-slate-100 rounded-xl transition-colors text-xs">
                   Hủy
                 </button>
                 <button 
                   onClick={handleImport} 
                   disabled={importing || !importFile}
-                  className="px-6 py-3 font-bold text-white bg-emerald-600 hover:bg-emerald-700 disabled:opacity-50 disabled:cursor-not-allowed rounded-xl transition-colors shadow-lg shadow-emerald-600/20"
+                  className="px-5 py-2.5 font-bold text-white bg-emerald-600 hover:bg-emerald-700 disabled:opacity-50 disabled:cursor-not-allowed rounded-xl transition-colors shadow-lg shadow-emerald-600/20 text-xs"
                 >
-                  {importing ? 'Đang xử lý...' : 'Bắt đầu Nhập'}
+                  {importing ? 'Đang Nhập...' : 'Bắt đầu Nhập File'}
                 </button>
               </div>
             </div>

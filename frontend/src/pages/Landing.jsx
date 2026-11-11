@@ -9,6 +9,7 @@ import {
   Calendar, X, RefreshCw
 } from 'lucide-react';
 import logo from '../assets/logo.png';
+import PWAInstallPrompt from '../components/PWAInstallPrompt';
 
 export default function Landing() {
   const navigate = useNavigate();
@@ -201,6 +202,7 @@ export default function Landing() {
 
           {/* Action Buttons */}
           <div className="flex items-center gap-2">
+            <PWAInstallPrompt variant="header" />
             <button
               onClick={() => setShowPrescriptionModal(true)}
               className="inline-flex items-center gap-1 px-3 py-2 bg-emerald-50 hover:bg-emerald-100 text-emerald-800 border border-emerald-300 rounded-xl text-xs font-bold transition-all shadow-xs"
