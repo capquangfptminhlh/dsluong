@@ -9,6 +9,7 @@ import QuickSearch from './components/QuickSearch';
 import TaxNewsNotification from './components/TaxNewsNotification';
 import BottomTabBar from './components/BottomTabBar';
 import BranchSwitcher from './components/BranchSwitcher';
+import PWAInstallPrompt from './components/PWAInstallPrompt';
 import { Capacitor } from '@capacitor/core';
 import { StatusBar, Style } from '@capacitor/status-bar';
 import { PushNotifications } from '@capacitor/push-notifications';
@@ -109,6 +110,9 @@ function App() {
           </div>
 
           <div className="flex items-center gap-2">
+            {/* PWA Install Button */}
+            <PWAInstallPrompt variant="header" />
+
             {/* Branch Switcher: Chọn quầy thuốc / chi nhánh */}
             <BranchSwitcher />
 

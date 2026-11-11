@@ -1,0 +1,70 @@
+{
+  "name": "Nhà Thuốc Nhân Đức — Chuẩn GPP",
+  "short_name": "Nhân Đức GPP",
+  "description": "Hệ thống Quản lý Bán thuốc, Kho Dược, Lô Date & Kê đơn Chuẩn GPP Bộ Y Tế",
+  "start_url": "/app",
+  "scope": "/",
+  "display": "standalone",
+  "display_override": ["window-controls-overlay", "standalone", "minimal-ui"],
+  "orientation": "any",
+  "theme_color": "#059669",
+  "background_color": "#ffffff",
+  "lang": "vi",
+  "dir": "ltr",
+  "categories": ["medical", "business", "productivity"],
+  "icons": [
+    {
+      "src": "/icons/icon-64.png",
+      "sizes": "64x64",
+      "type": "image/png"
+    },
+    {
+      "src": "/icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icons/maskable-icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Kê đơn & Bán thuốc (POS)",
+      "short_name": "Bán thuốc",
+      "description": "Mở quầy bán thuốc POS nhanh",
+      "url": "/app/pos",
+      "icons": [{ "src": "/icons/icon-192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Kho Dược & Thuốc",
+      "short_name": "Kho thuốc",
+      "description": "Xem tồn kho thuốc và dược phẩm",
+      "url": "/app/products",
+      "icons": [{ "src": "/icons/icon-192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Chốt ca trực Dược sĩ",
+      "short_name": "Chốt ca",
+      "description": "Kiểm tiền két và chốt ca",
+      "url": "/app/pos/shift",
+      "icons": [{ "src": "/icons/icon-192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Chi nhánh & Quầy thuốc",
+      "short_name": "Chi nhánh",
+      "description": "Quản lý và chuyển chi nhánh",
+      "url": "/app/branches",
+      "icons": [{ "src": "/icons/icon-192.png", "sizes": "192x192" }]
+    }
+  ]
+}

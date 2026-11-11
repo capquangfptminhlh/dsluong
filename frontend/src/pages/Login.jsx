@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate, Link } from 'react-router-dom';
 import { Phone, Lock, Store } from 'lucide-react';
+import PWAInstallPrompt from '../components/PWAInstallPrompt';
 import API_BASE from '../config/api';
 import logo from '../assets/logo.png';
 
@@ -206,7 +207,11 @@ export default function Login() {
           </form>
         )}
 
-        <div className="mt-8 pt-6 border-t border-slate-100 text-center text-sm">
+        <div className="mt-5">
+          <PWAInstallPrompt variant="banner" />
+        </div>
+
+        <div className="mt-6 pt-5 border-t border-slate-100 text-center text-sm">
           <span className="text-slate-500">Chưa có tài khoản? </span>
           <Link to="/register" className="font-bold text-blue-600 hover:text-blue-700">
             Đăng ký cửa hàng mới

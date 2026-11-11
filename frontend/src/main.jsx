@@ -48,6 +48,29 @@ axios.interceptors.response.use(
   }
 );
 
+// Đăng ký Service Worker cho Progressive Web App (PWA)
+if (typeof window !== 'undefined' && 'serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker
+      .register('/sw.js')
+      .then((reg) => {
+        reg.onupdatefound = () => {
+          const installingWorker = reg.installing;
+          if (installingWorker) {
+            installingWorker.onstatechange = () => {
+              if (installingWorker.state === 'installed' && navigator.serviceWorker.controller) {
+                installingWorker.postMessage({ type: 'SKIP_WAITING' });
+              }
+            };
+          }
+        };
+      })
+      .catch((err) => {
+        console.warn('Lỗi đăng ký Service Worker:', err);
+      });
+  });
+}
+
 // Placeholder for unbuilt ERP pages
 const ComingSoon = ({ title }) => (
   <div className="flex flex-col items-center justify-center h-full p-8 text-center">
