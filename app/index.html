@@ -76,25 +76,35 @@
     <script>
       (function() {
         try {
-          var VER = 'nd_sw_v3.7';
+          var VER = 'nd_sw_v3.8';
           if (localStorage.getItem('nd_cache_ver') !== VER) {
             localStorage.setItem('nd_cache_ver', VER);
+            var cleanPromises = [];
             if ('caches' in window) {
-              caches.keys().then(function(keys) {
-                return Promise.all(keys.map(function(k) { return caches.delete(k); }));
-              });
+              cleanPromises.push(
+                caches.keys().then(function(keys) {
+                  return Promise.all(keys.map(function(k) { return caches.delete(k); }));
+                })
+              );
             }
             if ('serviceWorker' in navigator) {
-              navigator.serviceWorker.getRegistrations().then(function(regs) {
-                regs.forEach(function(r) { r.update(); });
-              });
+              cleanPromises.push(
+                navigator.serviceWorker.getRegistrations().then(function(regs) {
+                  return Promise.all(regs.map(function(r) { return r.unregister(); }));
+                })
+              );
             }
+            Promise.all(cleanPromises).then(function() {
+              if (!window.location.search.includes('v=3.8')) {
+                window.location.replace(window.location.pathname + '?v=3.8');
+              }
+            });
           }
         } catch (e) {}
       })();
     </script>
-    <script type="module" crossorigin src="/assets/index-Dg5UR7ID.js"></script>
-    <link rel="stylesheet" crossorigin href="/assets/index-BvdQ7bA7.css">
+    <script type="module" crossorigin src="/assets/index-CnQUCYGz.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-DOx1MJR0.css">
   </head>
   <body>
     <div id="root"></div>
