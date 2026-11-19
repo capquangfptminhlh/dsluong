@@ -76,7 +76,7 @@
     <script>
       (function() {
         try {
-          var VER = 'nd_sw_v4.0';
+          var VER = 'nd_sw_v4.1';
           if (localStorage.getItem('nd_cache_ver') !== VER) {
             localStorage.setItem('nd_cache_ver', VER);
             var cleanPromises = [];
@@ -95,16 +95,16 @@
               );
             }
             Promise.all(cleanPromises).then(function() {
-              if (!window.location.search.includes('v=4.0')) {
-                window.location.replace(window.location.pathname + '?v=4.0');
+              if (!window.location.search.includes('v=4.1')) {
+                window.location.replace(window.location.pathname + '?v=4.1');
               }
             });
           }
         } catch (e) {}
       })();
     </script>
-    <script type="module" crossorigin src="/assets/index-nLkMMxZ5.js"></script>
-    <link rel="stylesheet" crossorigin href="/assets/index-dqGyUF7T.css">
+    <script type="module" crossorigin src="/assets/index-BQAoICir.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-DYHBYaaO.css">
   </head>
   <body>
     <div id="root"></div>
