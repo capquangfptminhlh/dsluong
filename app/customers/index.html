@@ -73,8 +73,28 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <script type="module" crossorigin src="/assets/index-cYXV1zGU.js"></script>
-    <link rel="stylesheet" crossorigin href="/assets/index-DChvhkHU.css">
+    <script>
+      (function() {
+        try {
+          var VER = 'nd_sw_v3.5';
+          if (localStorage.getItem('nd_cache_ver') !== VER) {
+            localStorage.setItem('nd_cache_ver', VER);
+            if ('caches' in window) {
+              caches.keys().then(function(keys) {
+                return Promise.all(keys.map(function(k) { return caches.delete(k); }));
+              });
+            }
+            if ('serviceWorker' in navigator) {
+              navigator.serviceWorker.getRegistrations().then(function(regs) {
+                regs.forEach(function(r) { r.update(); });
+              });
+            }
+          }
+        } catch (e) {}
+      })();
+    </script>
+    <script type="module" crossorigin src="/assets/index-CmJFzjx2.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-b_vHKXnC.css">
   </head>
   <body>
     <div id="root"></div>
