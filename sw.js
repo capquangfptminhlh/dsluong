@@ -1,5 +1,5 @@
 /* Service Worker cho Nhà Thuốc Nhân Đức (Chuẩn PWA GPP - Network First Auto-Update v3.6) */
-const CACHE_NAME = 'nhanduc-gpp-v3.8';
+const CACHE_NAME = 'nhanduc-gpp-v3.9';
 const PRECACHE_ASSETS = [
   '/',
   '/index.html',
