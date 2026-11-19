@@ -1,5 +1,5 @@
-/* Service Worker cho Nhà Thuốc Nhân Đức (Chuẩn PWA GPP - Network First Auto-Update) */
-const CACHE_NAME = 'nhanduc-gpp-v3.5';
+/* Service Worker cho Nhà Thuốc Nhân Đức (Chuẩn PWA GPP - Network First Auto-Update v3.6) */
+const CACHE_NAME = 'nhanduc-gpp-v3.6';
 const PRECACHE_ASSETS = [
   '/',
   '/index.html',
@@ -25,15 +25,19 @@ self.addEventListener('install', (event) => {
 
 self.addEventListener('activate', (event) => {
   event.waitUntil(
-    caches.keys().then((keys) => {
-      return Promise.all(
-        keys.map((k) => {
-          if (k !== CACHE_NAME) {
-            return caches.delete(k);
-          }
-        })
-      );
-    }).then(() => self.clients.claim())
+    caches.keys().then(async (keys) => {
+      const oldKeys = keys.filter((k) => k !== CACHE_NAME);
+      await Promise.all(oldKeys.map((k) => caches.delete(k)));
+      await self.clients.claim();
+      if (oldKeys.length > 0) {
+        const clientList = await self.clients.matchAll({ type: 'window', includeUncontrolled: true });
+        for (const client of clientList) {
+          try {
+            await client.navigate(client.url);
+          } catch (_) {}
+        }
+      }
+    })
   );
 });
 
@@ -47,7 +51,7 @@ self.addEventListener('fetch', (event) => {
 
   // Network-First cho mọi trang HTML, JS, CSS để luôn nhận bản cập nhật mới nhất ngay lập tức
   event.respondWith(
-    fetch(req)
+    fetch(req, { cache: 'no-cache' })
       .then((networkRes) => {
         if (networkRes && networkRes.status === 200) {
           const copy = networkRes.clone();
